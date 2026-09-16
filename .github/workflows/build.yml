@@ -1,0 +1,40 @@
+name: Build Store Inventory Management
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        shell: cmd
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller reportlab python-docx openpyxl requests pywin32 pymupdf pillow
+
+      - name: Build EXE
+        shell: cmd
+        run: |
+          python -m PyInstaller --clean --onefile --noconsole --name "StoreInventoryManagement" --collect-all reportlab --collect-all PIL --collect-all fitz --hidden-import updater --hidden-import reportlab.pdfgen.canvas --hidden-import reportlab.lib.utils --hidden-import reportlab.pdfbase._fontdata --add-data "inventory_seed.csv;." --add-data "company_logo.png;." store_inventory.py
+
+      - name: Upload EXE artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: StoreInventoryManagement
+          path: dist/StoreInventoryManagement.exe
