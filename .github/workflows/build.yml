@@ -94,3 +94,5 @@ jobs:
           git add version.json
           git commit -m "Update version manifest to v1.0.${{ github.run_number }}" || Write-Host "No manifest changes to commit"
           git push
+
+      # Automatic test build trigger; application source remains unchanged.
