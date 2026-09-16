@@ -29,12 +29,8 @@ jobs:
         run: |
           if (Test-Path "source") { Remove-Item "source" -Recurse -Force }
           Expand-Archive -LiteralPath "Store_Inventory_GITHUB_AUTO_UPDATER_PATCH_V1.zip" -DestinationPath "source" -Force
-          if (-not (Test-Path "source\store_inventory.py")) {
-            throw "store_inventory.py was not found inside the source ZIP."
-          }
-          if (-not (Test-Path "source\updater.py")) {
-            throw "updater.py was not found inside the source ZIP."
-          }
+          if (-not (Test-Path "source\store_inventory.py")) { throw "store_inventory.py was not found inside the source ZIP." }
+          if (-not (Test-Path "source\updater.py")) { throw "updater.py was not found inside the source ZIP." }
 
       - name: Set release version
         shell: pwsh
@@ -59,20 +55,69 @@ jobs:
         run: |
           python -m PyInstaller --clean --onefile --noconsole --name "StoreInventoryManagement" --collect-all reportlab --collect-all PIL --collect-all fitz --hidden-import updater --hidden-import reportlab.pdfgen.canvas --hidden-import reportlab.lib.utils --hidden-import reportlab.pdfbase._fontdata --add-data "inventory_seed.csv;." --add-data "company_logo.png;." store_inventory.py
 
+      - name: Create Windows installer
+        shell: pwsh
+        run: |
+          $version = "1.0.${{ github.run_number }}"
+          $exe = (Resolve-Path "source\dist\StoreInventoryManagement.exe").Path
+          $setup = Join-Path $PWD "StoreInventoryManagement_Setup.iss"
+          @"
+          #define MyAppName "Store Inventory Management"
+          #define MyAppVersion "$version"
+          #define MyAppPublisher "Store Inventory Management"
+          #define MyAppExeName "StoreInventoryManagement.exe"
+
+          [Setup]
+          AppId={{8B1E6F8D-5D5B-4B79-9B1E-7E0E9E8D7A31}}
+          AppName={#MyAppName}
+          AppVersion={#MyAppVersion}
+          AppPublisher={#MyAppPublisher}
+          DefaultDirName={autopf}\Store Inventory Management
+          DisableProgramGroupPage=yes
+          OutputDir=installer
+          OutputBaseFilename=StoreInventoryManagement_Setup_v{#MyAppVersion}
+          Compression=lzma
+          SolidCompression=yes
+          ArchitecturesInstallIn64BitMode=x64
+          PrivilegesRequired=admin
+          Uninstallable=yes
+          WizardStyle=modern
+          SetupLogging=yes
+
+          [Files]
+          Source: "$exe"; DestDir: "{app}"; Flags: ignoreversion
+          Source: "source\update_config.json"; DestDir: "{app}"; Flags: ignoreversion
+
+          [Icons]
+          Name: "{autodesktop}\Store Inventory Management"; Filename: "{app}\{#MyAppExeName}"
+          Name: "{group}\Store Inventory Management"; Filename: "{app}\{#MyAppExeName}"
+          Name: "{group}\Uninstall Store Inventory Management"; Filename: "{uninstallexe}"
+
+          [Run]
+          Filename: "{app}\{#MyAppExeName}"; Description: "Launch Store Inventory Management"; Flags: nowait postinstall skipifsilent
+          "@ | Set-Content -Path $setup -Encoding UTF8
+
+          choco install innosetup --yes --no-progress
+          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" $setup
+          if ($LASTEXITCODE -ne 0) { throw "Inno Setup failed with exit code $LASTEXITCODE" }
+          if (-not (Test-Path "installer\StoreInventoryManagement_Setup_v$version.exe")) { throw "Installer was not created." }
+
       - name: Calculate SHA256
         shell: pwsh
         run: |
           $hash = (Get-FileHash "source\dist\StoreInventoryManagement.exe" -Algorithm SHA256).Hash.ToLower()
           "SHA256=$hash" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
-          Write-Host "SHA256: $hash"
+          Write-Host "EXE SHA256: $hash"
 
-      - name: Create GitHub Release and upload EXE
+      - name: Create GitHub Release and upload installer
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.${{ github.run_number }}
           name: Store Inventory Management v1.0.${{ github.run_number }}
           generate_release_notes: true
-          files: source/dist/StoreInventoryManagement.exe
+          files: |
+            source/dist/StoreInventoryManagement.exe
+            installer/StoreInventoryManagement_Setup_v1.0.${{ github.run_number }}.exe
 
       - name: Update version manifest
         shell: pwsh
@@ -94,5 +139,3 @@ jobs:
           git add version.json
           git commit -m "Update version manifest to v1.0.${{ github.run_number }}" || Write-Host "No manifest changes to commit"
           git push
-
-      # Automatic test build trigger; application source remains unchanged.
