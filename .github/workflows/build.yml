@@ -144,12 +144,16 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "Inno Setup failed with exit code $LASTEXITCODE" }
           if (-not (Test-Path "installer\StoreInventoryManagement_Setup_v$version.exe")) { throw "Installer was not created." }
 
-      - name: Calculate SHA256
+      - name: Calculate release SHA256 values
         shell: pwsh
         run: |
-          $hash = (Get-FileHash "source\dist\StoreInventoryManagement.exe" -Algorithm SHA256).Hash.ToLower()
-          "SHA256=$hash" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
-          Write-Host "EXE SHA256: $hash"
+          $exeHash = (Get-FileHash "source\dist\StoreInventoryManagement.exe" -Algorithm SHA256).Hash.ToLower()
+          $setupPath = "installer\StoreInventoryManagement_Setup_v1.0.${{ github.run_number }}.exe"
+          $setupHash = (Get-FileHash $setupPath -Algorithm SHA256).Hash.ToLower()
+          "EXE_SHA256=$exeHash" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          "SETUP_SHA256=$setupHash" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          Write-Host "EXE SHA256: $exeHash"
+          Write-Host "Setup SHA256: $setupHash"
 
       - name: Create GitHub Release and upload installer
         uses: softprops/action-gh-release@v2
@@ -169,7 +173,7 @@ jobs:
           $manifest = @{
             version = $version
             url = $url
-            sha256 = $env:SHA256
+            sha256 = $env:SETUP_SHA256
           } | ConvertTo-Json
           Set-Content -Path "version.json" -Value $manifest -Encoding UTF8
 
