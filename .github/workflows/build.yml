@@ -54,6 +54,12 @@ jobs:
           if errorlevel 1 exit /b 1
           pip install pyinstaller reportlab python-docx openpyxl requests pywin32 pymupdf pillow
           if errorlevel 1 exit /b 1
+      - name: Validate Firebase write access
+        shell: cmd
+        working-directory: source
+        run: |
+          python -c "from pathlib import Path; import requests,uuid; u=Path('firebase_database_url.txt').read_text(encoding='utf-8-sig').strip().rstrip('/'); p=u+'/store_inventory/_build_write_test_'+uuid.uuid4().hex+'.json'; r=requests.put(p,json={'ok':True},timeout=15); assert r.ok, f'Firebase write failed: {r.status_code} {r.text[:300]}'; d=requests.put(p,data='null',timeout=15); assert d.ok, f'Firebase cleanup failed: {d.status_code} {d.text[:300]}'; print('Firebase REST write/cleanup: OK')"
+          if errorlevel 1 exit /b 1
       - name: Validate Firebase, updater, storage and application source
         shell: cmd
         working-directory: source
@@ -70,9 +76,11 @@ jobs:
           if errorlevel 1 exit /b 1
           python -c "from pathlib import Path; u=Path('firebase_database_url.txt').read_text(encoding='utf-8-sig').strip(); assert u.startswith('https://store-inventory-a46b0-default-rtdb.firebaseio.com'), u; print('Firebase URL: OK')"
           if errorlevel 1 exit /b 1
-          python -c "from pathlib import Path; t=Path('firebase_sync.py').read_text(encoding='utf-8-sig'); assert 'firebase_pending_sync.json' in t and 'firebase_sync_state.json' in t; print('Durable Firebase journal: OK')"
+          python -c "from pathlib import Path; t=Path('firebase_sync.py').read_text(encoding='utf-8-sig'); assert 'mto_items' in t and 'firebase_pending_sync.json' in t and 'firebase_sync_state.json' in t; print('Durable Firebase journal/tables: OK')"
           if errorlevel 1 exit /b 1
           python -c "from pathlib import Path; t=Path('store_inventory.py').read_text(encoding='utf-8-sig'); assert 'label=\"Check Update\"' in t and 'label=\"Current Version\"' in t; print('Help update controls: OK')"
+          if errorlevel 1 exit /b 1
+          python -c "from pathlib import Path; t=Path('store_inventory.py').read_text(encoding='utf-8-sig'); assert 'Automatic backup rotation/deletion is intentionally disabled.' in t; print('Backup auto-delete disabled: OK')"
           if errorlevel 1 exit /b 1
       - name: Build EXE
         shell: cmd
