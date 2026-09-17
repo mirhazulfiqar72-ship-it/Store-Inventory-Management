@@ -14,7 +14,46 @@ def write(name, text):
 # release build always uses the durable/restart-safe sync implementation.
 sync = read("firebase_sync.py")
 sync = sync.replace("`r`n", "\n").replace("`n", "\n").replace("`r", "\r")
+
+# A local JSON snapshot is an independent crash/restart safety net. SQLite is
+# still the live local database; the snapshot is only used when the DB becomes
+# missing/empty unexpectedly.
+if "import durable_local" not in sync:
+    sync = sync.replace("import sqlite3\n", "import sqlite3\nimport durable_local\n", 1)
+
+# Inventory-only records (items/users) must count as real local records. The
+# previous implementation ignored them, so an empty/older Firebase snapshot
+# could replace newly saved Inventory Codes on the next restart.
+old_has_records = 'return any(tables.get(x, {}).get("rows") for x in ("demands", "demand_lines", "grr", "grr_lines", "issues", "issue_lines", "transactions", "parties", "mto_items"))'
+new_has_records = 'return any(tables.get(x, {}).get("rows") for x in TABLES)'
+if old_has_records in sync:
+    sync = sync.replace(old_has_records, new_has_records, 1)
+
+# Every local commit is snapshotted before the network operation and again
+# after a successful merge. A failed Firebase write can therefore never turn a
+# successful local save into a lost record after restart.
+commit_re = re.compile(r'(?ms)^    def commit\(self\):\n.*?(?=^    def rollback\(self\):)')
+commit_match = commit_re.search(sync)
+if commit_match:
+    new_commit = '''    def commit(self):
+        self._conn.commit()
+        # Make local persistence independent of Firebase availability.
+        durable_local.save(self._conn)
+        if self._dirty:
+            self.sync.push_changes(self._conn, self._baseline or snapshot_db(self._conn))
+            # push_changes may merge remote rows back into SQLite.
+            durable_local.save(self._conn)
+        self._dirty = False
+        self._baseline = None if self.sync.pending_base is None else self.sync.pending_base
+
+'''
+    sync = sync[:commit_match.start()] + new_commit + sync[commit_match.end():]
+else:
+    raise RuntimeError("Could not locate OnlineConnection.commit() in firebase_sync.py")
 write("firebase_sync.py", sync)
+
+# Ensure the new local snapshot module is available to the packaged source.
+# The workflow copies durable_local.py before this patch is executed.
 
 write("firebase_database_url.txt", "https://store-inventory-a46b0-default-rtdb.firebaseio.com/\n")
 manifest_url = "https://raw.githubusercontent.com/mirhazulfiqar72-ship-it/Store-Inventory-Management/main/version.json"
@@ -107,6 +146,34 @@ if "import updater" not in app:
     else:
         app = "import updater\n" + app
 
+# Restore a larger local snapshot before Firebase startup sync when SQLite is
+# unexpectedly empty/smaller. This is deliberately non-destructive: it never
+# restores over a database that already contains at least as many records.
+marker = '    migrate_old_item_codes(raw)\n'
+restore_code = '''    migrate_old_item_codes(raw)
+    try:
+        durable_local.restore_if_newer(raw)
+    except Exception:
+        pass
+'''
+if "durable_local.restore_if_newer(raw)" not in app:
+    if marker not in app:
+        raise RuntimeError("Could not find connect() migration point in store_inventory.py.")
+    app = app.replace(marker, restore_code, 1)
+
+# Save a current local snapshot after startup synchronization has completed.
+marker2 = '    return OnlineConnection(DB, sync)\n'
+replace2 = '''    try:
+        durable_local.save(raw)
+    except Exception:
+        pass
+    return OnlineConnection(DB, sync)
+'''
+if "durable_local.save(raw)" not in app:
+    if marker2 not in app:
+        raise RuntimeError("Could not find connect() return point in store_inventory.py.")
+    app = app.replace(marker2, replace2, 1)
+
 # IMPORTANT: old builds rotated automatic backups and deleted older files.
 # The requested behavior is never to auto-delete stored data/backups.
 app, backup_patch_count = re.subn(
@@ -118,9 +185,62 @@ app, backup_patch_count = re.subn(
 if backup_patch_count != 1:
     raise RuntimeError("Could not disable automatic backup deletion safely.")
 
+# Make Preview -> Export PDF fail loudly and leave the verified file in the
+# permanent Reports folder. Print buttons remain print-only.
+export_re = re.compile(r'(?ms)^    def export_preview_pdf\(self, title, header_lines, columns, rows\):\n.*?(?=^    def export_preview_word\(self, title, header_lines, columns, rows\):)')
+export_match = export_re.search(app)
+if export_match:
+    export_function = '''    def export_preview_pdf(self, title, header_lines, columns, rows):
+        """Write the visible preview to C:\\StoreInventoryManagement\\Reports."""
+        try:
+            os.makedirs(REPORTS_DIR, exist_ok=True)
+            safe = "".join(ch for ch in str(title) if ch.isalnum() or ch in "-_ ").strip().replace(" ", "_") or "Preview"
+            path = os.path.abspath(os.path.join(REPORTS_DIR, f"{safe}_Preview_{datetime.now().strftime('%Y%m%d_%H%M%S_%f')}.pdf"))
+            generated = False
+            if REPORTLAB:
+                try:
+                    self._pdf_table_report(path, title, columns, rows, landscape(A4), 7, header_lines=header_lines, auto_print=False)
+                    generated = True
+                except Exception:
+                    generated = False
+            if not generated:
+                self._fallback_pdf_export(path, title, header_lines, columns, rows)
+            if not os.path.isfile(path) or os.path.getsize(path) <= 0:
+                raise IOError("The PDF file was not created in the Reports folder.")
+            with open(path, "rb") as pf:
+                signature = pf.read(5)
+            if signature != b"%PDF-":
+                raise IOError("The generated file is not a valid PDF.")
+            self._last_report_path = path
+            try:
+                webbrowser.open("file://" + path)
+            except Exception:
+                self.open_file(path)
+            return path
+        except Exception as e:
+            messagebox.showerror("PDF Export", f"Could not generate the PDF.\\n\\n{e}")
+            return None
+
+'''
+    app = app[:export_match.start()] + export_function + app[export_match.end():]
+else:
+    raise RuntimeError("Could not locate export_preview_pdf() in store_inventory.py")
+
 if "def _manual_check_update(self):" not in app:
     marker = "    def build_menu_bar(self):\n"
-    methods = '''    def _manual_check_update(self):\n        try:\n            updater.check_for_update(self, manual=True)\n        except Exception as e:\n            messagebox.showerror("Check Update", f"Could not check for updates.\\n\\n{e}", parent=self)\n\n    def _show_current_version(self):\n        try:\n            messagebox.showinfo("Current Version", f"Store Inventory Management\\n\\nCurrent version: {updater.APP_VERSION}", parent=self)\n        except Exception as e:\n            messagebox.showerror("Current Version", str(e), parent=self)\n\n'''
+    methods = '''    def _manual_check_update(self):
+        try:
+            updater.check_for_update(self, manual=True)
+        except Exception as e:
+            messagebox.showerror("Check Update", f"Could not check for updates.\\n\\n{e}", parent=self)
+
+    def _show_current_version(self):
+        try:
+            messagebox.showinfo("Current Version", f"Store Inventory Management\\n\\nCurrent version: {updater.APP_VERSION}", parent=self)
+        except Exception as e:
+            messagebox.showerror("Current Version", str(e), parent=self)
+
+'''
     if marker not in app:
         raise RuntimeError("Could not find build_menu_bar() in store_inventory.py.")
     app = app.replace(marker, methods + marker, 1)
@@ -133,4 +253,4 @@ if 'label="Check Update"' not in app:
     app = app.replace(needle, replacement, 1)
 
 write("store_inventory.py", app)
-print("CI patch complete: durable Firebase sync, persistent local data, no automatic backup deletion, and IDM/browser update downloads.")
+print("CI patch complete: durable local snapshot + SQLite persistence + safe Firebase merge + permanent Reports exports + no automatic backup deletion.")
