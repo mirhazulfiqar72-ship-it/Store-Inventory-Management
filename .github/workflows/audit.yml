@@ -29,6 +29,8 @@ jobs:
           Copy-Item firebase_sync.py source\firebase_sync.py -Force
           Copy-Item durable_local.py source\durable_local.py -Force
           python ci_patch_source.py
+      - name: Run local journal diagnostic
+        run: python journal_debug.py
       - name: Generate audit
         run: python source_audit.py
       - name: Commit audit
