@@ -11,6 +11,7 @@ import json
 import os
 import sqlite3
 import tempfile
+import traceback
 from pathlib import Path
 from typing import Any, Dict
 
@@ -61,8 +62,8 @@ def save(conn: sqlite3.Connection) -> bool:
             except OSError:
                 pass
         return True
-    except Exception as exc:
-        LAST_ERROR = repr(exc)
+    except Exception:
+        LAST_ERROR = traceback.format_exc()
         return False
 
 def load() -> Dict[str, Any] | None:
@@ -72,8 +73,8 @@ def load() -> Dict[str, Any] | None:
             return None
         value = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
         return value if isinstance(value, dict) else None
-    except Exception as exc:
-        LAST_ERROR = repr(exc)
+    except Exception:
+        LAST_ERROR = traceback.format_exc()
         return None
 
 def restore_if_newer(conn: sqlite3.Connection) -> bool:
@@ -104,8 +105,8 @@ def restore_if_newer(conn: sqlite3.Connection) -> bool:
                 conn.execute(sql, [row.get(c) for c in insert_cols])
         conn.commit()
         return True
-    except Exception as exc:
-        LAST_ERROR = repr(exc)
+    except Exception:
+        LAST_ERROR = traceback.format_exc()
         try:
             conn.rollback()
         except Exception:
