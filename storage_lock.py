@@ -53,6 +53,9 @@ def _classify_relative(path):
 
 
 def _write_target(path, backup=False, report=False):
+    # File descriptors are not paths and must pass through unchanged.
+    if isinstance(path, int):
+        return path
     p = Path(os.fspath(path))
     if p.is_absolute():
         if _inside(p, DATA_DIR) or _inside(p, BACKUP_DIR) or _inside(p, REPORTS_DIR):
@@ -68,15 +71,15 @@ def _write_target(path, backup=False, report=False):
 
 
 def _read_target(path):
+    # File descriptors are not paths and must pass through unchanged.
+    if isinstance(path, int):
+        return path
     p = Path(os.fspath(path))
     if p.is_absolute():
         if _is_database_path(p) and (_inside(p, INSTALL_ROOT) or _inside(p, Path(sys.executable).parent) or _is_runtime_temp(p)):
             candidate = _permanent_db_target(p)
             if candidate.exists():
                 return candidate
-            # Even when the permanent database does not exist yet, force all
-            # future reads/creates to the permanent Data directory. This avoids
-            # one-file PyInstaller runtime (_MEIPASS) data disappearing on exit.
             return candidate
         return p
     if p.name.casefold() in _CONFIG_FILES or p.name.casefold() in _RESOURCE_FILES:
@@ -93,6 +96,8 @@ def _is_write_mode(mode):
 
 
 def _open(file, mode="r", *args, **kwargs):
+    if isinstance(file, int):
+        return _ORIGINAL_OPEN(file, mode, *args, **kwargs)
     if _is_write_mode(mode):
         file = _write_target(file)
         Path(file).parent.mkdir(parents=True, exist_ok=True)
@@ -102,6 +107,8 @@ def _open(file, mode="r", *args, **kwargs):
 
 
 def _io_open(file, mode="r", *args, **kwargs):
+    if isinstance(file, int):
+        return _ORIGINAL_IO_OPEN(file, mode, *args, **kwargs)
     if _is_write_mode(mode):
         file = _write_target(file)
         Path(file).parent.mkdir(parents=True, exist_ok=True)
