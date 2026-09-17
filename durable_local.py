@@ -21,6 +21,7 @@ TABLES = (
     "items", "mto_items", "parties", "demands", "demand_lines", "grr", "grr_lines",
     "issues", "issue_lines", "transactions", "users",
 )
+LAST_ERROR = ""
 
 def _columns(conn: sqlite3.Connection, table: str) -> list[str]:
     return [r[1] for r in conn.execute(f"PRAGMA table_info({table})").fetchall()]
@@ -40,7 +41,9 @@ def snapshot(conn: sqlite3.Connection) -> Dict[str, Any]:
 def _row_count(s: Dict[str, Any]) -> int:
     return sum(len(v.get("rows", []) or []) for v in s.get("tables", {}).values())
 
-def save(conn: sqlite3.Connection) -> None:
+def save(conn: sqlite3.Connection) -> bool:
+    global LAST_ERROR
+    LAST_ERROR = ""
     try:
         DATA_DIR.mkdir(parents=True, exist_ok=True)
         value = snapshot(conn)
@@ -57,22 +60,25 @@ def save(conn: sqlite3.Connection) -> None:
                     os.remove(tmp)
             except OSError:
                 pass
-    except Exception:
-        # The SQLite commit is authoritative; a snapshot failure must never
-        # turn a successful local save into a failed application operation.
-        pass
+        return True
+    except Exception as exc:
+        LAST_ERROR = repr(exc)
+        return False
 
 def load() -> Dict[str, Any] | None:
+    global LAST_ERROR
     try:
         if not SNAPSHOT_PATH.exists():
             return None
         value = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
         return value if isinstance(value, dict) else None
-    except Exception:
+    except Exception as exc:
+        LAST_ERROR = repr(exc)
         return None
 
 def restore_if_newer(conn: sqlite3.Connection) -> bool:
-    """Restore only when the local DB has fewer rows than the last snapshot."""
+    global LAST_ERROR
+    LAST_ERROR = ""
     saved = load()
     if not saved or _row_count(saved) <= 0:
         return False
@@ -98,7 +104,8 @@ def restore_if_newer(conn: sqlite3.Connection) -> bool:
                 conn.execute(sql, [row.get(c) for c in insert_cols])
         conn.commit()
         return True
-    except Exception:
+    except Exception as exc:
+        LAST_ERROR = repr(exc)
         try:
             conn.rollback()
         except Exception:
