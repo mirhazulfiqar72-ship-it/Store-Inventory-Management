@@ -4,7 +4,10 @@ import io
 import os
 import shutil
 import sqlite3
+import sys
 
+# Permanent writable storage. Never use the PyInstaller temporary extraction
+# directory for application data because it is deleted when the EXE exits.
 INSTALL_ROOT = Path(r"C:\StoreInventoryManagement")
 DATA_DIR = INSTALL_ROOT / "Data"
 BACKUP_DIR = INSTALL_ROOT / "Backups"
@@ -12,6 +15,7 @@ REPORTS_DIR = INSTALL_ROOT / "Reports"
 
 _CONFIG_FILES = {"firebase_database_url.txt", "update_config.json", "firebase_rules_url_only.json"}
 _RESOURCE_FILES = {"inventory_seed.csv", "company_logo.png"}
+_DB_SUFFIXES = {".db", ".sqlite", ".sqlite3", ".db3"}
 
 
 def _inside(path, root):
@@ -21,15 +25,39 @@ def _inside(path, root):
         return False
 
 
+def _runtime_temp_root():
+    # In a PyInstaller one-file executable, _MEIPASS is a temporary directory
+    # which is recreated/deleted on every launch. Data must never be stored there.
+    value = getattr(sys, "_MEIPASS", "")
+    return Path(value) if value else None
+
+
+def _is_runtime_temp(path):
+    temp_root = _runtime_temp_root()
+    return bool(temp_root and _inside(path, temp_root))
+
+
+def _is_database_path(path):
+    return Path(os.fspath(path)).suffix.casefold() in _DB_SUFFIXES
+
+
 def _write_target(path, backup=False, report=False):
     p = Path(os.fspath(path))
+
     if p.is_absolute():
         if _inside(p, DATA_DIR) or _inside(p, BACKUP_DIR) or _inside(p, REPORTS_DIR):
             return p
+
+        # Any database accidentally addressed to the EXE directory or
+        # PyInstaller temp directory is redirected to permanent Data storage.
+        if _is_database_path(p) and (_is_runtime_temp(p) or _inside(p, INSTALL_ROOT) or _inside(p, Path(sys.executable).parent)):
+            return DATA_DIR / p.name
+
         if _inside(p, INSTALL_ROOT):
             root = BACKUP_DIR if backup else REPORTS_DIR if report else DATA_DIR
             return root / p.relative_to(INSTALL_ROOT)
         return p
+
     name = p.name.casefold()
     parts = {x.casefold() for x in p.parts}
     if backup or "backup" in name or "backups" in parts:
@@ -42,10 +70,18 @@ def _write_target(path, backup=False, report=False):
 def _read_target(path):
     p = Path(os.fspath(path))
     if p.is_absolute():
+        # Database files from an older build may have been left in the install
+        # directory. Read the permanent Data copy first when it exists.
+        if _is_database_path(p) and (_inside(p, INSTALL_ROOT) or _inside(p, Path(sys.executable).parent) or _is_runtime_temp(p)):
+            candidate = DATA_DIR / p.name
+            if candidate.exists():
+                return candidate
         return p
+
     name = p.name.casefold()
     if name in _CONFIG_FILES or name in _RESOURCE_FILES:
         return p
+
     backup = BACKUP_DIR / p
     data = DATA_DIR / p
     report = REPORTS_DIR / p
