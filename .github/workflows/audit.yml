@@ -1,0 +1,40 @@
+name: Audit Store Inventory Source
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - version.json
+      - SOURCE_AUDIT.md
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.x'
+          architecture: x64
+      - name: Extract and patch source
+        shell: pwsh
+        run: |
+          if (Test-Path source) { Remove-Item source -Recurse -Force }
+          Expand-Archive -LiteralPath Store_Inventory_GITHUB_AUTO_UPDATER_PATCH_V1.zip -DestinationPath source -Force
+          Copy-Item storage_lock.py source\storage_lock.py -Force
+          Copy-Item firebase_sync.py source\firebase_sync.py -Force
+          python ci_patch_source.py
+      - name: Generate audit
+        run: python source_audit.py
+      - name: Commit audit
+        shell: pwsh
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add SOURCE_AUDIT.md
+          git commit -m "Update generated Store Inventory source audit" || Write-Host "No audit changes"
+          git push
