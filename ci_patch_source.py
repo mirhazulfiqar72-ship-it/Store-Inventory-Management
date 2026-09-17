@@ -145,6 +145,12 @@ if "import updater" not in app:
         app = app[:m.end()] + "import updater\n" + app[m.end():]
     else:
         app = "import updater\n" + app
+if "import durable_local" not in app:
+    m = re.search(r'^(import updater\n)', app, flags=re.M)
+    if m:
+        app = app[:m.end()] + "import durable_local\n" + app[m.end():]
+    else:
+        app = "import durable_local\n" + app
 
 # Restore a larger local snapshot before Firebase startup sync when SQLite is
 # unexpectedly empty/smaller. This is deliberately non-destructive: it never
