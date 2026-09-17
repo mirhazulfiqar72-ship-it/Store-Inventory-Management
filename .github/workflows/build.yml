@@ -29,6 +29,14 @@ jobs:
           if (-not (Test-Path "source\firebase_sync.py")) { throw "firebase_sync.py was not found inside the source ZIP." }
           if (-not (Test-Path "source\firebase_database_url.txt")) { throw "firebase_database_url.txt was not found inside the source ZIP." }
 
+      - name: Inspect source UI/update structure
+        shell: pwsh
+        run: |
+          Write-Host "===== store_inventory.py structure ====="
+          Select-String -Path "source\store_inventory.py" -Pattern 'Help|help|Setting|setting|Inventory|Dashboard|menu|Menu|Button|command=' -Context 2,4 | Select-Object -First 180 | ForEach-Object { $_.ToString() }
+          Write-Host "===== updater.py structure ====="
+          Select-String -Path "source\updater.py" -Pattern 'APP_VERSION|version|update|Update|download|GitHub|manifest|url|sha256' -Context 2,4 | Select-Object -First 120 | ForEach-Object { $_.ToString() }
+
       - name: Fix Firebase configuration and sync tables
         shell: pwsh
         run: |
@@ -73,7 +81,7 @@ jobs:
         shell: cmd
         working-directory: source
         run: |
-          python -m PyInstaller --clean --onefile --noconsole --name "StoreInventoryManagement" --collect-all reportlab --collect-all PIL --collect-all fitz --hidden-import updater --hidden-import reportlab.pdfgen.canvas --hidden-import reportlab.lib.utils --hidden-import reportlab.pdfbase._fontdata --add-data "inventory_seed.csv;." --add-data "company_logo.png;." store_inventory.py
+          python -m PyInstaller --clean --onefile --noconsole --name "StoreInventoryManagement" --collect-all reportlab --collect-all PIL --collect-all fitz --hidden-import updater --hidden-import firebase_sync --hidden-import reportlab.pdfgen.canvas --hidden-import reportlab.lib.utils --hidden-import reportlab.pdfbase._fontdata --add-data "inventory_seed.csv;." --add-data "company_logo.png;." --add-data "firebase_database_url.txt;." --add-data "update_config.json;." --add-data "FIREBASE_RULES_URL_ONLY.json;." store_inventory.py
 
       - name: Create Windows installer
         shell: pwsh
