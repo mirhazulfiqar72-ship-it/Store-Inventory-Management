@@ -4,22 +4,16 @@ import re
 
 ROOT = Path(__file__).resolve().parent / "source"
 
-
 def read(name):
     return (ROOT / name).read_text(encoding="utf-8-sig")
-
 
 def write(name, text):
     (ROOT / name).write_text(text, encoding="utf-8")
 
-# Firebase packaging repair.
+# Firebase source is supplied by the repository root firebase_sync.py so the
+# release build always uses the durable/restart-safe sync implementation.
 sync = read("firebase_sync.py")
 sync = sync.replace("`r`n", "\n").replace("`n", "\n").replace("`r", "\r")
-if '"mto_items"' not in sync:
-    pattern = r'("items",\s*\n)(\s*"parties",)'
-    sync, count = re.subn(pattern, r'\1    "mto_items",\n\2', sync, count=1)
-    if count != 1:
-        raise RuntimeError("Could not add mto_items to firebase_sync.py safely.")
 write("firebase_sync.py", sync)
 
 write("firebase_database_url.txt", "https://store-inventory-a46b0-default-rtdb.firebaseio.com/\n")
@@ -31,8 +25,6 @@ write("update_config.json", json.dumps({"manifest_url": manifest_url}, indent=2)
 updater = read("updater.py")
 updater = re.sub(r'^import storage_lock\s*\n', '', updater, count=1, flags=re.M)
 updater = "import storage_lock\n" + updater
-
-# Required imports.
 for line in ["import os\n", "import subprocess\n", "import webbrowser\n", "from pathlib import Path\n"]:
     if line.strip() not in updater:
         updater = line + updater
@@ -71,31 +63,19 @@ def check_for_update(parent, manual=False):
             if manual:
                 messagebox.showwarning("Check Update", "Update checking is not configured.", parent=parent)
             return False
-
         response = requests.get(manifest_url, timeout=12)
         response.raise_for_status()
         data = response.json()
         latest = str(data.get("version", "")).strip()
         download_url = str(data.get("url", "")).strip()
-
         if not latest or not download_url or _version_tuple(latest) <= _version_tuple(APP_VERSION):
             if manual:
                 messagebox.showinfo("Check Update", f"You are using the current version ({APP_VERSION}).", parent=parent)
             return False
-
-        if not messagebox.askyesno(
-            "Update Available",
-            f"A new version ({latest}) is available.\n\nDo you want to download it now?",
-            parent=parent,
-        ):
+        if not messagebox.askyesno("Update Available", f"A new version ({latest}) is available.\n\nDo you want to download it now?", parent=parent):
             return False
-
         if _start_update_download(download_url):
-            messagebox.showinfo(
-                "Download Started",
-                "The update Setup download has been started in Internet Download Manager or your default browser.",
-                parent=parent,
-            )
+            messagebox.showinfo("Download Started", "The update Setup download has been started in Internet Download Manager or your default browser.", parent=parent)
             return True
         messagebox.showerror("Update Download", "Could not start the update download.", parent=parent)
         return False
@@ -105,29 +85,20 @@ def check_for_update(parent, manual=False):
         return False
 
 '''
-
-# Replace check_for_update regardless of its old body, while preserving the
-# next top-level definition. The previous patch could miss variants; this
-# version also handles a function at end-of-file.
 pattern = r'(?ms)^def check_for_update\(.*?(?=^def |\Z)'
 m = re.search(pattern, updater)
 if m:
     updater = updater[:m.start()] + new_function + updater[m.end():]
 else:
-    # Some source variants use check_for_updates; replace that too.
     pattern2 = r'(?ms)^def check_for_updates\(.*?(?=^def |\Z)'
     m2 = re.search(pattern2, updater)
     if m2:
         updater = updater[:m2.start()] + new_function + updater[m2.end():]
     else:
         updater += "\n" + new_function
-
-# Remove any legacy automatic-install calls that might still be referenced by
-# another wrapper. Keep the function definitions themselves harmless, but make
-# the user-facing check path always use the new browser/IDM flow above.
 write("updater.py", updater)
 
-# Main UI: preserve existing interface and only add the requested Help items.
+# Main UI: preserve the existing interface and add only the requested Help items.
 app = read("store_inventory.py")
 if "import updater" not in app:
     m = re.search(r'^(import\s+[^\n]+\n)', app, flags=re.M)
@@ -135,6 +106,17 @@ if "import updater" not in app:
         app = app[:m.end()] + "import updater\n" + app[m.end():]
     else:
         app = "import updater\n" + app
+
+# IMPORTANT: old builds rotated automatic backups and deleted older files.
+# The requested behavior is never to auto-delete stored data/backups.
+app, backup_patch_count = re.subn(
+    r'(?ms)^        # Rotate: keep all manual backups, but only the newest 30 automatic ones\.\n.*?^        return zpath',
+    '        # Automatic backup rotation/deletion is intentionally disabled.\n        # Stored backups remain until the user explicitly deletes/restores them.\n        return zpath',
+    app,
+    count=1,
+)
+if backup_patch_count != 1:
+    raise RuntimeError("Could not disable automatic backup deletion safely.")
 
 if "def _manual_check_update(self):" not in app:
     marker = "    def build_menu_bar(self):\n"
@@ -151,4 +133,4 @@ if 'label="Check Update"' not in app:
     app = app.replace(needle, replacement, 1)
 
 write("store_inventory.py", app)
-print("CI patch complete: Firebase, Help update controls, locked C-drive storage, and IDM/browser update downloads enabled.")
+print("CI patch complete: durable Firebase sync, persistent local data, no automatic backup deletion, and IDM/browser update downloads.")
