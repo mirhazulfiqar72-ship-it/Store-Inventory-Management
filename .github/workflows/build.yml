@@ -73,6 +73,8 @@ jobs:
           if errorlevel 1 exit /b 1
           python -c "import storage_lock; from pathlib import Path; storage_lock.install(); assert storage_lock.DATA_DIR == Path(r'C:\StoreInventoryManagement\Data'); assert storage_lock.BACKUP_DIR == Path(r'C:\StoreInventoryManagement\Backups'); print('Locked storage paths: OK')"
           if errorlevel 1 exit /b 1
+          python -c "import storage_lock, sqlite3; from pathlib import Path; storage_lock.install(); p=Path(r'C:\StoreInventoryManagement\legacy_persistence_test.db'); d=storage_lock.DATA_DIR/'legacy_persistence_test.db'; p.unlink(missing_ok=True); d.unlink(missing_ok=True); c=sqlite3.connect(str(p)); c.execute('create table IF NOT EXISTS t (v text)'); c.execute('insert into t values (?)', ('PERSISTED',)); c.commit(); c.close(); assert d.exists(), d; c=sqlite3.connect(str(p)); assert c.execute('select v from t').fetchone()[0]=='PERSISTED'; c.close(); p.unlink(missing_ok=True); print('SQLite permanent persistence: OK')"
+          if errorlevel 1 exit /b 1
           python -c "from pathlib import Path; u=Path('firebase_database_url.txt').read_text(encoding='utf-8-sig').strip(); assert u.startswith('https://store-inventory-a46b0-default-rtdb.firebaseio.com'), u; print('Firebase URL: OK')"
           if errorlevel 1 exit /b 1
           python -c "from pathlib import Path; t=Path('firebase_sync.py').read_text(encoding='utf-8-sig'); assert 'mto_items' in t; print('Firebase tables: OK')"
