@@ -596,8 +596,8 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 
 ## storage_lock.py
 
-- Lines: 164
-- Functions: _inside(19-23), _runtime_temp_root(26-28), _is_runtime_temp(31-33), _is_database_path(36-37), _permanent_db_target(40-41), _classify_relative(44-52), _write_target(55-67), _read_target(70-88), _is_write_mode(91-92), _open(95-101), _io_open(104-110), _sqlite_connect(113-131), _copy2(134-137), _copyfile(140-143), install(153-161)
+- Lines: 171
+- Functions: _inside(19-23), _runtime_temp_root(26-28), _is_runtime_temp(31-33), _is_database_path(36-37), _permanent_db_target(40-41), _classify_relative(44-52), _write_target(55-70), _read_target(73-91), _is_write_mode(94-95), _open(98-106), _io_open(109-117), _sqlite_connect(120-138), _copy2(141-144), _copyfile(147-150), install(160-168)
 
 ### Relevant source locations
 
@@ -660,150 +660,173 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 0053: 
 0054: 
 0055: def _write_target(path, backup=False, report=False):
-0056:     p = Path(os.fspath(path))
-0057:     if p.is_absolute():
-0058:         if _inside(p, DATA_DIR) or _inside(p, BACKUP_DIR) or _inside(p, REPORTS_DIR):
-0059:             return p
-0060:         if _is_database_path(p) and (_is_runtime_temp(p) or _inside(p, INSTALL_ROOT) or _inside(p, Path(sys.executable).parent)):
-0061:             return _permanent_db_target(p)
+0056:     # File descriptors are not paths and must pass through unchanged.
+0057:     if isinstance(path, int):
+0058:         return path
+0059:     p = Path(os.fspath(path))
+0060:     if p.is_absolute():
+0061:         if _inside(p, DATA_DIR) or _inside(p, BACKUP_DIR) or _inside(p, REPORTS_DIR):
 ```
 ```text
 0055: def _write_target(path, backup=False, report=False):
-0056:     p = Path(os.fspath(path))
-0057:     if p.is_absolute():
-0058:         if _inside(p, DATA_DIR) or _inside(p, BACKUP_DIR) or _inside(p, REPORTS_DIR):
-0059:             return p
-0060:         if _is_database_path(p) and (_is_runtime_temp(p) or _inside(p, INSTALL_ROOT) or _inside(p, Path(sys.executable).parent)):
-0061:             return _permanent_db_target(p)
-0062:         if _inside(p, INSTALL_ROOT):
-0063:             root = BACKUP_DIR if backup else REPORTS_DIR if report else DATA_DIR
-0064:             return root / p.relative_to(INSTALL_ROOT)
-0065:         return p
-0066:     root = BACKUP_DIR if backup else REPORTS_DIR if report else _classify_relative(p)
-0067:     return root / p
-0068: 
-0069: 
-0070: def _read_target(path):
-0071:     p = Path(os.fspath(path))
-0072:     if p.is_absolute():
-0073:         if _is_database_path(p) and (_inside(p, INSTALL_ROOT) or _inside(p, Path(sys.executable).parent) or _is_runtime_temp(p)):
-0074:             candidate = _permanent_db_target(p)
-0075:             if candidate.exists():
+0056:     # File descriptors are not paths and must pass through unchanged.
+0057:     if isinstance(path, int):
+0058:         return path
+0059:     p = Path(os.fspath(path))
+0060:     if p.is_absolute():
+0061:         if _inside(p, DATA_DIR) or _inside(p, BACKUP_DIR) or _inside(p, REPORTS_DIR):
+0062:             return p
+0063:         if _is_database_path(p) and (_is_runtime_temp(p) or _inside(p, INSTALL_ROOT) or _inside(p, Path(sys.executable).parent)):
+0064:             return _permanent_db_target(p)
+0065:         if _inside(p, INSTALL_ROOT):
+0066:             root = BACKUP_DIR if backup else REPORTS_DIR if report else DATA_DIR
+0067:             return root / p.relative_to(INSTALL_ROOT)
+0068:         return p
+0069:     root = BACKUP_DIR if backup else REPORTS_DIR if report else _classify_relative(p)
+0070:     return root / p
+0071: 
+0072: 
+0073: def _read_target(path):
+0074:     # File descriptors are not paths and must pass through unchanged.
+0075:     if isinstance(path, int):
 ```
 ```text
-0069: 
-0070: def _read_target(path):
-0071:     p = Path(os.fspath(path))
-0072:     if p.is_absolute():
-0073:         if _is_database_path(p) and (_inside(p, INSTALL_ROOT) or _inside(p, Path(sys.executable).parent) or _is_runtime_temp(p)):
-0074:             candidate = _permanent_db_target(p)
-0075:             if candidate.exists():
-0076:                 return candidate
-0077:             # Even when the permanent database does not exist yet, force all
-0078:             # future reads/creates to the permanent Data directory. This avoids
-0079:             # one-file PyInstaller runtime (_MEIPASS) data disappearing on exit.
-0080:             return candidate
-0081:         return p
-0082:     if p.name.casefold() in _CONFIG_FILES or p.name.casefold() in _RESOURCE_FILES:
-0083:         return p
-0084: 
-0085:     # User/application data must always resolve to permanent storage. Do not
-0086:     # fall back to the current working directory or PyInstaller temp folder.
-0087:     root = _classify_relative(p)
-0088:     return root / p
-0089: 
+0071: 
+0072: 
+0073: def _read_target(path):
+0074:     # File descriptors are not paths and must pass through unchanged.
+0075:     if isinstance(path, int):
+0076:         return path
+0077:     p = Path(os.fspath(path))
+0078:     if p.is_absolute():
+0079:         if _is_database_path(p) and (_inside(p, INSTALL_ROOT) or _inside(p, Path(sys.executable).parent) or _is_runtime_temp(p)):
+0080:             candidate = _permanent_db_target(p)
+0081:             if candidate.exists():
+0082:                 return candidate
+0083:             return candidate
+0084:         return p
+0085:     if p.name.casefold() in _CONFIG_FILES or p.name.casefold() in _RESOURCE_FILES:
+0086:         return p
+0087: 
+0088:     # User/application data must always resolve to permanent storage. Do not
+0089:     # fall back to the current working directory or PyInstaller temp folder.
+0090:     root = _classify_relative(p)
+0091:     return root / p
 ```
 ```text
-0087:     root = _classify_relative(p)
-0088:     return root / p
-0089: 
-0090: 
-0091: def _is_write_mode(mode):
-0092:     return any(ch in mode for ch in ("w", "a", "x", "+"))
+0090:     root = _classify_relative(p)
+0091:     return root / p
+0092: 
 0093: 
-0094: 
-0095: def _open(file, mode="r", *args, **kwargs):
-0096:     if _is_write_mode(mode):
-0097:         file = _write_target(file)
-0098:         Path(file).parent.mkdir(parents=True, exist_ok=True)
-0099:     else:
-0100:         file = _read_target(file)
-0101:     return _ORIGINAL_OPEN(file, mode, *args, **kwargs)
-0102: 
-0103: 
-0104: def _io_open(file, mode="r", *args, **kwargs):
-0105:     if _is_write_mode(mode):
-0106:         file = _write_target(file)
-0107:         Path(file).parent.mkdir(parents=True, exist_ok=True)
+0094: def _is_write_mode(mode):
+0095:     return any(ch in mode for ch in ("w", "a", "x", "+"))
+0096: 
+0097: 
+0098: def _open(file, mode="r", *args, **kwargs):
+0099:     if isinstance(file, int):
+0100:         return _ORIGINAL_OPEN(file, mode, *args, **kwargs)
+0101:     if _is_write_mode(mode):
+0102:         file = _write_target(file)
+0103:         Path(file).parent.mkdir(parents=True, exist_ok=True)
+0104:     else:
+0105:         file = _read_target(file)
+0106:     return _ORIGINAL_OPEN(file, mode, *args, **kwargs)
+0107: 
+0108: 
+0109: def _io_open(file, mode="r", *args, **kwargs):
+0110:     if isinstance(file, int):
 ```
 ```text
-0102: 
-0103: 
-0104: def _io_open(file, mode="r", *args, **kwargs):
-0105:     if _is_write_mode(mode):
-0106:         file = _write_target(file)
-0107:         Path(file).parent.mkdir(parents=True, exist_ok=True)
-0108:     else:
-0109:         file = _read_target(file)
-0110:     return _ORIGINAL_IO_OPEN(file, mode, *args, **kwargs)
-0111: 
-0112: 
-0113: def _sqlite_connect(database, *args, **kwargs):
-0114:     if isinstance(database, (str, os.PathLike)) and str(database) not in (":memory:", ""):
-0115:         original = Path(os.fspath(database))
-0116:         target = _write_target(original)
-0117:         target.parent.mkdir(parents=True, exist_ok=True)
+0103:         Path(file).parent.mkdir(parents=True, exist_ok=True)
+0104:     else:
+0105:         file = _read_target(file)
+0106:     return _ORIGINAL_OPEN(file, mode, *args, **kwargs)
+0107: 
+0108: 
+0109: def _io_open(file, mode="r", *args, **kwargs):
+0110:     if isinstance(file, int):
+0111:         return _ORIGINAL_IO_OPEN(file, mode, *args, **kwargs)
+0112:     if _is_write_mode(mode):
+0113:         file = _write_target(file)
+0114:         Path(file).parent.mkdir(parents=True, exist_ok=True)
+0115:     else:
+0116:         file = _read_target(file)
+0117:     return _ORIGINAL_IO_OPEN(file, mode, *args, **kwargs)
 0118: 
-0119:         # Migrate an older database into permanent storage exactly once. Carry
-0120:         # SQLite WAL/SHM sidecars as well so committed transactions are not lost.
-0121:         if original.is_absolute() and original != target and original.exists() and not target.exists():
-0122:             try:
+0119: 
+0120: def _sqlite_connect(database, *args, **kwargs):
+0121:     if isinstance(database, (str, os.PathLike)) and str(database) not in (":memory:", ""):
+0122:         original = Path(os.fspath(database))
+0123:         target = _write_target(original)
 ```
 ```text
-0122:             try:
-0123:                 shutil.copy2(original, target)
-0124:                 for suffix in ("-wal", "-shm"):
-0125:                     sidecar = Path(str(original) + suffix)
-0126:                     if sidecar.exists():
-0127:                         shutil.copy2(sidecar, Path(str(target) + suffix))
-0128:             except OSError:
-0129:                 pass
-0130:         database = str(target)
-0131:     return _ORIGINAL_SQLITE_CONNECT(database, *args, **kwargs)
-0132: 
-0133: 
-0134: def _copy2(src, dst, *args, **kwargs):
-0135:     dst = _write_target(dst, backup="backup" in str(dst).casefold())
-0136:     Path(dst).parent.mkdir(parents=True, exist_ok=True)
-0137:     return _ORIGINAL_COPY2(src, dst, *args, **kwargs)
-0138: 
+0118: 
+0119: 
+0120: def _sqlite_connect(database, *args, **kwargs):
+0121:     if isinstance(database, (str, os.PathLike)) and str(database) not in (":memory:", ""):
+0122:         original = Path(os.fspath(database))
+0123:         target = _write_target(original)
+0124:         target.parent.mkdir(parents=True, exist_ok=True)
+0125: 
+0126:         # Migrate an older database into permanent storage exactly once. Carry
+0127:         # SQLite WAL/SHM sidecars as well so committed transactions are not lost.
+0128:         if original.is_absolute() and original != target and original.exists() and not target.exists():
+0129:             try:
+0130:                 shutil.copy2(original, target)
+0131:                 for suffix in ("-wal", "-shm"):
+0132:                     sidecar = Path(str(original) + suffix)
+0133:                     if sidecar.exists():
+0134:                         shutil.copy2(sidecar, Path(str(target) + suffix))
+0135:             except OSError:
+0136:                 pass
+0137:         database = str(target)
+0138:     return _ORIGINAL_SQLITE_CONNECT(database, *args, **kwargs)
+```
+```text
+0134:                         shutil.copy2(sidecar, Path(str(target) + suffix))
+0135:             except OSError:
+0136:                 pass
+0137:         database = str(target)
+0138:     return _ORIGINAL_SQLITE_CONNECT(database, *args, **kwargs)
 0139: 
-0140: def _copyfile(src, dst, *args, **kwargs):
-0141:     dst = _write_target(dst, backup="backup" in str(dst).casefold())
-0142:     Path(dst).parent.mkdir(parents=True, exist_ok=True)
-```
-```text
-0140: def _copyfile(src, dst, *args, **kwargs):
-0141:     dst = _write_target(dst, backup="backup" in str(dst).casefold())
-0142:     Path(dst).parent.mkdir(parents=True, exist_ok=True)
-0143:     return _ORIGINAL_COPYFILE(src, dst, *args, **kwargs)
-0144: 
+0140: 
+0141: def _copy2(src, dst, *args, **kwargs):
+0142:     dst = _write_target(dst, backup="backup" in str(dst).casefold())
+0143:     Path(dst).parent.mkdir(parents=True, exist_ok=True)
+0144:     return _ORIGINAL_COPY2(src, dst, *args, **kwargs)
 0145: 
-0146: _ORIGINAL_OPEN = builtins.open
-0147: _ORIGINAL_IO_OPEN = io.open
-0148: _ORIGINAL_SQLITE_CONNECT = sqlite3.connect
-0149: _ORIGINAL_COPY2 = shutil.copy2
-0150: _ORIGINAL_COPYFILE = shutil.copyfile
+0146: 
+0147: def _copyfile(src, dst, *args, **kwargs):
+0148:     dst = _write_target(dst, backup="backup" in str(dst).casefold())
+0149:     Path(dst).parent.mkdir(parents=True, exist_ok=True)
+0150:     return _ORIGINAL_COPYFILE(src, dst, *args, **kwargs)
 0151: 
 0152: 
-0153: def install():
-0154:     DATA_DIR.mkdir(parents=True, exist_ok=True)
-0155:     BACKUP_DIR.mkdir(parents=True, exist_ok=True)
-0156:     REPORTS_DIR.mkdir(parents=True, exist_ok=True)
-0157:     builtins.open = _open
-0158:     io.open = _io_open
-0159:     sqlite3.connect = _sqlite_connect
-0160:     shutil.copy2 = _copy2
+0153: _ORIGINAL_OPEN = builtins.open
+0154: _ORIGINAL_IO_OPEN = io.open
+```
+```text
+0147: def _copyfile(src, dst, *args, **kwargs):
+0148:     dst = _write_target(dst, backup="backup" in str(dst).casefold())
+0149:     Path(dst).parent.mkdir(parents=True, exist_ok=True)
+0150:     return _ORIGINAL_COPYFILE(src, dst, *args, **kwargs)
+0151: 
+0152: 
+0153: _ORIGINAL_OPEN = builtins.open
+0154: _ORIGINAL_IO_OPEN = io.open
+0155: _ORIGINAL_SQLITE_CONNECT = sqlite3.connect
+0156: _ORIGINAL_COPY2 = shutil.copy2
+0157: _ORIGINAL_COPYFILE = shutil.copyfile
+0158: 
+0159: 
+0160: def install():
+0161:     DATA_DIR.mkdir(parents=True, exist_ok=True)
+0162:     BACKUP_DIR.mkdir(parents=True, exist_ok=True)
+0163:     REPORTS_DIR.mkdir(parents=True, exist_ok=True)
+0164:     builtins.open = _open
+0165:     io.open = _io_open
+0166:     sqlite3.connect = _sqlite_connect
+0167:     shutil.copy2 = _copy2
 ```
 
 ## store_inventory.py
