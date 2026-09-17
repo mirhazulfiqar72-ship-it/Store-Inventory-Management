@@ -31,6 +31,8 @@ jobs:
           Expand-Archive -LiteralPath "Store_Inventory_GITHUB_AUTO_UPDATER_PATCH_V1.zip" -DestinationPath "source" -Force
           if (-not (Test-Path "source\store_inventory.py")) { throw "store_inventory.py was not found inside the source ZIP." }
           if (-not (Test-Path "source\updater.py")) { throw "updater.py was not found inside the source ZIP." }
+          if (-not (Test-Path "source\firebase_sync.py")) { throw "firebase_sync.py was not found inside the source ZIP." }
+          if (-not (Test-Path "source\firebase_database_url.txt")) { throw "firebase_database_url.txt was not found inside the source ZIP." }
 
       - name: Set release version
         shell: pwsh
@@ -87,6 +89,13 @@ jobs:
           [Files]
           Source: "$exe"; DestDir: "{app}"; Flags: ignoreversion
           Source: "source\update_config.json"; DestDir: "{app}"; Flags: ignoreversion
+          Source: "source\firebase_database_url.txt"; DestDir: "{app}"; Flags: onlyifdoesntexist
+          Source: "source\FIREBASE_RULES_URL_ONLY.json"; DestDir: "{app}"; Flags: onlyifdoesntexist
+
+          [Dirs]
+          Name: "{app}\Data"
+          Name: "{app}\Backups"
+          Name: "{app}\Reports"
 
           [Icons]
           Name: "{autodesktop}\Store Inventory Management"; Filename: "{app}\{#MyAppExeName}"
