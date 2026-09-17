@@ -4,8 +4,8 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 
 ## durable_local.py
 
-- Lines: 113
-- Functions: _columns(26-27), snapshot(29-39), _row_count(41-42), save(44-66), load(68-77), restore_if_newer(79-113)
+- Lines: 114
+- Functions: _columns(27-28), snapshot(30-40), _row_count(42-43), save(45-67), load(69-78), restore_if_newer(80-114)
 
 ### Relevant source locations
 
@@ -23,119 +23,119 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 0011: import os
 0012: import sqlite3
 0013: import tempfile
-0014: from pathlib import Path
-0015: from typing import Any, Dict
+0014: import traceback
+0015: from pathlib import Path
 ```
 ```text
-0018: DATA_DIR = INSTALL_ROOT / "Data"
-0019: SNAPSHOT_PATH = DATA_DIR / "local_data_snapshot.json"
-0020: TABLES = (
-0021:     "items", "mto_items", "parties", "demands", "demand_lines", "grr", "grr_lines",
-0022:     "issues", "issue_lines", "transactions", "users",
-0023: )
-0024: LAST_ERROR = ""
-0025: 
-0026: def _columns(conn: sqlite3.Connection, table: str) -> list[str]:
-0027:     return [r[1] for r in conn.execute(f"PRAGMA table_info({table})").fetchall()]
-0028: 
-0029: def snapshot(conn: sqlite3.Connection) -> Dict[str, Any]:
-0030:     tables: Dict[str, Any] = {}
-0031:     for table in TABLES:
-0032:         cols = _columns(conn, table)
-0033:         rows = []
-0034:         if cols:
-0035:             for row in conn.execute(f"SELECT {','.join(cols)} FROM {table}").fetchall():
-0036:                 rows.append({c: (v if v is None or isinstance(v, (str, int, float, bool)) else str(v))
-0037:                              for c, v in zip(cols, row)})
-0038:         tables[table] = {"columns": cols, "rows": rows}
+0019: DATA_DIR = INSTALL_ROOT / "Data"
+0020: SNAPSHOT_PATH = DATA_DIR / "local_data_snapshot.json"
+0021: TABLES = (
+0022:     "items", "mto_items", "parties", "demands", "demand_lines", "grr", "grr_lines",
+0023:     "issues", "issue_lines", "transactions", "users",
+0024: )
+0025: LAST_ERROR = ""
+0026: 
+0027: def _columns(conn: sqlite3.Connection, table: str) -> list[str]:
+0028:     return [r[1] for r in conn.execute(f"PRAGMA table_info({table})").fetchall()]
+0029: 
+0030: def snapshot(conn: sqlite3.Connection) -> Dict[str, Any]:
+0031:     tables: Dict[str, Any] = {}
+0032:     for table in TABLES:
+0033:         cols = _columns(conn, table)
+0034:         rows = []
+0035:         if cols:
+0036:             for row in conn.execute(f"SELECT {','.join(cols)} FROM {table}").fetchall():
+0037:                 rows.append({c: (v if v is None or isinstance(v, (str, int, float, bool)) else str(v))
+0038:                              for c, v in zip(cols, row)})
+0039:         tables[table] = {"columns": cols, "rows": rows}
 ```
 ```text
-0036:                 rows.append({c: (v if v is None or isinstance(v, (str, int, float, bool)) else str(v))
-0037:                              for c, v in zip(cols, row)})
-0038:         tables[table] = {"columns": cols, "rows": rows}
-0039:     return {"schema": 1, "tables": tables}
-0040: 
-0041: def _row_count(s: Dict[str, Any]) -> int:
-0042:     return sum(len(v.get("rows", []) or []) for v in s.get("tables", {}).values())
-0043: 
-0044: def save(conn: sqlite3.Connection) -> bool:
-0045:     global LAST_ERROR
-0046:     LAST_ERROR = ""
-0047:     try:
-0048:         DATA_DIR.mkdir(parents=True, exist_ok=True)
-0049:         value = snapshot(conn)
-0050:         fd, tmp = tempfile.mkstemp(prefix="local_snapshot_", suffix=".tmp", dir=str(DATA_DIR))
-0051:         try:
-0052:             with os.fdopen(fd, "w", encoding="utf-8") as f:
-0053:                 json.dump(value, f, ensure_ascii=False, separators=(",", ":"))
-0054:                 f.flush()
-0055:                 os.fsync(f.fileno())
-0056:             os.replace(tmp, SNAPSHOT_PATH)
+0037:                 rows.append({c: (v if v is None or isinstance(v, (str, int, float, bool)) else str(v))
+0038:                              for c, v in zip(cols, row)})
+0039:         tables[table] = {"columns": cols, "rows": rows}
+0040:     return {"schema": 1, "tables": tables}
+0041: 
+0042: def _row_count(s: Dict[str, Any]) -> int:
+0043:     return sum(len(v.get("rows", []) or []) for v in s.get("tables", {}).values())
+0044: 
+0045: def save(conn: sqlite3.Connection) -> bool:
+0046:     global LAST_ERROR
+0047:     LAST_ERROR = ""
+0048:     try:
+0049:         DATA_DIR.mkdir(parents=True, exist_ok=True)
+0050:         value = snapshot(conn)
+0051:         fd, tmp = tempfile.mkstemp(prefix="local_snapshot_", suffix=".tmp", dir=str(DATA_DIR))
+0052:         try:
+0053:             with os.fdopen(fd, "w", encoding="utf-8") as f:
+0054:                 json.dump(value, f, ensure_ascii=False, separators=(",", ":"))
+0055:                 f.flush()
+0056:                 os.fsync(f.fileno())
+0057:             os.replace(tmp, SNAPSHOT_PATH)
 ```
 ```text
-0071:         if not SNAPSHOT_PATH.exists():
-0072:             return None
-0073:         value = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
-0074:         return value if isinstance(value, dict) else None
-0075:     except Exception as exc:
-0076:         LAST_ERROR = repr(exc)
-0077:         return None
-0078: 
-0079: def restore_if_newer(conn: sqlite3.Connection) -> bool:
-0080:     global LAST_ERROR
-0081:     LAST_ERROR = ""
-0082:     saved = load()
-0083:     if not saved or _row_count(saved) <= 0:
-0084:         return False
-0085:     current = snapshot(conn)
-0086:     if _row_count(current) >= _row_count(saved):
-0087:         return False
-0088:     try:
-0089:         conn.execute("BEGIN")
-0090:         for table in TABLES:
-0091:             cols = _columns(conn, table)
+0072:         if not SNAPSHOT_PATH.exists():
+0073:             return None
+0074:         value = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
+0075:         return value if isinstance(value, dict) else None
+0076:     except Exception:
+0077:         LAST_ERROR = traceback.format_exc()
+0078:         return None
+0079: 
+0080: def restore_if_newer(conn: sqlite3.Connection) -> bool:
+0081:     global LAST_ERROR
+0082:     LAST_ERROR = ""
+0083:     saved = load()
+0084:     if not saved or _row_count(saved) <= 0:
+0085:         return False
+0086:     current = snapshot(conn)
+0087:     if _row_count(current) >= _row_count(saved):
+0088:         return False
+0089:     try:
+0090:         conn.execute("BEGIN")
+0091:         for table in TABLES:
+0092:             cols = _columns(conn, table)
 ```
 ```text
-0084:         return False
-0085:     current = snapshot(conn)
-0086:     if _row_count(current) >= _row_count(saved):
-0087:         return False
-0088:     try:
-0089:         conn.execute("BEGIN")
-0090:         for table in TABLES:
-0091:             cols = _columns(conn, table)
-0092:             rows = saved.get("tables", {}).get(table, {}).get("rows", []) or []
-0093:             if not cols:
-0094:                 continue
-0095:             conn.execute(f"DELETE FROM {table}")
-0096:             if not rows:
-0097:                 continue
-0098:             insert_cols = [c for c in cols if c in rows[0]]
-0099:             if not insert_cols:
-0100:                 continue
-0101:             placeholders = ",".join("?" for _ in insert_cols)
-0102:             sql = f"INSERT INTO {table} ({','.join(insert_cols)}) VALUES ({placeholders})"
-0103:             for row in rows:
-0104:                 conn.execute(sql, [row.get(c) for c in insert_cols])
+0085:         return False
+0086:     current = snapshot(conn)
+0087:     if _row_count(current) >= _row_count(saved):
+0088:         return False
+0089:     try:
+0090:         conn.execute("BEGIN")
+0091:         for table in TABLES:
+0092:             cols = _columns(conn, table)
+0093:             rows = saved.get("tables", {}).get(table, {}).get("rows", []) or []
+0094:             if not cols:
+0095:                 continue
+0096:             conn.execute(f"DELETE FROM {table}")
+0097:             if not rows:
+0098:                 continue
+0099:             insert_cols = [c for c in cols if c in rows[0]]
+0100:             if not insert_cols:
+0101:                 continue
+0102:             placeholders = ",".join("?" for _ in insert_cols)
+0103:             sql = f"INSERT INTO {table} ({','.join(insert_cols)}) VALUES ({placeholders})"
+0104:             for row in rows:
+0105:                 conn.execute(sql, [row.get(c) for c in insert_cols])
 ```
 ```text
-0097:                 continue
-0098:             insert_cols = [c for c in cols if c in rows[0]]
-0099:             if not insert_cols:
-0100:                 continue
-0101:             placeholders = ",".join("?" for _ in insert_cols)
-0102:             sql = f"INSERT INTO {table} ({','.join(insert_cols)}) VALUES ({placeholders})"
-0103:             for row in rows:
-0104:                 conn.execute(sql, [row.get(c) for c in insert_cols])
-0105:         conn.commit()
-0106:         return True
-0107:     except Exception as exc:
-0108:         LAST_ERROR = repr(exc)
-0109:         try:
-0110:             conn.rollback()
-0111:         except Exception:
-0112:             pass
-0113:         return False
+0098:                 continue
+0099:             insert_cols = [c for c in cols if c in rows[0]]
+0100:             if not insert_cols:
+0101:                 continue
+0102:             placeholders = ",".join("?" for _ in insert_cols)
+0103:             sql = f"INSERT INTO {table} ({','.join(insert_cols)}) VALUES ({placeholders})"
+0104:             for row in rows:
+0105:                 conn.execute(sql, [row.get(c) for c in insert_cols])
+0106:         conn.commit()
+0107:         return True
+0108:     except Exception:
+0109:         LAST_ERROR = traceback.format_exc()
+0110:         try:
+0111:             conn.rollback()
+0112:         except Exception:
+0113:             pass
+0114:         return False
 ```
 
 ## firebase_sync.py
