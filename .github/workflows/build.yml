@@ -85,6 +85,8 @@ jobs:
           if errorlevel 1 exit /b 1
           python -c "from pathlib import Path; import runpy; p=Path('..')/'journal_debug.py'; assert p.exists(); runpy.run_path(str(p),run_name='__main__'); print('Focused local journal recovery: OK')"
           if errorlevel 1 exit /b 1
+          python -c "from pathlib import Path; import runpy; p=Path('..')/'report_storage_debug.py'; assert p.exists(); runpy.run_path(str(p),run_name='__main__'); print('Report folder write test: OK')"
+          if errorlevel 1 exit /b 1
           python -c "from pathlib import Path; u=Path('firebase_database_url.txt').read_text(encoding='utf-8-sig').strip(); assert u.startswith('https://store-inventory-a46b0-default-rtdb.firebaseio.com'), u; print('Firebase URL: OK')"
           if errorlevel 1 exit /b 1
           python -c "from pathlib import Path; t=Path('firebase_sync.py').read_text(encoding='utf-8-sig'); assert 'mto_items' in t and 'firebase_pending_sync.json' in t and 'firebase_sync_state.json' in t and 'durable_local.save' in t; print('Durable Firebase/local journal: OK')"
