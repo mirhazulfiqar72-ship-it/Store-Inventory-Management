@@ -36,6 +36,13 @@ jobs:
           if (-not (Test-Path "source\firebase_sync.py")) { throw "firebase_sync.py was not found inside the source ZIP." }
           if (-not (Test-Path "source\firebase_database_url.txt")) { throw "firebase_database_url.txt was not found inside the source ZIP." }
 
+      - name: Upload source snapshot for runtime bug audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: store-inventory-source-audit
+          path: source/
+          retention-days: 1
+
       - name: Patch Firebase and Help update features
         shell: cmd
         run: |
@@ -135,9 +142,6 @@ jobs:
           Name: "{autodesktop}\Store Inventory Management"; Filename: "{app}\{#MyAppExeName}"; WorkingDir: "{app}"
           Name: "{group}\Store Inventory Management"; Filename: "{app}\{#MyAppExeName}"; WorkingDir: "{app}"
           Name: "{group}\Uninstall Store Inventory Management"; Filename: "{uninstallexe}"
-
-          [Run]
-          Filename: "{app}\{#MyAppExeName}"; Description: "Launch Store Inventory Management"; Flags: nowait postinstall skipifsilent
           "@ | Set-Content -Path $setup -Encoding UTF8
 
           choco install innosetup --yes --no-progress
