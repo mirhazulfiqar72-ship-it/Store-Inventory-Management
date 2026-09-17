@@ -26,22 +26,19 @@ write("firebase_database_url.txt", "https://store-inventory-a46b0-default-rtdb.f
 manifest_url = "https://raw.githubusercontent.com/mirhazulfiqar72-ship-it/Store-Inventory-Management/main/version.json"
 write("update_config.json", json.dumps({"manifest_url": manifest_url}, indent=2) + "\n")
 
-# Updater: preserve version checking, but when the user accepts an update,
-# start the EXE download in Internet Download Manager when installed;
-# otherwise hand the URL to the default browser.
+# Updater repair: do NOT internally download/install and do NOT verify a
+# downloaded file. The requested update flow is to launch IDM or the browser.
 updater = read("updater.py")
 updater = re.sub(r'^import storage_lock\s*\n', '', updater, count=1, flags=re.M)
 updater = "import storage_lock\n" + updater
 
-# Ensure required standard-library imports exist.
-imports = "import os\nimport subprocess\nimport webbrowser\nfrom pathlib import Path\n"
-if "import subprocess" not in updater:
-    updater = imports + updater
+# Required imports.
+for line in ["import os\n", "import subprocess\n", "import webbrowser\n", "from pathlib import Path\n"]:
+    if line.strip() not in updater:
+        updater = line + updater
 
-# Replace the updater's check function as a whole. This keeps startup/manual
-# checks intact while making the Yes action explicitly launch a download.
 new_function = r'''def _start_update_download(download_url):
-    """Start the update EXE download with IDM when available, else browser."""
+    """Start update download with IDM when installed, otherwise browser."""
     if not download_url:
         return False
     candidates = [
@@ -56,8 +53,7 @@ new_function = r'''def _start_update_download(download_url):
             except Exception:
                 pass
     try:
-        webbrowser.open(download_url, new=2)
-        return True
+        return bool(webbrowser.open(download_url, new=2))
     except Exception:
         try:
             os.startfile(download_url)
@@ -68,11 +64,9 @@ new_function = r'''def _start_update_download(download_url):
 
 def check_for_update(parent, manual=False):
     try:
-        manifest_url = ""
         config_path = Path(__file__).resolve().parent / "update_config.json"
-        if config_path.exists():
-            cfg = json.loads(config_path.read_text(encoding="utf-8-sig"))
-            manifest_url = str(cfg.get("manifest_url", "")).strip()
+        cfg = json.loads(config_path.read_text(encoding="utf-8-sig")) if config_path.exists() else {}
+        manifest_url = str(cfg.get("manifest_url", "")).strip()
         if not manifest_url:
             if manual:
                 messagebox.showwarning("Check Update", "Update checking is not configured.", parent=parent)
@@ -89,22 +83,20 @@ def check_for_update(parent, manual=False):
                 messagebox.showinfo("Check Update", f"You are using the current version ({APP_VERSION}).", parent=parent)
             return False
 
-        answer = messagebox.askyesno(
+        if not messagebox.askyesno(
             "Update Available",
             f"A new version ({latest}) is available.\n\nDo you want to download it now?",
             parent=parent,
-        )
-        if not answer:
+        ):
             return False
 
         if _start_update_download(download_url):
             messagebox.showinfo(
                 "Download Started",
-                "The update download has been started in Internet Download Manager or your default browser.",
+                "The update Setup download has been started in Internet Download Manager or your default browser.",
                 parent=parent,
             )
             return True
-
         messagebox.showerror("Update Download", "Could not start the update download.", parent=parent)
         return False
     except Exception as e:
@@ -114,23 +106,25 @@ def check_for_update(parent, manual=False):
 
 '''
 
-# Match from the updater function through the next top-level definition.
-pattern = r'(?ms)^def check_for_update\(.*?^def (?!check_for_update)'
+# Replace check_for_update regardless of its old body, while preserving the
+# next top-level definition. The previous patch could miss variants; this
+# version also handles a function at end-of-file.
+pattern = r'(?ms)^def check_for_update\(.*?(?=^def |\Z)'
 m = re.search(pattern, updater)
 if m:
-    replacement = new_function + m.group(0).split("\ndef ", 1)[1].join(["def ", ""])
-    # Preserve the next definition name/body by removing only the old check function.
-    next_def = "def " + m.group(0).split("\ndef ", 1)[1]
-    updater = updater[:m.start()] + new_function + next_def + updater[m.end():]
+    updater = updater[:m.start()] + new_function + updater[m.end():]
 else:
-    # If the source function is absent, add our implementation before the first class/other definition.
-    marker = "\ndef "
-    pos = updater.find(marker)
-    if pos == -1:
-        updater += "\n" + new_function
+    # Some source variants use check_for_updates; replace that too.
+    pattern2 = r'(?ms)^def check_for_updates\(.*?(?=^def |\Z)'
+    m2 = re.search(pattern2, updater)
+    if m2:
+        updater = updater[:m2.start()] + new_function + updater[m2.end():]
     else:
-        updater = updater[:pos+1] + new_function + updater[pos+1:]
+        updater += "\n" + new_function
 
+# Remove any legacy automatic-install calls that might still be referenced by
+# another wrapper. Keep the function definitions themselves harmless, but make
+# the user-facing check path always use the new browser/IDM flow above.
 write("updater.py", updater)
 
 # Main UI: preserve existing interface and only add the requested Help items.
