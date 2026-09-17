@@ -1,0 +1,1 @@
+Rebuild installer so C:\StoreInventoryManagement contains the Firebase URL configuration, Firebase sync support, Data, Backups, and Reports folders. Firebase URL: https://store-inventory-a46b0-default-rtdb.firebaseio.com/
