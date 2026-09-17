@@ -1,7 +1,6 @@
 from pathlib import Path
 import json
 import re
-import sys
 
 ROOT = Path(__file__).resolve().parent / "source"
 
@@ -27,29 +26,111 @@ write("firebase_database_url.txt", "https://store-inventory-a46b0-default-rtdb.f
 manifest_url = "https://raw.githubusercontent.com/mirhazulfiqar72-ship-it/Store-Inventory-Management/main/version.json"
 write("update_config.json", json.dumps({"manifest_url": manifest_url}, indent=2) + "\n")
 
-# Updater/manual Help controls.
+# Updater: preserve version checking, but when the user accepts an update,
+# start the EXE download in Internet Download Manager when installed;
+# otherwise hand the URL to the default browser.
 updater = read("updater.py")
-updater = updater.replace("def check_for_update(parent):", "def check_for_update(parent, manual=False):")
-updater = updater.replace(
-    '        if not manifest_url:\n            return\n',
-    '        if not manifest_url:\n            if manual:\n                messagebox.showwarning("Check Update", "Update checking is not configured.", parent=parent)\n            return False\n',
-)
-updater = updater.replace(
-    '        except Exception:\n            # No internet / unavailable manifest must never disturb normal app startup.\n            return\n',
-    '        except Exception as e:\n            if manual:\n                messagebox.showwarning("Check Update", f"Could not check for updates.\\n\\n{e}", parent=parent)\n            return False\n',
-)
-updater = updater.replace(
-    '        if not latest or not download_url or _version_tuple(latest) <= _version_tuple(APP_VERSION):\n            return\n',
-    '        if not latest or not download_url or _version_tuple(latest) <= _version_tuple(APP_VERSION):\n            if manual:\n                messagebox.showinfo("Check Update", f"You are using the current version ({APP_VERSION}).", parent=parent)\n            return False\n',
-)
-updater = updater.replace(
-    '            parent.destroy()\n        except Exception:\n',
-    '            parent.destroy()\n            return True\n        except Exception:\n',
-    1,
-)
-# Import the storage policy before updater code executes.
-if "import storage_lock" not in updater:
-    updater = "import storage_lock\n" + updater
+updater = re.sub(r'^import storage_lock\s*\n', '', updater, count=1, flags=re.M)
+updater = "import storage_lock\n" + updater
+
+# Ensure required standard-library imports exist.
+imports = "import os\nimport subprocess\nimport webbrowser\nfrom pathlib import Path\n"
+if "import subprocess" not in updater:
+    updater = imports + updater
+
+# Replace the updater's check function as a whole. This keeps startup/manual
+# checks intact while making the Yes action explicitly launch a download.
+new_function = r'''def _start_update_download(download_url):
+    """Start the update EXE download with IDM when available, else browser."""
+    if not download_url:
+        return False
+    candidates = [
+        os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
+        os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
+    ]
+    for idm in candidates:
+        if idm and os.path.isfile(idm):
+            try:
+                subprocess.Popen([idm, "/d", download_url, "/n"], close_fds=True)
+                return True
+            except Exception:
+                pass
+    try:
+        webbrowser.open(download_url, new=2)
+        return True
+    except Exception:
+        try:
+            os.startfile(download_url)
+            return True
+        except Exception:
+            return False
+
+
+def check_for_update(parent, manual=False):
+    try:
+        manifest_url = ""
+        config_path = Path(__file__).resolve().parent / "update_config.json"
+        if config_path.exists():
+            cfg = json.loads(config_path.read_text(encoding="utf-8-sig"))
+            manifest_url = str(cfg.get("manifest_url", "")).strip()
+        if not manifest_url:
+            if manual:
+                messagebox.showwarning("Check Update", "Update checking is not configured.", parent=parent)
+            return False
+
+        response = requests.get(manifest_url, timeout=12)
+        response.raise_for_status()
+        data = response.json()
+        latest = str(data.get("version", "")).strip()
+        download_url = str(data.get("url", "")).strip()
+
+        if not latest or not download_url or _version_tuple(latest) <= _version_tuple(APP_VERSION):
+            if manual:
+                messagebox.showinfo("Check Update", f"You are using the current version ({APP_VERSION}).", parent=parent)
+            return False
+
+        answer = messagebox.askyesno(
+            "Update Available",
+            f"A new version ({latest}) is available.\n\nDo you want to download it now?",
+            parent=parent,
+        )
+        if not answer:
+            return False
+
+        if _start_update_download(download_url):
+            messagebox.showinfo(
+                "Download Started",
+                "The update download has been started in Internet Download Manager or your default browser.",
+                parent=parent,
+            )
+            return True
+
+        messagebox.showerror("Update Download", "Could not start the update download.", parent=parent)
+        return False
+    except Exception as e:
+        if manual:
+            messagebox.showwarning("Check Update", f"Could not check for updates.\n\n{e}", parent=parent)
+        return False
+
+'''
+
+# Match from the updater function through the next top-level definition.
+pattern = r'(?ms)^def check_for_update\(.*?^def (?!check_for_update)'
+m = re.search(pattern, updater)
+if m:
+    replacement = new_function + m.group(0).split("\ndef ", 1)[1].join(["def ", ""])
+    # Preserve the next definition name/body by removing only the old check function.
+    next_def = "def " + m.group(0).split("\ndef ", 1)[1]
+    updater = updater[:m.start()] + new_function + next_def + updater[m.end():]
+else:
+    # If the source function is absent, add our implementation before the first class/other definition.
+    marker = "\ndef "
+    pos = updater.find(marker)
+    if pos == -1:
+        updater += "\n" + new_function
+    else:
+        updater = updater[:pos+1] + new_function + updater[pos+1:]
+
 write("updater.py", updater)
 
 # Main UI: preserve existing interface and only add the requested Help items.
@@ -76,4 +157,4 @@ if 'label="Check Update"' not in app:
     app = app.replace(needle, replacement, 1)
 
 write("store_inventory.py", app)
-print("CI patch complete: Firebase, Help update controls, and locked C-drive storage enabled.")
+print("CI patch complete: Firebase, Help update controls, locked C-drive storage, and IDM/browser update downloads enabled.")
