@@ -6,8 +6,6 @@ import shutil
 import sqlite3
 import sys
 
-# Permanent writable storage. Never use the PyInstaller temporary extraction
-# directory for application data because it is deleted when the EXE exits.
 INSTALL_ROOT = Path(r"C:\StoreInventoryManagement")
 DATA_DIR = INSTALL_ROOT / "Data"
 BACKUP_DIR = INSTALL_ROOT / "Backups"
@@ -26,8 +24,6 @@ def _inside(path, root):
 
 
 def _runtime_temp_root():
-    # In a PyInstaller one-file executable, _MEIPASS is a temporary directory
-    # which is recreated/deleted on every launch. Data must never be stored there.
     value = getattr(sys, "_MEIPASS", "")
     return Path(value) if value else None
 
@@ -41,23 +37,21 @@ def _is_database_path(path):
     return Path(os.fspath(path)).suffix.casefold() in _DB_SUFFIXES
 
 
+def _permanent_db_target(p):
+    return DATA_DIR / p.name
+
+
 def _write_target(path, backup=False, report=False):
     p = Path(os.fspath(path))
-
     if p.is_absolute():
         if _inside(p, DATA_DIR) or _inside(p, BACKUP_DIR) or _inside(p, REPORTS_DIR):
             return p
-
-        # Any database accidentally addressed to the EXE directory or
-        # PyInstaller temp directory is redirected to permanent Data storage.
         if _is_database_path(p) and (_is_runtime_temp(p) or _inside(p, INSTALL_ROOT) or _inside(p, Path(sys.executable).parent)):
-            return DATA_DIR / p.name
-
+            return _permanent_db_target(p)
         if _inside(p, INSTALL_ROOT):
             root = BACKUP_DIR if backup else REPORTS_DIR if report else DATA_DIR
             return root / p.relative_to(INSTALL_ROOT)
         return p
-
     name = p.name.casefold()
     parts = {x.casefold() for x in p.parts}
     if backup or "backup" in name or "backups" in parts:
@@ -70,18 +64,14 @@ def _write_target(path, backup=False, report=False):
 def _read_target(path):
     p = Path(os.fspath(path))
     if p.is_absolute():
-        # Database files from an older build may have been left in the install
-        # directory. Read the permanent Data copy first when it exists.
         if _is_database_path(p) and (_inside(p, INSTALL_ROOT) or _inside(p, Path(sys.executable).parent) or _is_runtime_temp(p)):
-            candidate = DATA_DIR / p.name
+            candidate = _permanent_db_target(p)
             if candidate.exists():
                 return candidate
         return p
-
     name = p.name.casefold()
     if name in _CONFIG_FILES or name in _RESOURCE_FILES:
         return p
-
     backup = BACKUP_DIR / p
     data = DATA_DIR / p
     report = REPORTS_DIR / p
@@ -118,8 +108,22 @@ def _io_open(file, mode="r", *args, **kwargs):
 
 def _sqlite_connect(database, *args, **kwargs):
     if isinstance(database, (str, os.PathLike)) and str(database) not in (":memory:", ""):
-        database = _write_target(database)
-        Path(database).parent.mkdir(parents=True, exist_ok=True)
+        original = Path(os.fspath(database))
+        target = _write_target(original)
+        target.parent.mkdir(parents=True, exist_ok=True)
+
+        # Preserve any database created by an older build before redirecting it
+        # into permanent storage. Also carry SQLite WAL/SHM sidecars when present.
+        if original.is_absolute() and original != target and original.exists() and not target.exists():
+            try:
+                shutil.copy2(original, target)
+                for suffix in ("-wal", "-shm"):
+                    sidecar = Path(str(original) + suffix)
+                    if sidecar.exists():
+                        shutil.copy2(sidecar, Path(str(target) + suffix))
+            except OSError:
+                pass
+        database = str(target)
     return _ORIGINAL_SQLITE_CONNECT(database, *args, **kwargs)
 
 
