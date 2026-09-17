@@ -92,7 +92,7 @@ jobs:
           AppName={#MyAppName}
           AppVersion={#MyAppVersion}
           AppPublisher={#MyAppPublisher}
-          DefaultDirName={autopf}\Store Inventory Management
+          DefaultDirName=C:\StoreInventoryManagement
           DisableProgramGroupPage=yes
           OutputDir=installer
           OutputBaseFilename=StoreInventoryManagement_Setup_v{#MyAppVersion}
@@ -107,8 +107,9 @@ jobs:
           [Files]
           Source: "$exe"; DestDir: "{app}"; Flags: ignoreversion
           Source: "source\update_config.json"; DestDir: "{app}"; Flags: ignoreversion
-          Source: "source\firebase_database_url.txt"; DestDir: "{app}"; Flags: onlyifdoesntexist
-          Source: "source\FIREBASE_RULES_URL_ONLY.json"; DestDir: "{app}"; Flags: onlyifdoesntexist
+          Source: "source\firebase_database_url.txt"; DestDir: "{app}"; Flags: ignoreversion
+          Source: "source\FIREBASE_RULES_URL_ONLY.json"; DestDir: "{app}"; Flags: ignoreversion
+          Source: "source\firebase_sync.py"; DestDir: "{app}"; Flags: ignoreversion
 
           [Dirs]
           Name: "{app}\Data"
@@ -116,8 +117,8 @@ jobs:
           Name: "{app}\Reports"
 
           [Icons]
-          Name: "{autodesktop}\Store Inventory Management"; Filename: "{app}\{#MyAppExeName}"
-          Name: "{group}\Store Inventory Management"; Filename: "{app}\{#MyAppExeName}"
+          Name: "{autodesktop}\Store Inventory Management"; Filename: "{app}\{#MyAppExeName}"; WorkingDir: "{app}"
+          Name: "{group}\Store Inventory Management"; Filename: "{app}\{#MyAppExeName}"; WorkingDir: "{app}"
           Name: "{group}\Uninstall Store Inventory Management"; Filename: "{uninstallexe}"
 
           [Run]
