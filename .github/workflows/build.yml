@@ -24,6 +24,7 @@ jobs:
         run: |
           if (Test-Path "source") { Remove-Item "source" -Recurse -Force }
           Expand-Archive -LiteralPath "Store_Inventory_GITHUB_AUTO_UPDATER_PATCH_V1.zip" -DestinationPath "source" -Force
+          Copy-Item -LiteralPath "storage_lock.py" -Destination "source\storage_lock.py" -Force
           if (-not (Test-Path "source\store_inventory.py")) { throw "store_inventory.py was not found inside the source ZIP." }
           if (-not (Test-Path "source\updater.py")) { throw "updater.py was not found inside the source ZIP." }
           if (-not (Test-Path "source\firebase_sync.py")) { throw "firebase_sync.py was not found inside the source ZIP." }
@@ -54,13 +55,15 @@ jobs:
           pip install pyinstaller reportlab python-docx openpyxl requests pywin32 pymupdf pillow
           if errorlevel 1 exit /b 1
 
-      - name: Validate Firebase, updater and application source
+      - name: Validate Firebase, updater, storage and application source
         shell: cmd
         working-directory: source
         run: |
-          python -m py_compile store_inventory.py firebase_sync.py updater.py
+          python -m py_compile store_inventory.py firebase_sync.py updater.py storage_lock.py
           if errorlevel 1 exit /b 1
           python -c "import firebase_sync; print('firebase_sync import: OK')"
+          if errorlevel 1 exit /b 1
+          python -c "import storage_lock; from pathlib import Path; storage_lock.install(); assert storage_lock.DATA_DIR == Path(r'C:\StoreInventoryManagement\Data'); assert storage_lock.BACKUP_DIR == Path(r'C:\StoreInventoryManagement\Backups'); print('Locked storage paths: OK')"
           if errorlevel 1 exit /b 1
           python -c "from pathlib import Path; u=Path('firebase_database_url.txt').read_text(encoding='utf-8-sig').strip(); assert u.startswith('https://store-inventory-a46b0-default-rtdb.firebaseio.com'), u; print('Firebase URL: OK')"
           if errorlevel 1 exit /b 1
@@ -73,7 +76,7 @@ jobs:
         shell: cmd
         working-directory: source
         run: |
-          python -m PyInstaller --clean --onefile --noconsole --name "StoreInventoryManagement" --collect-all reportlab --collect-all PIL --collect-all fitz --hidden-import updater --hidden-import firebase_sync --hidden-import reportlab.pdfgen.canvas --hidden-import reportlab.lib.utils --hidden-import reportlab.pdfbase._fontdata --add-data "inventory_seed.csv;." --add-data "company_logo.png;." --add-data "firebase_database_url.txt;." --add-data "update_config.json;." --add-data "FIREBASE_RULES_URL_ONLY.json;." store_inventory.py
+          python -m PyInstaller --clean --onefile --noconsole --name "StoreInventoryManagement" --collect-all reportlab --collect-all PIL --collect-all fitz --hidden-import updater --hidden-import firebase_sync --hidden-import storage_lock --hidden-import reportlab.pdfgen.canvas --hidden-import reportlab.lib.utils --hidden-import reportlab.pdfbase._fontdata --add-data "inventory_seed.csv;." --add-data "company_logo.png;." --add-data "firebase_database_url.txt;." --add-data "update_config.json;." --add-data "FIREBASE_RULES_URL_ONLY.json;." store_inventory.py
           if errorlevel 1 exit /b 1
           if not exist "dist\StoreInventoryManagement.exe" exit /b 1
 
@@ -113,9 +116,10 @@ jobs:
           Source: "source\FIREBASE_RULES_URL_ONLY.json"; DestDir: "{app}"; Flags: ignoreversion
 
           [Dirs]
-          Name: "{app}\Data"
-          Name: "{app}\Backups"
-          Name: "{app}\Reports"
+          Name: "{app}"; Permissions: users-modify
+          Name: "{app}\Data"; Permissions: users-modify
+          Name: "{app}\Backups"; Permissions: users-modify
+          Name: "{app}\Reports"; Permissions: users-modify
 
           [Icons]
           Name: "{autodesktop}\Store Inventory Management"; Filename: "{app}\{#MyAppExeName}"; WorkingDir: "{app}"
