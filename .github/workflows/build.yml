@@ -19,11 +19,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
       - name: Extract application source
         shell: pwsh
         run: |
@@ -33,6 +28,21 @@ jobs:
           if (-not (Test-Path "source\updater.py")) { throw "updater.py was not found inside the source ZIP." }
           if (-not (Test-Path "source\firebase_sync.py")) { throw "firebase_sync.py was not found inside the source ZIP." }
           if (-not (Test-Path "source\firebase_database_url.txt")) { throw "firebase_database_url.txt was not found inside the source ZIP." }
+
+      - name: Fix Firebase configuration and sync tables
+        shell: pwsh
+        run: |
+          $urlPath = "source\firebase_database_url.txt"
+          Set-Content -Path $urlPath -Value "https://store-inventory-a46b0-default-rtdb.firebaseio.com/" -Encoding UTF8
+
+          $syncPath = "source\firebase_sync.py"
+          $sync = Get-Content $syncPath -Raw
+          if ($sync -notmatch '"mto_items"') {
+            $sync = $sync -replace '"items",\s*\r?\n\s*"parties",', '"items",`r`n    "mto_items",`r`n    "parties",'
+          }
+          Set-Content -Path $syncPath -Value $sync -Encoding UTF8
+
+          Write-Host "Firebase URL configured. mto_items included in cloud snapshot sync."
 
       - name: Set release version
         shell: pwsh
@@ -50,6 +60,14 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pyinstaller reportlab python-docx openpyxl requests pywin32 pymupdf pillow
+
+      - name: Validate Firebase sync source
+        shell: cmd
+        working-directory: source
+        run: |
+          python -m py_compile store_inventory.py firebase_sync.py updater.py
+          python -c "from pathlib import Path; u=Path('firebase_database_url.txt').read_text(encoding='utf-8-sig').strip(); assert u.startswith('https://store-inventory-a46b0-default-rtdb.firebaseio.com'), u; print('Firebase URL: OK')"
+          python -c "from pathlib import Path; t=Path('firebase_sync.py').read_text(encoding='utf-8-sig'); assert 'mto_items' in t; print('Firebase tables: OK')"
 
       - name: Build EXE
         shell: cmd
