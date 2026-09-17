@@ -27,6 +27,7 @@ jobs:
           Expand-Archive -LiteralPath Store_Inventory_GITHUB_AUTO_UPDATER_PATCH_V1.zip -DestinationPath source -Force
           Copy-Item storage_lock.py source\storage_lock.py -Force
           Copy-Item firebase_sync.py source\firebase_sync.py -Force
+          Copy-Item durable_local.py source\durable_local.py -Force
           python ci_patch_source.py
       - name: Generate audit
         run: python source_audit.py
