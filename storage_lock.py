@@ -41,6 +41,17 @@ def _permanent_db_target(p):
     return DATA_DIR / p.name
 
 
+def _classify_relative(path):
+    p = Path(os.fspath(path))
+    name = p.name.casefold()
+    parts = {x.casefold() for x in p.parts}
+    if "backup" in name or "backups" in parts:
+        return BACKUP_DIR
+    if "report" in name or "reports" in parts:
+        return REPORTS_DIR
+    return DATA_DIR
+
+
 def _write_target(path, backup=False, report=False):
     p = Path(os.fspath(path))
     if p.is_absolute():
@@ -52,13 +63,8 @@ def _write_target(path, backup=False, report=False):
             root = BACKUP_DIR if backup else REPORTS_DIR if report else DATA_DIR
             return root / p.relative_to(INSTALL_ROOT)
         return p
-    name = p.name.casefold()
-    parts = {x.casefold() for x in p.parts}
-    if backup or "backup" in name or "backups" in parts:
-        return BACKUP_DIR / p
-    if report or "report" in name or "reports" in parts:
-        return REPORTS_DIR / p
-    return DATA_DIR / p
+    root = BACKUP_DIR if backup else REPORTS_DIR if report else _classify_relative(p)
+    return root / p
 
 
 def _read_target(path):
@@ -68,20 +74,18 @@ def _read_target(path):
             candidate = _permanent_db_target(p)
             if candidate.exists():
                 return candidate
+            # Even when the permanent database does not exist yet, force all
+            # future reads/creates to the permanent Data directory. This avoids
+            # one-file PyInstaller runtime (_MEIPASS) data disappearing on exit.
+            return candidate
         return p
-    name = p.name.casefold()
-    if name in _CONFIG_FILES or name in _RESOURCE_FILES:
+    if p.name.casefold() in _CONFIG_FILES or p.name.casefold() in _RESOURCE_FILES:
         return p
-    backup = BACKUP_DIR / p
-    data = DATA_DIR / p
-    report = REPORTS_DIR / p
-    if backup.exists():
-        return backup
-    if data.exists():
-        return data
-    if report.exists():
-        return report
-    return p
+
+    # User/application data must always resolve to permanent storage. Do not
+    # fall back to the current working directory or PyInstaller temp folder.
+    root = _classify_relative(p)
+    return root / p
 
 
 def _is_write_mode(mode):
@@ -112,8 +116,8 @@ def _sqlite_connect(database, *args, **kwargs):
         target = _write_target(original)
         target.parent.mkdir(parents=True, exist_ok=True)
 
-        # Preserve any database created by an older build before redirecting it
-        # into permanent storage. Also carry SQLite WAL/SHM sidecars when present.
+        # Migrate an older database into permanent storage exactly once. Carry
+        # SQLite WAL/SHM sidecars as well so committed transactions are not lost.
         if original.is_absolute() and original != target and original.exists() and not target.exists():
             try:
                 shutil.copy2(original, target)
