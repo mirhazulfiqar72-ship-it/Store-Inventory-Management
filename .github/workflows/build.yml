@@ -6,6 +6,7 @@ on:
       - main
     paths-ignore:
       - version.json
+      - SOURCE_AUDIT.md
   workflow_dispatch:
 
 permissions:
@@ -38,6 +39,12 @@ jobs:
         run: |
           python ci_patch_source.py
           if errorlevel 1 exit /b 1
+      - name: Audit real application persistence and report code
+        shell: cmd
+        run: |
+          python source_audit.py
+          if errorlevel 1 exit /b 1
+          if not exist "SOURCE_AUDIT.md" exit /b 1
       - name: Set release version
         shell: pwsh
         run: |
@@ -152,6 +159,14 @@ jobs:
           files: |
             source/dist/StoreInventoryManagement.exe
             installer/StoreInventoryManagement_Setup_v1.0.${{ github.run_number }}.exe
+      - name: Commit source audit
+        shell: pwsh
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add SOURCE_AUDIT.md
+          git commit -m "Add generated source persistence audit" || Write-Host "No audit changes to commit"
+          git push
       - name: Update version manifest
         shell: pwsh
         run: |
