@@ -256,26 +256,58 @@ backup_match = backup_re.search(app)
 if not backup_match:
     raise RuntimeError("Could not locate backup_database() in store_inventory.py.")
 backup_function = '''def backup_database(manual=False):
-    """Create a consistent full SQLite backup in C:\\StoreInventoryManagement\\Backups."""
+    """Create a consistent full SQLite backup in C:\StoreInventoryManagement\Backups."""
     try:
         os.makedirs(BACKUP_DIR, exist_ok=True)
-        db_candidates = [
-            os.path.abspath(DB),
-            os.path.join(r"C:\\StoreInventoryManagement", "Data", "store_inventory.db"),
-            os.path.join(r"C:\\StoreInventoryManagement", "store_inventory.db"),
-        ]
+
+        # The live database is permanently under C:\StoreInventoryManagement\Data.
+        # Also accept the legacy DB variable/path and any SQLite file already
+        # present in the install tree so Backup Now never depends on the old
+        # pre-online database location.
+        known = []
+        try:
+            legacy_db = globals().get("DB")
+            if legacy_db:
+                known.append(os.path.abspath(os.fspath(legacy_db)))
+        except Exception:
+            pass
+        known.extend([
+            os.path.join(r"C:\StoreInventoryManagement", "Data", "store_inventory.db"),
+            os.path.join(r"C:\StoreInventoryManagement", "Data", "inventory.db"),
+            os.path.join(r"C:\StoreInventoryManagement", "store_inventory.db"),
+        ])
+        db_candidates = []
+        for p in known:
+            if p and p not in db_candidates:
+                db_candidates.append(p)
+        # Discover the actual SQLite file if its legacy filename differs.
+        for root in (
+            os.path.join(r"C:\StoreInventoryManagement", "Data"),
+            r"C:\StoreInventoryManagement",
+        ):
+            try:
+                if os.path.isdir(root):
+                    for name in os.listdir(root):
+                        if os.path.splitext(name)[1].lower() in (".db", ".sqlite", ".sqlite3", ".db3"):
+                            p = os.path.join(root, name)
+                            if p not in db_candidates:
+                                db_candidates.append(p)
+            except Exception:
+                pass
+
         db_path = next((p for p in db_candidates if os.path.isfile(p)), None)
         if not db_path:
-            # The live connection may have been created through the storage
-            # layer even when the original legacy path is absent.
+            # Create the expected database path if the database has not yet
+            # been materialized by the storage layer.
+            db_path = os.path.join(r"C:\StoreInventoryManagement", "Data", "store_inventory.db")
             try:
-                raw = sqlite3.connect(os.path.join(r"C:\\StoreInventoryManagement", "Data", "store_inventory.db"))
-                raw.close()
-                db_path = db_candidates[1] if os.path.isfile(db_candidates[1]) else None
+                os.makedirs(os.path.dirname(db_path), exist_ok=True)
+                probe = sqlite3.connect(db_path, timeout=30)
+                probe.close()
             except Exception:
-                db_path = None
-        if not db_path:
-            return None
+                return None
+            if not os.path.isfile(db_path):
+                return None
 
         stamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
         tag = "manual" if manual else "auto"
@@ -289,20 +321,32 @@ backup_function = '''def backup_database(manual=False):
                 src.execute("PRAGMA wal_checkpoint(FULL)")
             except Exception:
                 pass
-            for path in (latest, dated):
-                if os.path.exists(path):
-                    try:
-                        os.remove(path)
-                    except OSError:
-                        pass
-                dst = sqlite3.connect(path, timeout=30)
-                try:
-                    with dst:
-                        src.backup(dst)
-                finally:
-                    dst.close()
+            dst = sqlite3.connect(dated, timeout=30)
+            try:
+                with dst:
+                    src.backup(dst)
+            finally:
+                dst.close()
         finally:
             src.close()
+
+        # Keep the latest convenience copy, replacing only that fixed filename.
+        # Historical/manual backup archives are never automatically deleted.
+        if os.path.exists(latest):
+            try:
+                os.remove(latest)
+            except OSError:
+                pass
+        latest_src = sqlite3.connect(dated, timeout=30)
+        try:
+            latest_dst = sqlite3.connect(latest, timeout=30)
+            try:
+                with latest_dst:
+                    latest_src.backup(latest_dst)
+            finally:
+                latest_dst.close()
+        finally:
+            latest_src.close()
 
         if not os.path.isfile(dated) or os.path.getsize(dated) <= 0:
             return None
