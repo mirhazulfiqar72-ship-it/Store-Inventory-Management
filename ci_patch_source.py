@@ -37,6 +37,8 @@ commit_match = commit_re.search(sync)
 if commit_match:
     new_commit = '''    def commit(self):
         self._conn.commit()
+        # Keep the recovery module available inside the generated sync module.
+        import durable_local
         # Make local persistence independent of Firebase availability.
         durable_local.save(self._conn)
         if self._dirty:
