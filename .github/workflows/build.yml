@@ -104,7 +104,7 @@ jobs:
           if errorlevel 1 exit /b 1
           python -c "from pathlib import Path; t=Path('store_inventory.py').read_text(encoding='utf-8-sig'); assert 'label=\"Check Update\"' in t and 'label=\"Current Version\"' in t; assert 'durable_local.restore_if_newer(raw)' in t and 'durable_local.save(raw)' in t; print('Help and startup recovery controls: OK')"
           if errorlevel 1 exit /b 1
-          python -c "from pathlib import Path; t=Path('store_inventory.py').read_text(encoding='utf-8-sig'); assert 'Automatic backup rotation/deletion is intentionally disabled.' in t; assert 'REPORTS_DIR' in t and 'def export_preview_pdf' in t; print('Backup/report protections: OK')"
+          python -c "from pathlib import Path; t=Path('store_inventory.py').read_text(encoding='utf-8-sig'); assert 'def backup_database' in t and 'BACKUP_DIR' in t; assert 'REPORTS_DIR' in t and 'def export_preview_pdf' in t; print('Backup/report protections: OK')"
           if errorlevel 1 exit /b 1
       - name: Build EXE
         shell: cmd
