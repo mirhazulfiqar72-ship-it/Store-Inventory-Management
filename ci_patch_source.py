@@ -334,6 +334,10 @@ if "_dashboard_kpi_vars" not in app:
 '
     if cards_marker not in app:
         raise RuntimeError("Could not locate Dashboard KPI card row.")
+    loop_marker='        for title,val,color,short in cards:\n'
+    if loop_marker not in app:
+        raise RuntimeError("Could not locate Dashboard KPI card loop.")
+    app=app.replace(loop_marker,'        for idx,(title,val,color,short) in enumerate(cards):\n',1)
     app=app.replace(
         cards_marker,
         '        self._dashboard_kpi_vars=[tk.StringVar(value=str(x[1])) for x in cards]\n'
