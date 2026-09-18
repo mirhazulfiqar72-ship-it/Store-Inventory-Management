@@ -119,6 +119,7 @@ jobs:
           AppVersion={#MyAppVersion}
           AppPublisher={#MyAppPublisher}
           DefaultDirName=C:\StoreInventoryManagement
+          DisableDirPage=yes
           DisableProgramGroupPage=yes
           OutputDir=installer
           OutputBaseFilename=StoreInventoryManagement_Setup_v{#MyAppVersion}
