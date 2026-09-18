@@ -59,25 +59,46 @@ write("firebase_database_url.txt", "https://store-inventory-a46b0-default-rtdb.f
 manifest_url = "https://raw.githubusercontent.com/mirhazulfiqar72-ship-it/Store-Inventory-Management/main/version.json"
 write("update_config.json", json.dumps({"manifest_url": manifest_url}, indent=2) + "\n")
 
-# Updater repair: do NOT internally download/install and do NOT verify a
-# downloaded file. The requested update flow is to launch IDM or the browser.
+# Updater repair: preserve the existing updater and add only the required
+# requests/tkinter imports and update-check behavior.
 updater = read("updater.py")
-# Older updater patches accidentally wrote the two-character sequence "\\n" into
-# the import header. Normalize only the header before APP_VERSION so message
-# strings and the rest of the updater are left untouched.
 head, sep, tail = updater.partition("APP_VERSION")
-head = head.replace("\\n", "\n")
+# Previous patch attempts could leave escaped newline text in the generated
+# header. Normalize one or two literal backslashes followed by n only here.
+head = head.replace("\\\\n", "\n").replace("\\n", "\n")
 updater = head + sep + tail
-updater = re.sub(r'^import storage_lock\s*\n', '', updater, count=1, flags=re.M)
-updater = "import storage_lock\n" + updater
+
+# Remove only duplicate imports introduced by the updater repair, then ensure
+# every dependency used by the update-check function exists as a real import.
+for pattern in (
+    r"^import\s+requests\s*$",
+    r"^import\s+json\s*$",
+    r"^import\s+os\s*$",
+    r"^import\s+subprocess\s*$",
+    r"^import\s+webbrowser\s*$",
+    r"^from\s+pathlib\s+import\s+Path\s*$",
+    r"^import\s+tkinter\s+as\s+tk\s*$",
+    r"^from\s+tkinter\s+import\s+ttk\s*,\s*messagebox\s*$",
+    r"^import\s+storage_lock\s*$",
+):
+    updater = re.sub(pattern + r"\n(?=(?:.*\n)*?APP_VERSION)", "", updater, count=1, flags=re.M)
+
 required_imports = [
-    "import os\n", "import subprocess\n", "import webbrowser\n",
-    "from pathlib import Path\n", "import tkinter as tk\n",
-    "from tkinter import ttk, messagebox\n", "import json\n", "import requests\n",
+    "import os\n",
+    "import subprocess\n",
+    "import webbrowser\n",
+    "from pathlib import Path\n",
+    "import tkinter as tk\n",
+    "from tkinter import ttk, messagebox\n",
+    "import json\n",
+    "import requests\n",
+    "import storage_lock\n",
 ]
+header, sep, rest = updater.partition("APP_VERSION")
 for line in reversed(required_imports):
-    if line.strip() not in updater:
-        updater = line + updater
+    if line.strip() not in header.splitlines():
+        header = line + header
+updater = header + sep + rest
 
 new_function = r'''def _start_update_download(download_url):
     """Start the fixed-location update installer with IDM when available."""
