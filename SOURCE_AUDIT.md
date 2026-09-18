@@ -4512,7 +4512,7 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 
 ## updater.py
 
-- Lines: 165
+- Lines: 124
 - AST parse error: unexpected character after line continuation character (<unknown>, line 1)
 
 ### Relevant source locations
@@ -4539,27 +4539,4 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 0079:         except Exception:
 0080:             return False
 0081: 
-```
-```text
-0085:         return False
-0086:     candidates = [
-0087:         os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
-0088:         os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
-0089:     ]
-0090:     for idm in candidates:
-0091:         if idm and os.path.isfile(idm):
-0092:             try:
-0093:                 subprocess.Popen([idm, "/d", download_url, "/n"], close_fds=True)
-0094:                 return True
-0095:             except Exception:
-0096:                 pass
-0097:     try:
-0098:         return bool(webbrowser.open(download_url, new=2))
-0099:     except Exception:
-0100:         try:
-0101:             os.startfile(download_url)
-0102:             return True
-0103:         except Exception:
-0104:             return False
-0105: 
 ```
