@@ -70,7 +70,7 @@ def merge_local_changes(remote: Dict[str, Any], baseline: Dict[str, Any], local:
     return merged
 def _snapshot_has_records(snapshot: Dict[str, Any]) -> bool:
     tables = snapshot.get("tables", {})
-    return any(tables.get(x, {}).get("rows") for x in ("demands", "demand_lines", "grr", "grr_lines", "issues", "issue_lines", "transactions", "parties", "mto_items"))
+    return any(tables.get(x, {}).get("rows") for x in TABLES)
 class FirebaseSync:
     def __init__(self, url_file: str, install_dir: str, timeout: int = 15):
         self.url_file = url_file
@@ -202,31 +202,21 @@ class FirebaseSync:
         local = snapshot_db(conn)
         pending = self._load_json(self.pending_path)
         state = self._load_json(self.state_path)
+        # A pending snapshot is the strongest local recovery source.
         if isinstance(pending, dict) and isinstance(pending.get("snapshot"), dict):
             local = pending["snapshot"]
             self.pending_base = pending.get("baseline") if isinstance(pending.get("baseline"), dict) else state
-        elif state:
-            self.pending_base = state
         try:
             remote = self._get_snapshot()
             version, _ = self._get_meta()
             if remote and remote.get("tables"):
-                if self.pending_base is not None:
-                    merged = merge_local_changes(remote, self.pending_base, local)
-                    if merged != remote:
-                        new_version = self._write_remote(merged)
-                        self.replace_local(conn, merged)
-                        self.last_remote_version = new_version
-                        self._save_state(merged)
-                        self._clear_pending()
-                    else:
-                        self.replace_local(conn, remote)
-                        self.last_remote_version = version
-                        self._save_state(remote)
-                        self._clear_pending()
-                elif _snapshot_has_records(local):
-                    empty = {"schema": 1, "tables": {}}
-                    merged = merge_local_changes(remote, empty, local)
+                # Never discard a non-empty local database just because the
+                # cloud has an older/partial snapshot. Merge local rows into
+                # remote on startup, then publish the merged result.
+                empty = {"schema": 1, "tables": {}}
+                baseline = self.pending_base or empty
+                if _snapshot_has_records(local) or self.pending_base is not None:
+                    merged = merge_local_changes(remote, baseline, local)
                     if merged != remote:
                         new_version = self._write_remote(merged)
                         self.replace_local(conn, merged)
@@ -242,6 +232,7 @@ class FirebaseSync:
                     self._save_state(remote)
                 self.pending_base = None
                 self.pending_error = None
+                self._clear_pending()
             else:
                 new_version = self._write_remote(local)
                 self.last_remote_version = new_version
@@ -250,6 +241,8 @@ class FirebaseSync:
                 self.pending_base = None
                 self.pending_error = None
         except Exception as exc:
+            # Firebase being offline must never delete the local data. Keep
+            # the local snapshot and retry on the next start/commit.
             self.pending_error = str(exc)
             self._save_pending(local, self.pending_base or state or {"schema": 1, "tables": {}})
     def replace_local(self, conn: sqlite3.Connection, snapshot: Dict[str, Any]) -> None:
