@@ -303,6 +303,9 @@ backup_function = '''def backup_database(manual=False):
     except Exception:
         return None
 
+    # Replace the legacy backup implementation with the C: Data-aware version.
+    app = app[:backup_match.start()] + backup_function + app[backup_match.end():]
+
 # Make Preview -> Export PDF fail loudly and leave the verified file in the
 # permanent Reports folder. Print buttons remain print-only.
 export_re = re.compile(r'(?ms)^    def export_preview_pdf\(self, title, header_lines, columns, rows\):\n.*?(?=^    def export_preview_word\(self, title, header_lines, columns, rows\):)')
