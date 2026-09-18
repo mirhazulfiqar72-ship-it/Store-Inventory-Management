@@ -69,7 +69,7 @@ for line in ["import os\n", "import subprocess\n", "import webbrowser\n", "from 
         updater = line + updater
 
 new_function = r'''def _start_update_download(download_url):
-    """Start update download with IDM when installed, otherwise browser."""
+    """Start the fixed-location update installer with IDM when available."""
     if not download_url:
         return False
     candidates = [
@@ -93,7 +93,29 @@ new_function = r'''def _start_update_download(download_url):
             return False
 
 
+def _show_update_check_popup(parent):
+    try:
+        win = tk.Toplevel(parent)
+        win.title("Check Update")
+        win.transient(parent)
+        win.resizable(False, False)
+        box = ttk.Frame(win, padding=18)
+        box.pack(fill="both", expand=True)
+        ttk.Label(box, text="Checking for updates...", font=("Segoe UI", 10, "bold")).pack(pady=(0,10))
+        bar = ttk.Progressbar(box, mode="indeterminate", length=280)
+        bar.pack()
+        bar.start(12)
+        win.update_idletasks()
+        x = parent.winfo_rootx() + max(0, (parent.winfo_width()-win.winfo_width())//2)
+        y = parent.winfo_rooty() + max(0, (parent.winfo_height()-win.winfo_height())//2)
+        win.geometry(f"+{x}+{y}")
+        return win
+    except Exception:
+        return None
+
+
 def check_for_update(parent, manual=False):
+    checking = _show_update_check_popup(parent)
     try:
         config_path = Path(__file__).resolve().parent / "update_config.json"
         cfg = json.loads(config_path.read_text(encoding="utf-8-sig")) if config_path.exists() else {}
@@ -107,21 +129,28 @@ def check_for_update(parent, manual=False):
         data = response.json()
         latest = str(data.get("version", "")).strip()
         download_url = str(data.get("url", "")).strip()
-        if not latest or not download_url or _version_tuple(latest) <= _version_tuple(APP_VERSION):
-            if manual:
-                messagebox.showinfo("Check Update", f"You are using the current version ({APP_VERSION}).", parent=parent)
+        if not latest or not download_url:
+            messagebox.showwarning("Check Update", "Update information is unavailable.", parent=parent)
+            return False
+        if _version_tuple(latest) <= _version_tuple(APP_VERSION):
+            messagebox.showinfo("Check Update", f"You are using the current version ({APP_VERSION}).", parent=parent)
             return False
         if not messagebox.askyesno("Update Available", f"A new version ({latest}) is available.\n\nDo you want to download it now?", parent=parent):
             return False
         if _start_update_download(download_url):
-            messagebox.showinfo("Download Started", "The update Setup download has been started in Internet Download Manager or your default browser.", parent=parent)
+            messagebox.showinfo("Download Started", "The update Setup download has been started.\n\nRun the downloaded Setup to update Store Inventory Management in C:\\StoreInventoryManagement only.", parent=parent)
             return True
         messagebox.showerror("Update Download", "Could not start the update download.", parent=parent)
         return False
     except Exception as e:
-        if manual:
-            messagebox.showwarning("Check Update", f"Could not check for updates.\n\n{e}", parent=parent)
+        messagebox.showwarning("Check Update", f"Could not check for updates.\n\n{e}", parent=parent)
         return False
+    finally:
+        try:
+            if checking and checking.winfo_exists():
+                checking.destroy()
+        except Exception:
+            pass
 
 '''
 pattern = r'(?ms)^def check_for_update\(.*?(?=^def |\Z)'
@@ -139,6 +168,21 @@ write("updater.py", updater)
 
 # Main UI: preserve the existing interface and add only the requested Help items.
 app = read("store_inventory.py")
+# Check for updates once after the Dashboard is shown at login.
+_home_block = """        self.body=ttk.Frame(self,padding=12);self.body.pack(fill="both",expand=True)
+        self.main_body=self.body
+        self.dashboard()
+"""
+_home_replacement = """        self.body=ttk.Frame(self,padding=12);self.body.pack(fill="both",expand=True)
+        self.main_body=self.body
+        self.dashboard()
+        if not getattr(self, "_update_checked_this_session", False):
+            self._update_checked_this_session = True
+            self.after(900, lambda: updater.check_for_update(self, manual=False))
+"""
+if _home_block not in app:
+    raise RuntimeError("Could not locate Home dashboard block for update check.")
+app = app.replace(_home_block, _home_replacement, 1)
 if "import updater" not in app:
     m = re.search(r'^(import\s+[^\n]+\n)', app, flags=re.M)
     if m:
