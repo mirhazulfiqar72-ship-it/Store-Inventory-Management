@@ -184,6 +184,7 @@ def check_for_update(parent, manual=False):
                 checking.destroy()
         except Exception:
             pass
+        _CHECK_IN_PROGRESS = False
 
 '''
 pattern = r'(?ms)^def check_for_update\(.*?(?=^def |\Z)'
@@ -211,6 +212,8 @@ import requests
 
 APP_VERSION = "0.0.0"
 CONFIG_NAME = "update_config.json"
+_CHECK_IN_PROGRESS = False
+_AUTO_CHECK_DONE = False
 
 def _version_tuple(value):
     parts = []
@@ -275,6 +278,14 @@ def _checking_popup(parent):
         return None
 
 def check_for_update(parent, manual=False):
+    global _CHECK_IN_PROGRESS, _AUTO_CHECK_DONE
+    if not manual:
+        if _AUTO_CHECK_DONE or _CHECK_IN_PROGRESS:
+            return False
+        _AUTO_CHECK_DONE = True
+    if _CHECK_IN_PROGRESS:
+        return False
+    _CHECK_IN_PROGRESS = True
     checking = _checking_popup(parent) if manual else None
     try:
         cfg = _config()
@@ -298,7 +309,8 @@ def check_for_update(parent, manual=False):
         if not messagebox.askyesno("Update Available", f"A new version ({latest}) is available.\\n\\nDo you want to download it now?", parent=parent):
             return False
         if _start_update_download(download_url):
-            messagebox.showinfo("Download Started", "The update Setup download has been started.\\n\\nRun the downloaded Setup to update Store Inventory Management in C:\\StoreInventoryManagement only.", parent=parent)
+            # Close the Update Available dialog immediately after handing the
+            # download to IDM/browser. No second confirmation popup.
             return True
         messagebox.showerror("Update Download", "Could not start the update download.", parent=parent)
         return False
