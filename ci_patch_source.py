@@ -340,7 +340,7 @@ if "def _restore_dashboard_after_internal_close(self):" not in app:
                 host.place_forget()
             # Repaint the existing Dashboard only after the child is fully closed.
             # This restores the visible Dashboard surface without changing its layout.
-            self.after_idle(self.dashboard)
+            self.after_idle(self.home)
         except Exception:
             try:
                 self.after_idle(self.dashboard)
