@@ -59,106 +59,9 @@ write("firebase_database_url.txt", "https://store-inventory-a46b0-default-rtdb.f
 manifest_url = "https://raw.githubusercontent.com/mirhazulfiqar72-ship-it/Store-Inventory-Management/main/version.json"
 write("update_config.json", json.dumps({"manifest_url": manifest_url}, indent=2) + "\n")
 
-# Updater repair: preserve the existing updater and add only the required
-# requests/tkinter imports and update-check behavior.
-updater = read("updater.py")
-head, sep, tail = updater.partition("APP_VERSION")
-# Previous patch attempts could leave escaped newline text in the generated
-# header. Normalize one or two literal backslashes followed by n only here.
-head = re.sub(r"\\+n", "\n", head)
-updater = head + sep + tail
-
-# Remove only duplicate imports introduced by the updater repair, then ensure
-# every dependency used by the update-check function exists as a real import.
-for pattern in (
-    r"^import\s+requests\s*$",
-    r"^import\s+json\s*$",
-    r"^import\s+os\s*$",
-    r"^import\s+subprocess\s*$",
-    r"^import\s+webbrowser\s*$",
-    r"^from\s+pathlib\s+import\s+Path\s*$",
-    r"^import\s+tkinter\s+as\s+tk\s*$",
-    r"^from\s+tkinter\s+import\s+ttk\s*,\s*messagebox\s*$",
-    r"^import\s+storage_lock\s*$",
-):
-    updater = re.sub(pattern + r"\n(?=(?:.*\n)*?APP_VERSION)", "", updater, count=1, flags=re.M)
-
-required_imports = [
-    "import os\n",
-    "import subprocess\n",
-    "import webbrowser\n",
-    "from pathlib import Path\n",
-    "import tkinter as tk\n",
-    "from tkinter import ttk, messagebox\n",
-    "import json\n",
-    "import requests\n",
-    "import storage_lock\n",
-]
-header, sep, rest = updater.partition("APP_VERSION")
-for line in reversed(required_imports):
-    if line.strip() not in header.splitlines():
-        header = line + header
-updater = header + sep + rest
-
-new_function = r'''def check_for_update(parent, manual=False):
-    global _CHECK_IN_PROGRESS, _AUTO_CHECK_DONE
-    if _CHECK_IN_PROGRESS:
-        return False
-    if not manual and _AUTO_CHECK_DONE:
-        return False
-    if not manual:
-        _AUTO_CHECK_DONE = True
-    _CHECK_IN_PROGRESS = True
-    try:
-        config_path = Path(__file__).resolve().parent / "update_config.json"
-        cfg = json.loads(config_path.read_text(encoding="utf-8-sig")) if config_path.exists() else {}
-        manifest_url = str(cfg.get("manifest_url", "")).strip()
-        if not manifest_url:
-            if manual:
-                messagebox.showwarning("Check Update", "Update checking is not configured.", parent=parent)
-            return False
-        response = requests.get(manifest_url, timeout=12)
-        response.raise_for_status()
-        data = response.json()
-        latest = str(data.get("version", "")).strip()
-        download_url = str(data.get("url", "")).strip()
-        if not latest or not download_url:
-            if manual:
-                messagebox.showwarning("Check Update", "Update information is unavailable.", parent=parent)
-            return False
-        if _version_tuple(latest) <= _version_tuple(APP_VERSION):
-            if manual:
-                messagebox.showinfo("Check Update", f"You are using the current version ({APP_VERSION}).", parent=parent)
-            return False
-        if not messagebox.askyesno(
-            "Update Available",
-            f"A new version ({latest}) is available.\n\nDo you want to download it now?",
-            parent=parent,
-        ):
-            return False
-        return _start_update_download(download_url)
-    except Exception as exc:
-        if manual:
-            messagebox.showwarning("Check Update", f"Could not check for updates.\n\n{exc}", parent=parent)
-        return False
-    finally:
-        _CHECK_IN_PROGRESS = False
-'''
-pattern = r'(?ms)^def check_for_update\(.*?(?=^def |\Z)'
-m = re.search(pattern, updater)
-if m:
-    updater = updater[:m.start()] + new_function + updater[m.end():]
-else:
-    pattern2 = r'(?ms)^def check_for_updates\(.*?(?=^def |\Z)'
-    m2 = re.search(pattern2, updater)
-    if m2:
-        updater = updater[:m2.start()] + new_function + updater[m2.end():]
-    else:
-        updater += "\n" + new_function
-# Replace the updater module with a clean, dependency-explicit implementation.
-# This avoids carrying forward malformed literal "\\n" import headers from older
-# updater patches. It only controls the Help/automatic update-check flow.
-updater = '''import json
+# Updater repair: generate one clean updater module. Automatic startup checks are silent
+# unless GitHub's manifest reports a genuinely newer release.
+updater = r'''import json
 import os
 import subprocess
 import webbrowser
@@ -196,32 +99,12 @@ def _config():
         pass
     return {}
 
-def _checking_popup(parent):
-    try:
-        win = tk.Toplevel(parent)
-        win.title("Check Update")
-        win.transient(parent)
-        win.resizable(False, False)
-        box = ttk.Frame(win, padding=18)
-        box.pack(fill="both", expand=True)
-        ttk.Label(box, text="Checking for updates...", font=("Segoe UI", 10, "bold")).pack(pady=(0, 10))
-        bar = ttk.Progressbar(box, mode="indeterminate", length=280)
-        bar.pack()
-        bar.start(12)
-        win.update_idletasks()
-        x = parent.winfo_rootx() + max(0, (parent.winfo_width() - win.winfo_width()) // 2)
-        y = parent.winfo_rooty() + max(0, (parent.winfo_height() - win.winfo_height()) // 2)
-        win.geometry(f"+{x}+{y}")
-        return win
-    except Exception:
-        return None
-
 def _start_update_download(download_url):
     if not download_url:
         return False
     idm_paths = (
-        os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
-        os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
+        os.path.expandvars(r"%PROGRAMFILES%\\Internet Download Manager\\IDMan.exe"),
+        os.path.expandvars(r"%PROGRAMFILES(x86)%\\Internet Download Manager\\IDMan.exe"),
     )
     for path in idm_paths:
         if os.path.isfile(path):
@@ -248,7 +131,6 @@ def check_for_update(parent, manual=False):
     if not manual:
         _AUTO_CHECK_DONE = True
     _CHECK_IN_PROGRESS = True
-    checking = _checking_popup(parent) if manual else None
     try:
         cfg = _config()
         manifest_url = str(cfg.get("manifest_url", "")).strip()
@@ -265,41 +147,28 @@ def check_for_update(parent, manual=False):
             if manual:
                 messagebox.showwarning("Check Update", "Update information is unavailable.", parent=parent)
             return False
-
-        # Automatic checking is silent while the released GitHub manifest is
-        # not newer than the installed version. Only a newer release opens
-        # the single Update Available dialog.
         if _version_tuple(latest) <= _version_tuple(APP_VERSION):
             if manual:
                 messagebox.showinfo("Check Update", f"You are using the current version ({APP_VERSION}).", parent=parent)
             return False
-
         answer = messagebox.askyesno(
             "Update Available",
-            f"A new version ({latest}) is available.\n\nDo you want to download it now?",
+            f"A new version ({latest}) is available.\\n\\nDo you want to download it now?",
             parent=parent,
         )
         if not answer:
             return False
-
-        # Starting the download is the end of this flow. The only update
-        # dialog is the askyesno above; it closes as soon as download starts.
         if _start_update_download(download_url):
             return True
-        messagebox.showerror("Update Download", "Could not start the update download.", parent=parent)
+        if manual:
+            messagebox.showerror("Update Download", "Could not start the update download.", parent=parent)
         return False
     except Exception as exc:
-        # Automatic checks must never create an error popup. Manual checks
-        # may report the problem because the user explicitly requested them.
+        # Startup/background checking is completely silent on network/config errors.
         if manual:
-            messagebox.showwarning("Check Update", f"Could not check for updates.\n\n{exc}", parent=parent)
+            messagebox.showwarning("Check Update", f"Could not check for updates.\\n\\n{exc}", parent=parent)
         return False
     finally:
-        try:
-            if checking and checking.winfo_exists():
-                checking.destroy()
-        except Exception:
-            pass
         _CHECK_IN_PROGRESS = False
 '''
 write("updater.py", updater)
