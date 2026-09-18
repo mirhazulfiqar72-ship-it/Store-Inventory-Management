@@ -4512,31 +4512,31 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 
 ## updater.py
 
-- Lines: 124
+- Lines: 104
 - AST parse error: unexpected character after line continuation character (<unknown>, line 1)
 
 ### Relevant source locations
 
 ```text
-0061:         return False
-0062:     idm_paths = (
-0063:         os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
-0064:         os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
-0065:     )
-0066:     for path in idm_paths:
-0067:         if os.path.isfile(path):
-0068:             try:
-0069:                 subprocess.Popen([path, "/d", download_url, "/n"], close_fds=True)
-0070:                 return True
-0071:             except Exception:
-0072:                 pass
-0073:     try:
-0074:         return bool(webbrowser.open(download_url, new=2))
-0075:     except Exception:
-0076:         try:
-0077:             os.startfile(download_url)
-0078:             return True
-0079:         except Exception:
-0080:             return False
-0081: 
+0041:         return False
+0042:     idm_paths = (
+0043:         os.path.expandvars(r"%PROGRAMFILES%\\Internet Download Manager\\IDMan.exe"),
+0044:         os.path.expandvars(r"%PROGRAMFILES(x86)%\\Internet Download Manager\\IDMan.exe"),
+0045:     )
+0046:     for path in idm_paths:
+0047:         if os.path.isfile(path):
+0048:             try:
+0049:                 subprocess.Popen([path, "/d", download_url, "/n"], close_fds=True)
+0050:                 return True
+0051:             except Exception:
+0052:                 pass
+0053:     try:
+0054:         return bool(webbrowser.open(download_url, new=2))
+0055:     except Exception:
+0056:         try:
+0057:             os.startfile(download_url)
+0058:             return True
+0059:         except Exception:
+0060:             return False
+0061: 
 ```
