@@ -302,6 +302,7 @@ backup_function = '''def backup_database(manual=False):
         return zpath
     except Exception:
         return None
+'''
 
 # Replace the legacy backup implementation with the C: Data-aware version.
 app = app[:backup_match.start()] + backup_function + app[backup_match.end():]
