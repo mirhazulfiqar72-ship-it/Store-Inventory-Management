@@ -268,21 +268,21 @@ if "def _save_entry_report(self, title, header_lines, columns, rows):" not in ap
 # Existing UI, preview, print and report windows remain unchanged.
 old='''                self.conn.commit(); backup_database(); self._editing_document_key=None; self.refresh_saved_cache("demand"); self._set_form_editable(form_roots, False, skip=[selector]); messagebox.showinfo("Saved",f"Demand {no} saved successfully.")'''
 new='''                self.conn.commit()
-                report_path = self._save_entry_report("Purchase Demand", [f"Demand No: {no}", f"Demand Date: {v["date"].get()}", f"Department: {v["dept"].get()}"], ("Sr #","Code","Description","UOM","Demand","Available","To Purchase","Required For","Remarks","Type"), self.demand_lines)
+                report_path = self._save_entry_report("Purchase Demand", [f"Demand No: {no}", f"Demand Date: {v['date'].get()}", f"Department: {v['dept'].get()}"], ("Sr #","Code","Description","UOM","Demand","Available","To Purchase","Required For","Remarks","Type"), self.demand_lines)
                 backup_database(); self._editing_document_key=None; self.refresh_saved_cache("demand"); self._set_form_editable(form_roots, False, skip=[selector])
                 messagebox.showinfo("Saved",f"Demand {no} saved successfully." + (f"\\n\\nReport saved to:\\n{report_path}" if report_path else "\\n\\nWarning: PDF report could not be generated; the saved data is retained."))'''
 if old in app: app=app.replace(old,new,1)
 else: raise RuntimeError("Demand save pattern not found.")
 old='''                self.conn.commit();backup_database();self._editing_document_key=None;self.refresh_saved_cache("grr");self._set_form_editable(form_roots, False, skip=[selector]);messagebox.showinfo("Saved",f"GRN {no} saved. Accepted quantity added to stock.")'''
 new='''                self.conn.commit()
-                report_path = self._save_entry_report("GRN Receipt", [f"GRN No: {no}", f"GRN Date: {v["date"].get()}", f"Department: {v["department"].get()}", f"Supplier: {v["supplier"].get()}"], ("Sr #","Code","Description","UOM","Received","Rejected","Accepted","Rate","Amount","Remarks","Type"), self.grr_lines)
+                report_path = self._save_entry_report("GRN Receipt", [f"GRN No: {no}", f"GRN Date: {v['date'].get()}", f"Department: {v['department'].get()}", f"Supplier: {v['supplier'].get()}"], ("Sr #","Code","Description","UOM","Received","Rejected","Accepted","Rate","Amount","Remarks","Type"), self.grr_lines)
                 backup_database(); self._editing_document_key=None; self.refresh_saved_cache("grr"); self._set_form_editable(form_roots, False, skip=[selector])
                 messagebox.showinfo("Saved",f"GRN {no} saved. Accepted quantity added to stock." + (f"\\n\\nReport saved to:\\n{report_path}" if report_path else "\\n\\nWarning: PDF report could not be generated; the saved data is retained."))'''
 if old in app: app=app.replace(old,new,1)
 else: raise RuntimeError("GRN save pattern not found.")
 old='''                self.conn.commit();backup_database();self._editing_document_key=None;self.refresh_saved_cache("issue");self._set_form_editable(form_roots, False, skip=[selector]);messagebox.showinfo("Posted",f"Material Issue {no} posted. Quantity deducted from stock.")'''
 new='''                self.conn.commit()
-                report_path = self._save_entry_report("Material Issue", [f"Issue No: {no}", f"Issue Date: {v["date"].get()}", f"Department: {v["dept"].get()}", f"Items Use For: {v["items_use_for"].get()}"], ("Sr #","Code","Description","UOM","Issue Qty","Balance After","Items Use For","Type"), self.issue_lines)
+                report_path = self._save_entry_report("Material Issue", [f"Issue No: {no}", f"Issue Date: {v['date'].get()}", f"Department: {v['dept'].get()}", f"Items Use For: {v['items_use_for'].get()}"], ("Sr #","Code","Description","UOM","Issue Qty","Balance After","Items Use For","Type"), self.issue_lines)
                 backup_database(); self._editing_document_key=None; self.refresh_saved_cache("issue"); self._set_form_editable(form_roots, False, skip=[selector])
                 messagebox.showinfo("Posted",f"Material Issue {no} posted. Quantity deducted from stock." + (f"\\n\\nReport saved to:\\n{report_path}" if report_path else "\\n\\nWarning: PDF report could not be generated; the saved data is retained."))'''
 if old in app: app=app.replace(old,new,1)
