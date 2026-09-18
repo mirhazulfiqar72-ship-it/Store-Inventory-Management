@@ -236,7 +236,7 @@ else:
 # deliberately best-effort: a report failure must never roll back an already
 # committed database transaction.
 if "def _save_entry_report(self, title, header_lines, columns, rows):" not in app:
-    marker_report = "    def export_preview_pdf(self, title, header_lines, columns, rows):\\n"
+    marker_report = "    def export_preview_pdf(self, title, header_lines, columns, rows):\n"
     report_method = '''    def _save_entry_report(self, title, header_lines, columns, rows):
         try:
             os.makedirs(REPORTS_DIR, exist_ok=True)
