@@ -65,7 +65,7 @@ updater = read("updater.py")
 head, sep, tail = updater.partition("APP_VERSION")
 # Previous patch attempts could leave escaped newline text in the generated
 # header. Normalize one or two literal backslashes followed by n only here.
-head = head.replace("\\\\n", "\n").replace("\\n", "\n")
+head = re.sub(r"\\+n", "\n", head)
 updater = head + sep + tail
 
 # Remove only duplicate imports introduced by the updater repair, then ensure
