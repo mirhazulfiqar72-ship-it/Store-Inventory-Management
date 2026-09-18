@@ -350,8 +350,23 @@ class OnlineConnection:
         return self._conn.executemany(sql, seq_of_params)
     def commit(self):
         self._conn.commit()
+        # Keep an out-of-installation recovery copy on EVERY successful commit.
+        # This survives deletion/reinstallation of C:\StoreInventoryManagement,
+        # including entries that were created after the last application restart.
+        try:
+            import durable_local
+            durable_local.save(self._conn)
+        except Exception:
+            pass
         if self._dirty:
             self.sync.push_changes(self._conn, self._baseline or snapshot_db(self._conn))
+        # Save once more after a successful cloud merge so the recovery copy
+        # contains the same complete dataset as the synchronized local DB.
+        try:
+            import durable_local
+            durable_local.save(self._conn)
+        except Exception:
+            pass
         self._dirty = False
         self._baseline = None if self.sync.pending_base is None else self.sync.pending_base
     def rollback(self):
