@@ -41,6 +41,17 @@ jobs:
         run: |
           python ci_patch_source.py
           if errorlevel 1 exit /b 1
+      - name: Repair generated updater header
+        shell: pwsh
+        run: |
+          $path = "source\\updater.py"
+          $text = Get-Content $path -Raw
+          $idx = $text.IndexOf("APP_VERSION")
+          if ($idx -lt 0) { throw "APP_VERSION was not found in updater.py" }
+          $head = $text.Substring(0, $idx)
+          $tail = $text.Substring($idx)
+          $head = [regex]::Replace($head, '\\\\+n', "`n")
+          Set-Content -Path $path -Value ($head + $tail) -Encoding UTF8
       - name: Audit real application persistence and report code
         shell: cmd
         run: |
