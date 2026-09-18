@@ -340,7 +340,7 @@ if "_dashboard_kpi_vars" not in app:
     app=app.replace(
         cards_marker,
         "        self._dashboard_kpi_vars=[tk.StringVar(value=str(x[1])) for x in cards]" + chr(10)
-        "        self._dashboard_kpi_job=None" + chr(10) + cards_marker,
+        + "        self._dashboard_kpi_job=None" + chr(10) + cards_marker,
         1
     )
     value_marker = "            tk.Label(bottom,text=str(val),bg=\"white\",fg=COLORS[\"primary_dark\"]," + chr(10) + "                     font=(\"Segoe UI\",21,\"bold\")).pack(side=\"left\")" + chr(10)
