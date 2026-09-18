@@ -288,6 +288,27 @@ new='''                self.conn.commit()
 if old in app: app=app.replace(old,new,1)
 else: raise RuntimeError("Issue save pattern not found.")
 
+# Inventory Codes and Party Master saves also create durable PDF evidence in Reports.
+if 'report_path = self._save_entry_report("Inventory Code"' not in app:
+    old_item = '''                self.conn.commit(); backup_database(); load()
+                messagebox.showinfo("Saved","Inventory Code saved successfully.")'''
+    new_item = '''                self.conn.commit()
+                report_path = self._save_entry_report("Inventory Code", [f"Item Code: {code}", f"Description: {desc}", f"UOM: {uom}"], ("Code","Description","UOM","Opening Qty"), [(code,desc,uom,opening)])
+                backup_database(); load()
+                messagebox.showinfo("Saved","Inventory Code saved successfully." + (f"\\n\\nReport saved to:\\n{report_path}" if report_path else "\\n\\nWarning: PDF report could not be generated; the saved data is retained."))'''
+    if old_item not in app:
+        raise RuntimeError("Could not find Inventory Code save block.")
+    app = app.replace(old_item, new_item, 1)
+
+if 'report_path = self._save_entry_report("Party Master"' not in app:
+    old_party = '''                 self.conn.commit(); backup_database(); load(); clear(); messagebox.showinfo("Saved",f"Party '{name}' saved successfully.")'''
+    new_party = '''                 self.conn.commit()
+                 report_path = self._save_entry_report("Party Master", [f"Party: {name}", f"Contact: {v['contact'].get()}"], ("Party Name","Contact","Address","Remarks"), [(name,v['contact'].get().strip(),v['address'].get().strip(),v['remarks'].get().strip())])
+                 backup_database(); load(); clear(); messagebox.showinfo("Saved",f"Party '{name}' saved successfully." + (f"\\n\\nReport saved to:\\n{report_path}" if report_path else "\\n\\nWarning: PDF report could not be generated; the saved data is retained."))'''
+    if old_party not in app:
+        raise RuntimeError("Could not find Party Master save block.")
+    app = app.replace(old_party, new_party, 1)
+
 if "def _manual_check_update(self):" not in app:
     marker = "    def build_menu_bar(self):\n"
     methods = '''    def _manual_check_update(self):
