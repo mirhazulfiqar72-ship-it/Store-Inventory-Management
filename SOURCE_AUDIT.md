@@ -209,8 +209,8 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 
 ## firebase_sync.py
 
-- Lines: 371
-- Functions: _safe_json_value(24-27), _table_columns(28-29), snapshot_db(30-38), _row_key(39-43), _index_snapshot(44-48), merge_local_changes(49-70), _snapshot_has_records(71-73), __init__(75-91), _read_url(92-102), status_text(103-108), _request(109-118), _get_meta(119-125), _get_snapshot(126-132), _load_json(133-141), _atomic_save_json(142-156), _save_state(157-161), _save_pending(162-166), _clear_pending(167-172), _get_lock_etag(173-182), _try_acquire_lock(183-189), _release_lock(190-198), initialize(199-247), replace_local(248-265), _write_remote(266-287), push_changes(288-307), maybe_pull(308-329), __init__(331-336), execute(337-345), executemany(346-350), commit(351-360), rollback(362-365), close(366-367), backup(368-369), __getattr__(370-371)
+- Lines: 373
+- Functions: _safe_json_value(24-27), _table_columns(28-29), snapshot_db(30-38), _row_key(39-43), _index_snapshot(44-48), merge_local_changes(49-70), _snapshot_has_records(71-73), __init__(75-91), _read_url(92-102), status_text(103-108), _request(109-118), _get_meta(119-125), _get_snapshot(126-132), _load_json(133-141), _atomic_save_json(142-156), _save_state(157-161), _save_pending(162-166), _clear_pending(167-172), _get_lock_etag(173-182), _try_acquire_lock(183-189), _release_lock(190-198), initialize(199-247), replace_local(248-265), _write_remote(266-287), push_changes(288-307), maybe_pull(308-329), __init__(331-336), execute(337-345), executemany(346-350), commit(351-362), rollback(364-367), close(368-369), backup(370-371), __getattr__(372-373)
 
 ### Relevant source locations
 
@@ -632,35 +632,36 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 0350:         return self._conn.executemany(sql, seq_of_params)
 0351:     def commit(self):
 0352:         self._conn.commit()
-0353:         # Make local persistence independent of Firebase availability.
-0354:         durable_local.save(self._conn)
-0355:         if self._dirty:
-0356:             self.sync.push_changes(self._conn, self._baseline or snapshot_db(self._conn))
-0357:             # push_changes may merge remote rows back into SQLite.
-0358:             durable_local.save(self._conn)
-0359:         self._dirty = False
-0360:         self._baseline = None if self.sync.pending_base is None else self.sync.pending_base
-0361: 
-0362:     def rollback(self):
+0353:         # Keep the recovery module available inside the generated sync module.
+0354:         import durable_local
+0355:         # Make local persistence independent of Firebase availability.
+0356:         durable_local.save(self._conn)
+0357:         if self._dirty:
+0358:             self.sync.push_changes(self._conn, self._baseline or snapshot_db(self._conn))
+0359:             # push_changes may merge remote rows back into SQLite.
+0360:             durable_local.save(self._conn)
+0361:         self._dirty = False
+0362:         self._baseline = None if self.sync.pending_base is None else self.sync.pending_base
 ```
 ```text
-0355:         if self._dirty:
-0356:             self.sync.push_changes(self._conn, self._baseline or snapshot_db(self._conn))
-0357:             # push_changes may merge remote rows back into SQLite.
-0358:             durable_local.save(self._conn)
-0359:         self._dirty = False
-0360:         self._baseline = None if self.sync.pending_base is None else self.sync.pending_base
-0361: 
-0362:     def rollback(self):
-0363:         self._conn.rollback()
-0364:         self._dirty = False
-0365:         self._baseline = None
-0366:     def close(self):
-0367:         self._conn.close()
-0368:     def backup(self, target):
-0369:         return self._conn.backup(target)
-0370:     def __getattr__(self, name):
-0371:         return getattr(self._conn, name)
+0356:         durable_local.save(self._conn)
+0357:         if self._dirty:
+0358:             self.sync.push_changes(self._conn, self._baseline or snapshot_db(self._conn))
+0359:             # push_changes may merge remote rows back into SQLite.
+0360:             durable_local.save(self._conn)
+0361:         self._dirty = False
+0362:         self._baseline = None if self.sync.pending_base is None else self.sync.pending_base
+0363: 
+0364:     def rollback(self):
+0365:         self._conn.rollback()
+0366:         self._dirty = False
+0367:         self._baseline = None
+0368:     def close(self):
+0369:         self._conn.close()
+0370:     def backup(self, target):
+0371:         return self._conn.backup(target)
+0372:     def __getattr__(self, name):
+0373:         return getattr(self._conn, name)
 ```
 
 ## storage_lock.py
