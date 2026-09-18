@@ -140,8 +140,8 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 
 ## firebase_sync.py
 
-- Lines: 379
-- Functions: _safe_json_value(25-28), _table_columns(29-30), snapshot_db(31-39), _row_key(40-44), _index_snapshot(45-49), merge_local_changes(50-71), _snapshot_has_records(72-74), __init__(76-92), _read_url(93-103), status_text(104-109), _request(110-119), _get_meta(120-126), _get_snapshot(127-133), _load_json(134-142), _atomic_save_json(143-157), _save_state(158-162), _save_pending(163-167), _clear_pending(168-173), _get_lock_etag(174-183), _try_acquire_lock(184-190), _release_lock(191-199), initialize(200-255), replace_local(256-273), _write_remote(274-295), push_changes(296-315), maybe_pull(316-337), __init__(339-344), execute(345-353), executemany(354-358), commit(359-368), rollback(370-373), close(374-375), backup(376-377), __getattr__(378-379)
+- Lines: 372
+- Functions: _safe_json_value(25-28), _table_columns(29-30), snapshot_db(31-39), _row_key(40-44), _index_snapshot(45-49), merge_local_changes(50-71), _snapshot_has_records(72-74), __init__(76-92), _read_url(93-103), status_text(104-109), _request(110-119), _get_meta(120-126), _get_snapshot(127-133), _load_json(134-142), _atomic_save_json(143-157), _save_state(158-162), _save_pending(163-167), _clear_pending(168-173), _get_lock_etag(174-183), _try_acquire_lock(184-190), _release_lock(191-199), initialize(200-248), replace_local(249-266), _write_remote(267-288), push_changes(289-308), maybe_pull(309-330), __init__(332-337), execute(338-346), executemany(347-351), commit(352-361), rollback(363-366), close(367-368), backup(369-370), __getattr__(371-372)
 
 ### Relevant source locations
 
@@ -359,239 +359,239 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 0203:         local = snapshot_db(conn)
 0204:         pending = self._load_json(self.pending_path)
 0205:         state = self._load_json(self.state_path)
-0206:         if isinstance(pending, dict) and isinstance(pending.get("snapshot"), dict):
-0207:             local = pending["snapshot"]
-0208:             self.pending_base = pending.get("baseline") if isinstance(pending.get("baseline"), dict) else state
-0209:         elif state:
-0210:             self.pending_base = state
-0211:         try:
-0212:             remote = self._get_snapshot()
+0206:         # A pending snapshot is the strongest local recovery source.
+0207:         if isinstance(pending, dict) and isinstance(pending.get("snapshot"), dict):
+0208:             local = pending["snapshot"]
+0209:             self.pending_base = pending.get("baseline") if isinstance(pending.get("baseline"), dict) else state
+0210:         try:
+0211:             remote = self._get_snapshot()
+0212:             version, _ = self._get_meta()
 ```
 ```text
-0213:             version, _ = self._get_meta()
-0214:             if remote and remote.get("tables"):
-0215:                 if self.pending_base is not None:
-0216:                     merged = merge_local_changes(remote, self.pending_base, local)
-0217:                     if merged != remote:
-0218:                         new_version = self._write_remote(merged)
-0219:                         self.replace_local(conn, merged)
-0220:                         self.last_remote_version = new_version
-0221:                         self._save_state(merged)
-0222:                         self._clear_pending()
-0223:                     else:
-0224:                         self.replace_local(conn, remote)
-0225:                         self.last_remote_version = version
-0226:                         self._save_state(remote)
-0227:                         self._clear_pending()
-0228:                 elif _snapshot_has_records(local):
-0229:                     empty = {"schema": 1, "tables": {}}
-0230:                     merged = merge_local_changes(remote, empty, local)
-0231:                     if merged != remote:
-0232:                         new_version = self._write_remote(merged)
-0233:                         self.replace_local(conn, merged)
+0206:         # A pending snapshot is the strongest local recovery source.
+0207:         if isinstance(pending, dict) and isinstance(pending.get("snapshot"), dict):
+0208:             local = pending["snapshot"]
+0209:             self.pending_base = pending.get("baseline") if isinstance(pending.get("baseline"), dict) else state
+0210:         try:
+0211:             remote = self._get_snapshot()
+0212:             version, _ = self._get_meta()
+0213:             if remote and remote.get("tables"):
+0214:                 # Never discard a non-empty local database just because the
+0215:                 # cloud has an older/partial snapshot. Merge local rows into
+0216:                 # remote on startup, then publish the merged result.
+0217:                 empty = {"schema": 1, "tables": {}}
+0218:                 baseline = self.pending_base or empty
+0219:                 if _snapshot_has_records(local) or self.pending_base is not None:
+0220:                     merged = merge_local_changes(remote, baseline, local)
+0221:                     if merged != remote:
+0222:                         new_version = self._write_remote(merged)
+0223:                         self.replace_local(conn, merged)
+0224:                         self.last_remote_version = new_version
+0225:                         self._save_state(merged)
+0226:                     else:
 ```
 ```text
-0227:                         self._clear_pending()
-0228:                 elif _snapshot_has_records(local):
-0229:                     empty = {"schema": 1, "tables": {}}
-0230:                     merged = merge_local_changes(remote, empty, local)
-0231:                     if merged != remote:
-0232:                         new_version = self._write_remote(merged)
-0233:                         self.replace_local(conn, merged)
-0234:                         self.last_remote_version = new_version
-0235:                         self._save_state(merged)
-0236:                     else:
-0237:                         self.replace_local(conn, remote)
-0238:                         self.last_remote_version = version
-0239:                         self._save_state(remote)
-0240:                 else:
-0241:                     self.replace_local(conn, remote)
-0242:                     self.last_remote_version = version
-0243:                     self._save_state(remote)
-0244:                 self.pending_base = None
-0245:                 self.pending_error = None
-0246:             else:
-0247:                 new_version = self._write_remote(local)
+0221:                     if merged != remote:
+0222:                         new_version = self._write_remote(merged)
+0223:                         self.replace_local(conn, merged)
+0224:                         self.last_remote_version = new_version
+0225:                         self._save_state(merged)
+0226:                     else:
+0227:                         self.replace_local(conn, remote)
+0228:                         self.last_remote_version = version
+0229:                         self._save_state(remote)
+0230:                 else:
+0231:                     self.replace_local(conn, remote)
+0232:                     self.last_remote_version = version
+0233:                     self._save_state(remote)
+0234:                 self.pending_base = None
+0235:                 self.pending_error = None
+0236:                 self._clear_pending()
+0237:             else:
+0238:                 new_version = self._write_remote(local)
+0239:                 self.last_remote_version = new_version
+0240:                 self._save_state(local)
+0241:                 self._clear_pending()
 ```
 ```text
-0241:                     self.replace_local(conn, remote)
-0242:                     self.last_remote_version = version
-0243:                     self._save_state(remote)
-0244:                 self.pending_base = None
-0245:                 self.pending_error = None
-0246:             else:
-0247:                 new_version = self._write_remote(local)
-0248:                 self.last_remote_version = new_version
-0249:                 self._save_state(local)
-0250:                 self._clear_pending()
-0251:                 self.pending_base = None
-0252:                 self.pending_error = None
-0253:         except Exception as exc:
-0254:             self.pending_error = str(exc)
-0255:             self._save_pending(local, self.pending_base or state or {"schema": 1, "tables": {}})
-0256:     def replace_local(self, conn: sqlite3.Connection, snapshot: Dict[str, Any]) -> None:
-0257:         old_isolation = conn.isolation_level
-0258:         try:
-0259:             conn.execute("BEGIN")
-0260:             for table in TABLES:
-0261:                 cols = _table_columns(conn, table)
+0237:             else:
+0238:                 new_version = self._write_remote(local)
+0239:                 self.last_remote_version = new_version
+0240:                 self._save_state(local)
+0241:                 self._clear_pending()
+0242:                 self.pending_base = None
+0243:                 self.pending_error = None
+0244:         except Exception as exc:
+0245:             # Firebase being offline must never delete the local data. Keep
+0246:             # the local snapshot and retry on the next start/commit.
+0247:             self.pending_error = str(exc)
+0248:             self._save_pending(local, self.pending_base or state or {"schema": 1, "tables": {}})
+0249:     def replace_local(self, conn: sqlite3.Connection, snapshot: Dict[str, Any]) -> None:
+0250:         old_isolation = conn.isolation_level
+0251:         try:
+0252:             conn.execute("BEGIN")
+0253:             for table in TABLES:
+0254:                 cols = _table_columns(conn, table)
+0255:                 rows = snapshot.get("tables", {}).get(table, {}).get("rows", []) or []
+0256:                 conn.execute(f"DELETE FROM {table}")
+0257:                 if not rows:
 ```
 ```text
-0260:             for table in TABLES:
-0261:                 cols = _table_columns(conn, table)
-0262:                 rows = snapshot.get("tables", {}).get(table, {}).get("rows", []) or []
-0263:                 conn.execute(f"DELETE FROM {table}")
-0264:                 if not rows:
-0265:                     continue
-0266:                 insert_cols = [c for c in cols if c in rows[0]]
-0267:                 placeholders = ",".join("?" for _ in insert_cols)
-0268:                 sql = f"INSERT INTO {table} ({','.join(insert_cols)}) VALUES ({placeholders})"
-0269:                 for row in rows:
-0270:                     conn.execute(sql, [row.get(c) for c in insert_cols])
-0271:             conn.commit()
-0272:         finally:
-0273:             conn.isolation_level = old_isolation
-0274:     def _write_remote(self, snapshot: Dict[str, Any]) -> str:
-0275:         token = f"{self.client_id}-{uuid.uuid4().hex}"
-0276:         acquired = False
-0277:         last_exc = None
-0278:         for _ in range(10):
-0279:             try:
-0280:                 if self._try_acquire_lock(token):
+0253:             for table in TABLES:
+0254:                 cols = _table_columns(conn, table)
+0255:                 rows = snapshot.get("tables", {}).get(table, {}).get("rows", []) or []
+0256:                 conn.execute(f"DELETE FROM {table}")
+0257:                 if not rows:
+0258:                     continue
+0259:                 insert_cols = [c for c in cols if c in rows[0]]
+0260:                 placeholders = ",".join("?" for _ in insert_cols)
+0261:                 sql = f"INSERT INTO {table} ({','.join(insert_cols)}) VALUES ({placeholders})"
+0262:                 for row in rows:
+0263:                     conn.execute(sql, [row.get(c) for c in insert_cols])
+0264:             conn.commit()
+0265:         finally:
+0266:             conn.isolation_level = old_isolation
+0267:     def _write_remote(self, snapshot: Dict[str, Any]) -> str:
+0268:         token = f"{self.client_id}-{uuid.uuid4().hex}"
+0269:         acquired = False
+0270:         last_exc = None
+0271:         for _ in range(10):
+0272:             try:
+0273:                 if self._try_acquire_lock(token):
 ```
 ```text
-0279:             try:
-0280:                 if self._try_acquire_lock(token):
-0281:                     acquired = True
-0282:                     break
-0283:             except Exception as exc:
-0284:                 last_exc = exc
-0285:             time.sleep(0.35)
-0286:         if not acquired:
-0287:             raise RuntimeError(f"Could not acquire Firebase sync lock. {last_exc or ''}".strip())
-0288:         try:
-0289:             new_version = f"{time.time_ns()}-{self.client_id}"
-0290:             self._request("PUT", "store_inventory/data.json", json=snapshot)
-0291:             self._request("PUT", "store_inventory/_meta/version.json", json=new_version)
-0292:             self._request("PUT", "store_inventory/_meta/updated_by.json", json=self.client_id)
-0293:             return new_version
-0294:         finally:
-0295:             self._release_lock(token)
-0296:     def push_changes(self, conn: sqlite3.Connection, baseline: Dict[str, Any]) -> bool:
-0297:         if not self.enabled:
-0298:             return True
-0299:         local = snapshot_db(conn)
+0272:             try:
+0273:                 if self._try_acquire_lock(token):
+0274:                     acquired = True
+0275:                     break
+0276:             except Exception as exc:
+0277:                 last_exc = exc
+0278:             time.sleep(0.35)
+0279:         if not acquired:
+0280:             raise RuntimeError(f"Could not acquire Firebase sync lock. {last_exc or ''}".strip())
+0281:         try:
+0282:             new_version = f"{time.time_ns()}-{self.client_id}"
+0283:             self._request("PUT", "store_inventory/data.json", json=snapshot)
+0284:             self._request("PUT", "store_inventory/_meta/version.json", json=new_version)
+0285:             self._request("PUT", "store_inventory/_meta/updated_by.json", json=self.client_id)
+0286:             return new_version
+0287:         finally:
+0288:             self._release_lock(token)
+0289:     def push_changes(self, conn: sqlite3.Connection, baseline: Dict[str, Any]) -> bool:
+0290:         if not self.enabled:
+0291:             return True
+0292:         local = snapshot_db(conn)
 ```
 ```text
-0300:         try:
-0301:             remote = self._get_snapshot() or {"schema": 1, "tables": {}}
-0302:             merged = merge_local_changes(remote, baseline or {"schema": 1, "tables": {}}, local)
-0303:             new_version = self._write_remote(merged)
-0304:             self.replace_local(conn, merged)
-0305:             self.last_remote_version = new_version
-0306:             self.pending_base = None
-0307:             self.pending_error = None
-0308:             self._save_state(merged)
-0309:             self._clear_pending()
-0310:             return True
-0311:         except Exception as exc:
-0312:             self.pending_base = deepcopy(baseline)
-0313:             self.pending_error = str(exc)
-0314:             self._save_pending(local, baseline or {"schema": 1, "tables": {}})
-0315:             return False
-0316:     def maybe_pull(self, conn: sqlite3.Connection) -> bool:
-0317:         if not self.enabled or self.pending_base is not None:
-0318:             return False
-0319:         now = time.monotonic()
-0320:         if now - self.last_check < self.check_interval:
+0293:         try:
+0294:             remote = self._get_snapshot() or {"schema": 1, "tables": {}}
+0295:             merged = merge_local_changes(remote, baseline or {"schema": 1, "tables": {}}, local)
+0296:             new_version = self._write_remote(merged)
+0297:             self.replace_local(conn, merged)
+0298:             self.last_remote_version = new_version
+0299:             self.pending_base = None
+0300:             self.pending_error = None
+0301:             self._save_state(merged)
+0302:             self._clear_pending()
+0303:             return True
+0304:         except Exception as exc:
+0305:             self.pending_base = deepcopy(baseline)
+0306:             self.pending_error = str(exc)
+0307:             self._save_pending(local, baseline or {"schema": 1, "tables": {}})
+0308:             return False
+0309:     def maybe_pull(self, conn: sqlite3.Connection) -> bool:
+0310:         if not self.enabled or self.pending_base is not None:
+0311:             return False
+0312:         now = time.monotonic()
+0313:         if now - self.last_check < self.check_interval:
 ```
 ```text
-0324:             version, _ = self._get_meta()
-0325:             if not version or version == self.last_remote_version:
-0326:                 return False
-0327:             snapshot = self._get_snapshot()
-0328:             if snapshot is None:
-0329:                 return False
-0330:             self.replace_local(conn, snapshot)
-0331:             self.last_remote_version = version
-0332:             self._save_state(snapshot)
-0333:             self.pending_error = None
-0334:             return True
-0335:         except Exception as exc:
-0336:             self.pending_error = str(exc)
-0337:             return False
-0338: class OnlineConnection:
-0339:     def __init__(self, db_path: str, sync: FirebaseSync):
-0340:         self._conn = sqlite3.connect(db_path, timeout=20)
-0341:         self._conn.execute("PRAGMA busy_timeout=20000")
-0342:         self.sync = sync
-0343:         self._dirty = False
-0344:         self._baseline: Optional[Dict[str, Any]] = None
+0317:             version, _ = self._get_meta()
+0318:             if not version or version == self.last_remote_version:
+0319:                 return False
+0320:             snapshot = self._get_snapshot()
+0321:             if snapshot is None:
+0322:                 return False
+0323:             self.replace_local(conn, snapshot)
+0324:             self.last_remote_version = version
+0325:             self._save_state(snapshot)
+0326:             self.pending_error = None
+0327:             return True
+0328:         except Exception as exc:
+0329:             self.pending_error = str(exc)
+0330:             return False
+0331: class OnlineConnection:
+0332:     def __init__(self, db_path: str, sync: FirebaseSync):
+0333:         self._conn = sqlite3.connect(db_path, timeout=20)
+0334:         self._conn.execute("PRAGMA busy_timeout=20000")
+0335:         self.sync = sync
+0336:         self._dirty = False
+0337:         self._baseline: Optional[Dict[str, Any]] = None
 ```
 ```text
-0337:             return False
-0338: class OnlineConnection:
-0339:     def __init__(self, db_path: str, sync: FirebaseSync):
-0340:         self._conn = sqlite3.connect(db_path, timeout=20)
-0341:         self._conn.execute("PRAGMA busy_timeout=20000")
-0342:         self.sync = sync
-0343:         self._dirty = False
-0344:         self._baseline: Optional[Dict[str, Any]] = None
-0345:     def execute(self, sql: str, params: Iterable[Any] = ()):
-0346:         s = sql.lstrip().upper()
-0347:         is_read = s.startswith("SELECT") or s.startswith("PRAGMA") or s.startswith("WITH") or s.startswith("EXPLAIN")
-0348:         if is_read and not self._dirty and self._baseline is None:
-0349:             self.sync.maybe_pull(self._conn)
-0350:         elif not is_read and not self._dirty:
-0351:             self._baseline = self.sync.pending_base or snapshot_db(self._conn)
-0352:             self._dirty = True
-0353:         return self._conn.execute(sql, params)
-0354:     def executemany(self, sql: str, seq_of_params):
-0355:         if not self._dirty:
-0356:             self._baseline = self.sync.pending_base or snapshot_db(self._conn)
-0357:             self._dirty = True
+0330:             return False
+0331: class OnlineConnection:
+0332:     def __init__(self, db_path: str, sync: FirebaseSync):
+0333:         self._conn = sqlite3.connect(db_path, timeout=20)
+0334:         self._conn.execute("PRAGMA busy_timeout=20000")
+0335:         self.sync = sync
+0336:         self._dirty = False
+0337:         self._baseline: Optional[Dict[str, Any]] = None
+0338:     def execute(self, sql: str, params: Iterable[Any] = ()):
+0339:         s = sql.lstrip().upper()
+0340:         is_read = s.startswith("SELECT") or s.startswith("PRAGMA") or s.startswith("WITH") or s.startswith("EXPLAIN")
+0341:         if is_read and not self._dirty and self._baseline is None:
+0342:             self.sync.maybe_pull(self._conn)
+0343:         elif not is_read and not self._dirty:
+0344:             self._baseline = self.sync.pending_base or snapshot_db(self._conn)
+0345:             self._dirty = True
+0346:         return self._conn.execute(sql, params)
+0347:     def executemany(self, sql: str, seq_of_params):
+0348:         if not self._dirty:
+0349:             self._baseline = self.sync.pending_base or snapshot_db(self._conn)
+0350:             self._dirty = True
 ```
 ```text
-0350:         elif not is_read and not self._dirty:
-0351:             self._baseline = self.sync.pending_base or snapshot_db(self._conn)
-0352:             self._dirty = True
-0353:         return self._conn.execute(sql, params)
-0354:     def executemany(self, sql: str, seq_of_params):
-0355:         if not self._dirty:
-0356:             self._baseline = self.sync.pending_base or snapshot_db(self._conn)
-0357:             self._dirty = True
-0358:         return self._conn.executemany(sql, seq_of_params)
-0359:     def commit(self):
-0360:         self._conn.commit()
-0361:         # Make local persistence independent of Firebase availability.
-0362:         durable_local.save(self._conn)
-0363:         if self._dirty:
-0364:             self.sync.push_changes(self._conn, self._baseline or snapshot_db(self._conn))
-0365:             # push_changes may merge remote rows back into SQLite.
-0366:             durable_local.save(self._conn)
-0367:         self._dirty = False
-0368:         self._baseline = None if self.sync.pending_base is None else self.sync.pending_base
-0369: 
-0370:     def rollback(self):
+0343:         elif not is_read and not self._dirty:
+0344:             self._baseline = self.sync.pending_base or snapshot_db(self._conn)
+0345:             self._dirty = True
+0346:         return self._conn.execute(sql, params)
+0347:     def executemany(self, sql: str, seq_of_params):
+0348:         if not self._dirty:
+0349:             self._baseline = self.sync.pending_base or snapshot_db(self._conn)
+0350:             self._dirty = True
+0351:         return self._conn.executemany(sql, seq_of_params)
+0352:     def commit(self):
+0353:         self._conn.commit()
+0354:         # Make local persistence independent of Firebase availability.
+0355:         durable_local.save(self._conn)
+0356:         if self._dirty:
+0357:             self.sync.push_changes(self._conn, self._baseline or snapshot_db(self._conn))
+0358:             # push_changes may merge remote rows back into SQLite.
+0359:             durable_local.save(self._conn)
+0360:         self._dirty = False
+0361:         self._baseline = None if self.sync.pending_base is None else self.sync.pending_base
+0362: 
+0363:     def rollback(self):
 ```
 ```text
-0363:         if self._dirty:
-0364:             self.sync.push_changes(self._conn, self._baseline or snapshot_db(self._conn))
-0365:             # push_changes may merge remote rows back into SQLite.
-0366:             durable_local.save(self._conn)
-0367:         self._dirty = False
-0368:         self._baseline = None if self.sync.pending_base is None else self.sync.pending_base
-0369: 
-0370:     def rollback(self):
-0371:         self._conn.rollback()
-0372:         self._dirty = False
-0373:         self._baseline = None
-0374:     def close(self):
-0375:         self._conn.close()
-0376:     def backup(self, target):
-0377:         return self._conn.backup(target)
-0378:     def __getattr__(self, name):
-0379:         return getattr(self._conn, name)
+0356:         if self._dirty:
+0357:             self.sync.push_changes(self._conn, self._baseline or snapshot_db(self._conn))
+0358:             # push_changes may merge remote rows back into SQLite.
+0359:             durable_local.save(self._conn)
+0360:         self._dirty = False
+0361:         self._baseline = None if self.sync.pending_base is None else self.sync.pending_base
+0362: 
+0363:     def rollback(self):
+0364:         self._conn.rollback()
+0365:         self._dirty = False
+0366:         self._baseline = None
+0367:     def close(self):
+0368:         self._conn.close()
+0369:     def backup(self, target):
+0370:         return self._conn.backup(target)
+0371:     def __getattr__(self, name):
+0372:         return getattr(self._conn, name)
 ```
 
 ## storage_lock.py
