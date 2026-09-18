@@ -4512,54 +4512,54 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 
 ## updater.py
 
-- Lines: 158
+- Lines: 160
 - AST parse error: unexpected character after line continuation character (<unknown>, line 1)
 
 ### Relevant source locations
 
 ```text
-0034:     if not download_url:
-0035:         return False
-0036:     for raw in (
-0037:         os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
-0038:         os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
-0039:     ):
-0040:         if os.path.isfile(raw):
-0041:             try:
-0042:                 subprocess.Popen([raw, "/d", download_url, "/n"], close_fds=True)
-0043:                 return True
-0044:             except Exception:
-0045:                 pass
-0046:     try:
-0047:         return bool(webbrowser.open(download_url, new=2))
-0048:     except Exception:
-0049:         try:
-0050:             os.startfile(download_url)
-0051:             return True
-0052:         except Exception:
-0053:             return False
-0054: 
+0036:     if not download_url:
+0037:         return False
+0038:     for raw in (
+0039:         os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
+0040:         os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
+0041:     ):
+0042:         if os.path.isfile(raw):
+0043:             try:
+0044:                 subprocess.Popen([raw, "/d", download_url, "/n"], close_fds=True)
+0045:                 return True
+0046:             except Exception:
+0047:                 pass
+0048:     try:
+0049:         return bool(webbrowser.open(download_url, new=2))
+0050:     except Exception:
+0051:         try:
+0052:             os.startfile(download_url)
+0053:             return True
+0054:         except Exception:
+0055:             return False
+0056: 
 ```
 ```text
-0078:         return False
-0079:     candidates = [
-0080:         os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
-0081:         os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
-0082:     ]
-0083:     for idm in candidates:
-0084:         if idm and os.path.isfile(idm):
-0085:             try:
-0086:                 subprocess.Popen([idm, "/d", download_url, "/n"], close_fds=True)
-0087:                 return True
-0088:             except Exception:
-0089:                 pass
-0090:     try:
-0091:         return bool(webbrowser.open(download_url, new=2))
-0092:     except Exception:
-0093:         try:
-0094:             os.startfile(download_url)
-0095:             return True
-0096:         except Exception:
-0097:             return False
-0098: 
+0080:         return False
+0081:     candidates = [
+0082:         os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
+0083:         os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
+0084:     ]
+0085:     for idm in candidates:
+0086:         if idm and os.path.isfile(idm):
+0087:             try:
+0088:                 subprocess.Popen([idm, "/d", download_url, "/n"], close_fds=True)
+0089:                 return True
+0090:             except Exception:
+0091:                 pass
+0092:     try:
+0093:         return bool(webbrowser.open(download_url, new=2))
+0094:     except Exception:
+0095:         try:
+0096:             os.startfile(download_url)
+0097:             return True
+0098:         except Exception:
+0099:             return False
+0100: 
 ```
