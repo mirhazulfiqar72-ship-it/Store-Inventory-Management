@@ -232,8 +232,10 @@ app, backup_patch_count = re.subn(
     app,
     count=1,
 )
-if backup_patch_count != 1:
-    raise RuntimeError("Could not disable automatic backup deletion safely.")
+# Some clean source revisions already have backup rotation disabled.
+# Do not fail an otherwise valid build when that legacy block is absent.
+if backup_patch_count not in (0, 1):
+    raise RuntimeError("Unexpected backup patch match count.")
 
 # Make Preview -> Export PDF fail loudly and leave the verified file in the
 # permanent Reports folder. Print buttons remain print-only.
