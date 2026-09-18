@@ -240,7 +240,7 @@ if backup_patch_count not in (0, 1):
 # Repair manual backup creation for the permanent C: database.
 # The old routine checked/copied the pre-patch database location, which could
 # report "database exists" even though the live DB is under C:\\StoreInventoryManagement\\Data.
-backup_re = re.compile(r'(?ms)^def backup_database\(manual=False\):\\n.*?(?=^def restore_database\()', re.M)
+backup_re = re.compile(r'(?ms)^def backup_database\(manual=False\):\n.*?(?=^def restore_database\()', re.M)
 backup_match = backup_re.search(app)
 if not backup_match:
     raise RuntimeError("Could not locate backup_database() in store_inventory.py.")
