@@ -326,6 +326,38 @@ if 'label="Check Update"' not in app:
         raise RuntimeError("Could not find Help menu in store_inventory.py.")
     app = app.replace(needle, replacement, 1)
 
+# Fix only the reported MDI close behavior: when the last in-app child window
+# is closed, restore the Dashboard surface instead of leaving the MDI host/shell
+# visually empty. No dashboard layout, data query, or other UI behavior is changed.
+if "def _restore_dashboard_after_internal_close(self):" not in app:
+    marker_mdi = "    def _ensure_mdi_host(self):\\n"
+    restore_method = '''    def _restore_dashboard_after_internal_close(self):
+        try:
+            if getattr(self, "_mdi_windows", []):
+                return
+            host = getattr(self, "_mdi_host", None)
+            if host is not None and host.winfo_exists():
+                host.place_forget()
+            # Repaint the existing Dashboard only after the child is fully closed.
+            # This restores the visible Dashboard surface without changing its layout.
+            self.after_idle(self.dashboard)
+        except Exception:
+            try:
+                self.after_idle(self.dashboard)
+            except Exception:
+                pass
+
+'''
+    if marker_mdi not in app:
+        raise RuntimeError("Could not locate MDI host method for dashboard-close fix.")
+    app = app.replace(marker_mdi, restore_method + marker_mdi, 1)
+
+close_re = re.compile(r'(?m)(^\\s+if not getattr\\(self,"_mdi_windows",\\[\\]\\):\\n\\s+self\\._mdi_host\\.place_forget\\(\\)\\n)')
+close_m = close_re.search(app)
+if not close_m:
+    raise RuntimeError("Could not locate last-MDI-window close block for dashboard-close fix.")
+app = app[:close_m.end()] + '                self._restore_dashboard_after_internal_close()\\n' + app[close_m.end():]
+
 # Dashboard live counters: update KPI values in place every 1.2 seconds so
 # newly saved Purchase Demands/GRNs/Issues/Items appear immediately without
 # rebuilding or changing the existing dashboard layout.
