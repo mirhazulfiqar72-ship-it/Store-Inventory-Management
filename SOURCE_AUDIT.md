@@ -900,8 +900,8 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 
 ## store_inventory.py
 
-- Lines: 5327
-- Functions: resource_path(57-61), hash_password(124-129), verify_password(131-134), _copy_legacy_database_if_needed(136-153), _init_schema(156-244), connect(247-276), migrate_old_item_codes(278-292), seed_items(294-301), backup_database(303-332), restore_database(334-351), stock(353-358), fmt_num(360-362), to_iso_date(364-373), to_display_date(375-383), fiscal_year_key(385-396), fiscal_year_range(398-401), normalize_code(403-411), format_code(413-422), attach_code_mask(424-450), set_digits(427-432), key(433-443), paste(445-448), bind_add_to_list(452-473), on_enter(455-466), __init__(477-494), _check_for_updates(496-501), _setup_style(503-539), _shade(542-547), on_close(549-554), redo_network_setup(556-572), backup_now(574-581), restore_backup(583-601), _ctrl_f(603-615), _open_exact_find_text_popup(617-662), do_find(638-647), close(648-655), _global_enter(664-676), wipe(678-679), login(681-710), do_login(696-707), change_password(712-762), save_password(734-756), logout(764-769), home(771-790), _restore_dashboard_after_internal_close(792-806), _ensure_mdi_host(808-829), _internal_window(831-916), normal_place(847-853), restore(854-861), maximize(862-868), minimize(869-884), close(885-909), open_inventory_codes_detail_flow(918-936), open_inventory_codes_with_filters(938-952), open_inventory_codes_report_window(954-1180), tbtn(972-977), balance_as_of(1034-1044), build_nav(1046-1068), selected_prefix(1070-1079), load(1081-1113), page_move(1115-1116), page_first(1117-1117), page_last(1118-1122), on_nav(1126-1127), find_popup(1130-1149), search_fn(1132-1147), print_report(1152-1155), export_pdf(1157-1159), export_word(1160-1162), export_excel(1163-1165), open_menu_window(1182-1204), close_window(1192-1199), _manual_check_update(1206-1210), _show_current_version(1212-1216), build_menu_bar(1218-1265), open_calendar_picker(1267-1315), pick(1285-1287), redraw(1289-1301), nav(1303-1307), make_date_field(1317-1324), clearbody(1326-1352), run_action(1341-1346), _portable_print_current(1354-1365), portable_print_dialog(1367-1440), build_receipt(1394-1412), send(1413-1426), refresh_printers(1427-1433), preview_tree(1442-1454), set_page_actions(1456-1464), _add_transaction_new_button(1466-1483), _report_header(1485-1549), _report_footer(1551-1557), _grr_signature_block(1559-1575), _finish_page(1577-1578), _wrap_text_to_width(1580-1605), fits(1587-1587), _pdf_table_report(1607-1676), table_header(1629-1634), show_preview_window(1678-1751), _safe_report_name(1753-1756), print_preview_window(1758-1761), _fallback_pdf_export(1763-1796), esc(1767-1768), add(1771-1773), _save_entry_report(1798-1818), export_preview_pdf(1820-1849), export_preview_word(1851-1891), export_preview_excel(1893-1929), make_tree(1931-1940), pick_item(1942-1963), choose(1943-1962), ld(1950-1954), sel(1956-1960), bind_item_lookup(1965-1982), lookup(1967-1980), _set_form_editable(1985-1998), walk(1988-1997), document_selector(2000-2034), refresh(2005-2016), selected(2017-2022), dashboard(2036-2148), load_details(2120-2144), _refresh_dashboard_kpis(2150-2164), dashboard_details(2166-2170), item_history(2172-2192), _ask_item_master_filters(2194-2278), finish(2247-2259), items(2280-2518), hierarchy(2321-2330), selected_prefix(2376-2389), balance_as_of(2391-2398), load(2400-2438), set_page(2440-2441), select_node(2443-2464), open_find(2470-2489), search_fn(2472-2487), visible_rows(2494-2496), print_inventory(2497-2501), export_inventory_word(2502-2504), export_inventory_excel(2505-2507), portable_inventory(2512-2514), inventory_codes(2520-2804), btn(2556-2561), close_editor(2597-2607), edit_cell(2609-2635), commit(2627-2633), rows_query(2637-2650), load(2652-2667), new_record(2669-2690), commit(2683-2687), selected_row(2692-2694), edit_record(2696-2704), save_record(2706-2749), delete_record(2751-2762), refresh(2764-2764), do_print(2765-2767), do_close(2768-2768), filter_grid(2786-2793), open_mto_inventory_flow(2806-2829), open_code_opening_flow(2831-2839), code_opening(2841-2842), _open_code_opening_popup(2844-2845), _open_code_opening_detail(2847-3090), norm(2917-2918), table_for(2920-2921), row_for(2923-2928), search_any_destination(2930-2943), desc_hit(2945-2949), clear_form(2951-2964), load_for_edit(2966-2987), check_duplicates(2989-3000), save_code(3005-3056), edit_action(3058-3062), delete_code(3064-3079), _mto_new_item_dialog(3092-3128), save(3108-3125), _item_filter_bar(3130-3142), _date_filter_bar(3144-3152), _ask_mto_inventory_filters(3154-3199), finish(3184-3192), mto_inventory(3201-3401), open_find(3235-3254), search_fn(3237-3252), hierarchy(3273-3277), rebuild_nav(3279-3290), mto_balance(3314-3323), load(3325-3367), set_page(3369-3369), select_node(3370-3379), visible_rows(3384-3384), do_print(3385-3389), export_word(3390-3392), export_excel(3393-3395), party_master(3403-3454), load(3413-3416), clear(3417-3421), new_form(3422-3423), save(3424-3430), load_party_row(3431-3435), on_party_select(3436-3437), edit(3439-3443), delete_party(3444-3450), user_management(3456-3540), sync_role(3483-3488), load(3492-3495), clear(3496-3499), edit(3500-3507), save(3508-3525), delete_user(3526-3537), _renumber_tree(3543-3546), demand(3548-3712), _restore_demand_tree_columns(3591-3597), add(3600-3608), edit_item(3610-3622), delete_item(3624-3632), new_form(3636-3642), save(3644-3660), delete_current(3664-3670), cancel_form(3671-3679), preview_now(3680-3690), edit_saved_demand(3691-3694), print_now(3695-3705), load_demand_into_form(3714-3726), refresh_saved_cache(3728-3740), grr(3742-3905), add(3774-3782), edit_item(3784-3794), delete_item(3796-3804), new_form(3808-3814), save(3816-3837), delete_current(3841-3847), cancel_form(3848-3856), preview_now(3857-3875), portable_current(3876-3879), edit_saved_grr(3881-3884), print_now(3885-3898), load_grr_into_form(3907-3919), issue(3921-4067), old_issue_qty(3950-3953), update_balance(3954-3962), add(3964-3973), edit_item(3975-3986), new_form(3990-3996), post(3998-4019), delete_current(4020-4026), cancel_form(4027-4035), preview_now(4036-4043), portable_current(4044-4046), load_saved_issue(4051-4053), edit_saved_issue(4054-4057), print_issue_now(4058-4063), load_issue_into_form(4069-4082), _ask_report_criteria(4084-4147), finish(4133-4141), _open_report_child(4149-4154), open_stock_balance_report_flow(4156-4159), open_grr_report_flow(4161-4164), open_demand_report_flow(4166-4169), open_issue_report_flow(4171-4174), open_party_report_flow(4176-4179), _ask_stock_balance_filters(4181-4204), ok(4196-4197), cancel(4198-4198), stock_balance(4206-4269), period(4222-4233), header_summary(4234-4235), load(4236-4245), reopen_filters(4246-4250), open_find_stock(4254-4267), search_fn(4256-4266), ledger(4271-4283), open_document_editor(4285-4293), _edit_from_selector(4295-4311), show_saved_records(4313-4344), view(4336-4340), documents(4346-4391), edit_selected(4365-4371), delete_selected(4372-4384), doc_export_selected(4393-4399), doc_preview_selected(4401-4411), doc_print_selected(4413-4421), load_document(4423-4453), _print_loaded_document(4447-4452), _report_filter_popup(4455-4472), ok(4468-4469), cancel(4470-4470), _report_window(4474-4518), load(4487-4494), hdr(4495-4495), open_find_report(4501-4515), search_fn(4503-4514), report_grr(4520-4531), pb(4522-4530), report_demand(4533-4544), pb(4535-4543), report_issue(4546-4555), pb(4548-4554), report_party(4557-4567), pb(4559-4566), reports(4569-4697), load_grr_item(4582-4587), load_grr_date(4595-4603), load_party(4615-4623), load_dem_item(4636-4641), load_dem_date(4649-4657), load_iss_item(4671-4676), load_iss_date(4684-4692), print_item_master(4699-4701), print_party_master(4703-4705), print_report(4707-4721), print_stock(4723-4728), print_ledger(4730-4737), _get_doc_data(4739-4767), export_word(4769-4816), export_excel(4818-4858), preview_pdf(4860-4868), _open_direct_printer(4870-4900), _select_windows_printer_for_pdf(4902-5273), render_preview(5027-5046), on_resize(5048-5050), parse_page_selection(5069-5085), selected_printer(5087-5089), print_rendered_pages(5091-5249), close(5251-5261), print_pdf(5275-5293), open_file(5295-5300), print_demand(5302-5307), print_grr(5309-5317), print_issue(5319-5324)
+- Lines: 5330
+- Functions: resource_path(57-61), hash_password(124-129), verify_password(131-134), _copy_legacy_database_if_needed(136-153), _init_schema(156-244), connect(247-276), migrate_old_item_codes(278-292), seed_items(294-301), backup_database(303-332), restore_database(334-351), stock(353-358), fmt_num(360-362), to_iso_date(364-373), to_display_date(375-383), fiscal_year_key(385-396), fiscal_year_range(398-401), normalize_code(403-411), format_code(413-422), attach_code_mask(424-450), set_digits(427-432), key(433-443), paste(445-448), bind_add_to_list(452-473), on_enter(455-466), __init__(477-494), _check_for_updates(496-501), _setup_style(503-539), _shade(542-547), on_close(549-554), redo_network_setup(556-572), backup_now(574-581), restore_backup(583-601), _ctrl_f(603-615), _open_exact_find_text_popup(617-662), do_find(638-647), close(648-655), _global_enter(664-676), wipe(678-679), login(681-710), do_login(696-707), change_password(712-762), save_password(734-756), logout(764-769), home(771-793), _restore_dashboard_after_internal_close(795-809), _ensure_mdi_host(811-832), _internal_window(834-919), normal_place(850-856), restore(857-864), maximize(865-871), minimize(872-887), close(888-912), open_inventory_codes_detail_flow(921-939), open_inventory_codes_with_filters(941-955), open_inventory_codes_report_window(957-1183), tbtn(975-980), balance_as_of(1037-1047), build_nav(1049-1071), selected_prefix(1073-1082), load(1084-1116), page_move(1118-1119), page_first(1120-1120), page_last(1121-1125), on_nav(1129-1130), find_popup(1133-1152), search_fn(1135-1150), print_report(1155-1158), export_pdf(1160-1162), export_word(1163-1165), export_excel(1166-1168), open_menu_window(1185-1207), close_window(1195-1202), _manual_check_update(1209-1213), _show_current_version(1215-1219), build_menu_bar(1221-1268), open_calendar_picker(1270-1318), pick(1288-1290), redraw(1292-1304), nav(1306-1310), make_date_field(1320-1327), clearbody(1329-1355), run_action(1344-1349), _portable_print_current(1357-1368), portable_print_dialog(1370-1443), build_receipt(1397-1415), send(1416-1429), refresh_printers(1430-1436), preview_tree(1445-1457), set_page_actions(1459-1467), _add_transaction_new_button(1469-1486), _report_header(1488-1552), _report_footer(1554-1560), _grr_signature_block(1562-1578), _finish_page(1580-1581), _wrap_text_to_width(1583-1608), fits(1590-1590), _pdf_table_report(1610-1679), table_header(1632-1637), show_preview_window(1681-1754), _safe_report_name(1756-1759), print_preview_window(1761-1764), _fallback_pdf_export(1766-1799), esc(1770-1771), add(1774-1776), _save_entry_report(1801-1821), export_preview_pdf(1823-1852), export_preview_word(1854-1894), export_preview_excel(1896-1932), make_tree(1934-1943), pick_item(1945-1966), choose(1946-1965), ld(1953-1957), sel(1959-1963), bind_item_lookup(1968-1985), lookup(1970-1983), _set_form_editable(1988-2001), walk(1991-2000), document_selector(2003-2037), refresh(2008-2019), selected(2020-2025), dashboard(2039-2151), load_details(2123-2147), _refresh_dashboard_kpis(2153-2167), dashboard_details(2169-2173), item_history(2175-2195), _ask_item_master_filters(2197-2281), finish(2250-2262), items(2283-2521), hierarchy(2324-2333), selected_prefix(2379-2392), balance_as_of(2394-2401), load(2403-2441), set_page(2443-2444), select_node(2446-2467), open_find(2473-2492), search_fn(2475-2490), visible_rows(2497-2499), print_inventory(2500-2504), export_inventory_word(2505-2507), export_inventory_excel(2508-2510), portable_inventory(2515-2517), inventory_codes(2523-2807), btn(2559-2564), close_editor(2600-2610), edit_cell(2612-2638), commit(2630-2636), rows_query(2640-2653), load(2655-2670), new_record(2672-2693), commit(2686-2690), selected_row(2695-2697), edit_record(2699-2707), save_record(2709-2752), delete_record(2754-2765), refresh(2767-2767), do_print(2768-2770), do_close(2771-2771), filter_grid(2789-2796), open_mto_inventory_flow(2809-2832), open_code_opening_flow(2834-2842), code_opening(2844-2845), _open_code_opening_popup(2847-2848), _open_code_opening_detail(2850-3093), norm(2920-2921), table_for(2923-2924), row_for(2926-2931), search_any_destination(2933-2946), desc_hit(2948-2952), clear_form(2954-2967), load_for_edit(2969-2990), check_duplicates(2992-3003), save_code(3008-3059), edit_action(3061-3065), delete_code(3067-3082), _mto_new_item_dialog(3095-3131), save(3111-3128), _item_filter_bar(3133-3145), _date_filter_bar(3147-3155), _ask_mto_inventory_filters(3157-3202), finish(3187-3195), mto_inventory(3204-3404), open_find(3238-3257), search_fn(3240-3255), hierarchy(3276-3280), rebuild_nav(3282-3293), mto_balance(3317-3326), load(3328-3370), set_page(3372-3372), select_node(3373-3382), visible_rows(3387-3387), do_print(3388-3392), export_word(3393-3395), export_excel(3396-3398), party_master(3406-3457), load(3416-3419), clear(3420-3424), new_form(3425-3426), save(3427-3433), load_party_row(3434-3438), on_party_select(3439-3440), edit(3442-3446), delete_party(3447-3453), user_management(3459-3543), sync_role(3486-3491), load(3495-3498), clear(3499-3502), edit(3503-3510), save(3511-3528), delete_user(3529-3540), _renumber_tree(3546-3549), demand(3551-3715), _restore_demand_tree_columns(3594-3600), add(3603-3611), edit_item(3613-3625), delete_item(3627-3635), new_form(3639-3645), save(3647-3663), delete_current(3667-3673), cancel_form(3674-3682), preview_now(3683-3693), edit_saved_demand(3694-3697), print_now(3698-3708), load_demand_into_form(3717-3729), refresh_saved_cache(3731-3743), grr(3745-3908), add(3777-3785), edit_item(3787-3797), delete_item(3799-3807), new_form(3811-3817), save(3819-3840), delete_current(3844-3850), cancel_form(3851-3859), preview_now(3860-3878), portable_current(3879-3882), edit_saved_grr(3884-3887), print_now(3888-3901), load_grr_into_form(3910-3922), issue(3924-4070), old_issue_qty(3953-3956), update_balance(3957-3965), add(3967-3976), edit_item(3978-3989), new_form(3993-3999), post(4001-4022), delete_current(4023-4029), cancel_form(4030-4038), preview_now(4039-4046), portable_current(4047-4049), load_saved_issue(4054-4056), edit_saved_issue(4057-4060), print_issue_now(4061-4066), load_issue_into_form(4072-4085), _ask_report_criteria(4087-4150), finish(4136-4144), _open_report_child(4152-4157), open_stock_balance_report_flow(4159-4162), open_grr_report_flow(4164-4167), open_demand_report_flow(4169-4172), open_issue_report_flow(4174-4177), open_party_report_flow(4179-4182), _ask_stock_balance_filters(4184-4207), ok(4199-4200), cancel(4201-4201), stock_balance(4209-4272), period(4225-4236), header_summary(4237-4238), load(4239-4248), reopen_filters(4249-4253), open_find_stock(4257-4270), search_fn(4259-4269), ledger(4274-4286), open_document_editor(4288-4296), _edit_from_selector(4298-4314), show_saved_records(4316-4347), view(4339-4343), documents(4349-4394), edit_selected(4368-4374), delete_selected(4375-4387), doc_export_selected(4396-4402), doc_preview_selected(4404-4414), doc_print_selected(4416-4424), load_document(4426-4456), _print_loaded_document(4450-4455), _report_filter_popup(4458-4475), ok(4471-4472), cancel(4473-4473), _report_window(4477-4521), load(4490-4497), hdr(4498-4498), open_find_report(4504-4518), search_fn(4506-4517), report_grr(4523-4534), pb(4525-4533), report_demand(4536-4547), pb(4538-4546), report_issue(4549-4558), pb(4551-4557), report_party(4560-4570), pb(4562-4569), reports(4572-4700), load_grr_item(4585-4590), load_grr_date(4598-4606), load_party(4618-4626), load_dem_item(4639-4644), load_dem_date(4652-4660), load_iss_item(4674-4679), load_iss_date(4687-4695), print_item_master(4702-4704), print_party_master(4706-4708), print_report(4710-4724), print_stock(4726-4731), print_ledger(4733-4740), _get_doc_data(4742-4770), export_word(4772-4819), export_excel(4821-4861), preview_pdf(4863-4871), _open_direct_printer(4873-4903), _select_windows_printer_for_pdf(4905-5276), render_preview(5030-5049), on_resize(5051-5053), parse_page_selection(5072-5088), selected_printer(5090-5092), print_rendered_pages(5094-5252), close(5254-5264), print_pdf(5278-5296), open_file(5298-5303), print_demand(5305-5310), print_grr(5312-5320), print_issue(5322-5327)
 
 ### Relevant source locations
 
@@ -1487,2849 +1487,2849 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 0788:         self.body=ttk.Frame(self,padding=12);self.body.pack(fill="both",expand=True)
 0789:         self.main_body=self.body
 0790:         self.dashboard()
-0791: 
-0792:     def _restore_dashboard_after_internal_close(self):
-0793:         try:
-0794:             if getattr(self, "_mdi_windows", []):
-0795:                 return
-0796:             host = getattr(self, "_mdi_host", None)
-0797:             if host is not None and host.winfo_exists():
-0798:                 host.place_forget()
+0791:         if not getattr(self, "_update_checked_this_session", False):
+0792:             self._update_checked_this_session = True
+0793:             self.after(900, lambda: updater.check_for_update(self, manual=False))
+0794: 
+0795:     def _restore_dashboard_after_internal_close(self):
+0796:         try:
+0797:             if getattr(self, "_mdi_windows", []):
+0798:                 return
 ```
 ```text
-0877:             b.pack(side="left")
-0878:             rb=tk.Button(item,text="□",font=("Segoe UI",8,"bold"),width=2,height=1,padx=0,pady=0,
-0879:                          command=lambda:(restore(),maximize()),relief="flat",bd=0,bg="#e7e7e7")
-0880:             rb.pack(side="left")
-0881:             xb=tk.Button(item,text="×",font=("Segoe UI",9,"bold"),width=2,height=1,padx=0,pady=0,
-0882:                          command=close,relief="flat",bd=0,bg="#e7e7e7")
-0883:             xb.pack(side="left")
-0884:             state["task"]=item
-0885:         def close():
-0886:             try:
-0887:                 task=state.get("task")
-0888:                 if task and task.winfo_exists(): task.destroy()
-0889:             except Exception: pass
-0890:             try:
-0891:                 if outer in getattr(self,"_mdi_windows",[]): self._mdi_windows.remove(outer)
+0880:             b.pack(side="left")
+0881:             rb=tk.Button(item,text="□",font=("Segoe UI",8,"bold"),width=2,height=1,padx=0,pady=0,
+0882:                          command=lambda:(restore(),maximize()),relief="flat",bd=0,bg="#e7e7e7")
+0883:             rb.pack(side="left")
+0884:             xb=tk.Button(item,text="×",font=("Segoe UI",9,"bold"),width=2,height=1,padx=0,pady=0,
+0885:                          command=close,relief="flat",bd=0,bg="#e7e7e7")
+0886:             xb.pack(side="left")
+0887:             state["task"]=item
+0888:         def close():
+0889:             try:
+0890:                 task=state.get("task")
+0891:                 if task and task.winfo_exists(): task.destroy()
 0892:             except Exception: pass
-0893:             try: outer.destroy()
-0894:             except Exception: pass
-0895:             if not getattr(self,"_mdi_windows",[]):
-0896:                 self._mdi_host.place_forget()
-0897:                 self._restore_dashboard_after_internal_close()
+0893:             try:
+0894:                 if outer in getattr(self,"_mdi_windows",[]): self._mdi_windows.remove(outer)
+0895:             except Exception: pass
+0896:             try: outer.destroy()
+0897:             except Exception: pass
+0898:             if not getattr(self,"_mdi_windows",[]):
+0899:                 self._mdi_host.place_forget()
+0900:                 self._restore_dashboard_after_internal_close()
 ```
 ```text
-0942:             return None
-0943:         self._inventory_codes_filter=criteria
-0944:         win,body=self._internal_window("Inventory Management - [Inventory Codes]","1180x760")
-0945:         try:
-0946:             self.items(container=body)
-0947:             win.lift()
-0948:             return win
-0949:         except Exception:
-0950:             try: win._internal_close()
-0951:             except Exception: pass
-0952:             raise
-0953: 
-0954:     def open_inventory_codes_report_window(self, criteria=None):
-0955:         """Open Inventory Codes as a real report-style child window.
+0945:             return None
+0946:         self._inventory_codes_filter=criteria
+0947:         win,body=self._internal_window("Inventory Management - [Inventory Codes]","1180x760")
+0948:         try:
+0949:             self.items(container=body)
+0950:             win.lift()
+0951:             return win
+0952:         except Exception:
+0953:             try: win._internal_close()
+0954:             except Exception: pass
+0955:             raise
 0956: 
-0957:         This intentionally mirrors the supplied Preview Report workflow: a
-0958:         separate resizable/maximizable window with a left navigation tree,
-0959:         compact report toolbar, Find dialog, and print/export commands.
-0960:         The main application remains open behind it.
-0961:         """
-0962:         criteria=criteria or getattr(self,"_inventory_codes_filter",None) or {
+0957:     def open_inventory_codes_report_window(self, criteria=None):
+0958:         """Open Inventory Codes as a real report-style child window.
+0959: 
+0960:         This intentionally mirrors the supplied Preview Report workflow: a
+0961:         separate resizable/maximizable window with a left navigation tree,
+0962:         compact report toolbar, Find dialog, and print/export commands.
+0963:         The main application remains open behind it.
+0964:         """
+0965:         criteria=criteria or getattr(self,"_inventory_codes_filter",None) or {
 ```
 ```text
-0959:         compact report toolbar, Find dialog, and print/export commands.
-0960:         The main application remains open behind it.
-0961:         """
-0962:         criteria=criteria or getattr(self,"_inventory_codes_filter",None) or {
-0963:             "from_code":"","to_code":"","from_date":"","to_date":"","zero_mode":"include"
-0964:         }
-0965:         win,winbody=self._internal_window("Inventory Management - [Inventory Codes]","1180x760")
-0966: 
-0967:         # --- report-style toolbar ---
-0968:         toolbar=tk.Frame(winbody,bg="#E7E7E7",height=42,bd=1,relief="raised")
-0969:         toolbar.pack(fill="x",side="top")
-0970:         toolbar.pack_propagate(False)
-0971: 
-0972:         def tbtn(text,cmd,width=9):
-0973:             b=tk.Button(toolbar,text=text,command=cmd,width=width,height=1,
-0974:                          font=("Microsoft Sans Serif",8),relief="raised",bd=1,
-0975:                          padx=3,pady=1)
-0976:             b.pack(side="left",padx=2,pady=6)
-0977:             return b
-0978: 
-0979:         # --- main report body ---
+0962:         compact report toolbar, Find dialog, and print/export commands.
+0963:         The main application remains open behind it.
+0964:         """
+0965:         criteria=criteria or getattr(self,"_inventory_codes_filter",None) or {
+0966:             "from_code":"","to_code":"","from_date":"","to_date":"","zero_mode":"include"
+0967:         }
+0968:         win,winbody=self._internal_window("Inventory Management - [Inventory Codes]","1180x760")
+0969: 
+0970:         # --- report-style toolbar ---
+0971:         toolbar=tk.Frame(winbody,bg="#E7E7E7",height=42,bd=1,relief="raised")
+0972:         toolbar.pack(fill="x",side="top")
+0973:         toolbar.pack_propagate(False)
+0974: 
+0975:         def tbtn(text,cmd,width=9):
+0976:             b=tk.Button(toolbar,text=text,command=cmd,width=width,height=1,
+0977:                          font=("Microsoft Sans Serif",8),relief="raised",bd=1,
+0978:                          padx=3,pady=1)
+0979:             b.pack(side="left",padx=2,pady=6)
+0980:             return b
+0981: 
+0982:         # --- main report body ---
 ```
 ```text
-0990:         navscroll=ttk.Scrollbar(navbox,orient="vertical")
-0991:         code_tree=ttk.Treeview(navbox,show="tree",yscrollcommand=navscroll.set)
-0992:         navscroll.config(command=code_tree.yview)
-0993:         navscroll.pack(side="right",fill="y")
-0994:         code_tree.pack(side="left",fill="both",expand=True)
-0995: 
-0996:         right=tk.Frame(content,bg="#EDEDED")
-0997:         right.pack(side="left",fill="both",expand=True)
-0998:         reportbar=tk.Frame(right,bg="#D9D9D9",height=34,bd=1,relief="raised")
-0999:         reportbar.pack(fill="x")
-1000:         reportbar.pack_propagate(False)
-1001:         tab=tk.Label(reportbar,text="Main Report",bg="#F5F5F5",bd=1,relief="raised",
-1002:                       font=("Microsoft Sans Serif",8),padx=10,pady=4)
-1003:         tab.pack(side="left",padx=4,pady=2)
-1004:         titlevar=tk.StringVar(value="Inventory Summary")
-1005:         tk.Label(reportbar,textvariable=titlevar,bg="#D9D9D9",
-1006:                  font=("Microsoft Sans Serif",8,"bold")).pack(side="left",padx=8)
-1007: 
-1008:         tableframe=tk.Frame(right,bg="white",bd=1,relief="sunken")
-1009:         tableframe.pack(fill="both",expand=True,padx=5,pady=5)
-1010:         cols=("SR#","Code","Dscr","UOM","Opening","Balance","Status")
+0993:         navscroll=ttk.Scrollbar(navbox,orient="vertical")
+0994:         code_tree=ttk.Treeview(navbox,show="tree",yscrollcommand=navscroll.set)
+0995:         navscroll.config(command=code_tree.yview)
+0996:         navscroll.pack(side="right",fill="y")
+0997:         code_tree.pack(side="left",fill="both",expand=True)
+0998: 
+0999:         right=tk.Frame(content,bg="#EDEDED")
+1000:         right.pack(side="left",fill="both",expand=True)
+1001:         reportbar=tk.Frame(right,bg="#D9D9D9",height=34,bd=1,relief="raised")
+1002:         reportbar.pack(fill="x")
+1003:         reportbar.pack_propagate(False)
+1004:         tab=tk.Label(reportbar,text="Main Report",bg="#F5F5F5",bd=1,relief="raised",
+1005:                       font=("Microsoft Sans Serif",8),padx=10,pady=4)
+1006:         tab.pack(side="left",padx=4,pady=2)
+1007:         titlevar=tk.StringVar(value="Inventory Summary")
+1008:         tk.Label(reportbar,textvariable=titlevar,bg="#D9D9D9",
+1009:                  font=("Microsoft Sans Serif",8,"bold")).pack(side="left",padx=8)
+1010: 
+1011:         tableframe=tk.Frame(right,bg="white",bd=1,relief="sunken")
+1012:         tableframe.pack(fill="both",expand=True,padx=5,pady=5)
+1013:         cols=("SR#","Code","Dscr","UOM","Opening","Balance","Status")
 ```
 ```text
-1144:                     vals=tree.item(iid,"values")
-1145:                     if str(vals[1]).lower()==str(target).lower():
-1146:                         tree.selection_set(iid); tree.focus(iid); tree.see(iid); break
-1147:                 return True
-1148:             self._open_exact_find_text_popup(search_fn)
-1149:             self._item_master_find_callback=find_popup
-1150: 
-1151: 
-1152:         def print_report():
-1153:             rows=[tuple(tree.item(i,"values")) for i in tree.get_children("")]
-1154:             if not rows: messagebox.showwarning("Print","There is no data to print.",parent=win); return
-1155:             self.show_preview_window("Inventory Codes",["Selection: "+("Include Zero Balance" if criteria.get("zero_mode")=="include" else "Exclude Zero Balance")],list(cols),rows,[55,125,320,85,90,100,95])
-1156: 
-1157:         def export_pdf():
-1158:             rows=[tuple(tree.item(i,"values")) for i in tree.get_children("")]
-1159:             if rows: self.export_preview_pdf("Inventory Codes",["Inventory Codes"],list(cols),rows)
-1160:         def export_word():
+1147:                     vals=tree.item(iid,"values")
+1148:                     if str(vals[1]).lower()==str(target).lower():
+1149:                         tree.selection_set(iid); tree.focus(iid); tree.see(iid); break
+1150:                 return True
+1151:             self._open_exact_find_text_popup(search_fn)
+1152:             self._item_master_find_callback=find_popup
+1153: 
+1154: 
+1155:         def print_report():
+1156:             rows=[tuple(tree.item(i,"values")) for i in tree.get_children("")]
+1157:             if not rows: messagebox.showwarning("Print","There is no data to print.",parent=win); return
+1158:             self.show_preview_window("Inventory Codes",["Selection: "+("Include Zero Balance" if criteria.get("zero_mode")=="include" else "Exclude Zero Balance")],list(cols),rows,[55,125,320,85,90,100,95])
+1159: 
+1160:         def export_pdf():
 1161:             rows=[tuple(tree.item(i,"values")) for i in tree.get_children("")]
-1162:             if rows: self.export_preview_word("Inventory Codes",["Inventory Codes"],list(cols),rows)
-1163:         def export_excel():
+1162:             if rows: self.export_preview_pdf("Inventory Codes",["Inventory Codes"],list(cols),rows)
+1163:         def export_word():
 1164:             rows=[tuple(tree.item(i,"values")) for i in tree.get_children("")]
+1165:             if rows: self.export_preview_word("Inventory Codes",["Inventory Codes"],list(cols),rows)
+1166:         def export_excel():
+1167:             rows=[tuple(tree.item(i,"values")) for i in tree.get_children("")]
 ```
 ```text
-1160:         def export_word():
-1161:             rows=[tuple(tree.item(i,"values")) for i in tree.get_children("")]
-1162:             if rows: self.export_preview_word("Inventory Codes",["Inventory Codes"],list(cols),rows)
-1163:         def export_excel():
+1163:         def export_word():
 1164:             rows=[tuple(tree.item(i,"values")) for i in tree.get_children("")]
-1165:             if rows: self.export_preview_excel("Inventory Codes",["Inventory Codes"],list(cols),rows)
-1166: 
-1167:         tbtn("Find",find_popup,7)
-1168:         tbtn("Print",print_report,7)
-1169:         tbtn("PDF",export_pdf,6)
-1170:         tbtn("Word",export_word,6)
-1171:         tbtn("Excel",export_excel,6)
-1172:         tbtn("Portable",lambda:self.portable_print_dialog("Inventory Codes",["Inventory Codes"],list(cols),[tuple(tree.item(i,"values")) for i in tree.get_children("")]),9)
-1173:         tbtn("Refresh",load,8)
-1174:         tbtn("Close",win._internal_close,7)
-1175:         tk.Label(toolbar,text="  Inventory Codes",bg="#E7E7E7",font=("Microsoft Sans Serif",8,"bold")).pack(side="left",padx=10)
-1176:         tk.Label(toolbar,text="Include Zero" if criteria.get("zero_mode")=="include" else "Exclude Zero",bg="#E7E7E7",font=("Microsoft Sans Serif",8)).pack(side="right",padx=8)
-1177: 
-1178:         win.bind("<Escape>",lambda e:(win._internal_close(),"break"))
-1179:         build_nav(); load(); win.focus_force()
-1180:         return win
+1165:             if rows: self.export_preview_word("Inventory Codes",["Inventory Codes"],list(cols),rows)
+1166:         def export_excel():
+1167:             rows=[tuple(tree.item(i,"values")) for i in tree.get_children("")]
+1168:             if rows: self.export_preview_excel("Inventory Codes",["Inventory Codes"],list(cols),rows)
+1169: 
+1170:         tbtn("Find",find_popup,7)
+1171:         tbtn("Print",print_report,7)
+1172:         tbtn("PDF",export_pdf,6)
+1173:         tbtn("Word",export_word,6)
+1174:         tbtn("Excel",export_excel,6)
+1175:         tbtn("Portable",lambda:self.portable_print_dialog("Inventory Codes",["Inventory Codes"],list(cols),[tuple(tree.item(i,"values")) for i in tree.get_children("")]),9)
+1176:         tbtn("Refresh",load,8)
+1177:         tbtn("Close",win._internal_close,7)
+1178:         tk.Label(toolbar,text="  Inventory Codes",bg="#E7E7E7",font=("Microsoft Sans Serif",8,"bold")).pack(side="left",padx=10)
+1179:         tk.Label(toolbar,text="Include Zero" if criteria.get("zero_mode")=="include" else "Exclude Zero",bg="#E7E7E7",font=("Microsoft Sans Serif",8)).pack(side="right",padx=8)
+1180: 
+1181:         win.bind("<Escape>",lambda e:(win._internal_close(),"break"))
+1182:         build_nav(); load(); win.focus_force()
+1183:         return win
 ```
 ```text
-1190:         self.body=frame
-1191:         closed={"done":False}
-1192:         def close_window():
-1193:             if closed["done"]: return
-1194:             closed["done"]=True
-1195:             if getattr(self,"body",None) is frame: self.body=old_body
-1196:             self._page_actions=old_actions
-1197:             self._item_master_find_callback=old_find
-1198:             try: win._internal_close()
-1199:             except Exception: win.destroy()
-1200:         win._internal_close=close_window
-1201:         try:
-1202:             method(); self.update_idletasks(); win.lift(); return win
-1203:         except Exception:
-1204:             close_window(); raise
-1205: 
-1206:     def _manual_check_update(self):
-1207:         try:
-1208:             updater.check_for_update(self, manual=True)
-1209:         except Exception as e:
-1210:             messagebox.showerror("Check Update", f"Could not check for updates.\n\n{e}", parent=self)
+1193:         self.body=frame
+1194:         closed={"done":False}
+1195:         def close_window():
+1196:             if closed["done"]: return
+1197:             closed["done"]=True
+1198:             if getattr(self,"body",None) is frame: self.body=old_body
+1199:             self._page_actions=old_actions
+1200:             self._item_master_find_callback=old_find
+1201:             try: win._internal_close()
+1202:             except Exception: win.destroy()
+1203:         win._internal_close=close_window
+1204:         try:
+1205:             method(); self.update_idletasks(); win.lift(); return win
+1206:         except Exception:
+1207:             close_window(); raise
+1208: 
+1209:     def _manual_check_update(self):
+1210:         try:
+1211:             updater.check_for_update(self, manual=True)
+1212:         except Exception as e:
+1213:             messagebox.showerror("Check Update", f"Could not check for updates.\n\n{e}", parent=self)
 ```
 ```text
-1214:             messagebox.showinfo("Current Version", f"Store Inventory Management\n\nCurrent version: {updater.APP_VERSION}", parent=self)
-1215:         except Exception as e:
-1216:             messagebox.showerror("Current Version", str(e), parent=self)
-1217: 
-1218:     def build_menu_bar(self):
-1219:         """Professional section / sub-section menu bar, ERP style:
-1220:         Inventory > Item Master
-1221:         Transaction > Purchase Demand, GRN Receipt, Party Master, Material Issue
-1222:         Report > Stock Balance, GRN Report, Demand Report, Issue Report, Party Report
-1223:         Edit > Change Password, User Management
-1224:         Help > Backup Now, Restore Backup, Network Setup
-1225:         """
-1226:         menubar=tk.Menu(self)
-1227: 
-1228:         m_inv=tk.Menu(menubar,tearoff=0)
-1229:         m_inv.add_command(label="Inventory Codes",command=self.open_inventory_codes_detail_flow)
-1230:         m_inv.add_command(label="Code Opening",command=self.open_code_opening_flow)
-1231:         m_inv.add_command(label="MTO Inventory",command=self.open_mto_inventory_flow)
-1232:         menubar.add_cascade(label="Inventory",menu=m_inv)
-1233: 
-1234:         m_trans=tk.Menu(menubar,tearoff=0)
+1217:             messagebox.showinfo("Current Version", f"Store Inventory Management\n\nCurrent version: {updater.APP_VERSION}", parent=self)
+1218:         except Exception as e:
+1219:             messagebox.showerror("Current Version", str(e), parent=self)
+1220: 
+1221:     def build_menu_bar(self):
+1222:         """Professional section / sub-section menu bar, ERP style:
+1223:         Inventory > Item Master
+1224:         Transaction > Purchase Demand, GRN Receipt, Party Master, Material Issue
+1225:         Report > Stock Balance, GRN Report, Demand Report, Issue Report, Party Report
+1226:         Edit > Change Password, User Management
+1227:         Help > Backup Now, Restore Backup, Network Setup
+1228:         """
+1229:         menubar=tk.Menu(self)
+1230: 
+1231:         m_inv=tk.Menu(menubar,tearoff=0)
+1232:         m_inv.add_command(label="Inventory Codes",command=self.open_inventory_codes_detail_flow)
+1233:         m_inv.add_command(label="Code Opening",command=self.open_code_opening_flow)
+1234:         m_inv.add_command(label="MTO Inventory",command=self.open_mto_inventory_flow)
+1235:         menubar.add_cascade(label="Inventory",menu=m_inv)
+1236: 
+1237:         m_trans=tk.Menu(menubar,tearoff=0)
 ```
 ```text
-1234:         m_trans=tk.Menu(menubar,tearoff=0)
-1235:         m_trans.add_command(label="Purchase Demand",command=lambda:self.open_menu_window(self.demand,"Purchase Demand"))
-1236:         m_trans.add_command(label="GRN Receipt",command=lambda:self.open_menu_window(self.grr,"GRN Receipt"))
-1237:         m_trans.add_command(label="Party Master",command=lambda:self.open_menu_window(self.party_master,"Party Master"))
-1238:         m_trans.add_command(label="Material Issue",command=lambda:self.open_menu_window(self.issue,"Material Issue"))
-1239:         menubar.add_cascade(label="Transaction",menu=m_trans)
-1240: 
-1241:         m_rep=tk.Menu(menubar,tearoff=0)
-1242:         m_rep.add_command(label="Stock Balance",command=self.open_stock_balance_report_flow)
-1243:         m_rep.add_separator()
-1244:         m_rep.add_command(label="GRN Report",command=self.open_grr_report_flow)
-1245:         m_rep.add_command(label="Demand Report",command=self.open_demand_report_flow)
-1246:         m_rep.add_command(label="Issue Report",command=self.open_issue_report_flow)
-1247:         m_rep.add_command(label="Party Report",command=self.open_party_report_flow)
-1248:         menubar.add_cascade(label="Report",menu=m_rep)
-1249: 
-1250:         m_edit=tk.Menu(menubar,tearoff=0)
-1251:         m_edit.add_command(label="Change Password",command=self.change_password)
-1252:         if self.is_admin:
-1253:             m_edit.add_command(label="User Management",command=lambda:self.open_menu_window(self.user_management,"User Management"))
-1254:         menubar.add_cascade(label="Edit",menu=m_edit)
+1237:         m_trans=tk.Menu(menubar,tearoff=0)
+1238:         m_trans.add_command(label="Purchase Demand",command=lambda:self.open_menu_window(self.demand,"Purchase Demand"))
+1239:         m_trans.add_command(label="GRN Receipt",command=lambda:self.open_menu_window(self.grr,"GRN Receipt"))
+1240:         m_trans.add_command(label="Party Master",command=lambda:self.open_menu_window(self.party_master,"Party Master"))
+1241:         m_trans.add_command(label="Material Issue",command=lambda:self.open_menu_window(self.issue,"Material Issue"))
+1242:         menubar.add_cascade(label="Transaction",menu=m_trans)
+1243: 
+1244:         m_rep=tk.Menu(menubar,tearoff=0)
+1245:         m_rep.add_command(label="Stock Balance",command=self.open_stock_balance_report_flow)
+1246:         m_rep.add_separator()
+1247:         m_rep.add_command(label="GRN Report",command=self.open_grr_report_flow)
+1248:         m_rep.add_command(label="Demand Report",command=self.open_demand_report_flow)
+1249:         m_rep.add_command(label="Issue Report",command=self.open_issue_report_flow)
+1250:         m_rep.add_command(label="Party Report",command=self.open_party_report_flow)
+1251:         menubar.add_cascade(label="Report",menu=m_rep)
+1252: 
+1253:         m_edit=tk.Menu(menubar,tearoff=0)
+1254:         m_edit.add_command(label="Change Password",command=self.change_password)
+1255:         if self.is_admin:
+1256:             m_edit.add_command(label="User Management",command=lambda:self.open_menu_window(self.user_management,"User Management"))
+1257:         menubar.add_cascade(label="Edit",menu=m_edit)
 ```
 ```text
-1249: 
-1250:         m_edit=tk.Menu(menubar,tearoff=0)
-1251:         m_edit.add_command(label="Change Password",command=self.change_password)
-1252:         if self.is_admin:
-1253:             m_edit.add_command(label="User Management",command=lambda:self.open_menu_window(self.user_management,"User Management"))
-1254:         menubar.add_cascade(label="Edit",menu=m_edit)
-1255: 
-1256:         m_help=tk.Menu(menubar,tearoff=0)
-1257:         m_help.add_command(label="Backup Now",command=self.backup_now)
-1258:         m_help.add_command(label="Check Update",command=self._manual_check_update)
-1259:         m_help.add_command(label="Current Version",command=self._show_current_version)
-1260:         if self.is_admin:
-1261:             m_help.add_command(label="Restore Backup",command=self.restore_backup)
-1262:             m_help.add_command(label="Network Setup",command=self.redo_network_setup)
-1263:         menubar.add_cascade(label="Help",menu=m_help)
-1264: 
-1265:         self.config(menu=menubar)
-1266: 
-1267:     def open_calendar_picker(self, var):
-1268:         """Small month-grid calendar popup. Picking a day sets `var` to
-1269:         DD/MM/YYYY. Works purely with tkinter's built-in `calendar` module -
+1252: 
+1253:         m_edit=tk.Menu(menubar,tearoff=0)
+1254:         m_edit.add_command(label="Change Password",command=self.change_password)
+1255:         if self.is_admin:
+1256:             m_edit.add_command(label="User Management",command=lambda:self.open_menu_window(self.user_management,"User Management"))
+1257:         menubar.add_cascade(label="Edit",menu=m_edit)
+1258: 
+1259:         m_help=tk.Menu(menubar,tearoff=0)
+1260:         m_help.add_command(label="Backup Now",command=self.backup_now)
+1261:         m_help.add_command(label="Check Update",command=self._manual_check_update)
+1262:         m_help.add_command(label="Current Version",command=self._show_current_version)
+1263:         if self.is_admin:
+1264:             m_help.add_command(label="Restore Backup",command=self.restore_backup)
+1265:             m_help.add_command(label="Network Setup",command=self.redo_network_setup)
+1266:         menubar.add_cascade(label="Help",menu=m_help)
+1267: 
+1268:         self.config(menu=menubar)
+1269: 
+1270:     def open_calendar_picker(self, var):
+1271:         """Small month-grid calendar popup. Picking a day sets `var` to
+1272:         DD/MM/YYYY. Works purely with tkinter's built-in `calendar` module -
 ```
 ```text
-1322:         ttk.Entry(f,textvariable=var,width=width).pack(side="left")
-1323:         ttk.Button(f,text="\U0001F4C5",width=3,command=lambda:self.open_calendar_picker(var)).pack(side="left",padx=(2,0))
-1324:         return f
-1325: 
-1326:     def clearbody(self):
-1327:         self._portable_print_context=None
-1328:         for w in self.body.winfo_children(): w.destroy()
-1329:         self._page_actions = {
-1330:             "save": lambda: messagebox.showinfo("Save", "Save is not applicable on this screen."),
-1331:             "edit": lambda: messagebox.showinfo("Edit", "Edit is not applicable on this screen."),
-1332:             "delete": lambda: messagebox.showinfo("Delete", "Delete is not applicable on this screen."),
-1333:             "cancel": lambda: self.dashboard(),
-1334:             "print": lambda: messagebox.showinfo("Print", "Print is not applicable on this screen."),
-1335:             "preview": lambda: messagebox.showinfo("Preview", "Preview is not applicable on this screen."),
-1336:         }
-1337:         # Single SAP-style toolbar at the very top.
-1338:         bar=ttk.Frame(self.body, padding=(0,0,0,8)); bar.pack(fill="x", side="top")
-1339:         self._page_action_bar=bar
-1340:         self._page_action_first_button=None
-1341:         def run_action(k):
-1342:             if k=="edit" and not self.can_edit:
+1325:         ttk.Entry(f,textvariable=var,width=width).pack(side="left")
+1326:         ttk.Button(f,text="\U0001F4C5",width=3,command=lambda:self.open_calendar_picker(var)).pack(side="left",padx=(2,0))
+1327:         return f
+1328: 
+1329:     def clearbody(self):
+1330:         self._portable_print_context=None
+1331:         for w in self.body.winfo_children(): w.destroy()
+1332:         self._page_actions = {
+1333:             "save": lambda: messagebox.showinfo("Save", "Save is not applicable on this screen."),
+1334:             "edit": lambda: messagebox.showinfo("Edit", "Edit is not applicable on this screen."),
+1335:             "delete": lambda: messagebox.showinfo("Delete", "Delete is not applicable on this screen."),
+1336:             "cancel": lambda: self.dashboard(),
+1337:             "print": lambda: messagebox.showinfo("Print", "Print is not applicable on this screen."),
+1338:             "preview": lambda: messagebox.showinfo("Preview", "Preview is not applicable on this screen."),
+1339:         }
+1340:         # Single SAP-style toolbar at the very top.
+1341:         bar=ttk.Frame(self.body, padding=(0,0,0,8)); bar.pack(fill="x", side="top")
+1342:         self._page_action_bar=bar
+1343:         self._page_action_first_button=None
+1344:         def run_action(k):
+1345:             if k=="edit" and not self.can_edit:
 ```
 ```text
-1339:         self._page_action_bar=bar
-1340:         self._page_action_first_button=None
-1341:         def run_action(k):
-1342:             if k=="edit" and not self.can_edit:
-1343:                 messagebox.showwarning("Permission Denied","Your account does not have Edit permission. Ask an Admin if you need this."); return
-1344:             if k=="delete" and not self.can_delete:
-1345:                 messagebox.showwarning("Permission Denied","Your account does not have Delete permission. Ask an Admin if you need this."); return
-1346:             self._page_actions[k]()
-1347:         for text,key,style in (("Save","save","Success"),("Edit","edit","Warning"),
-1348:                                ("Delete","delete","Danger"),("Cancel","cancel","Muted"),("Print","print","Primary")):
-1349:             b=ttk.Button(bar,text=text,style=f"{style}.TButton",command=lambda k=key: run_action(k))
-1350:             b.pack(side="left",padx=(0,2))
-1351:             if self._page_action_first_button is None: self._page_action_first_button=b
-1352:             ttk.Separator(bar,orient="vertical").pack(side="left",fill="y",padx=4)
-1353: 
-1354:     def _portable_print_current(self):
-1355:         ctx=getattr(self,"_portable_print_context",None)
-1356:         if not ctx:
-1357:             messagebox.showinfo("Portable Printer","Portable printing is available on GRN, SIR and Preview Report screens.")
-1358:             return
-1359:         try:
+1342:         self._page_action_bar=bar
+1343:         self._page_action_first_button=None
+1344:         def run_action(k):
+1345:             if k=="edit" and not self.can_edit:
+1346:                 messagebox.showwarning("Permission Denied","Your account does not have Edit permission. Ask an Admin if you need this."); return
+1347:             if k=="delete" and not self.can_delete:
+1348:                 messagebox.showwarning("Permission Denied","Your account does not have Delete permission. Ask an Admin if you need this."); return
+1349:             self._page_actions[k]()
+1350:         for text,key,style in (("Save","save","Success"),("Edit","edit","Warning"),
+1351:                                ("Delete","delete","Danger"),("Cancel","cancel","Muted"),("Print","print","Primary")):
+1352:             b=ttk.Button(bar,text=text,style=f"{style}.TButton",command=lambda k=key: run_action(k))
+1353:             b.pack(side="left",padx=(0,2))
+1354:             if self._page_action_first_button is None: self._page_action_first_button=b
+1355:             ttk.Separator(bar,orient="vertical").pack(side="left",fill="y",padx=4)
+1356: 
+1357:     def _portable_print_current(self):
+1358:         ctx=getattr(self,"_portable_print_context",None)
+1359:         if not ctx:
+1360:             messagebox.showinfo("Portable Printer","Portable printing is available on GRN, SIR and Preview Report screens.")
+1361:             return
+1362:         try:
 ```
 ```text
-1361:             if not data: return
-1362:             title,header,columns,rows=data
-1363:             self.portable_print_dialog(title,header,columns,rows)
-1364:         except Exception as e:
-1365:             messagebox.showerror("Portable Printer",str(e))
-1366: 
-1367:     def portable_print_dialog(self,title,header_lines,columns,rows):
-1368:         """Compact direct ESC/POS printer dialog. Uses Windows print spooler,
-1369:         not a PDF helper. Works with installed USB/Bluetooth/LAN thermal printers."""
-1370:         if not WIN32PRINT_AVAILABLE:
-1371:             messagebox.showwarning("Portable Printer","Windows printer support is not available.\n\nRun BUILD_AND_INSTALL.bat again to install pywin32.")
-1372:             return
-1373:         try:
-1374:             printers=[x[2] for x in win32print.EnumPrinters(win32print.PRINTER_ENUM_LOCAL|win32print.PRINTER_ENUM_CONNECTIONS)]
-1375:         except Exception as e:
-1376:             messagebox.showerror("Portable Printer",f"Could not read Windows printers.\n\n{e}")
-1377:             return
-1378:         if not printers:
-1379:             messagebox.showwarning("Portable Printer","No Windows printer is installed. Connect/install your portable thermal printer first.")
+1364:             if not data: return
+1365:             title,header,columns,rows=data
+1366:             self.portable_print_dialog(title,header,columns,rows)
+1367:         except Exception as e:
+1368:             messagebox.showerror("Portable Printer",str(e))
+1369: 
+1370:     def portable_print_dialog(self,title,header_lines,columns,rows):
+1371:         """Compact direct ESC/POS printer dialog. Uses Windows print spooler,
+1372:         not a PDF helper. Works with installed USB/Bluetooth/LAN thermal printers."""
+1373:         if not WIN32PRINT_AVAILABLE:
+1374:             messagebox.showwarning("Portable Printer","Windows printer support is not available.\n\nRun BUILD_AND_INSTALL.bat again to install pywin32.")
+1375:             return
+1376:         try:
+1377:             printers=[x[2] for x in win32print.EnumPrinters(win32print.PRINTER_ENUM_LOCAL|win32print.PRINTER_ENUM_CONNECTIONS)]
+1378:         except Exception as e:
+1379:             messagebox.showerror("Portable Printer",f"Could not read Windows printers.\n\n{e}")
 1380:             return
-1381:         win,body=self._internal_window("Portable Printer - Receipt Print","470x330")
+1381:         if not printers:
+1382:             messagebox.showwarning("Portable Printer","No Windows printer is installed. Connect/install your portable thermal printer first.")
+1383:             return
+1384:         win,body=self._internal_window("Portable Printer - Receipt Print","470x330")
 ```
 ```text
-1431:                 if vals and pv.get() not in vals: pv.set(vals[0])
-1432:                 status.set(f"{len(rows)} line(s) ready to print | {len(vals)} printer(s) found")
-1433:             except Exception as ex: status.set(str(ex))
-1434:         printer_combo=ttk.Combobox(box,textvariable=pv,values=printers,state="readonly",width=38)
-1435:         printer_combo.grid(row=1,column=1,sticky="w",pady=5)
-1436:         ttk.Button(box,text="REFRESH PRINTERS",style="Dashboard.TButton",command=refresh_printers).grid(row=5,column=0,pady=8,sticky="w")
-1437:         ttk.Button(box,text="TEST / PRINT RECEIPT",style="Success.TButton",command=send).grid(row=5,column=1,pady=8,sticky="e")
-1438:         ttk.Button(box,text="CLOSE",style="Dashboard.TButton",command=win._internal_close).grid(row=6,column=1,sticky="e",pady=3)
-1439:         win.bind("<Escape>",lambda e:win._internal_close())
-1440:         win.focus_force()
-1441: 
-1442:     def preview_tree(self, title, tree, header_lines=None):
-1443:         """Preview the exact rows currently visible in a Treeview."""
-1444:         cols=list(tree["columns"])
-1445:         headings=tuple(tree.heading(c, "text") or c for c in cols)
-1446:         rows=[tuple(tree.item(i, "values")) for i in tree.get_children("")]
-1447:         if not rows:
-1448:             messagebox.showwarning("Preview", "There is no data to preview in this section.")
-1449:             return
-1450:         widths=[]
-1451:         for c in cols:
+1434:                 if vals and pv.get() not in vals: pv.set(vals[0])
+1435:                 status.set(f"{len(rows)} line(s) ready to print | {len(vals)} printer(s) found")
+1436:             except Exception as ex: status.set(str(ex))
+1437:         printer_combo=ttk.Combobox(box,textvariable=pv,values=printers,state="readonly",width=38)
+1438:         printer_combo.grid(row=1,column=1,sticky="w",pady=5)
+1439:         ttk.Button(box,text="REFRESH PRINTERS",style="Dashboard.TButton",command=refresh_printers).grid(row=5,column=0,pady=8,sticky="w")
+1440:         ttk.Button(box,text="TEST / PRINT RECEIPT",style="Success.TButton",command=send).grid(row=5,column=1,pady=8,sticky="e")
+1441:         ttk.Button(box,text="CLOSE",style="Dashboard.TButton",command=win._internal_close).grid(row=6,column=1,sticky="e",pady=3)
+1442:         win.bind("<Escape>",lambda e:win._internal_close())
+1443:         win.focus_force()
+1444: 
+1445:     def preview_tree(self, title, tree, header_lines=None):
+1446:         """Preview the exact rows currently visible in a Treeview."""
+1447:         cols=list(tree["columns"])
+1448:         headings=tuple(tree.heading(c, "text") or c for c in cols)
+1449:         rows=[tuple(tree.item(i, "values")) for i in tree.get_children("")]
+1450:         if not rows:
+1451:             messagebox.showwarning("Preview", "There is no data to preview in this section.")
+1452:             return
+1453:         widths=[]
+1454:         for c in cols:
 ```
 ```text
-1448:             messagebox.showwarning("Preview", "There is no data to preview in this section.")
-1449:             return
-1450:         widths=[]
-1451:         for c in cols:
-1452:             try: widths.append(max(70, min(260, int(tree.column(c, "width")))))
-1453:             except Exception: widths.append(100)
-1454:         self.show_preview_window(title, header_lines or [], headings, rows, widths)
-1455: 
-1456:     def set_page_actions(self, save=None, edit=None, delete=None, cancel=None, print=None, preview=None):
-1457:         self._page_actions.update({
-1458:             "save": save or self._page_actions.get("save"),
-1459:             "edit": edit or self._page_actions.get("edit"),
-1460:             "delete": delete or self._page_actions.get("delete"),
-1461:             "cancel": cancel or self._page_actions.get("cancel"),
-1462:             "print": print or self._page_actions.get("print"),
-1463:             "preview": preview or self._page_actions.get("preview"),
-1464:         })
-1465: 
-1466:     def _add_transaction_new_button(self, command):
-1467:         bar=getattr(self,"_page_action_bar",None); first=getattr(self,"_page_action_first_button",None)
-1468:         if bar is None or first is None: return
+1451:             messagebox.showwarning("Preview", "There is no data to preview in this section.")
+1452:             return
+1453:         widths=[]
+1454:         for c in cols:
+1455:             try: widths.append(max(70, min(260, int(tree.column(c, "width")))))
+1456:             except Exception: widths.append(100)
+1457:         self.show_preview_window(title, header_lines or [], headings, rows, widths)
+1458: 
+1459:     def set_page_actions(self, save=None, edit=None, delete=None, cancel=None, print=None, preview=None):
+1460:         self._page_actions.update({
+1461:             "save": save or self._page_actions.get("save"),
+1462:             "edit": edit or self._page_actions.get("edit"),
+1463:             "delete": delete or self._page_actions.get("delete"),
+1464:             "cancel": cancel or self._page_actions.get("cancel"),
+1465:             "print": print or self._page_actions.get("print"),
+1466:             "preview": preview or self._page_actions.get("preview"),
+1467:         })
+1468: 
+1469:     def _add_transaction_new_button(self, command):
+1470:         bar=getattr(self,"_page_action_bar",None); first=getattr(self,"_page_action_first_button",None)
+1471:         if bar is None or first is None: return
 ```
 ```text
-1477:         sep.pack(side="left",fill="y",padx=4)
-1478:         for w in existing:
-1479:             try:
-1480:                 if isinstance(w,ttk.Button): w.pack(side="left",padx=(0,2))
-1481:                 elif isinstance(w,ttk.Separator): w.pack(side="left",fill="y",padx=4)
-1482:                 else: w.pack(side="left")
-1483:             except Exception: pass
-1484: 
-1485:     def _report_header(self, c, title, page_size=A4, landscape_mode=False, y_top=None, header_lines=None):
-1486:         """Draw a consistent professional report header and return the first table Y.
+1480:         sep.pack(side="left",fill="y",padx=4)
+1481:         for w in existing:
+1482:             try:
+1483:                 if isinstance(w,ttk.Button): w.pack(side="left",padx=(0,2))
+1484:                 elif isinstance(w,ttk.Separator): w.pack(side="left",fill="y",padx=4)
+1485:                 else: w.pack(side="left")
+1486:             except Exception: pass
 1487: 
-1488:         For GRN Receipt reports the document number is shown on the left and
-1489:         the GRN Date is deliberately shown on the right in a bordered document
-1490:         information panel.
-1491:         """
-1492:         W,H=page_size
-1493:         if y_top is None: y_top=H-24
-1494:         logo_x, logo_y, logo_w, logo_h=24, y_top-34, 58, 40
-1495:         c.setLineWidth(0.8); c.rect(logo_x, logo_y, logo_w, logo_h, stroke=1, fill=0)
-1496:         if os.path.exists(LOGO_FILE):
-1497:             try:
+1488:     def _report_header(self, c, title, page_size=A4, landscape_mode=False, y_top=None, header_lines=None):
+1489:         """Draw a consistent professional report header and return the first table Y.
+1490: 
+1491:         For GRN Receipt reports the document number is shown on the left and
+1492:         the GRN Date is deliberately shown on the right in a bordered document
+1493:         information panel.
+1494:         """
+1495:         W,H=page_size
+1496:         if y_top is None: y_top=H-24
+1497:         logo_x, logo_y, logo_w, logo_h=24, y_top-34, 58, 40
+1498:         c.setLineWidth(0.8); c.rect(logo_x, logo_y, logo_w, logo_h, stroke=1, fill=0)
+1499:         if os.path.exists(LOGO_FILE):
+1500:             try:
 ```
 ```text
-1490:         information panel.
-1491:         """
-1492:         W,H=page_size
-1493:         if y_top is None: y_top=H-24
-1494:         logo_x, logo_y, logo_w, logo_h=24, y_top-34, 58, 40
-1495:         c.setLineWidth(0.8); c.rect(logo_x, logo_y, logo_w, logo_h, stroke=1, fill=0)
-1496:         if os.path.exists(LOGO_FILE):
-1497:             try:
-1498:                 from reportlab.lib.utils import ImageReader
-1499:                 c.drawImage(ImageReader(LOGO_FILE), logo_x+3, logo_y+3, logo_w-6, logo_h-6, preserveAspectRatio=True, anchor='c', mask='auto')
-1500:             except Exception:
-1501:                 c.setFont("Helvetica-Bold",6); c.drawCentredString(logo_x+logo_w/2, logo_y+logo_h/2-2,"LOGO")
-1502:         else:
-1503:             c.setFont("Helvetica-Bold",7); c.drawCentredString(logo_x+logo_w/2, logo_y+logo_h/2+4,"COMPANY")
-1504:             c.drawCentredString(logo_x+logo_w/2, logo_y+logo_h/2-6,"LOGO")
-1505:         c.setFont("Helvetica-Bold",14); c.drawCentredString(W/2+18, y_top-10, COMPANY)
-1506:         c.setFont("Helvetica-Bold",10); c.drawCentredString(W/2+18, y_top-26, str(title).upper())
-1507:         c.setFont("Helvetica",7); c.drawRightString(W-24, y_top-43, datetime.now().strftime("Printed: %d-%m-%Y %H:%M"))
-1508: 
-1509:         # Professional document information box.
-1510:         info_top=logo_y-12
+1493:         information panel.
+1494:         """
+1495:         W,H=page_size
+1496:         if y_top is None: y_top=H-24
+1497:         logo_x, logo_y, logo_w, logo_h=24, y_top-34, 58, 40
+1498:         c.setLineWidth(0.8); c.rect(logo_x, logo_y, logo_w, logo_h, stroke=1, fill=0)
+1499:         if os.path.exists(LOGO_FILE):
+1500:             try:
+1501:                 from reportlab.lib.utils import ImageReader
+1502:                 c.drawImage(ImageReader(LOGO_FILE), logo_x+3, logo_y+3, logo_w-6, logo_h-6, preserveAspectRatio=True, anchor='c', mask='auto')
+1503:             except Exception:
+1504:                 c.setFont("Helvetica-Bold",6); c.drawCentredString(logo_x+logo_w/2, logo_y+logo_h/2-2,"LOGO")
+1505:         else:
+1506:             c.setFont("Helvetica-Bold",7); c.drawCentredString(logo_x+logo_w/2, logo_y+logo_h/2+4,"COMPANY")
+1507:             c.drawCentredString(logo_x+logo_w/2, logo_y+logo_h/2-6,"LOGO")
+1508:         c.setFont("Helvetica-Bold",14); c.drawCentredString(W/2+18, y_top-10, COMPANY)
+1509:         c.setFont("Helvetica-Bold",10); c.drawCentredString(W/2+18, y_top-26, str(title).upper())
+1510:         c.setFont("Helvetica",7); c.drawRightString(W-24, y_top-43, datetime.now().strftime("Printed: %d-%m-%Y %H:%M"))
+1511: 
+1512:         # Professional document information box.
+1513:         info_top=logo_y-12
 ```
 ```text
-1543:                 # naturally occupies the right-hand cell when supplied second.
-1544:                 c.setFont("Helvetica-Bold",7)
-1545:                 c.drawString(xx,yy,(label+":")[:28])
-1546:                 c.setFont("Helvetica",7)
-1547:                 c.drawString(xx+58,yy,val[:58])
-1548:             return box_y-12
-1549:         return info_top-6
-1550: 
-1551:     def _report_footer(self, c, page_no, page_size=A4):
-1552:         W,H=page_size
-1553:         c.setStrokeColorRGB(0.45,0.45,0.45); c.setLineWidth(0.5); c.line(24,24,W-24,24)
-1554:         c.setFillColorRGB(0.25,0.25,0.25); c.setFont("Helvetica",7)
-1555:         c.drawString(24,13,REPORT_FOOTER)
-1556:         c.drawRightString(W-24,13,f"Page {page_no}")
-1557:         c.setFillColorRGB(0,0,0)
-1558: 
-1559:     def _grr_signature_block(self, c, y, page_size=A4):
-1560:         """Draw the three requested transaction-document signature lines."""
-1561:         W,H=page_size
-1562:         labels=["Prepared By","Store Keeper","Store Incharge"]
-1563:         block_h=70
+1546:                 # naturally occupies the right-hand cell when supplied second.
+1547:                 c.setFont("Helvetica-Bold",7)
+1548:                 c.drawString(xx,yy,(label+":")[:28])
+1549:                 c.setFont("Helvetica",7)
+1550:                 c.drawString(xx+58,yy,val[:58])
+1551:             return box_y-12
+1552:         return info_top-6
+1553: 
+1554:     def _report_footer(self, c, page_no, page_size=A4):
+1555:         W,H=page_size
+1556:         c.setStrokeColorRGB(0.45,0.45,0.45); c.setLineWidth(0.5); c.line(24,24,W-24,24)
+1557:         c.setFillColorRGB(0.25,0.25,0.25); c.setFont("Helvetica",7)
+1558:         c.drawString(24,13,REPORT_FOOTER)
+1559:         c.drawRightString(W-24,13,f"Page {page_no}")
+1560:         c.setFillColorRGB(0,0,0)
+1561: 
+1562:     def _grr_signature_block(self, c, y, page_size=A4):
+1563:         """Draw the three requested transaction-document signature lines."""
+1564:         W,H=page_size
+1565:         labels=["Prepared By","Store Keeper","Store Incharge"]
+1566:         block_h=70
 ```
 ```text
-1570:             x=left+i*col_w
-1571:             c.setLineWidth(0.6)
-1572:             c.line(x+30,top-34,x+col_w-30,top-34)
-1573:             c.setFont("Helvetica-Bold",7)
-1574:             c.drawCentredString(x+col_w/2,top-48,label)
-1575:         return True
-1576: 
-1577:     def _finish_page(self, c, page_no, page_size=A4):
-1578:         self._report_footer(c,page_no,page_size); c.showPage()
+1573:             x=left+i*col_w
+1574:             c.setLineWidth(0.6)
+1575:             c.line(x+30,top-34,x+col_w-30,top-34)
+1576:             c.setFont("Helvetica-Bold",7)
+1577:             c.drawCentredString(x+col_w/2,top-48,label)
+1578:         return True
 1579: 
-1580:     def _wrap_text_to_width(self, text, font_name, font_size, max_width):
-1581:         """Word-wrap `text` into a list of lines that each fit inside
-1582:         max_width (points) at the given font, breaking mid-word only when a
-1583:         single word is itself wider than the column."""
-1584:         text=str(text) if text is not None else ""
-1585:         if not text:
-1586:             return [""]
-1587:         def fits(s): return stringWidth(s, font_name, font_size) <= max_width
-1588:         lines=[]; cur=""
-1589:         for word in text.split(" "):
-1590:             trial=(cur+" "+word).strip() if cur else word
+1580:     def _finish_page(self, c, page_no, page_size=A4):
+1581:         self._report_footer(c,page_no,page_size); c.showPage()
+1582: 
+1583:     def _wrap_text_to_width(self, text, font_name, font_size, max_width):
+1584:         """Word-wrap `text` into a list of lines that each fit inside
+1585:         max_width (points) at the given font, breaking mid-word only when a
+1586:         single word is itself wider than the column."""
+1587:         text=str(text) if text is not None else ""
+1588:         if not text:
+1589:             return [""]
+1590:         def fits(s): return stringWidth(s, font_name, font_size) <= max_width
+1591:         lines=[]; cur=""
+1592:         for word in text.split(" "):
+1593:             trial=(cur+" "+word).strip() if cur else word
 ```
 ```text
-1599:                     mid=(lo+hi)//2
-1600:                     if fits(w[:mid]): fit_at=mid; lo=mid+1
-1601:                     else: hi=mid-1
-1602:                 lines.append(w[:fit_at]); w=w[fit_at:]
-1603:             cur=w
-1604:         if cur: lines.append(cur)
-1605:         return lines or [""]
-1606: 
-1607:     def _pdf_table_report(self, path, title, headers, rows, page_size=landscape(A4), font_size=7, col_widths=None, header_lines=None, auto_print=True):
-1608:         """Create a paginated professional PDF with logo, bordered information,
-1609:         GRR signature lines and page numbers. Also keep the same report data in
-1610:         memory so the built-in Windows printer dialog can print directly without
-1611:         requiring a PDF application's PrintTo association."""
-1612:         if not hasattr(self, "_print_jobs"):
-1613:             self._print_jobs = {}
-1614:         self._print_jobs[os.path.abspath(path)] = (title, header_lines or [], tuple(headers), [tuple(r) for r in rows], page_size)
-1615:         c=canvas.Canvas(path,pagesize=page_size); W,H=page_size; c.setTitle(str(title))
-1616:         page=1
-1617:         y=self._report_header(c,title,page_size,header_lines=header_lines)
-1618:         usable=W-56
-1619:         n=max(1,len(headers))
+1602:                     mid=(lo+hi)//2
+1603:                     if fits(w[:mid]): fit_at=mid; lo=mid+1
+1604:                     else: hi=mid-1
+1605:                 lines.append(w[:fit_at]); w=w[fit_at:]
+1606:             cur=w
+1607:         if cur: lines.append(cur)
+1608:         return lines or [""]
+1609: 
+1610:     def _pdf_table_report(self, path, title, headers, rows, page_size=landscape(A4), font_size=7, col_widths=None, header_lines=None, auto_print=True):
+1611:         """Create a paginated professional PDF with logo, bordered information,
+1612:         GRR signature lines and page numbers. Also keep the same report data in
+1613:         memory so the built-in Windows printer dialog can print directly without
+1614:         requiring a PDF application's PrintTo association."""
+1615:         if not hasattr(self, "_print_jobs"):
+1616:             self._print_jobs = {}
+1617:         self._print_jobs[os.path.abspath(path)] = (title, header_lines or [], tuple(headers), [tuple(r) for r in rows], page_size)
+1618:         c=canvas.Canvas(path,pagesize=page_size); W,H=page_size; c.setTitle(str(title))
+1619:         page=1
+1620:         y=self._report_header(c,title,page_size,header_lines=header_lines)
+1621:         usable=W-56
+1622:         n=max(1,len(headers))
 ```
 ```text
-1641:             if desc_idx is not None and desc_idx < len(r):
-1642:                 desc_lines=self._wrap_text_to_width(r[desc_idx],"Helvetica",font_size,max(20,widths[desc_idx]-4))
-1643:             else:
-1644:                 desc_lines=[""]
-1645:             row_h=max(11 if font_size<=7 else 13, len(desc_lines)*line_h+2)
-1646:             # Reserve room on the final page for the three transaction signatures + footer.
-1647:             reserve=120 if is_transaction_doc else 42
-1648:             if y-row_h<reserve:
-1649:                 self._report_footer(c,page,page_size); c.showPage(); page+=1
-1650:                 y=self._report_header(c,title,page_size,header_lines=header_lines); table_header()
-1651:             # Item rows are intentionally border-free. The section/header remains
-1652:             # professional while avoiding the unwanted boxed line around each
-1653:             # individual printed item row. Description is drawn separately
-1654:             # below (auto-fit / wrapped), so it is skipped in this pass.
-1655:             for ci,(xx,val) in enumerate(zip(xs,r)):
-1656:                 if ci==desc_idx: continue
-1657:                 c.drawString(xx,y,str(val if val is not None else "")[:28])
-1658:             if desc_idx is not None and desc_idx < len(r):
-1659:                 for li,ln in enumerate(desc_lines):
-1660:                     c.drawString(xs[desc_idx],y-li*line_h,ln)
-1661:             y-=row_h
+1644:             if desc_idx is not None and desc_idx < len(r):
+1645:                 desc_lines=self._wrap_text_to_width(r[desc_idx],"Helvetica",font_size,max(20,widths[desc_idx]-4))
+1646:             else:
+1647:                 desc_lines=[""]
+1648:             row_h=max(11 if font_size<=7 else 13, len(desc_lines)*line_h+2)
+1649:             # Reserve room on the final page for the three transaction signatures + footer.
+1650:             reserve=120 if is_transaction_doc else 42
+1651:             if y-row_h<reserve:
+1652:                 self._report_footer(c,page,page_size); c.showPage(); page+=1
+1653:                 y=self._report_header(c,title,page_size,header_lines=header_lines); table_header()
+1654:             # Item rows are intentionally border-free. The section/header remains
+1655:             # professional while avoiding the unwanted boxed line around each
+1656:             # individual printed item row. Description is drawn separately
+1657:             # below (auto-fit / wrapped), so it is skipped in this pass.
+1658:             for ci,(xx,val) in enumerate(zip(xs,r)):
+1659:                 if ci==desc_idx: continue
+1660:                 c.drawString(xx,y,str(val if val is not None else "")[:28])
+1661:             if desc_idx is not None and desc_idx < len(r):
+1662:                 for li,ln in enumerate(desc_lines):
+1663:                     c.drawString(xs[desc_idx],y-li*line_h,ln)
+1664:             y-=row_h
 ```
 ```text
-1656:                 if ci==desc_idx: continue
-1657:                 c.drawString(xx,y,str(val if val is not None else "")[:28])
-1658:             if desc_idx is not None and desc_idx < len(r):
-1659:                 for li,ln in enumerate(desc_lines):
-1660:                     c.drawString(xs[desc_idx],y-li*line_h,ln)
-1661:             y-=row_h
-1662:         if is_transaction_doc:
-1663:             # Keep the three requested transaction signatures at the physical bottom
-1664:             # final page, immediately above the report footer.  If the item
-1665:             # table reaches this reserved area, start a fresh final page.
-1666:             bottom_sig_y = 138
-1667:             if y < 165:
-1668:                 self._report_footer(c,page,page_size); c.showPage(); page+=1
-1669:                 y=self._report_header(c,title,page_size,header_lines=header_lines)
-1670:             # Draw signatures at a fixed bottom position so they never float
-1671:             # directly after the last item row.
-1672:             self._grr_signature_block(c,bottom_sig_y,page_size)
-1673:         self._report_footer(c,page,page_size); c.save()
-1674:         if auto_print:
-1675:             self.print_pdf(path)
-1676:         return path
+1659:                 if ci==desc_idx: continue
+1660:                 c.drawString(xx,y,str(val if val is not None else "")[:28])
+1661:             if desc_idx is not None and desc_idx < len(r):
+1662:                 for li,ln in enumerate(desc_lines):
+1663:                     c.drawString(xs[desc_idx],y-li*line_h,ln)
+1664:             y-=row_h
+1665:         if is_transaction_doc:
+1666:             # Keep the three requested transaction signatures at the physical bottom
+1667:             # final page, immediately above the report footer.  If the item
+1668:             # table reaches this reserved area, start a fresh final page.
+1669:             bottom_sig_y = 138
+1670:             if y < 165:
+1671:                 self._report_footer(c,page,page_size); c.showPage(); page+=1
+1672:                 y=self._report_header(c,title,page_size,header_lines=header_lines)
+1673:             # Draw signatures at a fixed bottom position so they never float
+1674:             # directly after the last item row.
+1675:             self._grr_signature_block(c,bottom_sig_y,page_size)
+1676:         self._report_footer(c,page,page_size); c.save()
+1677:         if auto_print:
+1678:             self.print_pdf(path)
+1679:         return path
 ```
 ```text
-1670:             # Draw signatures at a fixed bottom position so they never float
-1671:             # directly after the last item row.
-1672:             self._grr_signature_block(c,bottom_sig_y,page_size)
-1673:         self._report_footer(c,page,page_size); c.save()
-1674:         if auto_print:
-1675:             self.print_pdf(path)
-1676:         return path
-1677: 
-1678:     def show_preview_window(self, title, header_lines, columns, rows, widths=None, on_save=None):
-1679:         """Professional on-screen preview showing bordered document information
-1680:         and a bordered item section. GRN Date is displayed in the right column."""
-1681:         win,winbody=self._internal_window("Inventory Management - [Preview Report]","1180x760")
-1682:         brand=ttk.Frame(winbody,padding=(14,10)); brand.pack(fill="x")
-1683:         # Preview intentionally hides the company logo and company name.
-1684:         # The actual generated/printed PDF still contains both via
-1685:         # _report_header(), so only the on-screen preview is affected.
-1686:         brand_text=ttk.Frame(brand); brand_text.pack(fill="x",expand=True)
-1687:         ttk.Label(brand_text,text=str(title).upper(),font=("Segoe UI",10,"bold")).pack(anchor="center")
-1688:         ttk.Label(brand_text,text=datetime.now().strftime("Printed: %d-%m-%Y %H:%M"),font=("Segoe UI",8)).pack(anchor="center")
-1689: 
-1690:         info=ttk.LabelFrame(winbody,text="Document Information",padding=8); info.pack(fill="x",padx=14,pady=(2,8))
+1673:             # Draw signatures at a fixed bottom position so they never float
+1674:             # directly after the last item row.
+1675:             self._grr_signature_block(c,bottom_sig_y,page_size)
+1676:         self._report_footer(c,page,page_size); c.save()
+1677:         if auto_print:
+1678:             self.print_pdf(path)
+1679:         return path
+1680: 
+1681:     def show_preview_window(self, title, header_lines, columns, rows, widths=None, on_save=None):
+1682:         """Professional on-screen preview showing bordered document information
+1683:         and a bordered item section. GRN Date is displayed in the right column."""
+1684:         win,winbody=self._internal_window("Inventory Management - [Preview Report]","1180x760")
+1685:         brand=ttk.Frame(winbody,padding=(14,10)); brand.pack(fill="x")
+1686:         # Preview intentionally hides the company logo and company name.
+1687:         # The actual generated/printed PDF still contains both via
+1688:         # _report_header(), so only the on-screen preview is affected.
+1689:         brand_text=ttk.Frame(brand); brand_text.pack(fill="x",expand=True)
+1690:         ttk.Label(brand_text,text=str(title).upper(),font=("Segoe UI",10,"bold")).pack(anchor="center")
+1691:         ttk.Label(brand_text,text=datetime.now().strftime("Printed: %d-%m-%Y %H:%M"),font=("Segoe UI",8)).pack(anchor="center")
+1692: 
+1693:         info=ttk.LabelFrame(winbody,text="Document Information",padding=8); info.pack(fill="x",padx=14,pady=(2,8))
 ```
 ```text
-1711:         ttk.Separator(winbody,orient="horizontal").pack(fill="x")
-1712: 
-1713:         items=ttk.LabelFrame(winbody,text=f"ITEMS / RECEIPT DETAILS  —  {len(rows)} line(s)",padding=8)
-1714:         items.pack(fill="both",expand=True,padx=14,pady=(4,8))
-1715:         tr=self.make_tree(items,columns,widths)
-1716:         for r in rows: tr.insert("", "end", values=r)
-1717: 
-1718:         ttk.Button(toolbar,text="Print",style="Dashboard.TButton",command=lambda:self.print_preview_window(title,header_lines,columns,rows)).pack(side="left",padx=2)
-1719:         ttk.Button(toolbar,text="Export PDF",style="Dashboard.TButton",command=lambda:self.export_preview_pdf(title,header_lines,columns,rows)).pack(side="left",padx=2)
-1720:         ttk.Button(toolbar,text="Export Word",style="Dashboard.TButton",command=lambda:self.export_preview_word(title,header_lines,columns,rows)).pack(side="left",padx=2)
-1721:         ttk.Button(toolbar,text="Export Excel",style="Dashboard.TButton",command=lambda:self.export_preview_excel(title,header_lines,columns,rows)).pack(side="left",padx=2)
-1722:         ttk.Button(toolbar,text="Close",style="Dashboard.TButton",command=win._internal_close).pack(side="right",padx=2)
-1723:         win.bind("<Control-f>",bind_preview_find)
-1724:         win.bind("<Control-F>",bind_preview_find)
-1725: 
-1726:         # GRN Receipt and Purchase Demand use the requested three signature lines at the bottom.
-1727:         is_transaction_preview=("GOODS RECEIPT" in str(title).upper() or str(title).upper().startswith("PURCHASE DEMAND"))
-1728:         if is_transaction_preview:
-1729:             sig=ttk.Frame(winbody,padding=7); sig.pack(fill="x",padx=14,pady=(0,6))
-1730:             for i,label in enumerate(["Prepared By","Store Keeper","Store Incharge"]):
-1731:                 sig.columnconfigure(i,weight=1)
+1714:         ttk.Separator(winbody,orient="horizontal").pack(fill="x")
+1715: 
+1716:         items=ttk.LabelFrame(winbody,text=f"ITEMS / RECEIPT DETAILS  —  {len(rows)} line(s)",padding=8)
+1717:         items.pack(fill="both",expand=True,padx=14,pady=(4,8))
+1718:         tr=self.make_tree(items,columns,widths)
+1719:         for r in rows: tr.insert("", "end", values=r)
+1720: 
+1721:         ttk.Button(toolbar,text="Print",style="Dashboard.TButton",command=lambda:self.print_preview_window(title,header_lines,columns,rows)).pack(side="left",padx=2)
+1722:         ttk.Button(toolbar,text="Export PDF",style="Dashboard.TButton",command=lambda:self.export_preview_pdf(title,header_lines,columns,rows)).pack(side="left",padx=2)
+1723:         ttk.Button(toolbar,text="Export Word",style="Dashboard.TButton",command=lambda:self.export_preview_word(title,header_lines,columns,rows)).pack(side="left",padx=2)
+1724:         ttk.Button(toolbar,text="Export Excel",style="Dashboard.TButton",command=lambda:self.export_preview_excel(title,header_lines,columns,rows)).pack(side="left",padx=2)
+1725:         ttk.Button(toolbar,text="Close",style="Dashboard.TButton",command=win._internal_close).pack(side="right",padx=2)
+1726:         win.bind("<Control-f>",bind_preview_find)
+1727:         win.bind("<Control-F>",bind_preview_find)
+1728: 
+1729:         # GRN Receipt and Purchase Demand use the requested three signature lines at the bottom.
+1730:         is_transaction_preview=("GOODS RECEIPT" in str(title).upper() or str(title).upper().startswith("PURCHASE DEMAND"))
+1731:         if is_transaction_preview:
+1732:             sig=ttk.Frame(winbody,padding=7); sig.pack(fill="x",padx=14,pady=(0,6))
+1733:             for i,label in enumerate(["Prepared By","Store Keeper","Store Incharge"]):
+1734:                 sig.columnconfigure(i,weight=1)
 ```
 ```text
-1729:             sig=ttk.Frame(winbody,padding=7); sig.pack(fill="x",padx=14,pady=(0,6))
-1730:             for i,label in enumerate(["Prepared By","Store Keeper","Store Incharge"]):
-1731:                 sig.columnconfigure(i,weight=1)
-1732:                 cell=ttk.Frame(sig,padding=4); cell.grid(row=0,column=i,sticky="ew")
-1733:                 ttk.Label(cell,text="________________",font=("Segoe UI",8),anchor="center").pack(fill="x")
-1734:                 ttk.Label(cell,text=label,font=("Segoe UI",8,"bold"),anchor="center").pack(fill="x",pady=(3,0))
-1735: 
-1736:         btnbar=ttk.Frame(winbody,padding=(14,6)); btnbar.pack(fill="x")
-1737:         ttk.Button(btnbar,text="PRINT / PDF",style="Dashboard.TButton",command=lambda:self.print_preview_window(title,header_lines,columns,rows)).pack(side="left",padx=2)
-1738:         ttk.Button(btnbar,text="PRINT AGAIN",style="Dashboard.TButton",command=lambda:self.print_preview_window(title,header_lines,columns,rows)).pack(side="left",padx=2)
-1739:         ttk.Button(btnbar,text="EXPORT WORD",style="Dashboard.TButton",command=lambda:self.export_preview_word(title,header_lines,columns,rows)).pack(side="left",padx=2)
-1740:         ttk.Button(btnbar,text="EXPORT EXCEL",style="Dashboard.TButton",command=lambda:self.export_preview_excel(title,header_lines,columns,rows)).pack(side="left",padx=2)
-1741:         if on_save:
-1742:             ttk.Button(btnbar,text="LOOKS GOOD - SAVE NOW",command=lambda:(on_save(),win._internal_close())).pack(side="left",padx=4)
-1743:         ttk.Button(btnbar,text="CLOSE PREVIEW",style="Dashboard.TButton",command=win._internal_close).pack(side="left",padx=2)
-1744:         if not is_transaction_preview:
-1745:             ttk.Label(winbody,text="Authorized Signatory: ____________________    Store In-Charge: ____________________    Page 1 / Preview",font=("Segoe UI",8)).pack(fill="x",padx=14,pady=(0,8))
-1746:         # IMPORTANT: this must remain a normal top-level window (not transient
-1747:         # and not grab_set) so Windows displays Minimize + Maximize + Close
-1748:         # exactly like the Preview Report window in the supplied recording.
-1749:         # The Find dialog is opened from this window and is independent.
+1732:             sig=ttk.Frame(winbody,padding=7); sig.pack(fill="x",padx=14,pady=(0,6))
+1733:             for i,label in enumerate(["Prepared By","Store Keeper","Store Incharge"]):
+1734:                 sig.columnconfigure(i,weight=1)
+1735:                 cell=ttk.Frame(sig,padding=4); cell.grid(row=0,column=i,sticky="ew")
+1736:                 ttk.Label(cell,text="________________",font=("Segoe UI",8),anchor="center").pack(fill="x")
+1737:                 ttk.Label(cell,text=label,font=("Segoe UI",8,"bold"),anchor="center").pack(fill="x",pady=(3,0))
+1738: 
+1739:         btnbar=ttk.Frame(winbody,padding=(14,6)); btnbar.pack(fill="x")
+1740:         ttk.Button(btnbar,text="PRINT / PDF",style="Dashboard.TButton",command=lambda:self.print_preview_window(title,header_lines,columns,rows)).pack(side="left",padx=2)
+1741:         ttk.Button(btnbar,text="PRINT AGAIN",style="Dashboard.TButton",command=lambda:self.print_preview_window(title,header_lines,columns,rows)).pack(side="left",padx=2)
+1742:         ttk.Button(btnbar,text="EXPORT WORD",style="Dashboard.TButton",command=lambda:self.export_preview_word(title,header_lines,columns,rows)).pack(side="left",padx=2)
+1743:         ttk.Button(btnbar,text="EXPORT EXCEL",style="Dashboard.TButton",command=lambda:self.export_preview_excel(title,header_lines,columns,rows)).pack(side="left",padx=2)
+1744:         if on_save:
+1745:             ttk.Button(btnbar,text="LOOKS GOOD - SAVE NOW",command=lambda:(on_save(),win._internal_close())).pack(side="left",padx=4)
+1746:         ttk.Button(btnbar,text="CLOSE PREVIEW",style="Dashboard.TButton",command=win._internal_close).pack(side="left",padx=2)
+1747:         if not is_transaction_preview:
+1748:             ttk.Label(winbody,text="Authorized Signatory: ____________________    Store In-Charge: ____________________    Page 1 / Preview",font=("Segoe UI",8)).pack(fill="x",padx=14,pady=(0,8))
+1749:         # IMPORTANT: this must remain a normal top-level window (not transient
+1750:         # and not grab_set) so Windows displays Minimize + Maximize + Close
+1751:         # exactly like the Preview Report window in the supplied recording.
+1752:         # The Find dialog is opened from this window and is independent.
 ```
 ```text
-1742:             ttk.Button(btnbar,text="LOOKS GOOD - SAVE NOW",command=lambda:(on_save(),win._internal_close())).pack(side="left",padx=4)
-1743:         ttk.Button(btnbar,text="CLOSE PREVIEW",style="Dashboard.TButton",command=win._internal_close).pack(side="left",padx=2)
-1744:         if not is_transaction_preview:
-1745:             ttk.Label(winbody,text="Authorized Signatory: ____________________    Store In-Charge: ____________________    Page 1 / Preview",font=("Segoe UI",8)).pack(fill="x",padx=14,pady=(0,8))
-1746:         # IMPORTANT: this must remain a normal top-level window (not transient
-1747:         # and not grab_set) so Windows displays Minimize + Maximize + Close
-1748:         # exactly like the Preview Report window in the supplied recording.
-1749:         # The Find dialog is opened from this window and is independent.
-1750:         win.bind("<Escape>",lambda e:(win._internal_close(),"break"))
-1751:         win.focus_force()
-1752: 
-1753:     def _safe_report_name(self, title, extension):
-1754:         safe="".join(ch for ch in str(title) if ch.isalnum() or ch in "-_ ").strip()
-1755:         safe=safe.replace(" ","_") or "Preview"
-1756:         return os.path.join(REPORTS_DIR, f"{safe}_Preview.{extension}")
-1757: 
-1758:     def print_preview_window(self, title, header_lines, columns, rows):
-1759:         # Printing opens only the printer dialog. It must NOT generate a PDF.
-1760:         self._open_direct_printer(title, header_lines, columns, rows,
-1761:                                   landscape(A4) if len(columns) > 8 else A4)
-1762: 
+1745:             ttk.Button(btnbar,text="LOOKS GOOD - SAVE NOW",command=lambda:(on_save(),win._internal_close())).pack(side="left",padx=4)
+1746:         ttk.Button(btnbar,text="CLOSE PREVIEW",style="Dashboard.TButton",command=win._internal_close).pack(side="left",padx=2)
+1747:         if not is_transaction_preview:
+1748:             ttk.Label(winbody,text="Authorized Signatory: ____________________    Store In-Charge: ____________________    Page 1 / Preview",font=("Segoe UI",8)).pack(fill="x",padx=14,pady=(0,8))
+1749:         # IMPORTANT: this must remain a normal top-level window (not transient
+1750:         # and not grab_set) so Windows displays Minimize + Maximize + Close
+1751:         # exactly like the Preview Report window in the supplied recording.
+1752:         # The Find dialog is opened from this window and is independent.
+1753:         win.bind("<Escape>",lambda e:(win._internal_close(),"break"))
+1754:         win.focus_force()
+1755: 
+1756:     def _safe_report_name(self, title, extension):
+1757:         safe="".join(ch for ch in str(title) if ch.isalnum() or ch in "-_ ").strip()
+1758:         safe=safe.replace(" ","_") or "Preview"
+1759:         return os.path.join(REPORTS_DIR, f"{safe}_Preview.{extension}")
+1760: 
+1761:     def print_preview_window(self, title, header_lines, columns, rows):
+1762:         # Printing opens only the printer dialog. It must NOT generate a PDF.
+1763:         self._open_direct_printer(title, header_lines, columns, rows,
+1764:                                   landscape(A4) if len(columns) > 8 else A4)
+1765: 
 ```
 ```text
-1755:         safe=safe.replace(" ","_") or "Preview"
-1756:         return os.path.join(REPORTS_DIR, f"{safe}_Preview.{extension}")
-1757: 
-1758:     def print_preview_window(self, title, header_lines, columns, rows):
-1759:         # Printing opens only the printer dialog. It must NOT generate a PDF.
-1760:         self._open_direct_printer(title, header_lines, columns, rows,
-1761:                                   landscape(A4) if len(columns) > 8 else A4)
-1762: 
-1763:     def _fallback_pdf_export(self, path, title, header_lines, columns, rows):
-1764:         """Minimal dependency-free PDF fallback used only if ReportLab is unavailable.
-1765:         This keeps the Export PDF button functional on a machine where the bundled
-1766:         ReportLab package cannot be imported."""
-1767:         def esc(v):
-1768:             return str(v if v is not None else "").replace("\\","\\\\").replace("(","\\(").replace(")","\\)").replace("\r"," ").replace("\n"," ")
-1769:         W,H=842,595
-1770:         lines=["BT", "/F1 12 Tf", "40 560 Td"]
-1771:         def add(txt,size=8,leading=11):
-1772:             lines.append(f"/F1 {size} Tf")
-1773:             lines.append(f"0 -{leading} Td ({esc(txt)}) Tj")
-1774:         add(str(title),12,16)
-1775:         for h in header_lines or []:
+1758:         safe=safe.replace(" ","_") or "Preview"
+1759:         return os.path.join(REPORTS_DIR, f"{safe}_Preview.{extension}")
+1760: 
+1761:     def print_preview_window(self, title, header_lines, columns, rows):
+1762:         # Printing opens only the printer dialog. It must NOT generate a PDF.
+1763:         self._open_direct_printer(title, header_lines, columns, rows,
+1764:                                   landscape(A4) if len(columns) > 8 else A4)
+1765: 
+1766:     def _fallback_pdf_export(self, path, title, header_lines, columns, rows):
+1767:         """Minimal dependency-free PDF fallback used only if ReportLab is unavailable.
+1768:         This keeps the Export PDF button functional on a machine where the bundled
+1769:         ReportLab package cannot be imported."""
+1770:         def esc(v):
+1771:             return str(v if v is not None else "").replace("\\","\\\\").replace("(","\\(").replace(")","\\)").replace("\r"," ").replace("\n"," ")
+1772:         W,H=842,595
+1773:         lines=["BT", "/F1 12 Tf", "40 560 Td"]
+1774:         def add(txt,size=8,leading=11):
+1775:             lines.append(f"/F1 {size} Tf")
+1776:             lines.append(f"0 -{leading} Td ({esc(txt)}) Tj")
+1777:         add(str(title),12,16)
+1778:         for h in header_lines or []:
 ```
 ```text
-1782:         lines.append("ET")
-1783:         stream="\n".join(lines).encode("latin-1","replace")
-1784:         objs=[]
-1785:         objs.append(b"<< /Type /Catalog /Pages 2 0 R >>")
-1786:         objs.append(b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>")
-1787:         objs.append(f"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 {W} {H}] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>".encode())
-1788:         objs.append(b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>")
-1789:         objs.append(f"<< /Length {len(stream)} >>\nstream\n".encode()+stream+b"\nendstream")
-1790:         out=bytearray(b"%PDF-1.4\n%\xe2\xe3\xcf\xd3\n"); offsets=[0]
-1791:         for i,obj in enumerate(objs,1):
-1792:             offsets.append(len(out)); out.extend(f"{i} 0 obj\n".encode()); out.extend(obj); out.extend(b"\nendobj\n")
-1793:         xref=len(out); out.extend(f"xref\n0 {len(objs)+1}\n0000000000 65535 f \n".encode())
-1794:         for off in offsets[1:]: out.extend(f"{off:010d} 00000 n \n".encode())
-1795:         out.extend(f"trailer\n<< /Size {len(objs)+1} /Root 1 0 R >>\nstartxref\n{xref}\n%%EOF\n".encode())
-1796:         with open(path,"wb") as f: f.write(out)
-1797: 
-1798:     def _save_entry_report(self, title, header_lines, columns, rows):
-1799:         try:
-1800:             os.makedirs(REPORTS_DIR, exist_ok=True)
-1801:             safe = "".join(ch for ch in str(title) if ch.isalnum() or ch in "-_ ").strip().replace(" ", "_") or "Entry"
-1802:             stamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+1785:         lines.append("ET")
+1786:         stream="\n".join(lines).encode("latin-1","replace")
+1787:         objs=[]
+1788:         objs.append(b"<< /Type /Catalog /Pages 2 0 R >>")
+1789:         objs.append(b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>")
+1790:         objs.append(f"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 {W} {H}] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>".encode())
+1791:         objs.append(b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>")
+1792:         objs.append(f"<< /Length {len(stream)} >>\nstream\n".encode()+stream+b"\nendstream")
+1793:         out=bytearray(b"%PDF-1.4\n%\xe2\xe3\xcf\xd3\n"); offsets=[0]
+1794:         for i,obj in enumerate(objs,1):
+1795:             offsets.append(len(out)); out.extend(f"{i} 0 obj\n".encode()); out.extend(obj); out.extend(b"\nendobj\n")
+1796:         xref=len(out); out.extend(f"xref\n0 {len(objs)+1}\n0000000000 65535 f \n".encode())
+1797:         for off in offsets[1:]: out.extend(f"{off:010d} 00000 n \n".encode())
+1798:         out.extend(f"trailer\n<< /Size {len(objs)+1} /Root 1 0 R >>\nstartxref\n{xref}\n%%EOF\n".encode())
+1799:         with open(path,"wb") as f: f.write(out)
+1800: 
+1801:     def _save_entry_report(self, title, header_lines, columns, rows):
+1802:         try:
+1803:             os.makedirs(REPORTS_DIR, exist_ok=True)
+1804:             safe = "".join(ch for ch in str(title) if ch.isalnum() or ch in "-_ ").strip().replace(" ", "_") or "Entry"
+1805:             stamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
 ```
 ```text
-1795:         out.extend(f"trailer\n<< /Size {len(objs)+1} /Root 1 0 R >>\nstartxref\n{xref}\n%%EOF\n".encode())
-1796:         with open(path,"wb") as f: f.write(out)
-1797: 
-1798:     def _save_entry_report(self, title, header_lines, columns, rows):
-1799:         try:
-1800:             os.makedirs(REPORTS_DIR, exist_ok=True)
-1801:             safe = "".join(ch for ch in str(title) if ch.isalnum() or ch in "-_ ").strip().replace(" ", "_") or "Entry"
-1802:             stamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-1803:             path = os.path.join(REPORTS_DIR, f"{safe}_{stamp}.pdf")
-1804:             page_size = landscape(A4) if len(columns) > 8 else A4
-1805:             if REPORTLAB:
-1806:                 self._pdf_table_report(path, title, columns, rows, page_size, 7, header_lines=header_lines, auto_print=False)
-1807:             else:
-1808:                 self._fallback_pdf_export(path, title, header_lines, columns, rows)
-1809:             if not os.path.isfile(path) or os.path.getsize(path) <= 0:
-1810:                 raise IOError("PDF was not created in C:\\StoreInventoryManagement\\Reports.")
-1811:             with open(path, "rb") as f:
-1812:                 if f.read(5) != b"%PDF-":
-1813:                     raise IOError("Generated report is not a valid PDF.")
-1814:             self._last_entry_report_path = path
-1815:             return path
+1798:         out.extend(f"trailer\n<< /Size {len(objs)+1} /Root 1 0 R >>\nstartxref\n{xref}\n%%EOF\n".encode())
+1799:         with open(path,"wb") as f: f.write(out)
+1800: 
+1801:     def _save_entry_report(self, title, header_lines, columns, rows):
+1802:         try:
+1803:             os.makedirs(REPORTS_DIR, exist_ok=True)
+1804:             safe = "".join(ch for ch in str(title) if ch.isalnum() or ch in "-_ ").strip().replace(" ", "_") or "Entry"
+1805:             stamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+1806:             path = os.path.join(REPORTS_DIR, f"{safe}_{stamp}.pdf")
+1807:             page_size = landscape(A4) if len(columns) > 8 else A4
+1808:             if REPORTLAB:
+1809:                 self._pdf_table_report(path, title, columns, rows, page_size, 7, header_lines=header_lines, auto_print=False)
+1810:             else:
+1811:                 self._fallback_pdf_export(path, title, header_lines, columns, rows)
+1812:             if not os.path.isfile(path) or os.path.getsize(path) <= 0:
+1813:                 raise IOError("PDF was not created in C:\\StoreInventoryManagement\\Reports.")
+1814:             with open(path, "rb") as f:
+1815:                 if f.read(5) != b"%PDF-":
+1816:                     raise IOError("Generated report is not a valid PDF.")
+1817:             self._last_entry_report_path = path
+1818:             return path
 ```
 ```text
-1809:             if not os.path.isfile(path) or os.path.getsize(path) <= 0:
-1810:                 raise IOError("PDF was not created in C:\\StoreInventoryManagement\\Reports.")
-1811:             with open(path, "rb") as f:
-1812:                 if f.read(5) != b"%PDF-":
-1813:                     raise IOError("Generated report is not a valid PDF.")
-1814:             self._last_entry_report_path = path
-1815:             return path
-1816:         except Exception as exc:
-1817:             self._last_entry_report_path = None
-1818:             return None
-1819: 
-1820:     def export_preview_pdf(self, title, header_lines, columns, rows):
-1821:         """Write the visible preview to C:\StoreInventoryManagement\Reports."""
-1822:         try:
-1823:             os.makedirs(REPORTS_DIR, exist_ok=True)
-1824:             safe = "".join(ch for ch in str(title) if ch.isalnum() or ch in "-_ ").strip().replace(" ", "_") or "Preview"
-1825:             path = os.path.abspath(os.path.join(REPORTS_DIR, f"{safe}_Preview_{datetime.now().strftime('%Y%m%d_%H%M%S_%f')}.pdf"))
-1826:             generated = False
-1827:             if REPORTLAB:
-1828:                 try:
-1829:                     self._pdf_table_report(path, title, columns, rows, landscape(A4), 7, header_lines=header_lines, auto_print=False)
+1812:             if not os.path.isfile(path) or os.path.getsize(path) <= 0:
+1813:                 raise IOError("PDF was not created in C:\\StoreInventoryManagement\\Reports.")
+1814:             with open(path, "rb") as f:
+1815:                 if f.read(5) != b"%PDF-":
+1816:                     raise IOError("Generated report is not a valid PDF.")
+1817:             self._last_entry_report_path = path
+1818:             return path
+1819:         except Exception as exc:
+1820:             self._last_entry_report_path = None
+1821:             return None
+1822: 
+1823:     def export_preview_pdf(self, title, header_lines, columns, rows):
+1824:         """Write the visible preview to C:\StoreInventoryManagement\Reports."""
+1825:         try:
+1826:             os.makedirs(REPORTS_DIR, exist_ok=True)
+1827:             safe = "".join(ch for ch in str(title) if ch.isalnum() or ch in "-_ ").strip().replace(" ", "_") or "Preview"
+1828:             path = os.path.abspath(os.path.join(REPORTS_DIR, f"{safe}_Preview_{datetime.now().strftime('%Y%m%d_%H%M%S_%f')}.pdf"))
+1829:             generated = False
+1830:             if REPORTLAB:
+1831:                 try:
+1832:                     self._pdf_table_report(path, title, columns, rows, landscape(A4), 7, header_lines=header_lines, auto_print=False)
 ```
 ```text
-1826:             generated = False
-1827:             if REPORTLAB:
-1828:                 try:
-1829:                     self._pdf_table_report(path, title, columns, rows, landscape(A4), 7, header_lines=header_lines, auto_print=False)
-1830:                     generated = True
-1831:                 except Exception:
-1832:                     generated = False
-1833:             if not generated:
-1834:                 self._fallback_pdf_export(path, title, header_lines, columns, rows)
-1835:             if not os.path.isfile(path) or os.path.getsize(path) <= 0:
-1836:                 raise IOError("The PDF file was not created in the Reports folder.")
-1837:             with open(path, "rb") as pf:
-1838:                 signature = pf.read(5)
-1839:             if signature != b"%PDF-":
-1840:                 raise IOError("The generated file is not a valid PDF.")
-1841:             self._last_report_path = path
-1842:             try:
-1843:                 webbrowser.open("file://" + path)
-1844:             except Exception:
-1845:                 self.open_file(path)
-1846:             return path
+1829:             generated = False
+1830:             if REPORTLAB:
+1831:                 try:
+1832:                     self._pdf_table_report(path, title, columns, rows, landscape(A4), 7, header_lines=header_lines, auto_print=False)
+1833:                     generated = True
+1834:                 except Exception:
+1835:                     generated = False
+1836:             if not generated:
+1837:                 self._fallback_pdf_export(path, title, header_lines, columns, rows)
+1838:             if not os.path.isfile(path) or os.path.getsize(path) <= 0:
+1839:                 raise IOError("The PDF file was not created in the Reports folder.")
+1840:             with open(path, "rb") as pf:
+1841:                 signature = pf.read(5)
+1842:             if signature != b"%PDF-":
+1843:                 raise IOError("The generated file is not a valid PDF.")
+1844:             self._last_report_path = path
+1845:             try:
+1846:                 webbrowser.open("file://" + path)
+1847:             except Exception:
+1848:                 self.open_file(path)
+1849:             return path
 ```
 ```text
-1840:                 raise IOError("The generated file is not a valid PDF.")
-1841:             self._last_report_path = path
-1842:             try:
-1843:                 webbrowser.open("file://" + path)
-1844:             except Exception:
-1845:                 self.open_file(path)
-1846:             return path
-1847:         except Exception as e:
-1848:             messagebox.showerror("PDF Export", f"Could not generate the PDF.\n\n{e}")
-1849:             return None
-1850: 
-1851:     def export_preview_word(self, title, header_lines, columns, rows):
-1852:         """Export exactly what is visible in the current preview to Word."""
-1853:         if not DOCX_AVAILABLE:
-1854:             return messagebox.showwarning("Word Export","Word export needs the python-docx package.\\nRun BUILD_AND_INSTALL.bat again, or: pip install python-docx")
-1855:         path=self._safe_report_name(title,"docx")
-1856:         doc=Document()
-1857:         sec=doc.sections[0]
-1858:         sec.header.paragraphs[0].text=f"[ COMPANY LOGO ]    {COMPANY}"
-1859:         sec.header.paragraphs[0].runs[0].bold=True
-1860:         is_transaction_preview = ("GOODS RECEIPT" in str(title).upper() or str(title).upper().startswith("PURCHASE DEMAND"))
+1843:                 raise IOError("The generated file is not a valid PDF.")
+1844:             self._last_report_path = path
+1845:             try:
+1846:                 webbrowser.open("file://" + path)
+1847:             except Exception:
+1848:                 self.open_file(path)
+1849:             return path
+1850:         except Exception as e:
+1851:             messagebox.showerror("PDF Export", f"Could not generate the PDF.\n\n{e}")
+1852:             return None
+1853: 
+1854:     def export_preview_word(self, title, header_lines, columns, rows):
+1855:         """Export exactly what is visible in the current preview to Word."""
+1856:         if not DOCX_AVAILABLE:
+1857:             return messagebox.showwarning("Word Export","Word export needs the python-docx package.\\nRun BUILD_AND_INSTALL.bat again, or: pip install python-docx")
+1858:         path=self._safe_report_name(title,"docx")
+1859:         doc=Document()
+1860:         sec=doc.sections[0]
+1861:         sec.header.paragraphs[0].text=f"[ COMPANY LOGO ]    {COMPANY}"
+1862:         sec.header.paragraphs[0].runs[0].bold=True
+1863:         is_transaction_preview = ("GOODS RECEIPT" in str(title).upper() or str(title).upper().startswith("PURCHASE DEMAND"))
 ```
 ```text
-1882:             doc.add_paragraph("")
-1883:             sig=doc.add_table(rows=2,cols=3)
-1884:             labels=["Prepared By","Store Keeper","Store Incharge"]
-1885:             for i,label in enumerate(labels):
-1886:                 sig.cell(0,i).text="____________________"
-1887:                 sig.cell(1,i).text=label
-1888:                 for para in sig.cell(1,i).paragraphs:
-1889:                     for run in para.runs: run.bold=True
-1890:         doc.save(path)
-1891:         self.open_file(path)
-1892: 
-1893:     def export_preview_excel(self, title, header_lines, columns, rows):
-1894:         """Export exactly what is visible in the current preview to Excel."""
-1895:         if not XLSX_AVAILABLE:
-1896:             return messagebox.showwarning("Excel Export","Excel export needs the openpyxl package.\\nRun BUILD_AND_INSTALL.bat again, or: pip install openpyxl")
-1897:         path=self._safe_report_name(title,"xlsx")
-1898:         wb=openpyxl.Workbook(); ws=wb.active
-1899:         ws.title="Preview"
-1900:         ws.oddHeader.center.text=f"[ COMPANY LOGO ]   {COMPANY}\n{title}"
-1901:         is_transaction_preview = ("GOODS RECEIPT" in str(title).upper() or str(title).upper().startswith("PURCHASE DEMAND"))
-1902:         if not is_transaction_preview:
+1885:             doc.add_paragraph("")
+1886:             sig=doc.add_table(rows=2,cols=3)
+1887:             labels=["Prepared By","Store Keeper","Store Incharge"]
+1888:             for i,label in enumerate(labels):
+1889:                 sig.cell(0,i).text="____________________"
+1890:                 sig.cell(1,i).text=label
+1891:                 for para in sig.cell(1,i).paragraphs:
+1892:                     for run in para.runs: run.bold=True
+1893:         doc.save(path)
+1894:         self.open_file(path)
+1895: 
+1896:     def export_preview_excel(self, title, header_lines, columns, rows):
+1897:         """Export exactly what is visible in the current preview to Excel."""
+1898:         if not XLSX_AVAILABLE:
+1899:             return messagebox.showwarning("Excel Export","Excel export needs the openpyxl package.\\nRun BUILD_AND_INSTALL.bat again, or: pip install openpyxl")
+1900:         path=self._safe_report_name(title,"xlsx")
+1901:         wb=openpyxl.Workbook(); ws=wb.active
+1902:         ws.title="Preview"
+1903:         ws.oddHeader.center.text=f"[ COMPANY LOGO ]   {COMPANY}\n{title}"
+1904:         is_transaction_preview = ("GOODS RECEIPT" in str(title).upper() or str(title).upper().startswith("PURCHASE DEMAND"))
+1905:         if not is_transaction_preview:
 ```
 ```text
-1920:             ws.append(["Prepared By","Store Keeper","Store Incharge"])
-1921:             for col in range(1,4):
-1922:                 ws.cell(row=sig_row,column=col).alignment=Alignment(horizontal="center")
-1923:                 ws.cell(row=sig_row+1,column=col).alignment=Alignment(horizontal="center")
-1924:                 ws.cell(row=sig_row+1,column=col).font=Font(bold=True)
-1925:         for col_cells in ws.columns:
-1926:             length=max((len(str(c.value)) for c in col_cells if c.value is not None),default=10)
-1927:             ws.column_dimensions[col_cells[0].column_letter].width=min(max(length+2,10),50)
-1928:         wb.save(path)
-1929:         self.open_file(path)
-1930: 
-1931:     def make_tree(self,parent,cols,widths=None):
-1932:         fr=ttk.Frame(parent);fr.pack(fill="both",expand=True)
-1933:         tr=ttk.Treeview(fr,columns=cols,show="headings")
-1934:         for i,c in enumerate(cols):
-1935:             tr.heading(c,text=c,anchor="center");tr.column(c,width=(widths[i] if widths else 120),anchor="center",stretch=True)
-1936:         y=ttk.Scrollbar(fr,orient="vertical",command=tr.yview);x=ttk.Scrollbar(fr,orient="horizontal",command=tr.xview)
-1937:         tr.configure(yscrollcommand=y.set,xscrollcommand=x.set)
-1938:         tr.grid(row=0,column=0,sticky="nsew");y.grid(row=0,column=1,sticky="ns");x.grid(row=1,column=0,sticky="ew")
-1939:         fr.rowconfigure(0,weight=1);fr.columnconfigure(0,weight=1)
-1940:         return tr
+1923:             ws.append(["Prepared By","Store Keeper","Store Incharge"])
+1924:             for col in range(1,4):
+1925:                 ws.cell(row=sig_row,column=col).alignment=Alignment(horizontal="center")
+1926:                 ws.cell(row=sig_row+1,column=col).alignment=Alignment(horizontal="center")
+1927:                 ws.cell(row=sig_row+1,column=col).font=Font(bold=True)
+1928:         for col_cells in ws.columns:
+1929:             length=max((len(str(c.value)) for c in col_cells if c.value is not None),default=10)
+1930:             ws.column_dimensions[col_cells[0].column_letter].width=min(max(length+2,10),50)
+1931:         wb.save(path)
+1932:         self.open_file(path)
+1933: 
+1934:     def make_tree(self,parent,cols,widths=None):
+1935:         fr=ttk.Frame(parent);fr.pack(fill="both",expand=True)
+1936:         tr=ttk.Treeview(fr,columns=cols,show="headings")
+1937:         for i,c in enumerate(cols):
+1938:             tr.heading(c,text=c,anchor="center");tr.column(c,width=(widths[i] if widths else 120),anchor="center",stretch=True)
+1939:         y=ttk.Scrollbar(fr,orient="vertical",command=tr.yview);x=ttk.Scrollbar(fr,orient="horizontal",command=tr.xview)
+1940:         tr.configure(yscrollcommand=y.set,xscrollcommand=x.set)
+1941:         tr.grid(row=0,column=0,sticky="nsew");y.grid(row=0,column=1,sticky="ns");x.grid(row=1,column=0,sticky="ew")
+1942:         fr.rowconfigure(0,weight=1);fr.columnconfigure(0,weight=1)
+1943:         return tr
 ```
 ```text
-1993:                     w.state(["!disabled"] if editable else ["disabled"])
-1994:             except Exception:
-1995:                 try: w.configure(state="normal" if editable else "disabled")
-1996:                 except Exception: pass
-1997:             for ch in w.winfo_children(): walk(ch)
-1998:         for root in roots: walk(root)
-1999: 
-2000:     def document_selector(self, parent, label, typ, var, load_callback):
-2001:         """Dropdown for previously saved documents; typing a document number and pressing Enter also loads it."""
-2002:         ttk.Label(parent, text=label).pack(side="left", padx=(4,4))
-2003:         combo=ttk.Combobox(parent, textvariable=var, width=52, state="normal")
-2004:         combo.pack(side="left", padx=4)
-2005:         def refresh():
-2006:             vals=[]
-2007:             if typ=="demand":
-2008:                 rows=self.conn.execute("SELECT demand_no,demand_date,department FROM demands ORDER BY rowid DESC").fetchall()
-2009:                 vals=[f"{r[0]} -> {r[1]} -> {r[2]}" for r in rows]
-2010:             elif typ=="grr":
-2011:                 rows=self.conn.execute("SELECT grr_no,grr_date,department,supplier FROM grr ORDER BY rowid DESC").fetchall()
-2012:                 vals=[f"{r[0]} -> {r[1]} -> {r[2]} -> {r[3]}" for r in rows]
-2013:             else:
+1996:                     w.state(["!disabled"] if editable else ["disabled"])
+1997:             except Exception:
+1998:                 try: w.configure(state="normal" if editable else "disabled")
+1999:                 except Exception: pass
+2000:             for ch in w.winfo_children(): walk(ch)
+2001:         for root in roots: walk(root)
+2002: 
+2003:     def document_selector(self, parent, label, typ, var, load_callback):
+2004:         """Dropdown for previously saved documents; typing a document number and pressing Enter also loads it."""
+2005:         ttk.Label(parent, text=label).pack(side="left", padx=(4,4))
+2006:         combo=ttk.Combobox(parent, textvariable=var, width=52, state="normal")
+2007:         combo.pack(side="left", padx=4)
+2008:         def refresh():
+2009:             vals=[]
+2010:             if typ=="demand":
+2011:                 rows=self.conn.execute("SELECT demand_no,demand_date,department FROM demands ORDER BY rowid DESC").fetchall()
+2012:                 vals=[f"{r[0]} -> {r[1]} -> {r[2]}" for r in rows]
+2013:             elif typ=="grr":
+2014:                 rows=self.conn.execute("SELECT grr_no,grr_date,department,supplier FROM grr ORDER BY rowid DESC").fetchall()
+2015:                 vals=[f"{r[0]} -> {r[1]} -> {r[2]} -> {r[3]}" for r in rows]
+2016:             else:
 ```
 ```text
-2020:             no=text.split(" -> ",1)[0].strip()
-2021:             var.set(no)
-2022:             load_callback(no)
-2023:         combo.bind("<<ComboboxSelected>>", selected)
-2024:         combo.bind("<Return>", selected)
-2025:         ttk.Button(parent,text="LOAD",command=selected).pack(side="left",padx=3)
-2026:         ttk.Button(parent,text="REFRESH",command=refresh).pack(side="left",padx=3)
-2027:         refresh()
-2028:         # Keep the currently open transaction's saved-record list live.
-2029:         # Each save calls refresh_saved_cache(), so newly saved records appear
-2030:         # immediately without closing/reopening the window or pressing Refresh.
-2031:         if not hasattr(self, "_document_selector_refreshers"):
-2032:             self._document_selector_refreshers = {}
-2033:         self._document_selector_refreshers.setdefault(typ, []).append((combo, refresh))
-2034:         return combo
-2035: 
-2036:     def dashboard(self):
-2037:         # Dashboard-only visual refresh. All existing data queries, filters,
-2038:         # callbacks and report/detail behavior are intentionally preserved.
-2039:         self.clearbody()
-2040:         c=self.conn
+2023:             no=text.split(" -> ",1)[0].strip()
+2024:             var.set(no)
+2025:             load_callback(no)
+2026:         combo.bind("<<ComboboxSelected>>", selected)
+2027:         combo.bind("<Return>", selected)
+2028:         ttk.Button(parent,text="LOAD",command=selected).pack(side="left",padx=3)
+2029:         ttk.Button(parent,text="REFRESH",command=refresh).pack(side="left",padx=3)
+2030:         refresh()
+2031:         # Keep the currently open transaction's saved-record list live.
+2032:         # Each save calls refresh_saved_cache(), so newly saved records appear
+2033:         # immediately without closing/reopening the window or pressing Refresh.
+2034:         if not hasattr(self, "_document_selector_refreshers"):
+2035:             self._document_selector_refreshers = {}
+2036:         self._document_selector_refreshers.setdefault(typ, []).append((combo, refresh))
+2037:         return combo
+2038: 
+2039:     def dashboard(self):
+2040:         # Dashboard-only visual refresh. All existing data queries, filters,
+2041:         # callbacks and report/detail behavior are intentionally preserved.
+2042:         self.clearbody()
+2043:         c=self.conn
 ```
 ```text
-2121:             for x in tr.get_children(): tr.delete(x)
-2122:             params=[];where=[]
-2123:             fd_iso=to_iso_date(from_date.get().strip()); td_iso=to_iso_date(to_date.get().strip())
-2124:             if fd_iso: where.append("t.doc_date>=?");params.append(fd_iso)
-2125:             if td_iso: where.append("t.doc_date<=?");params.append(td_iso)
-2126:             if item_filter.get().strip(): where.append("i.description LIKE ?");params.append("%"+item_filter.get().strip()+"%")
-2127:             if code_filter.get().strip(): where.append("t.code LIKE ?");params.append("%"+code_filter.get().strip()+"%")
-2128:             if doc_filter.get()!="ALL": where.append("t.doc_type=?");params.append("GRR" if doc_filter.get()=="GRN" else doc_filter.get())
-2129:             sql="""SELECT t.doc_date,t.doc_type,t.doc_no,t.code,i.description,i.uom,t.qty,t.party,t.ref_no
-2130:                    FROM transactions t JOIN items i ON i.code=t.code"""
-2131:             if where: sql += " WHERE " + " AND ".join(where)
-2132:             sql += " ORDER BY t.doc_date DESC,t.id DESC"
-2133:             rows=list(c.execute(sql,params))
-2134:             running={r[0]:float(r[1] or 0) for r in c.execute("SELECT code,opening_qty FROM items")}
-2135:             alltx=list(c.execute("SELECT id,code,doc_type,qty FROM transactions ORDER BY id"))
-2136:             bal_after={}
-2137:             for txid,cc,typ,qty in alltx:
-2138:                 running.setdefault(cc,0.0)
-2139:                 running[cc]+=float(qty or 0) if typ=="GRR" else -float(qty or 0)
-2140:                 bal_after[txid]=running[cc]
-2141:             for r in rows:
+2124:             for x in tr.get_children(): tr.delete(x)
+2125:             params=[];where=[]
+2126:             fd_iso=to_iso_date(from_date.get().strip()); td_iso=to_iso_date(to_date.get().strip())
+2127:             if fd_iso: where.append("t.doc_date>=?");params.append(fd_iso)
+2128:             if td_iso: where.append("t.doc_date<=?");params.append(td_iso)
+2129:             if item_filter.get().strip(): where.append("i.description LIKE ?");params.append("%"+item_filter.get().strip()+"%")
+2130:             if code_filter.get().strip(): where.append("t.code LIKE ?");params.append("%"+code_filter.get().strip()+"%")
+2131:             if doc_filter.get()!="ALL": where.append("t.doc_type=?");params.append("GRR" if doc_filter.get()=="GRN" else doc_filter.get())
+2132:             sql="""SELECT t.doc_date,t.doc_type,t.doc_no,t.code,i.description,i.uom,t.qty,t.party,t.ref_no
+2133:                    FROM transactions t JOIN items i ON i.code=t.code"""
+2134:             if where: sql += " WHERE " + " AND ".join(where)
+2135:             sql += " ORDER BY t.doc_date DESC,t.id DESC"
+2136:             rows=list(c.execute(sql,params))
+2137:             running={r[0]:float(r[1] or 0) for r in c.execute("SELECT code,opening_qty FROM items")}
+2138:             alltx=list(c.execute("SELECT id,code,doc_type,qty FROM transactions ORDER BY id"))
+2139:             bal_after={}
+2140:             for txid,cc,typ,qty in alltx:
+2141:                 running.setdefault(cc,0.0)
+2142:                 running[cc]+=float(qty or 0) if typ=="GRR" else -float(qty or 0)
+2143:                 bal_after[txid]=running[cc]
+2144:             for r in rows:
 ```
 ```text
-2516:         self.set_page_actions(print=print_inventory,preview=lambda:self.preview_tree("Inventory Codes",tree,[selected_label.get()]))
-2517:         load()
-2518:         tree.bind("<Double-1>",lambda e:self.item_history(tree.item(tree.selection()[0])["values"][1]) if tree.selection() else None)
-2519: 
-2520:     def inventory_codes(self):
-2521:         """Inventory Codes using the classic desktop inventory interface.
+2519:         self.set_page_actions(print=print_inventory,preview=lambda:self.preview_tree("Inventory Codes",tree,[selected_label.get()]))
+2520:         load()
+2521:         tree.bind("<Double-1>",lambda e:self.item_history(tree.item(tree.selection()[0])["values"][1]) if tree.selection() else None)
 2522: 
-2523:         This screen intentionally follows the uploaded Inventory Management
-2524:         reference: a simple module title, compact New/Edit/Delete/Save/
-2525:         Refresh/Print/Close action row, and a full-width editable data grid.
-2526:         All records come from the V18 database, so existing inventory data is
-2527:         preserved rather than recreated.
-2528:         """
-2529:         self.clearbody()
-2530:         # Remove the generic SAP action row; this page owns its own classic
-2531:         # action row just like the reference Inventory/Items screen.
-2532:         if self.body.winfo_children():
-2533:             try:
-2534:                 self.body.winfo_children()[0].destroy()
-2535:             except Exception:
-2536:                 pass
+2523:     def inventory_codes(self):
+2524:         """Inventory Codes using the classic desktop inventory interface.
+2525: 
+2526:         This screen intentionally follows the uploaded Inventory Management
+2527:         reference: a simple module title, compact New/Edit/Delete/Save/
+2528:         Refresh/Print/Close action row, and a full-width editable data grid.
+2529:         All records come from the V18 database, so existing inventory data is
+2530:         preserved rather than recreated.
+2531:         """
+2532:         self.clearbody()
+2533:         # Remove the generic SAP action row; this page owns its own classic
+2534:         # action row just like the reference Inventory/Items screen.
+2535:         if self.body.winfo_children():
+2536:             try:
+2537:                 self.body.winfo_children()[0].destroy()
+2538:             except Exception:
+2539:                 pass
 ```
 ```text
-2589:         if criteria.get("zero_mode")=="exclude": filter_text.append("Zero Balance excluded")
-2590:         if filter_text:
-2591:             tk.Label(status_bar,text=" | ".join(filter_text),anchor="e",font=("Microsoft Sans Serif",8),
-2592:                      bg=COLORS["bg"],fg=COLORS["primary_dark"]).pack(side="right")
-2593: 
-2594:         editing={"id":None,"new":False}
-2595:         cell_editor={"widget":None}
+2592:         if criteria.get("zero_mode")=="exclude": filter_text.append("Zero Balance excluded")
+2593:         if filter_text:
+2594:             tk.Label(status_bar,text=" | ".join(filter_text),anchor="e",font=("Microsoft Sans Serif",8),
+2595:                      bg=COLORS["bg"],fg=COLORS["primary_dark"]).pack(side="right")
 2596: 
-2597:         def close_editor(save_value=False):
-2598:             w=cell_editor.get("widget")
-2599:             if not w:
-2600:                 return
-2601:             try:
-2602:                 if save_value:
-2603:                     w.event_generate("<Return>")
-2604:                 w.destroy()
-2605:             except Exception:
-2606:                 pass
-2607:             cell_editor["widget"]=None
-2608: 
-2609:         def edit_cell(event=None):
+2597:         editing={"id":None,"new":False}
+2598:         cell_editor={"widget":None}
+2599: 
+2600:         def close_editor(save_value=False):
+2601:             w=cell_editor.get("widget")
+2602:             if not w:
+2603:                 return
+2604:             try:
+2605:                 if save_value:
+2606:                     w.event_generate("<Return>")
+2607:                 w.destroy()
+2608:             except Exception:
+2609:                 pass
+2610:             cell_editor["widget"]=None
+2611: 
+2612:         def edit_cell(event=None):
 ```
 ```text
-2619:             bbox=tree.bbox(iid,colid)
-2620:             if not bbox: return
-2621:             close_editor(False)
-2622:             x,y,w,h=bbox
-2623:             val=str(tree.item(iid,"values")[idx] or "")
-2624:             e=tk.Entry(grid_frame,font=("Microsoft Sans Serif",9),justify="center")
-2625:             e.insert(0,val); e.select_range(0,tk.END); e.focus_set(); e.place(x=x,y=y,width=w,height=h)
-2626:             cell_editor["widget"]=e
-2627:             def commit(_=None):
-2628:                 try:
-2629:                     vals=list(tree.item(iid,"values")); vals[idx]=e.get().strip(); tree.item(iid,values=vals)
-2630:                 finally:
-2631:                     try:e.destroy()
-2632:                     except Exception:pass
-2633:                     cell_editor["widget"]=None
-2634:             e.bind("<Return>",commit); e.bind("<Escape>",lambda _:(e.destroy(),cell_editor.__setitem__("widget",None)))
-2635:             e.bind("<FocusOut>",commit)
-2636: 
-2637:         def rows_query():
-2638:             where=["COALESCE(item_type,'Local')='Local'"]; params=[]
-2639:             fc=(criteria.get("from_code") or "").strip(); tc=(criteria.get("to_code") or "").strip()
+2622:             bbox=tree.bbox(iid,colid)
+2623:             if not bbox: return
+2624:             close_editor(False)
+2625:             x,y,w,h=bbox
+2626:             val=str(tree.item(iid,"values")[idx] or "")
+2627:             e=tk.Entry(grid_frame,font=("Microsoft Sans Serif",9),justify="center")
+2628:             e.insert(0,val); e.select_range(0,tk.END); e.focus_set(); e.place(x=x,y=y,width=w,height=h)
+2629:             cell_editor["widget"]=e
+2630:             def commit(_=None):
+2631:                 try:
+2632:                     vals=list(tree.item(iid,"values")); vals[idx]=e.get().strip(); tree.item(iid,values=vals)
+2633:                 finally:
+2634:                     try:e.destroy()
+2635:                     except Exception:pass
+2636:                     cell_editor["widget"]=None
+2637:             e.bind("<Return>",commit); e.bind("<Escape>",lambda _:(e.destroy(),cell_editor.__setitem__("widget",None)))
+2638:             e.bind("<FocusOut>",commit)
+2639: 
+2640:         def rows_query():
+2641:             where=["COALESCE(item_type,'Local')='Local'"]; params=[]
+2642:             fc=(criteria.get("from_code") or "").strip(); tc=(criteria.get("to_code") or "").strip()
 ```
 ```text
-2641:             if tc: where.append("code <= ?"); params.append(tc)
-2642:             df=to_iso_date((criteria.get("from_date") or "").strip()); dt=to_iso_date((criteria.get("to_date") or "").strip())
-2643:             if df or dt:
-2644:                 sub=[]; sp=[]
-2645:                 if df: sub.append("doc_date >= ?"); sp.append(df)
-2646:                 if dt: sub.append("doc_date <= ?"); sp.append(dt)
-2647:                 where.append("EXISTS (SELECT 1 FROM transactions tx WHERE tx.code=items.code AND " + " AND ".join(sub) + ")")
-2648:                 params.extend(sp)
-2649:             sql="SELECT id,code,description,uom,opening_qty,0 as rate,'' as remarks FROM items WHERE " + " AND ".join(where) + " ORDER BY code"
-2650:             return sql,params
-2651: 
-2652:         def load():
-2653:             close_editor(False)
-2654:             for i in tree.get_children(): tree.delete(i)
-2655:             sql,params=rows_query()
-2656:             count=0
-2657:             for r in self.conn.execute(sql,params):
-2658:                 # V18 stores UOM/opening and the original application may have
-2659:                 # rate/remarks columns in some versions. Read them safely.
-2660:                 rid,code,desc,uom,opening,rate,remarks=r
-2661:                 bal=stock(self.conn,code)
+2644:             if tc: where.append("code <= ?"); params.append(tc)
+2645:             df=to_iso_date((criteria.get("from_date") or "").strip()); dt=to_iso_date((criteria.get("to_date") or "").strip())
+2646:             if df or dt:
+2647:                 sub=[]; sp=[]
+2648:                 if df: sub.append("doc_date >= ?"); sp.append(df)
+2649:                 if dt: sub.append("doc_date <= ?"); sp.append(dt)
+2650:                 where.append("EXISTS (SELECT 1 FROM transactions tx WHERE tx.code=items.code AND " + " AND ".join(sub) + ")")
+2651:                 params.extend(sp)
+2652:             sql="SELECT id,code,description,uom,opening_qty,0 as rate,'' as remarks FROM items WHERE " + " AND ".join(where) + " ORDER BY code"
+2653:             return sql,params
+2654: 
+2655:         def load():
+2656:             close_editor(False)
+2657:             for i in tree.get_children(): tree.delete(i)
+2658:             sql,params=rows_query()
+2659:             count=0
+2660:             for r in self.conn.execute(sql,params):
+2661:                 # V18 stores UOM/opening and the original application may have
+2662:                 # rate/remarks columns in some versions. Read them safely.
+2663:                 rid,code,desc,uom,opening,rate,remarks=r
+2664:                 bal=stock(self.conn,code)
 ```
 ```text
-2675:             tree.selection_set(iid); tree.focus(iid); tree.see(iid)
-2676:             editing["id"]=None; editing["new"]=True
-2677:             # Put the user directly into the Code cell.
-2678:             try:
-2679:                 bbox=tree.bbox(iid,"#2")
-2680:                 if bbox:
-2681:                     x,y,w,h=bbox; e=tk.Entry(grid_frame,font=("Microsoft Sans Serif",9),justify="center")
-2682:                     e.place(x=x,y=y,width=w,height=h); e.focus_set(); cell_editor["widget"]=e
-2683:                     def commit(_=None):
-2684:                         vals=list(tree.item(iid,"values")); vals[1]=e.get().strip(); tree.item(iid,values=vals)
-2685:                         try:e.destroy()
-2686:                         except Exception:pass
-2687:                         cell_editor["widget"]=None
-2688:                     e.bind("<Return>",commit); e.bind("<FocusOut>",commit)
-2689:             except Exception: pass
-2690:             status.set("New row added — enter values, then press Save")
-2691: 
-2692:         def selected_row():
-2693:             a=tree.selection()
-2694:             return a[0] if a else None
-2695: 
+2678:             tree.selection_set(iid); tree.focus(iid); tree.see(iid)
+2679:             editing["id"]=None; editing["new"]=True
+2680:             # Put the user directly into the Code cell.
+2681:             try:
+2682:                 bbox=tree.bbox(iid,"#2")
+2683:                 if bbox:
+2684:                     x,y,w,h=bbox; e=tk.Entry(grid_frame,font=("Microsoft Sans Serif",9),justify="center")
+2685:                     e.place(x=x,y=y,width=w,height=h); e.focus_set(); cell_editor["widget"]=e
+2686:                     def commit(_=None):
+2687:                         vals=list(tree.item(iid,"values")); vals[1]=e.get().strip(); tree.item(iid,values=vals)
+2688:                         try:e.destroy()
+2689:                         except Exception:pass
+2690:                         cell_editor["widget"]=None
+2691:                     e.bind("<Return>",commit); e.bind("<FocusOut>",commit)
+2692:             except Exception: pass
+2693:             status.set("New row added — enter values, then press Save")
+2694: 
+2695:         def selected_row():
+2696:             a=tree.selection()
+2697:             return a[0] if a else None
+2698: 
 ```
 ```text
-2695: 
-2696:         def edit_record():
-2697:             iid=selected_row()
-2698:             if not iid:
-2699:                 messagebox.showwarning("Edit","Select an Inventory Codes row first."); return
-2700:             if not self.can_edit and not self.is_admin:
-2701:                 messagebox.showwarning("Permission Denied","Your account does not have Edit permission."); return
-2702:             editing["id"]=tree.item(iid,"values")[0]; editing["new"]=False
-2703:             status.set("Edit mode — double-click any cell to change it, then press Save")
-2704:             tree.focus(iid); tree.see(iid)
-2705: 
-2706:         def save_record():
-2707:             iid=selected_row()
-2708:             if not iid:
-2709:                 messagebox.showwarning("Save","Select a row first, or press New."); return
-2710:             if not self.can_edit and not self.is_admin:
-2711:                 messagebox.showwarning("Permission Denied","Your account does not have Edit permission."); return
-2712:             close_editor(True)
-2713:             vals=list(tree.item(iid,"values"))
-2714:             code=str(vals[1]).strip(); desc=str(vals[2]).strip(); uom=str(vals[3]).strip()
-2715:             try: opening=float(str(vals[4]).strip() or 0)
+2698: 
+2699:         def edit_record():
+2700:             iid=selected_row()
+2701:             if not iid:
+2702:                 messagebox.showwarning("Edit","Select an Inventory Codes row first."); return
+2703:             if not self.can_edit and not self.is_admin:
+2704:                 messagebox.showwarning("Permission Denied","Your account does not have Edit permission."); return
+2705:             editing["id"]=tree.item(iid,"values")[0]; editing["new"]=False
+2706:             status.set("Edit mode — double-click any cell to change it, then press Save")
+2707:             tree.focus(iid); tree.see(iid)
+2708: 
+2709:         def save_record():
+2710:             iid=selected_row()
+2711:             if not iid:
+2712:                 messagebox.showwarning("Save","Select a row first, or press New."); return
+2713:             if not self.can_edit and not self.is_admin:
+2714:                 messagebox.showwarning("Permission Denied","Your account does not have Edit permission."); return
+2715:             close_editor(True)
+2716:             vals=list(tree.item(iid,"values"))
+2717:             code=str(vals[1]).strip(); desc=str(vals[2]).strip(); uom=str(vals[3]).strip()
+2718:             try: opening=float(str(vals[4]).strip() or 0)
 ```
 ```text
-2713:             vals=list(tree.item(iid,"values"))
-2714:             code=str(vals[1]).strip(); desc=str(vals[2]).strip(); uom=str(vals[3]).strip()
-2715:             try: opening=float(str(vals[4]).strip() or 0)
-2716:             except Exception: raise ValueError("Opening Qty must be a number.")
-2717:             try: rate=float(str(vals[5]).strip() or 0)
-2718:             except Exception: raise ValueError("Rate must be a number.")
-2719:             remarks=str(vals[6]).strip()
-2720:             if not code or len("".join(ch for ch in code if ch.isdigit()))!=8:
-2721:                 messagebox.showerror("Save","Item Code must be exactly 8 digits in format 00-00-0000."); return
-2722:             if not desc:
-2723:                 messagebox.showerror("Save","Description is required."); return
-2724:             if opening<0:
-2725:                 messagebox.showerror("Save","Opening Qty cannot be less than 0."); return
-2726:             rid=vals[0]
-2727:             try:
-2728:                 dup_code=self.conn.execute("SELECT id FROM items WHERE code=? AND id!=?",(code, rid or 0)).fetchone()
-2729:                 if dup_code: raise ValueError(f"Item Code {code} already exists. Duplicate codes are not allowed.")
-2730:                 dup_desc=self.conn.execute("SELECT id FROM items WHERE LOWER(TRIM(description))=LOWER(TRIM(?)) AND id!=?",(desc,rid or 0)).fetchone()
-2731:                 if dup_desc: raise ValueError(f"An item with the description \"{desc}\" already exists. Duplicate descriptions are not allowed.")
-2732:                 if rid:
-2733:                     old=self.conn.execute("SELECT code FROM items WHERE id=?",(rid,)).fetchone()
+2716:             vals=list(tree.item(iid,"values"))
+2717:             code=str(vals[1]).strip(); desc=str(vals[2]).strip(); uom=str(vals[3]).strip()
+2718:             try: opening=float(str(vals[4]).strip() or 0)
+2719:             except Exception: raise ValueError("Opening Qty must be a number.")
+2720:             try: rate=float(str(vals[5]).strip() or 0)
+2721:             except Exception: raise ValueError("Rate must be a number.")
+2722:             remarks=str(vals[6]).strip()
+2723:             if not code or len("".join(ch for ch in code if ch.isdigit()))!=8:
+2724:                 messagebox.showerror("Save","Item Code must be exactly 8 digits in format 00-00-0000."); return
+2725:             if not desc:
+2726:                 messagebox.showerror("Save","Description is required."); return
+2727:             if opening<0:
+2728:                 messagebox.showerror("Save","Opening Qty cannot be less than 0."); return
+2729:             rid=vals[0]
+2730:             try:
+2731:                 dup_code=self.conn.execute("SELECT id FROM items WHERE code=? AND id!=?",(code, rid or 0)).fetchone()
+2732:                 if dup_code: raise ValueError(f"Item Code {code} already exists. Duplicate codes are not allowed.")
+2733:                 dup_desc=self.conn.execute("SELECT id FROM items WHERE LOWER(TRIM(description))=LOWER(TRIM(?)) AND id!=?",(desc,rid or 0)).fetchone()
+2734:                 if dup_desc: raise ValueError(f"An item with the description \"{desc}\" already exists. Duplicate descriptions are not allowed.")
+2735:                 if rid:
+2736:                     old=self.conn.execute("SELECT code FROM items WHERE id=?",(rid,)).fetchone()
 ```
 ```text
-2736:                                       (code,desc,uom,opening,rid))
-2737:                     if oldcode!=code:
-2738:                         for table in ("demand_lines","grr_lines","issue_lines","transactions"):
-2739:                             try:self.conn.execute(f"UPDATE {table} SET code=? WHERE code=?",(code,oldcode))
-2740:                             except Exception:pass
-2741:                 else:
-2742:                     self.conn.execute("INSERT INTO items(code,description,uom,category,opening_qty,min_level,item_type,mto_opening_qty) VALUES(?,?,?,?,?,?,?,?)",
-2743:                                       (code,desc,uom,"",opening,0,"Local",0))
-2744:                 self.conn.commit()
-2745:                 report_path = self._save_entry_report("Inventory Code", [f"Item Code: {code}", f"Description: {desc}", f"UOM: {uom}"], ("Code","Description","UOM","Opening Qty"), [(code,desc,uom,opening)])
-2746:                 backup_database(); load()
-2747:                 messagebox.showinfo("Saved","Inventory Code saved successfully." + (f"\n\nReport saved to:\n{report_path}" if report_path else "\n\nWarning: PDF report could not be generated; the saved data is retained."))
-2748:             except Exception as ex:
-2749:                 self.conn.rollback(); messagebox.showerror("Save Failed",str(ex))
-2750: 
-2751:         def delete_record():
-2752:             iid=selected_row()
-2753:             if not iid: messagebox.showwarning("Delete","Select an Inventory Codes row first."); return
-2754:             if not self.can_delete and not self.is_admin:
-2755:                 messagebox.showwarning("Permission Denied","Your account does not have Delete permission."); return
-2756:             vals=tree.item(iid,"values"); rid=vals[0]; code=vals[1]
+2739:                                       (code,desc,uom,opening,rid))
+2740:                     if oldcode!=code:
+2741:                         for table in ("demand_lines","grr_lines","issue_lines","transactions"):
+2742:                             try:self.conn.execute(f"UPDATE {table} SET code=? WHERE code=?",(code,oldcode))
+2743:                             except Exception:pass
+2744:                 else:
+2745:                     self.conn.execute("INSERT INTO items(code,description,uom,category,opening_qty,min_level,item_type,mto_opening_qty) VALUES(?,?,?,?,?,?,?,?)",
+2746:                                       (code,desc,uom,"",opening,0,"Local",0))
+2747:                 self.conn.commit()
+2748:                 report_path = self._save_entry_report("Inventory Code", [f"Item Code: {code}", f"Description: {desc}", f"UOM: {uom}"], ("Code","Description","UOM","Opening Qty"), [(code,desc,uom,opening)])
+2749:                 backup_database(); load()
+2750:                 messagebox.showinfo("Saved","Inventory Code saved successfully." + (f"\n\nReport saved to:\n{report_path}" if report_path else "\n\nWarning: PDF report could not be generated; the saved data is retained."))
+2751:             except Exception as ex:
+2752:                 self.conn.rollback(); messagebox.showerror("Save Failed",str(ex))
+2753: 
+2754:         def delete_record():
+2755:             iid=selected_row()
+2756:             if not iid: messagebox.showwarning("Delete","Select an Inventory Codes row first."); return
+2757:             if not self.can_delete and not self.is_admin:
+2758:                 messagebox.showwarning("Permission Denied","Your account does not have Delete permission."); return
+2759:             vals=tree.item(iid,"values"); rid=vals[0]; code=vals[1]
 ```
 ```text
-2752:             iid=selected_row()
-2753:             if not iid: messagebox.showwarning("Delete","Select an Inventory Codes row first."); return
-2754:             if not self.can_delete and not self.is_admin:
-2755:                 messagebox.showwarning("Permission Denied","Your account does not have Delete permission."); return
-2756:             vals=tree.item(iid,"values"); rid=vals[0]; code=vals[1]
-2757:             if not rid: tree.delete(iid); status.set("New row cancelled"); return
-2758:             if not messagebox.askyesno("Confirm","Delete selected record?\n\n"+str(code)): return
-2759:             try:
-2760:                 self.conn.execute("DELETE FROM items WHERE id=?",(rid,)); self.conn.commit(); backup_database(); load()
-2761:             except Exception as ex:
-2762:                 self.conn.rollback(); messagebox.showerror("Delete Error",str(ex))
-2763: 
-2764:         def refresh(): load()
-2765:         def do_print():
-2766:             try:self.preview_tree("Inventory Codes",tree)
-2767:             except Exception as ex:messagebox.showerror("Print",str(ex))
-2768:         def do_close(): self.dashboard()
-2769: 
-2770:         btn("New",new_record,8)
-2771:         btn("Edit",edit_record,8)
-2772:         btn("Delete",delete_record,8)
+2755:             iid=selected_row()
+2756:             if not iid: messagebox.showwarning("Delete","Select an Inventory Codes row first."); return
+2757:             if not self.can_delete and not self.is_admin:
+2758:                 messagebox.showwarning("Permission Denied","Your account does not have Delete permission."); return
+2759:             vals=tree.item(iid,"values"); rid=vals[0]; code=vals[1]
+2760:             if not rid: tree.delete(iid); status.set("New row cancelled"); return
+2761:             if not messagebox.askyesno("Confirm","Delete selected record?\n\n"+str(code)): return
+2762:             try:
+2763:                 self.conn.execute("DELETE FROM items WHERE id=?",(rid,)); self.conn.commit(); backup_database(); load()
+2764:             except Exception as ex:
+2765:                 self.conn.rollback(); messagebox.showerror("Delete Error",str(ex))
+2766: 
+2767:         def refresh(): load()
+2768:         def do_print():
+2769:             try:self.preview_tree("Inventory Codes",tree)
+2770:             except Exception as ex:messagebox.showerror("Print",str(ex))
+2771:         def do_close(): self.dashboard()
+2772: 
+2773:         btn("New",new_record,8)
+2774:         btn("Edit",edit_record,8)
+2775:         btn("Delete",delete_record,8)
 ```
 ```text
-2765:         def do_print():
-2766:             try:self.preview_tree("Inventory Codes",tree)
-2767:             except Exception as ex:messagebox.showerror("Print",str(ex))
-2768:         def do_close(): self.dashboard()
-2769: 
-2770:         btn("New",new_record,8)
-2771:         btn("Edit",edit_record,8)
-2772:         btn("Delete",delete_record,8)
-2773:         btn("Save",save_record,8)
-2774:         btn("Refresh",refresh,9)
-2775:         btn("Preview",do_print,8)
-2776:         btn("Print",do_print,8)
-2777:         btn("Close",do_close,8)
-2778: 
-2779:         # Search is deliberately small and sits on the right, without changing
-2780:         # the reference layout of the action buttons.
-2781:         tk.Label(actions,text="  Search:",bg=COLORS["bg"],font=("Microsoft Sans Serif",8)).pack(side="left",padx=(18,2))
-2782:         search=tk.StringVar()
-2783:         se=tk.Entry(actions,textvariable=search,width=24,font=("Microsoft Sans Serif",9),justify="center")
-2784:         se.pack(side="left",padx=2)
-2785:         self._item_master_search_entry=se
+2768:         def do_print():
+2769:             try:self.preview_tree("Inventory Codes",tree)
+2770:             except Exception as ex:messagebox.showerror("Print",str(ex))
+2771:         def do_close(): self.dashboard()
+2772: 
+2773:         btn("New",new_record,8)
+2774:         btn("Edit",edit_record,8)
+2775:         btn("Delete",delete_record,8)
+2776:         btn("Save",save_record,8)
+2777:         btn("Refresh",refresh,9)
+2778:         btn("Preview",do_print,8)
+2779:         btn("Print",do_print,8)
+2780:         btn("Close",do_close,8)
+2781: 
+2782:         # Search is deliberately small and sits on the right, without changing
+2783:         # the reference layout of the action buttons.
+2784:         tk.Label(actions,text="  Search:",bg=COLORS["bg"],font=("Microsoft Sans Serif",8)).pack(side="left",padx=(18,2))
+2785:         search=tk.StringVar()
+2786:         se=tk.Entry(actions,textvariable=search,width=24,font=("Microsoft Sans Serif",9),justify="center")
+2787:         se.pack(side="left",padx=2)
+2788:         self._item_master_search_entry=se
 ```
 ```text
-2793:                     tree.detach(iid)
-2794:         search.trace_add("write",filter_grid)
-2795:         tk.Label(actions,text="Ctrl+F",bg=COLORS["bg"],fg=COLORS["muted"],font=("Microsoft Sans Serif",8)).pack(side="left",padx=5)
-2796: 
-2797:         tree.bind("<Double-1>",edit_cell)
-2798:         tree.bind("<F2>",lambda e: edit_record())
-2799:         self._item_master_find_callback=lambda: (se.focus_set(),se.selection_range(0,tk.END))
-2800:         self._page_actions={
-2801:             "save":save_record,"edit":edit_record,"delete":delete_record,
-2802:             "cancel":do_close,"print":do_print,"preview":do_print
-2803:         }
-2804:         load()
-2805: 
-2806:     def open_mto_inventory_flow(self):
-2807:         """Open MTO Inventory through the same selection-criteria popup as Inventory Codes.
+2796:                     tree.detach(iid)
+2797:         search.trace_add("write",filter_grid)
+2798:         tk.Label(actions,text="Ctrl+F",bg=COLORS["bg"],fg=COLORS["muted"],font=("Microsoft Sans Serif",8)).pack(side="left",padx=5)
+2799: 
+2800:         tree.bind("<Double-1>",edit_cell)
+2801:         tree.bind("<F2>",lambda e: edit_record())
+2802:         self._item_master_find_callback=lambda: (se.focus_set(),se.selection_range(0,tk.END))
+2803:         self._page_actions={
+2804:             "save":save_record,"edit":edit_record,"delete":delete_record,
+2805:             "cancel":do_close,"print":do_print,"preview":do_print
+2806:         }
+2807:         load()
 2808: 
-2809:         The MTO list itself is NOT created until the user presses OPEN MTO INVENTORY.
-2810:         Cancel/X only closes the popup.
-2811:         """
-2812:         criteria = self._ask_mto_inventory_filters()
-2813:         if not criteria or criteria.get("cancelled"):
+2809:     def open_mto_inventory_flow(self):
+2810:         """Open MTO Inventory through the same selection-criteria popup as Inventory Codes.
+2811: 
+2812:         The MTO list itself is NOT created until the user presses OPEN MTO INVENTORY.
+2813:         Cancel/X only closes the popup.
+2814:         """
+2815:         criteria = self._ask_mto_inventory_filters()
+2816:         if not criteria or criteria.get("cancelled"):
 ```
 ```text
-2975:                 return False
-2976:             destination.set(found_dest)
-2977:             edit_mode.update(on=True, original=r[0], dest=found_dest)
-2978:             code.set(r[0])
-2979:             desc.set(r[1] or "")
-2980:             uom.set(r[2] or UOM_OPTIONS[0])
-2981:             opening.set(str(r[3] if r[3] is not None else 0))
-2982:             opening_date.set(to_display_date(r[4]) if r[4] else opening_date.get())
-2983:             hint.set(f"Loaded: {r[0]} — {r[1] or ''} ({found_dest}). Edit the details and click SAVE EDIT.")
-2984:             err.set("")
-2985:             edit_btn.configure(text="SAVE EDIT")
-2986:             ce.focus_set()
-2987:             return True
-2988: 
-2989:         def check_duplicates(*_):
-2990:             c = code.get().strip()
-2991:             d = desc.get().strip()
-2992:             dest = destination.get()
-2993:             msgs = []
-2994:             r = row_for(dest, c) if len(norm(c)) == 8 else None
-2995:             if r and not (edit_mode["on"] and edit_mode["dest"] == dest and norm(edit_mode["original"]) == norm(c)):
+2978:                 return False
+2979:             destination.set(found_dest)
+2980:             edit_mode.update(on=True, original=r[0], dest=found_dest)
+2981:             code.set(r[0])
+2982:             desc.set(r[1] or "")
+2983:             uom.set(r[2] or UOM_OPTIONS[0])
+2984:             opening.set(str(r[3] if r[3] is not None else 0))
+2985:             opening_date.set(to_display_date(r[4]) if r[4] else opening_date.get())
+2986:             hint.set(f"Loaded: {r[0]} — {r[1] or ''} ({found_dest}). Edit the details and click SAVE EDIT.")
+2987:             err.set("")
+2988:             edit_btn.configure(text="SAVE EDIT")
+2989:             ce.focus_set()
+2990:             return True
+2991: 
+2992:         def check_duplicates(*_):
+2993:             c = code.get().strip()
+2994:             d = desc.get().strip()
+2995:             dest = destination.get()
+2996:             msgs = []
+2997:             r = row_for(dest, c) if len(norm(c)) == 8 else None
+2998:             if r and not (edit_mode["on"] and edit_mode["dest"] == dest and norm(edit_mode["original"]) == norm(c)):
 ```
 ```text
-2997:             dh = desc_hit(dest, d) if d else None
-2998:             if dh and not (edit_mode["on"] and edit_mode["dest"] == dest and norm(edit_mode["original"]) == norm(dh[0])):
-2999:                 msgs.append(f'DUPLICATE DESCRIPTION: "{d}" already exists in {dest} under code {dh[0]}.')
-3000:             hint.set("\n".join(msgs))
-3001: 
-3002:         code.trace_add("write", check_duplicates)
-3003:         desc.trace_add("write", check_duplicates)
+3000:             dh = desc_hit(dest, d) if d else None
+3001:             if dh and not (edit_mode["on"] and edit_mode["dest"] == dest and norm(edit_mode["original"]) == norm(dh[0])):
+3002:                 msgs.append(f'DUPLICATE DESCRIPTION: "{d}" already exists in {dest} under code {dh[0]}.')
+3003:             hint.set("\n".join(msgs))
 3004: 
-3005:         def save_code():
-3006:             try:
-3007:                 c = code.get().strip()
-3008:                 d = desc.get().strip()
-3009:                 u = uom.get().strip()
-3010:                 dest = destination.get()
-3011:                 digits = norm(c)
-3012:                 if len(digits) != 8:
-3013:                     raise ValueError("Item Code must be exactly 8 digits in format 00-00-0000.")
-3014:                 if not d:
-3015:                     raise ValueError("Description is required.")
-3016:                 try:
-3017:                     op = float(opening.get().strip() or 0)
+3005:         code.trace_add("write", check_duplicates)
+3006:         desc.trace_add("write", check_duplicates)
+3007: 
+3008:         def save_code():
+3009:             try:
+3010:                 c = code.get().strip()
+3011:                 d = desc.get().strip()
+3012:                 u = uom.get().strip()
+3013:                 dest = destination.get()
+3014:                 digits = norm(c)
+3015:                 if len(digits) != 8:
+3016:                     raise ValueError("Item Code must be exactly 8 digits in format 00-00-0000.")
+3017:                 if not d:
+3018:                     raise ValueError("Description is required.")
+3019:                 try:
+3020:                     op = float(opening.get().strip() or 0)
 ```
 ```text
-3038:                         (c, d, u, op, iso, old)
-3039:                     )
-3040:                     action = "updated"
-3041:                 else:
-3042:                     self.conn.execute(
-3043:                         f"INSERT INTO {t}(code,description,uom,category,opening_qty,min_level,opening_date) VALUES(?,?,?,?,?,?,?)",
-3044:                         (c, d, u, "", op, 0, iso)
-3045:                     )
-3046:                     action = "saved"
-3047:                 self.conn.commit()
-3048:                 backup_database()
-3049:                 messagebox.showinfo("Code Opening", f"{c} {action} successfully in {dest}.", parent=win)
-3050:                 # Keep popup open for fast multiple entries.
-3051:                 clear_form(keep_search=False)
-3052:                 ce.focus_set()
-3053:             except Exception as ex:
-3054:                 self.conn.rollback()
-3055:                 err.set(str(ex))
-3056:                 messagebox.showerror("Code Opening", str(ex), parent=win)
-3057: 
-3058:         def edit_action():
+3041:                         (c, d, u, op, iso, old)
+3042:                     )
+3043:                     action = "updated"
+3044:                 else:
+3045:                     self.conn.execute(
+3046:                         f"INSERT INTO {t}(code,description,uom,category,opening_qty,min_level,opening_date) VALUES(?,?,?,?,?,?,?)",
+3047:                         (c, d, u, "", op, 0, iso)
+3048:                     )
+3049:                     action = "saved"
+3050:                 self.conn.commit()
+3051:                 backup_database()
+3052:                 messagebox.showinfo("Code Opening", f"{c} {action} successfully in {dest}.", parent=win)
+3053:                 # Keep popup open for fast multiple entries.
+3054:                 clear_form(keep_search=False)
+3055:                 ce.focus_set()
+3056:             except Exception as ex:
+3057:                 self.conn.rollback()
+3058:                 err.set(str(ex))
+3059:                 messagebox.showerror("Code Opening", str(ex), parent=win)
+3060: 
+3061:         def edit_action():
 ```
 ```text
-3054:                 self.conn.rollback()
-3055:                 err.set(str(ex))
-3056:                 messagebox.showerror("Code Opening", str(ex), parent=win)
-3057: 
-3058:         def edit_action():
-3059:             if not edit_mode["on"]:
-3060:                 load_for_edit()
-3061:             else:
-3062:                 save_code()
-3063: 
-3064:         def delete_code():
-3065:             if not edit_mode["on"]:
-3066:                 if not load_for_edit():
-3067:                     return
-3068:             if not messagebox.askyesno("Delete Code", f"Delete {edit_mode['original']} from {edit_mode['dest']}?", parent=win):
-3069:                 return
-3070:             try:
-3071:                 t = table_for(edit_mode["dest"])
-3072:                 self.conn.execute(f"DELETE FROM {t} WHERE code=?", (edit_mode["original"],))
-3073:                 self.conn.commit()
-3074:                 backup_database()
+3057:                 self.conn.rollback()
+3058:                 err.set(str(ex))
+3059:                 messagebox.showerror("Code Opening", str(ex), parent=win)
+3060: 
+3061:         def edit_action():
+3062:             if not edit_mode["on"]:
+3063:                 load_for_edit()
+3064:             else:
+3065:                 save_code()
+3066: 
+3067:         def delete_code():
+3068:             if not edit_mode["on"]:
+3069:                 if not load_for_edit():
+3070:                     return
+3071:             if not messagebox.askyesno("Delete Code", f"Delete {edit_mode['original']} from {edit_mode['dest']}?", parent=win):
+3072:                 return
+3073:             try:
+3074:                 t = table_for(edit_mode["dest"])
+3075:                 self.conn.execute(f"DELETE FROM {t} WHERE code=?", (edit_mode["original"],))
+3076:                 self.conn.commit()
+3077:                 backup_database()
 ```
 ```text
-3070:             try:
-3071:                 t = table_for(edit_mode["dest"])
-3072:                 self.conn.execute(f"DELETE FROM {t} WHERE code=?", (edit_mode["original"],))
-3073:                 self.conn.commit()
-3074:                 backup_database()
-3075:                 messagebox.showinfo("Delete Code", f"{edit_mode['original']} deleted from {edit_mode['dest']}.", parent=win)
-3076:                 clear_form(keep_search=False)
-3077:             except Exception as ex:
-3078:                 self.conn.rollback()
-3079:                 messagebox.showerror("Delete Code", str(ex), parent=win)
-3080: 
-3081:         btns = ttk.Frame(box)
-3082:         btns.grid(row=8, column=0, columnspan=4, pady=(12, 0))
-3083:         ttk.Button(btns, text="SAVE", style="Success.TButton", command=save_code).pack(side="left", padx=4, ipadx=8)
-3084:         edit_btn = ttk.Button(btns, text="EDIT", style="Warning.TButton", command=edit_action)
-3085:         edit_btn.pack(side="left", padx=4, ipadx=8)
-3086:         ttk.Button(btns, text="DELETE", style="Danger.TButton", command=delete_code).pack(side="left", padx=4, ipadx=8)
-3087:         ttk.Button(btns, text="CANCEL", style="Muted.TButton", command=win.destroy).pack(side="left", padx=4)
-3088:         win.protocol("WM_DELETE_WINDOW", win.destroy)
-3089:         win.bind("<Escape>", lambda e: (win.destroy(), "break")[1])
-3090:         ce.focus_set()
+3073:             try:
+3074:                 t = table_for(edit_mode["dest"])
+3075:                 self.conn.execute(f"DELETE FROM {t} WHERE code=?", (edit_mode["original"],))
+3076:                 self.conn.commit()
+3077:                 backup_database()
+3078:                 messagebox.showinfo("Delete Code", f"{edit_mode['original']} deleted from {edit_mode['dest']}.", parent=win)
+3079:                 clear_form(keep_search=False)
+3080:             except Exception as ex:
+3081:                 self.conn.rollback()
+3082:                 messagebox.showerror("Delete Code", str(ex), parent=win)
+3083: 
+3084:         btns = ttk.Frame(box)
+3085:         btns.grid(row=8, column=0, columnspan=4, pady=(12, 0))
+3086:         ttk.Button(btns, text="SAVE", style="Success.TButton", command=save_code).pack(side="left", padx=4, ipadx=8)
+3087:         edit_btn = ttk.Button(btns, text="EDIT", style="Warning.TButton", command=edit_action)
+3088:         edit_btn.pack(side="left", padx=4, ipadx=8)
+3089:         ttk.Button(btns, text="DELETE", style="Danger.TButton", command=delete_code).pack(side="left", padx=4, ipadx=8)
+3090:         ttk.Button(btns, text="CANCEL", style="Muted.TButton", command=win.destroy).pack(side="left", padx=4)
+3091:         win.protocol("WM_DELETE_WINDOW", win.destroy)
+3092:         win.bind("<Escape>", lambda e: (win.destroy(), "break")[1])
+3093:         ce.focus_set()
 ```
 ```text
-3084:         edit_btn = ttk.Button(btns, text="EDIT", style="Warning.TButton", command=edit_action)
-3085:         edit_btn.pack(side="left", padx=4, ipadx=8)
-3086:         ttk.Button(btns, text="DELETE", style="Danger.TButton", command=delete_code).pack(side="left", padx=4, ipadx=8)
-3087:         ttk.Button(btns, text="CANCEL", style="Muted.TButton", command=win.destroy).pack(side="left", padx=4)
-3088:         win.protocol("WM_DELETE_WINDOW", win.destroy)
-3089:         win.bind("<Escape>", lambda e: (win.destroy(), "break")[1])
-3090:         ce.focus_set()
-3091: 
-3092:     def _mto_new_item_dialog(self, on_saved):
-3093:         """Small 'Add New Item Code' dialog launched from MTO Inventory, so a
-3094:         brand-new item can be created without leaving that screen. Writes
-3095:         straight into the same Item Master (items table) used everywhere."""
-3096:         win=tk.Toplevel(self); win.title("Add New Item Code"); win.geometry("420x260"); win.resizable(False,False)
-3097:         win.transient(self); win.grab_set()
-3098:         f=ttk.Frame(win,padding=14); f.pack(fill="both",expand=True)
-3099:         code=tk.StringVar(); desc=tk.StringVar(); uom=tk.StringVar(value=UOM_OPTIONS[0]); opening=tk.StringVar(value="0")
-3100:         ttk.Label(f,text="Item Code (00-00-0000)").grid(row=0,column=0,sticky="w",pady=(0,2))
-3101:         ent=ttk.Entry(f,textvariable=code,width=20); ent.grid(row=1,column=0,sticky="w",pady=(0,10)); attach_code_mask(ent,code)
-3102:         ttk.Label(f,text="Description").grid(row=2,column=0,sticky="w",pady=(0,2))
-3103:         ttk.Entry(f,textvariable=desc,width=40).grid(row=3,column=0,sticky="w",pady=(0,10))
-3104:         ttk.Label(f,text="UOM").grid(row=4,column=0,sticky="w",pady=(0,2))
+3087:         edit_btn = ttk.Button(btns, text="EDIT", style="Warning.TButton", command=edit_action)
+3088:         edit_btn.pack(side="left", padx=4, ipadx=8)
+3089:         ttk.Button(btns, text="DELETE", style="Danger.TButton", command=delete_code).pack(side="left", padx=4, ipadx=8)
+3090:         ttk.Button(btns, text="CANCEL", style="Muted.TButton", command=win.destroy).pack(side="left", padx=4)
+3091:         win.protocol("WM_DELETE_WINDOW", win.destroy)
+3092:         win.bind("<Escape>", lambda e: (win.destroy(), "break")[1])
+3093:         ce.focus_set()
+3094: 
+3095:     def _mto_new_item_dialog(self, on_saved):
+3096:         """Small 'Add New Item Code' dialog launched from MTO Inventory, so a
+3097:         brand-new item can be created without leaving that screen. Writes
+3098:         straight into the same Item Master (items table) used everywhere."""
+3099:         win=tk.Toplevel(self); win.title("Add New Item Code"); win.geometry("420x260"); win.resizable(False,False)
+3100:         win.transient(self); win.grab_set()
+3101:         f=ttk.Frame(win,padding=14); f.pack(fill="both",expand=True)
+3102:         code=tk.StringVar(); desc=tk.StringVar(); uom=tk.StringVar(value=UOM_OPTIONS[0]); opening=tk.StringVar(value="0")
+3103:         ttk.Label(f,text="Item Code (00-00-0000)").grid(row=0,column=0,sticky="w",pady=(0,2))
+3104:         ent=ttk.Entry(f,textvariable=code,width=20); ent.grid(row=1,column=0,sticky="w",pady=(0,10)); attach_code_mask(ent,code)
+3105:         ttk.Label(f,text="Description").grid(row=2,column=0,sticky="w",pady=(0,2))
+3106:         ttk.Entry(f,textvariable=desc,width=40).grid(row=3,column=0,sticky="w",pady=(0,10))
+3107:         ttk.Label(f,text="UOM").grid(row=4,column=0,sticky="w",pady=(0,2))
 ```
 ```text
-3100:         ttk.Label(f,text="Item Code (00-00-0000)").grid(row=0,column=0,sticky="w",pady=(0,2))
-3101:         ent=ttk.Entry(f,textvariable=code,width=20); ent.grid(row=1,column=0,sticky="w",pady=(0,10)); attach_code_mask(ent,code)
-3102:         ttk.Label(f,text="Description").grid(row=2,column=0,sticky="w",pady=(0,2))
-3103:         ttk.Entry(f,textvariable=desc,width=40).grid(row=3,column=0,sticky="w",pady=(0,10))
-3104:         ttk.Label(f,text="UOM").grid(row=4,column=0,sticky="w",pady=(0,2))
-3105:         ttk.Combobox(f,textvariable=uom,values=UOM_OPTIONS,width=13).grid(row=5,column=0,sticky="w",pady=(0,10))
-3106:         ttk.Label(f,text="Opening Qty (Open Balance)").grid(row=6,column=0,sticky="w",pady=(0,2))
-3107:         ttk.Entry(f,textvariable=opening,width=15).grid(row=7,column=0,sticky="w",pady=(0,10))
-3108:         def save():
-3109:             try:
-3110:                 c=code.get().strip(); d=desc.get().strip()
-3111:                 if not c or len("".join(ch for ch in c if ch.isdigit()))!=8: raise ValueError("Item Code must be exactly 8 digits in format 00-00-0000.")
-3112:                 if not d: raise ValueError("Description is required.")
-3113:                 try:
-3114:                     opening_val=float(opening.get() or 0)
-3115:                 except ValueError:
-3116:                     raise ValueError("Opening Qty must be a number.")
-3117:                 if opening_val<0: raise ValueError("Opening Qty (Open Balance) cannot be less than 0.")
-3118:                 if self.conn.execute("SELECT 1 FROM items WHERE code=?",(c,)).fetchone(): raise ValueError(f"Item code {c} already exists in Item Master. Duplicate codes are not allowed.")
-3119:                 if self.conn.execute("SELECT 1 FROM items WHERE LOWER(TRIM(description))=LOWER(TRIM(?))",(d,)).fetchone(): raise ValueError(f"An item with the description \"{d}\" already exists. Duplicate descriptions are not allowed.")
-3120:                 self.conn.execute("INSERT INTO items(code,description,uom,category,opening_qty,min_level) VALUES(?,?,?,?,?,?)",(c,d,uom.get().strip(),"",opening_val,0))
+3103:         ttk.Label(f,text="Item Code (00-00-0000)").grid(row=0,column=0,sticky="w",pady=(0,2))
+3104:         ent=ttk.Entry(f,textvariable=code,width=20); ent.grid(row=1,column=0,sticky="w",pady=(0,10)); attach_code_mask(ent,code)
+3105:         ttk.Label(f,text="Description").grid(row=2,column=0,sticky="w",pady=(0,2))
+3106:         ttk.Entry(f,textvariable=desc,width=40).grid(row=3,column=0,sticky="w",pady=(0,10))
+3107:         ttk.Label(f,text="UOM").grid(row=4,column=0,sticky="w",pady=(0,2))
+3108:         ttk.Combobox(f,textvariable=uom,values=UOM_OPTIONS,width=13).grid(row=5,column=0,sticky="w",pady=(0,10))
+3109:         ttk.Label(f,text="Opening Qty (Open Balance)").grid(row=6,column=0,sticky="w",pady=(0,2))
+3110:         ttk.Entry(f,textvariable=opening,width=15).grid(row=7,column=0,sticky="w",pady=(0,10))
+3111:         def save():
+3112:             try:
+3113:                 c=code.get().strip(); d=desc.get().strip()
+3114:                 if not c or len("".join(ch for ch in c if ch.isdigit()))!=8: raise ValueError("Item Code must be exactly 8 digits in format 00-00-0000.")
+3115:                 if not d: raise ValueError("Description is required.")
+3116:                 try:
+3117:                     opening_val=float(opening.get() or 0)
+3118:                 except ValueError:
+3119:                     raise ValueError("Opening Qty must be a number.")
+3120:                 if opening_val<0: raise ValueError("Opening Qty (Open Balance) cannot be less than 0.")
+3121:                 if self.conn.execute("SELECT 1 FROM items WHERE code=?",(c,)).fetchone(): raise ValueError(f"Item code {c} already exists in Item Master. Duplicate codes are not allowed.")
+3122:                 if self.conn.execute("SELECT 1 FROM items WHERE LOWER(TRIM(description))=LOWER(TRIM(?))",(d,)).fetchone(): raise ValueError(f"An item with the description \"{d}\" already exists. Duplicate descriptions are not allowed.")
+3123:                 self.conn.execute("INSERT INTO items(code,description,uom,category,opening_qty,min_level) VALUES(?,?,?,?,?,?)",(c,d,uom.get().strip(),"",opening_val,0))
 ```
 ```text
-3113:                 try:
-3114:                     opening_val=float(opening.get() or 0)
-3115:                 except ValueError:
-3116:                     raise ValueError("Opening Qty must be a number.")
-3117:                 if opening_val<0: raise ValueError("Opening Qty (Open Balance) cannot be less than 0.")
-3118:                 if self.conn.execute("SELECT 1 FROM items WHERE code=?",(c,)).fetchone(): raise ValueError(f"Item code {c} already exists in Item Master. Duplicate codes are not allowed.")
-3119:                 if self.conn.execute("SELECT 1 FROM items WHERE LOWER(TRIM(description))=LOWER(TRIM(?))",(d,)).fetchone(): raise ValueError(f"An item with the description \"{d}\" already exists. Duplicate descriptions are not allowed.")
-3120:                 self.conn.execute("INSERT INTO items(code,description,uom,category,opening_qty,min_level) VALUES(?,?,?,?,?,?)",(c,d,uom.get().strip(),"",opening_val,0))
-3121:                 self.conn.commit(); backup_database()
-3122:                 messagebox.showinfo("Saved",f"Item {c} added to Item Master.")
-3123:                 win.grab_release(); win.destroy()
-3124:                 on_saved()
-3125:             except Exception as ex: messagebox.showerror("Error",str(ex))
-3126:         btns=ttk.Frame(f); btns.grid(row=8,column=0,sticky="w",pady=(6,0))
-3127:         ttk.Button(btns,text="SAVE",style="Success.TButton",command=save).pack(side="left",padx=(0,6))
-3128:         ttk.Button(btns,text="CANCEL",command=lambda:(win.grab_release(),win.destroy())).pack(side="left")
-3129: 
-3130:     def _item_filter_bar(self, parent, on_change):
-3131:         """Item Code entry + item-master picker + Search/Show All. Calls
-3132:         on_change() whenever the code changes or a button is pressed."""
-3133:         bar=ttk.Frame(parent); bar.pack(fill="x",pady=(0,6))
+3116:                 try:
+3117:                     opening_val=float(opening.get() or 0)
+3118:                 except ValueError:
+3119:                     raise ValueError("Opening Qty must be a number.")
+3120:                 if opening_val<0: raise ValueError("Opening Qty (Open Balance) cannot be less than 0.")
+3121:                 if self.conn.execute("SELECT 1 FROM items WHERE code=?",(c,)).fetchone(): raise ValueError(f"Item code {c} already exists in Item Master. Duplicate codes are not allowed.")
+3122:                 if self.conn.execute("SELECT 1 FROM items WHERE LOWER(TRIM(description))=LOWER(TRIM(?))",(d,)).fetchone(): raise ValueError(f"An item with the description \"{d}\" already exists. Duplicate descriptions are not allowed.")
+3123:                 self.conn.execute("INSERT INTO items(code,description,uom,category,opening_qty,min_level) VALUES(?,?,?,?,?,?)",(c,d,uom.get().strip(),"",opening_val,0))
+3124:                 self.conn.commit(); backup_database()
+3125:                 messagebox.showinfo("Saved",f"Item {c} added to Item Master.")
+3126:                 win.grab_release(); win.destroy()
+3127:                 on_saved()
+3128:             except Exception as ex: messagebox.showerror("Error",str(ex))
+3129:         btns=ttk.Frame(f); btns.grid(row=8,column=0,sticky="w",pady=(6,0))
+3130:         ttk.Button(btns,text="SAVE",style="Success.TButton",command=save).pack(side="left",padx=(0,6))
+3131:         ttk.Button(btns,text="CANCEL",command=lambda:(win.grab_release(),win.destroy())).pack(side="left")
+3132: 
+3133:     def _item_filter_bar(self, parent, on_change):
+3134:         """Item Code entry + item-master picker + Search/Show All. Calls
+3135:         on_change() whenever the code changes or a button is pressed."""
+3136:         bar=ttk.Frame(parent); bar.pack(fill="x",pady=(0,6))
 ```
 ```text
-3219:         self._item_master_find_callback=None
-3220:         self._portable_print_context=None
-3221:         criteria=getattr(self,"_mto_inventory_filter",None) or {
-3222:             "from_code":"","to_code":"","from_date":"","to_date":"","zero_mode":"include"
-3223:         }
-3224: 
-3225:         # MTO uses its own namespace/table, so the same code may also exist in Inventory Codes.
-3226:         self.conn.execute("CREATE TABLE IF NOT EXISTS mto_items(code TEXT PRIMARY KEY, description TEXT NOT NULL, uom TEXT, category TEXT DEFAULT '', opening_qty REAL DEFAULT 0, min_level REAL DEFAULT 0, opening_date TEXT DEFAULT '')")
-3227:         self.conn.commit()
-3228: 
-3229:         # ---- Same professional in-app window layout as Inventory Codes ----
-3230:         head=ttk.Frame(body); head.pack(fill="x",pady=(0,7))
-3231:         ttk.Label(head,text="MTO Inventory",font=("Segoe UI",15,"bold"),
-3232:                   foreground=COLORS["primary_dark"]).pack(side="left")
-3233:         ttk.Label(head,text="  MTO Inventory Code List",foreground=COLORS["muted"]).pack(side="left",padx=6)
-3234: 
-3235:         def open_find():
-3236:             state_find={"index":-1}
-3237:             def search_fn(text):
-3238:                 text=text.strip().lower()
-3239:                 rows=self.conn.execute("SELECT code,description FROM mto_items WHERE (LOWER(code) LIKE ? OR LOWER(description) LIKE ?) ORDER BY code",("%"+text+"%","%"+text+"%")).fetchall()
+3222:         self._item_master_find_callback=None
+3223:         self._portable_print_context=None
+3224:         criteria=getattr(self,"_mto_inventory_filter",None) or {
+3225:             "from_code":"","to_code":"","from_date":"","to_date":"","zero_mode":"include"
+3226:         }
+3227: 
+3228:         # MTO uses its own namespace/table, so the same code may also exist in Inventory Codes.
+3229:         self.conn.execute("CREATE TABLE IF NOT EXISTS mto_items(code TEXT PRIMARY KEY, description TEXT NOT NULL, uom TEXT, category TEXT DEFAULT '', opening_qty REAL DEFAULT 0, min_level REAL DEFAULT 0, opening_date TEXT DEFAULT '')")
+3230:         self.conn.commit()
+3231: 
+3232:         # ---- Same professional in-app window layout as Inventory Codes ----
+3233:         head=ttk.Frame(body); head.pack(fill="x",pady=(0,7))
+3234:         ttk.Label(head,text="MTO Inventory",font=("Segoe UI",15,"bold"),
+3235:                   foreground=COLORS["primary_dark"]).pack(side="left")
+3236:         ttk.Label(head,text="  MTO Inventory Code List",foreground=COLORS["muted"]).pack(side="left",padx=6)
+3237: 
+3238:         def open_find():
+3239:             state_find={"index":-1}
+3240:             def search_fn(text):
+3241:                 text=text.strip().lower()
+3242:                 rows=self.conn.execute("SELECT code,description FROM mto_items WHERE (LOWER(code) LIKE ? OR LOWER(description) LIKE ?) ORDER BY code",("%"+text+"%","%"+text+"%")).fetchall()
 ```
 ```text
-3326:             for i in table.get_children(): table.delete(i)
-3327:             where=["1=1"]; params=[]
-3328:             prefix=state.get("prefix",""); q=search.get().strip()
-3329:             if prefix: where.append("code LIKE ?"); params.append(prefix+"%")
-3330:             if q: where.append("(LOWER(code) LIKE LOWER(?) OR LOWER(description) LIKE LOWER(?))"); params.extend(["%"+q+"%","%"+q+"%"])
-3331:             fc=(criteria.get("from_code") or "").strip(); tc=(criteria.get("to_code") or "").strip()
-3332:             if fc: where.append("code >= ?"); params.append(fc)
-3333:             if tc: where.append("code <= ?"); params.append(tc)
-3334:             sql="SELECT code,description,uom,COALESCE(opening_qty,0),COALESCE(opening_date,'') FROM mto_items WHERE "+" AND ".join(where)+" ORDER BY code"
-3335:             df=to_iso_date((criteria.get("from_date") or "").strip()); dt=to_iso_date((criteria.get("to_date") or "").strip())
-3336:             records=[]
-3337:             for code,desc,uom,opening,od in self.conn.execute(sql,params):
-3338:                 # If a date filter is supplied, accept an opening-date match OR
-3339:                 # a transaction in that date range. This prevents valid MTO codes
-3340:                 # from disappearing merely because an older record has no opening_date.
-3341:                 if df or dt:
-3342:                     ok=bool(od and (not df or od>=df) and (not dt or od<=dt))
-3343:                     if not ok:
-3344:                         txwhere=["code=?","UPPER(TRIM(COALESCE(item_type,'')))='MTO'"]; tp=[code]
-3345:                         if df: txwhere.append("doc_date>=?"); tp.append(df)
-3346:                         if dt: txwhere.append("doc_date<=?"); tp.append(dt)
+3329:             for i in table.get_children(): table.delete(i)
+3330:             where=["1=1"]; params=[]
+3331:             prefix=state.get("prefix",""); q=search.get().strip()
+3332:             if prefix: where.append("code LIKE ?"); params.append(prefix+"%")
+3333:             if q: where.append("(LOWER(code) LIKE LOWER(?) OR LOWER(description) LIKE LOWER(?))"); params.extend(["%"+q+"%","%"+q+"%"])
+3334:             fc=(criteria.get("from_code") or "").strip(); tc=(criteria.get("to_code") or "").strip()
+3335:             if fc: where.append("code >= ?"); params.append(fc)
+3336:             if tc: where.append("code <= ?"); params.append(tc)
+3337:             sql="SELECT code,description,uom,COALESCE(opening_qty,0),COALESCE(opening_date,'') FROM mto_items WHERE "+" AND ".join(where)+" ORDER BY code"
+3338:             df=to_iso_date((criteria.get("from_date") or "").strip()); dt=to_iso_date((criteria.get("to_date") or "").strip())
+3339:             records=[]
+3340:             for code,desc,uom,opening,od in self.conn.execute(sql,params):
+3341:                 # If a date filter is supplied, accept an opening-date match OR
+3342:                 # a transaction in that date range. This prevents valid MTO codes
+3343:                 # from disappearing merely because an older record has no opening_date.
+3344:                 if df or dt:
+3345:                     ok=bool(od and (not df or od>=df) and (not dt or od<=dt))
+3346:                     if not ok:
+3347:                         txwhere=["code=?","UPPER(TRIM(COALESCE(item_type,'')))='MTO'"]; tp=[code]
+3348:                         if df: txwhere.append("doc_date>=?"); tp.append(df)
+3349:                         if dt: txwhere.append("doc_date<=?"); tp.append(dt)
 ```
 ```text
-3416:                 tr.insert("", "end", values=r)
-3417:         def clear():
-3418:             for x in v.values(): x.set("")
-3419:             try: tr.selection_remove(tr.selection())
-3420:             except Exception: pass
-3421:             self._set_form_editable(party_form_roots, False)
-3422:         def new_form():
-3423:             clear(); self._set_form_editable(party_form_roots, True)
-3424:         def save():
-3425:             try:
-3426:                 name=v["name"].get().strip()
-3427:                 if not name: raise ValueError("Party Name is required.")
-3428:                 self.conn.execute("INSERT INTO parties(name,contact,address,remarks) VALUES(?,?,?,?) ON CONFLICT(name) DO UPDATE SET contact=excluded.contact,address=excluded.address,remarks=excluded.remarks",(name,v["contact"].get().strip(),v["address"].get().strip(),v["remarks"].get().strip()))
-3429:                 self.conn.commit(); backup_database(); load(); clear(); messagebox.showinfo("Saved",f"Party '{name}' saved successfully.")
-3430:             except Exception as ex: messagebox.showerror("Error",str(ex))
-3431:         def load_party_row(a):
-3432:             if not a:return
-3433:             r=tr.item(a[0])["values"]
-3434:             v["name"].set(r[1]);v["contact"].set(r[2]);v["address"].set(r[3]);v["remarks"].set(r[4])
-3435:             self._set_form_editable(party_form_roots, False)
-3436:         def on_party_select(_=None):
+3419:                 tr.insert("", "end", values=r)
+3420:         def clear():
+3421:             for x in v.values(): x.set("")
+3422:             try: tr.selection_remove(tr.selection())
+3423:             except Exception: pass
+3424:             self._set_form_editable(party_form_roots, False)
+3425:         def new_form():
+3426:             clear(); self._set_form_editable(party_form_roots, True)
+3427:         def save():
+3428:             try:
+3429:                 name=v["name"].get().strip()
+3430:                 if not name: raise ValueError("Party Name is required.")
+3431:                 self.conn.execute("INSERT INTO parties(name,contact,address,remarks) VALUES(?,?,?,?) ON CONFLICT(name) DO UPDATE SET contact=excluded.contact,address=excluded.address,remarks=excluded.remarks",(name,v["contact"].get().strip(),v["address"].get().strip(),v["remarks"].get().strip()))
+3432:                 self.conn.commit(); backup_database(); load(); clear(); messagebox.showinfo("Saved",f"Party '{name}' saved successfully.")
+3433:             except Exception as ex: messagebox.showerror("Error",str(ex))
+3434:         def load_party_row(a):
+3435:             if not a:return
+3436:             r=tr.item(a[0])["values"]
+3437:             v["name"].set(r[1]);v["contact"].set(r[2]);v["address"].set(r[3]);v["remarks"].set(r[4])
+3438:             self._set_form_editable(party_form_roots, False)
+3439:         def on_party_select(_=None):
 ```
 ```text
-3442:             load_party_row(a)
-3443:             self._set_form_editable(party_form_roots, True)
-3444:         def delete_party():
-3445:             a=tr.selection()
-3446:             if not a:
-3447:                 messagebox.showwarning("Delete", "Select a party first."); return
-3448:             pid=tr.item(a[0])["values"][0]; name=tr.item(a[0])["values"][1]
-3449:             if messagebox.askyesno("Delete Party", f"Delete party '{name}'?"):
-3450:                 self.conn.execute("DELETE FROM parties WHERE id=?",(pid,)); self.conn.commit(); backup_database(); load(); clear()
-3451:         ttk.Button(f,text="PREVIEW CURRENT",command=lambda:self.preview_tree("Party Master",tr)).grid(row=2,column=6,sticky="w",padx=8,pady=(8,0))
-3452:         self.set_page_actions(save=save, edit=edit, delete=delete_party, cancel=clear, print=lambda:self.print_party_master(),preview=lambda:self.preview_tree("Party Master",tr))
-3453:         self._add_transaction_new_button(new_form)
-3454:         load(); clear()
-3455: 
-3456:     def user_management(self):
-3457:         self.clearbody()
-3458:         if not self.is_admin:
-3459:             messagebox.showwarning("Permission Denied","Only an Admin can manage users."); self.dashboard(); return
-3460:         f=ttk.LabelFrame(self.body,text="User Management (Admin Only)",padding=10); f.pack(fill="x")
-3461:         v={k:tk.StringVar() for k in ("username","password","full_name")}
-3462:         role=tk.StringVar(value="User")
+3445:             load_party_row(a)
+3446:             self._set_form_editable(party_form_roots, True)
+3447:         def delete_party():
+3448:             a=tr.selection()
+3449:             if not a:
+3450:                 messagebox.showwarning("Delete", "Select a party first."); return
+3451:             pid=tr.item(a[0])["values"][0]; name=tr.item(a[0])["values"][1]
+3452:             if messagebox.askyesno("Delete Party", f"Delete party '{name}'?"):
+3453:                 self.conn.execute("DELETE FROM parties WHERE id=?",(pid,)); self.conn.commit(); backup_database(); load(); clear()
+3454:         ttk.Button(f,text="PREVIEW CURRENT",command=lambda:self.preview_tree("Party Master",tr)).grid(row=2,column=6,sticky="w",padx=8,pady=(8,0))
+3455:         self.set_page_actions(save=save, edit=edit, delete=delete_party, cancel=clear, print=lambda:self.print_party_master(),preview=lambda:self.preview_tree("Party Master",tr))
+3456:         self._add_transaction_new_button(new_form)
+3457:         load(); clear()
+3458: 
+3459:     def user_management(self):
+3460:         self.clearbody()
+3461:         if not self.is_admin:
+3462:             messagebox.showwarning("Permission Denied","Only an Admin can manage users."); self.dashboard(); return
+3463:         f=ttk.LabelFrame(self.body,text="User Management (Admin Only)",padding=10); f.pack(fill="x")
+3464:         v={k:tk.StringVar() for k in ("username","password","full_name")}
+3465:         role=tk.StringVar(value="User")
 ```
 ```text
-3499:             u_ent.state(["!disabled"])
-3500:         def edit():
-3501:             a=tr.selection()
-3502:             if not a:
-3503:                 messagebox.showwarning("Edit User","Select a user row first."); return
-3504:             r=tr.item(a[0])["values"]
-3505:             v["username"].set(r[0]); v["full_name"].set(r[1]); v["password"].set("")
-3506:             role.set(r[2]); edit_flag.set(r[3]=="Yes"); delete_flag.set(r[4]=="Yes")
-3507:             u_ent.state(["disabled"])  # username is the key; rename not supported here
-3508:         def save():
-3509:             try:
-3510:                 username=v["username"].get().strip()
-3511:                 if not username: raise ValueError("Username is required.")
-3512:                 exists=self.conn.execute("SELECT password FROM users WHERE username=?",(username,)).fetchone()
-3513:                 pw=v["password"].get()
-3514:                 if exists:
-3515:                     pw_hash = hash_password(pw) if pw else exists[0]
-3516:                     self.conn.execute("UPDATE users SET password=?,role=?,can_edit=?,can_delete=?,full_name=? WHERE username=?",
-3517:                         (pw_hash, role.get(), int(edit_flag.get()), int(delete_flag.get()), v["full_name"].get().strip(), username))
-3518:                 else:
-3519:                     if not pw: raise ValueError("Password is required for a new user.")
+3502:             u_ent.state(["!disabled"])
+3503:         def edit():
+3504:             a=tr.selection()
+3505:             if not a:
+3506:                 messagebox.showwarning("Edit User","Select a user row first."); return
+3507:             r=tr.item(a[0])["values"]
+3508:             v["username"].set(r[0]); v["full_name"].set(r[1]); v["password"].set("")
+3509:             role.set(r[2]); edit_flag.set(r[3]=="Yes"); delete_flag.set(r[4]=="Yes")
+3510:             u_ent.state(["disabled"])  # username is the key; rename not supported here
+3511:         def save():
+3512:             try:
+3513:                 username=v["username"].get().strip()
+3514:                 if not username: raise ValueError("Username is required.")
+3515:                 exists=self.conn.execute("SELECT password FROM users WHERE username=?",(username,)).fetchone()
+3516:                 pw=v["password"].get()
+3517:                 if exists:
+3518:                     pw_hash = hash_password(pw) if pw else exists[0]
+3519:                     self.conn.execute("UPDATE users SET password=?,role=?,can_edit=?,can_delete=?,full_name=? WHERE username=?",
+3520:                         (pw_hash, role.get(), int(edit_flag.get()), int(delete_flag.get()), v["full_name"].get().strip(), username))
+3521:                 else:
+3522:                     if not pw: raise ValueError("Password is required for a new user.")
 ```
 ```text
-3514:                 if exists:
-3515:                     pw_hash = hash_password(pw) if pw else exists[0]
-3516:                     self.conn.execute("UPDATE users SET password=?,role=?,can_edit=?,can_delete=?,full_name=? WHERE username=?",
-3517:                         (pw_hash, role.get(), int(edit_flag.get()), int(delete_flag.get()), v["full_name"].get().strip(), username))
-3518:                 else:
-3519:                     if not pw: raise ValueError("Password is required for a new user.")
-3520:                     self.conn.execute("INSERT INTO users(username,password,role,can_edit,can_delete,full_name) VALUES(?,?,?,?,?,?)",
-3521:                         (username, hash_password(pw), role.get(), int(edit_flag.get()), int(delete_flag.get()), v["full_name"].get().strip()))
-3522:                 self.conn.commit(); backup_database(); load(); clear()
-3523:                 messagebox.showinfo("Saved", f"User '{username}' saved successfully.")
-3524:             except Exception as ex:
-3525:                 messagebox.showerror("Error", str(ex))
-3526:         def delete_user():
-3527:             a=tr.selection()
-3528:             if not a:
-3529:                 messagebox.showwarning("Delete User","Select a user row first."); return
-3530:             username=tr.item(a[0])["values"][0]
-3531:             if username==self.current_user:
-3532:                 messagebox.showerror("Not Allowed","You cannot delete the account you are currently logged in with."); return
-3533:             if self.conn.execute("SELECT COUNT(*) FROM users WHERE role='Admin'").fetchone()[0]<=1 and \
-3534:                self.conn.execute("SELECT role FROM users WHERE username=?",(username,)).fetchone()[0]=="Admin":
+3517:                 if exists:
+3518:                     pw_hash = hash_password(pw) if pw else exists[0]
+3519:                     self.conn.execute("UPDATE users SET password=?,role=?,can_edit=?,can_delete=?,full_name=? WHERE username=?",
+3520:                         (pw_hash, role.get(), int(edit_flag.get()), int(delete_flag.get()), v["full_name"].get().strip(), username))
+3521:                 else:
+3522:                     if not pw: raise ValueError("Password is required for a new user.")
+3523:                     self.conn.execute("INSERT INTO users(username,password,role,can_edit,can_delete,full_name) VALUES(?,?,?,?,?,?)",
+3524:                         (username, hash_password(pw), role.get(), int(edit_flag.get()), int(delete_flag.get()), v["full_name"].get().strip()))
+3525:                 self.conn.commit(); backup_database(); load(); clear()
+3526:                 messagebox.showinfo("Saved", f"User '{username}' saved successfully.")
+3527:             except Exception as ex:
+3528:                 messagebox.showerror("Error", str(ex))
+3529:         def delete_user():
+3530:             a=tr.selection()
+3531:             if not a:
+3532:                 messagebox.showwarning("Delete User","Select a user row first."); return
+3533:             username=tr.item(a[0])["values"][0]
+3534:             if username==self.current_user:
+3535:                 messagebox.showerror("Not Allowed","You cannot delete the account you are currently logged in with."); return
+3536:             if self.conn.execute("SELECT COUNT(*) FROM users WHERE role='Admin'").fetchone()[0]<=1 and \
+3537:                self.conn.execute("SELECT role FROM users WHERE username=?",(username,)).fetchone()[0]=="Admin":
 ```
 ```text
-3529:                 messagebox.showwarning("Delete User","Select a user row first."); return
-3530:             username=tr.item(a[0])["values"][0]
-3531:             if username==self.current_user:
-3532:                 messagebox.showerror("Not Allowed","You cannot delete the account you are currently logged in with."); return
-3533:             if self.conn.execute("SELECT COUNT(*) FROM users WHERE role='Admin'").fetchone()[0]<=1 and \
-3534:                self.conn.execute("SELECT role FROM users WHERE username=?",(username,)).fetchone()[0]=="Admin":
-3535:                 messagebox.showerror("Not Allowed","At least one Admin account must remain."); return
-3536:             if messagebox.askyesno("Delete User", f"Delete user '{username}'?"):
-3537:                 self.conn.execute("DELETE FROM users WHERE username=?",(username,)); self.conn.commit(); backup_database(); load(); clear()
-3538:         ttk.Button(f,text="PREVIEW CURRENT",command=lambda:self.preview_tree("User Management",tr)).grid(row=3,column=0,sticky="w",padx=5,pady=(8,0))
-3539:         self.set_page_actions(save=save, edit=edit, delete=delete_user, cancel=clear, print=None, preview=lambda:self.preview_tree("User Management",tr))
-3540:         load()
-3541: 
-3542:     @staticmethod
-3543:     def _renumber_tree(tree, rows):
-3544:         for i,iid in enumerate(tree.get_children()):
-3545:             vals=list(tree.item(iid,"values"));
-3546:             if vals: vals[0]=i+1; tree.item(iid,values=vals)
-3547: 
-3548:     def demand(self):
-3549:         self.clearbody(); self.demand_lines=[]
+3532:                 messagebox.showwarning("Delete User","Select a user row first."); return
+3533:             username=tr.item(a[0])["values"][0]
+3534:             if username==self.current_user:
+3535:                 messagebox.showerror("Not Allowed","You cannot delete the account you are currently logged in with."); return
+3536:             if self.conn.execute("SELECT COUNT(*) FROM users WHERE role='Admin'").fetchone()[0]<=1 and \
+3537:                self.conn.execute("SELECT role FROM users WHERE username=?",(username,)).fetchone()[0]=="Admin":
+3538:                 messagebox.showerror("Not Allowed","At least one Admin account must remain."); return
+3539:             if messagebox.askyesno("Delete User", f"Delete user '{username}'?"):
+3540:                 self.conn.execute("DELETE FROM users WHERE username=?",(username,)); self.conn.commit(); backup_database(); load(); clear()
+3541:         ttk.Button(f,text="PREVIEW CURRENT",command=lambda:self.preview_tree("User Management",tr)).grid(row=3,column=0,sticky="w",padx=5,pady=(8,0))
+3542:         self.set_page_actions(save=save, edit=edit, delete=delete_user, cancel=clear, print=None, preview=lambda:self.preview_tree("User Management",tr))
+3543:         load()
+3544: 
+3545:     @staticmethod
+3546:     def _renumber_tree(tree, rows):
+3547:         for i,iid in enumerate(tree.get_children()):
+3548:             vals=list(tree.item(iid,"values"));
+3549:             if vals: vals[0]=i+1; tree.item(iid,values=vals)
+3550: 
+3551:     def demand(self):
+3552:         self.clearbody(); self.demand_lines=[]
 ```
 ```text
-3546:             if vals: vals[0]=i+1; tree.item(iid,values=vals)
-3547: 
-3548:     def demand(self):
-3549:         self.clearbody(); self.demand_lines=[]
-3550:         f=ttk.LabelFrame(self.body,text="Purchase Demand",padding=10); f.pack(fill="x")
-3551:         v={k:tk.StringVar() for k in ["no","date","dept","required","remarks","urgency","annual","status","just","special","source"]}
-3552:         v["date"].set(datetime.now().strftime("%d/%m/%Y")); v["urgency"].set("Immediate"); v["status"].set("Draft")
-3553:         selector=ttk.Frame(f); selector.grid(row=0,column=0,columnspan=8,sticky="ew",pady=(0,8))
-3554:         self.document_selector(selector,"Description / Saved Demand", "demand", v["no"], lambda no: self.load_demand_into_form(no,v,tree))
-3555:         # Demand Date is intentionally displayed as its own dedicated field.
-3556:         ttk.Label(f,text="Demand Date (DD/MM/YYYY)").grid(row=1,column=0,sticky="w",padx=5,pady=(2,0))
-3557:         self.make_date_field(f,v["date"],width=16).grid(row=2,column=0,padx=5,pady=(2,8),sticky="w")
-3558:         fields=[("no","Demand No"),("dept","Department"),("required","Required For"),("remarks","Remarks"),
-3559:                 ("urgency","Urgency"),("annual","Annual Demand No"),("status","Status"),("just","Justification"),
-3560:                 ("special","Special Instructions"),("source","Recommended Source")]
-3561:         for i,(k,n) in enumerate(fields):
-3562:             r=i//4*2+3; c=i%4*2
-3563:             ttk.Label(f,text=n).grid(row=r,column=c,sticky="w",padx=5,pady=2)
-3564:             if k=="dept":
-3565:                 ttk.Combobox(f,textvariable=v[k],values=DEPARTMENTS,state="readonly",width=22).grid(row=r+1,column=c,padx=5,pady=2)
-3566:             elif k=="urgency":
+3549:             if vals: vals[0]=i+1; tree.item(iid,values=vals)
+3550: 
+3551:     def demand(self):
+3552:         self.clearbody(); self.demand_lines=[]
+3553:         f=ttk.LabelFrame(self.body,text="Purchase Demand",padding=10); f.pack(fill="x")
+3554:         v={k:tk.StringVar() for k in ["no","date","dept","required","remarks","urgency","annual","status","just","special","source"]}
+3555:         v["date"].set(datetime.now().strftime("%d/%m/%Y")); v["urgency"].set("Immediate"); v["status"].set("Draft")
+3556:         selector=ttk.Frame(f); selector.grid(row=0,column=0,columnspan=8,sticky="ew",pady=(0,8))
+3557:         self.document_selector(selector,"Description / Saved Demand", "demand", v["no"], lambda no: self.load_demand_into_form(no,v,tree))
+3558:         # Demand Date is intentionally displayed as its own dedicated field.
+3559:         ttk.Label(f,text="Demand Date (DD/MM/YYYY)").grid(row=1,column=0,sticky="w",padx=5,pady=(2,0))
+3560:         self.make_date_field(f,v["date"],width=16).grid(row=2,column=0,padx=5,pady=(2,8),sticky="w")
+3561:         fields=[("no","Demand No"),("dept","Department"),("required","Required For"),("remarks","Remarks"),
+3562:                 ("urgency","Urgency"),("annual","Annual Demand No"),("status","Status"),("just","Justification"),
+3563:                 ("special","Special Instructions"),("source","Recommended Source")]
+3564:         for i,(k,n) in enumerate(fields):
+3565:             r=i//4*2+3; c=i%4*2
+3566:             ttk.Label(f,text=n).grid(row=r,column=c,sticky="w",padx=5,pady=2)
+3567:             if k=="dept":
+3568:                 ttk.Combobox(f,textvariable=v[k],values=DEPARTMENTS,state="readonly",width=22).grid(row=r+1,column=c,padx=5,pady=2)
+3569:             elif k=="urgency":
 ```
 ```text
-3636:         def new_form():
-3637:             self._editing_document_key=None
-3638:             for z in v.values(): z.set("")
-3639:             v["date"].set(datetime.now().strftime("%d/%m/%Y")); v["urgency"].set("Immediate"); v["status"].set("Draft")
-3640:             itype.set("Local"); self.demand_lines.clear(); editing["index"]=None; item_edit_btn.configure(text="ITEMS EDIT")
-3641:             for iid in tree.get_children(): tree.delete(iid)
-3642:             self._set_form_editable(form_roots, True, skip=[selector])
-3643: 
-3644:         def save():
-3645:             try:
-3646:                 no=v["no"].get().strip()
-3647:                 if not no: raise ValueError("Demand No is required.")
-3648:                 fy_start,fy_end=fiscal_year_range(v["date"].get())
-3649:                 dup=self.conn.execute("SELECT demand_no,demand_date FROM demands WHERE demand_no=? AND demand_date>=? AND demand_date<=?",(no,fy_start,fy_end)).fetchone()
-3650:                 if dup and getattr(self,"_editing_document_key",None) != no:
-3651:                     raise ValueError(f"Demand No {no} already exists in fiscal year {fiscal_year_key(v["date"].get())}. Duplicate numbers are not allowed from 1 July through 30 June.")
-3652:                 if not self.demand_lines: raise ValueError("Add at least one item.")
-3653:                 self.conn.execute("INSERT OR REPLACE INTO demands(demand_no,demand_date,department,required_for,remarks,urgency,status,annual_demand_no,status_date,justification,special_instructions,recommended_source) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",(no,to_iso_date(v["date"].get()),v["dept"].get(),v["required"].get(),v["remarks"].get(),v["urgency"].get(),v["status"].get(),v["annual"].get(),datetime.now().strftime("%Y-%m-%d %H:%M"),v["just"].get(),v["special"].get(),v["source"].get()))
-3654:                 self.conn.execute("DELETE FROM demand_lines WHERE demand_no=?",(no,))
-3655:                 for x in self.demand_lines:self.conn.execute("INSERT INTO demand_lines(demand_no,sr_no,code,description,uom,demand_qty,available_qty,to_purchase,item_type) VALUES(?,?,?,?,?,?,?,?,?)",(no,*x[:7],x[9] if len(x)>9 else "Local"))
-3656:                 self.conn.commit()
+3639:         def new_form():
+3640:             self._editing_document_key=None
+3641:             for z in v.values(): z.set("")
+3642:             v["date"].set(datetime.now().strftime("%d/%m/%Y")); v["urgency"].set("Immediate"); v["status"].set("Draft")
+3643:             itype.set("Local"); self.demand_lines.clear(); editing["index"]=None; item_edit_btn.configure(text="ITEMS EDIT")
+3644:             for iid in tree.get_children(): tree.delete(iid)
+3645:             self._set_form_editable(form_roots, True, skip=[selector])
+3646: 
+3647:         def save():
+3648:             try:
+3649:                 no=v["no"].get().strip()
+3650:                 if not no: raise ValueError("Demand No is required.")
+3651:                 fy_start,fy_end=fiscal_year_range(v["date"].get())
+3652:                 dup=self.conn.execute("SELECT demand_no,demand_date FROM demands WHERE demand_no=? AND demand_date>=? AND demand_date<=?",(no,fy_start,fy_end)).fetchone()
+3653:                 if dup and getattr(self,"_editing_document_key",None) != no:
+3654:                     raise ValueError(f"Demand No {no} already exists in fiscal year {fiscal_year_key(v["date"].get())}. Duplicate numbers are not allowed from 1 July through 30 June.")
+3655:                 if not self.demand_lines: raise ValueError("Add at least one item.")
+3656:                 self.conn.execute("INSERT OR REPLACE INTO demands(demand_no,demand_date,department,required_for,remarks,urgency,status,annual_demand_no,status_date,justification,special_instructions,recommended_source) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",(no,to_iso_date(v["date"].get()),v["dept"].get(),v["required"].get(),v["remarks"].get(),v["urgency"].get(),v["status"].get(),v["annual"].get(),datetime.now().strftime("%Y-%m-%d %H:%M"),v["just"].get(),v["special"].get(),v["source"].get()))
+3657:                 self.conn.execute("DELETE FROM demand_lines WHERE demand_no=?",(no,))
+3658:                 for x in self.demand_lines:self.conn.execute("INSERT INTO demand_lines(demand_no,sr_no,code,description,uom,demand_qty,available_qty,to_purchase,item_type) VALUES(?,?,?,?,?,?,?,?,?)",(no,*x[:7],x[9] if len(x)>9 else "Local"))
+3659:                 self.conn.commit()
 ```
 ```text
-3649:                 dup=self.conn.execute("SELECT demand_no,demand_date FROM demands WHERE demand_no=? AND demand_date>=? AND demand_date<=?",(no,fy_start,fy_end)).fetchone()
-3650:                 if dup and getattr(self,"_editing_document_key",None) != no:
-3651:                     raise ValueError(f"Demand No {no} already exists in fiscal year {fiscal_year_key(v["date"].get())}. Duplicate numbers are not allowed from 1 July through 30 June.")
-3652:                 if not self.demand_lines: raise ValueError("Add at least one item.")
-3653:                 self.conn.execute("INSERT OR REPLACE INTO demands(demand_no,demand_date,department,required_for,remarks,urgency,status,annual_demand_no,status_date,justification,special_instructions,recommended_source) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",(no,to_iso_date(v["date"].get()),v["dept"].get(),v["required"].get(),v["remarks"].get(),v["urgency"].get(),v["status"].get(),v["annual"].get(),datetime.now().strftime("%Y-%m-%d %H:%M"),v["just"].get(),v["special"].get(),v["source"].get()))
-3654:                 self.conn.execute("DELETE FROM demand_lines WHERE demand_no=?",(no,))
-3655:                 for x in self.demand_lines:self.conn.execute("INSERT INTO demand_lines(demand_no,sr_no,code,description,uom,demand_qty,available_qty,to_purchase,item_type) VALUES(?,?,?,?,?,?,?,?,?)",(no,*x[:7],x[9] if len(x)>9 else "Local"))
-3656:                 self.conn.commit()
-3657:                 report_path = self._save_entry_report("Purchase Demand", [f"Demand No: {no}", f"Demand Date: {v['date'].get()}", f"Department: {v['dept'].get()}"], ("Sr #","Code","Description","UOM","Demand","Available","To Purchase","Required For","Remarks","Type"), self.demand_lines)
-3658:                 backup_database(); self._editing_document_key=None; self.refresh_saved_cache("demand"); self._set_form_editable(form_roots, False, skip=[selector])
-3659:                 messagebox.showinfo("Saved",f"Demand {no} saved successfully." + (f"\n\nReport saved to:\n{report_path}" if report_path else "\n\nWarning: PDF report could not be generated; the saved data is retained."))
-3660:             except Exception as ex: messagebox.showerror("Error",str(ex))
-3661:         form_roots=[f,line,editbar]
-3662:         if not hasattr(self,"_transaction_form_roots"): self._transaction_form_roots={}
-3663:         self._transaction_form_roots["demand"]=form_roots; self._transaction_form_roots["selector"]=selector
-3664:         def delete_current():
-3665:             no=v["no"].get().strip()
-3666:             if not no or not self.conn.execute("SELECT 1 FROM demands WHERE demand_no=?",(no,)).fetchone():
-3667:                 messagebox.showwarning("Delete", "Load/select a saved Demand first."); return
-3668:             if not messagebox.askyesno("Delete Demand", f"Delete Demand {no}? This cannot be undone."): return
-3669:             self.conn.execute("DELETE FROM demand_lines WHERE demand_no=?",(no,)); self.conn.execute("DELETE FROM demands WHERE demand_no=?",(no,)); self.conn.commit(); backup_database()
+3652:                 dup=self.conn.execute("SELECT demand_no,demand_date FROM demands WHERE demand_no=? AND demand_date>=? AND demand_date<=?",(no,fy_start,fy_end)).fetchone()
+3653:                 if dup and getattr(self,"_editing_document_key",None) != no:
+3654:                     raise ValueError(f"Demand No {no} already exists in fiscal year {fiscal_year_key(v["date"].get())}. Duplicate numbers are not allowed from 1 July through 30 June.")
+3655:                 if not self.demand_lines: raise ValueError("Add at least one item.")
+3656:                 self.conn.execute("INSERT OR REPLACE INTO demands(demand_no,demand_date,department,required_for,remarks,urgency,status,annual_demand_no,status_date,justification,special_instructions,recommended_source) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",(no,to_iso_date(v["date"].get()),v["dept"].get(),v["required"].get(),v["remarks"].get(),v["urgency"].get(),v["status"].get(),v["annual"].get(),datetime.now().strftime("%Y-%m-%d %H:%M"),v["just"].get(),v["special"].get(),v["source"].get()))
+3657:                 self.conn.execute("DELETE FROM demand_lines WHERE demand_no=?",(no,))
+3658:                 for x in self.demand_lines:self.conn.execute("INSERT INTO demand_lines(demand_no,sr_no,code,description,uom,demand_qty,available_qty,to_purchase,item_type) VALUES(?,?,?,?,?,?,?,?,?)",(no,*x[:7],x[9] if len(x)>9 else "Local"))
+3659:                 self.conn.commit()
+3660:                 report_path = self._save_entry_report("Purchase Demand", [f"Demand No: {no}", f"Demand Date: {v['date'].get()}", f"Department: {v['dept'].get()}"], ("Sr #","Code","Description","UOM","Demand","Available","To Purchase","Required For","Remarks","Type"), self.demand_lines)
+3661:                 backup_database(); self._editing_document_key=None; self.refresh_saved_cache("demand"); self._set_form_editable(form_roots, False, skip=[selector])
+3662:                 messagebox.showinfo("Saved",f"Demand {no} saved successfully." + (f"\n\nReport saved to:\n{report_path}" if report_path else "\n\nWarning: PDF report could not be generated; the saved data is retained."))
+3663:             except Exception as ex: messagebox.showerror("Error",str(ex))
+3664:         form_roots=[f,line,editbar]
+3665:         if not hasattr(self,"_transaction_form_roots"): self._transaction_form_roots={}
+3666:         self._transaction_form_roots["demand"]=form_roots; self._transaction_form_roots["selector"]=selector
+3667:         def delete_current():
+3668:             no=v["no"].get().strip()
+3669:             if not no or not self.conn.execute("SELECT 1 FROM demands WHERE demand_no=?",(no,)).fetchone():
+3670:                 messagebox.showwarning("Delete", "Load/select a saved Demand first."); return
+3671:             if not messagebox.askyesno("Delete Demand", f"Delete Demand {no}? This cannot be undone."): return
+3672:             self.conn.execute("DELETE FROM demand_lines WHERE demand_no=?",(no,)); self.conn.execute("DELETE FROM demands WHERE demand_no=?",(no,)); self.conn.commit(); backup_database()
 ```
 ```text
-3682:                     f"Required For: {v['required'].get()}   Urgency: {v['urgency'].get()}   Status: {v['status'].get()}",
-3683:                     f"Annual Demand No: {v['annual'].get()}   Recommended Source: {v['source'].get()}",
-3684:                     f"Justification: {v['just'].get()}",
-3685:                     f"Special Instructions: {v['special'].get()}   Remarks: {v['remarks'].get()}"]
-3686:             if not self.demand_lines:
-3687:                 messagebox.showwarning("Preview","Add at least one item line first."); return
-3688:             self.show_preview_window("Purchase Demand", header,
-3689:                 ("Sr #","Code","Description","UOM","Demand","Available","To Purchase","Required For","Remarks","Type"),
-3690:                 self.demand_lines, [50,110,290,55,70,70,80,140,170,65], on_save=save)
-3691:         def edit_saved_demand():
-3692:             self._editing_document_key=v["no"].get().strip().split(" -> ",1)[0] if v["no"].get().strip() else None
-3693:             self._edit_from_selector("demand", v["no"], lambda no:self.load_demand_into_form(no,v,tree))
-3694:             self._set_form_editable(form_roots, True, skip=[selector])
-3695:         def print_now():
-3696:             if not self.demand_lines:
-3697:                 messagebox.showwarning("Print","Add at least one item line first."); return
-3698:             header=[f"Demand No: {v['no'].get() or '(not set)'}   Date: {v['date'].get()}   Department: {v['dept'].get()}",
-3699:                     f"Required For: {v['required'].get()}   Urgency: {v['urgency'].get()}   Status: {v['status'].get()}",
-3700:                     f"Annual Demand No: {v['annual'].get()}   Recommended Source: {v['source'].get()}",
-3701:                     f"Justification: {v['just'].get()}",
-3702:                     f"Special Instructions: {v['special'].get()}   Remarks: {v['remarks'].get()}"]
+3685:                     f"Required For: {v['required'].get()}   Urgency: {v['urgency'].get()}   Status: {v['status'].get()}",
+3686:                     f"Annual Demand No: {v['annual'].get()}   Recommended Source: {v['source'].get()}",
+3687:                     f"Justification: {v['just'].get()}",
+3688:                     f"Special Instructions: {v['special'].get()}   Remarks: {v['remarks'].get()}"]
+3689:             if not self.demand_lines:
+3690:                 messagebox.showwarning("Preview","Add at least one item line first."); return
+3691:             self.show_preview_window("Purchase Demand", header,
+3692:                 ("Sr #","Code","Description","UOM","Demand","Available","To Purchase","Required For","Remarks","Type"),
+3693:                 self.demand_lines, [50,110,290,55,70,70,80,140,170,65], on_save=save)
+3694:         def edit_saved_demand():
+3695:             self._editing_document_key=v["no"].get().strip().split(" -> ",1)[0] if v["no"].get().strip() else None
+3696:             self._edit_from_selector("demand", v["no"], lambda no:self.load_demand_into_form(no,v,tree))
+3697:             self._set_form_editable(form_roots, True, skip=[selector])
+3698:         def print_now():
+3699:             if not self.demand_lines:
+3700:                 messagebox.showwarning("Print","Add at least one item line first."); return
+3701:             header=[f"Demand No: {v['no'].get() or '(not set)'}   Date: {v['date'].get()}   Department: {v['dept'].get()}",
+3702:                     f"Required For: {v['required'].get()}   Urgency: {v['urgency'].get()}   Status: {v['status'].get()}",
+3703:                     f"Annual Demand No: {v['annual'].get()}   Recommended Source: {v['source'].get()}",
+3704:                     f"Justification: {v['just'].get()}",
+3705:                     f"Special Instructions: {v['special'].get()}   Remarks: {v['remarks'].get()}"]
 ```
 ```text
-3698:             header=[f"Demand No: {v['no'].get() or '(not set)'}   Date: {v['date'].get()}   Department: {v['dept'].get()}",
-3699:                     f"Required For: {v['required'].get()}   Urgency: {v['urgency'].get()}   Status: {v['status'].get()}",
-3700:                     f"Annual Demand No: {v['annual'].get()}   Recommended Source: {v['source'].get()}",
-3701:                     f"Justification: {v['just'].get()}",
-3702:                     f"Special Instructions: {v['special'].get()}   Remarks: {v['remarks'].get()}"]
-3703:             self._open_direct_printer("Purchase Demand",header,
-3704:                 ("Sr #","Code","Description","UOM","Demand","Available","To Purchase","Required For","Remarks","Type"),
-3705:                 self.demand_lines,A4)
-3706:         self.set_page_actions(save=save, edit=edit_saved_demand, delete=delete_current, cancel=cancel_form, print=print_now, preview=preview_now)
-3707:         self._add_transaction_new_button(new_form)
-3708:         self._set_form_editable(form_roots, False, skip=[selector])
-3709:         try:
-3710:             ttk.Button(self.body.winfo_children()[0],text="Preview",style="Primary.TButton",command=preview_now).pack(side="left",padx=(0,2))
-3711:         except Exception: pass
-3712:         self._active_form_loader = lambda no: self.load_demand_into_form(no,v,tree)
-3713: 
-3714:     def load_demand_into_form(self,no,v,tree):
-3715:         v["no"].set(no)
-3716:         r=self.conn.execute("SELECT demand_date,department,required_for,remarks,urgency,status,annual_demand_no,justification,special_instructions,recommended_source FROM demands WHERE demand_no=?",(no,)).fetchone()
-3717:         if not r:return
-3718:         for k,val in zip(["date","dept","required","remarks","urgency","status","annual","just","special","source"],r):
+3701:             header=[f"Demand No: {v['no'].get() or '(not set)'}   Date: {v['date'].get()}   Department: {v['dept'].get()}",
+3702:                     f"Required For: {v['required'].get()}   Urgency: {v['urgency'].get()}   Status: {v['status'].get()}",
+3703:                     f"Annual Demand No: {v['annual'].get()}   Recommended Source: {v['source'].get()}",
+3704:                     f"Justification: {v['just'].get()}",
+3705:                     f"Special Instructions: {v['special'].get()}   Remarks: {v['remarks'].get()}"]
+3706:             self._open_direct_printer("Purchase Demand",header,
+3707:                 ("Sr #","Code","Description","UOM","Demand","Available","To Purchase","Required For","Remarks","Type"),
+3708:                 self.demand_lines,A4)
+3709:         self.set_page_actions(save=save, edit=edit_saved_demand, delete=delete_current, cancel=cancel_form, print=print_now, preview=preview_now)
+3710:         self._add_transaction_new_button(new_form)
+3711:         self._set_form_editable(form_roots, False, skip=[selector])
+3712:         try:
+3713:             ttk.Button(self.body.winfo_children()[0],text="Preview",style="Primary.TButton",command=preview_now).pack(side="left",padx=(0,2))
+3714:         except Exception: pass
+3715:         self._active_form_loader = lambda no: self.load_demand_into_form(no,v,tree)
+3716: 
+3717:     def load_demand_into_form(self,no,v,tree):
+3718:         v["no"].set(no)
+3719:         r=self.conn.execute("SELECT demand_date,department,required_for,remarks,urgency,status,annual_demand_no,justification,special_instructions,recommended_source FROM demands WHERE demand_no=?",(no,)).fetchone()
+3720:         if not r:return
+3721:         for k,val in zip(["date","dept","required","remarks","urgency","status","annual","just","special","source"],r):
 ```
 ```text
-3720:         self.demand_lines=[]
-3721:         for i in tree.get_children():tree.delete(i)
-3722:         for r in self.conn.execute("SELECT sr_no,code,description,uom,demand_qty,available_qty,to_purchase,item_type FROM demand_lines WHERE demand_no=? ORDER BY sr_no",(no,)):
-3723:             row=tuple(r[:7])+(v["required"].get(),v["remarks"].get(),r[7] or "Local"); self.demand_lines.append(row); tree.insert("", "end",values=row)
-3724:         roots=getattr(self,"_transaction_form_roots",None)
-3725:         if roots and "demand" in roots:
-3726:             self._set_form_editable(roots["demand"], False, skip=[roots.get("selector")])
-3727: 
-3728:     def refresh_saved_cache(self,typ):
-3729:         # Refresh saved-document dropdowns immediately after a successful save.
-3730:         refreshers = getattr(self, "_document_selector_refreshers", {}).get(typ, [])
-3731:         alive=[]
-3732:         for combo, refresh in refreshers:
-3733:             try:
-3734:                 if combo.winfo_exists():
-3735:                     refresh()
-3736:                     alive.append((combo, refresh))
-3737:             except Exception:
-3738:                 pass
-3739:         if hasattr(self, "_document_selector_refreshers"):
-3740:             self._document_selector_refreshers[typ] = alive
+3723:         self.demand_lines=[]
+3724:         for i in tree.get_children():tree.delete(i)
+3725:         for r in self.conn.execute("SELECT sr_no,code,description,uom,demand_qty,available_qty,to_purchase,item_type FROM demand_lines WHERE demand_no=? ORDER BY sr_no",(no,)):
+3726:             row=tuple(r[:7])+(v["required"].get(),v["remarks"].get(),r[7] or "Local"); self.demand_lines.append(row); tree.insert("", "end",values=row)
+3727:         roots=getattr(self,"_transaction_form_roots",None)
+3728:         if roots and "demand" in roots:
+3729:             self._set_form_editable(roots["demand"], False, skip=[roots.get("selector")])
+3730: 
+3731:     def refresh_saved_cache(self,typ):
+3732:         # Refresh saved-document dropdowns immediately after a successful save.
+3733:         refreshers = getattr(self, "_document_selector_refreshers", {}).get(typ, [])
+3734:         alive=[]
+3735:         for combo, refresh in refreshers:
+3736:             try:
+3737:                 if combo.winfo_exists():
+3738:                     refresh()
+3739:                     alive.append((combo, refresh))
+3740:             except Exception:
+3741:                 pass
+3742:         if hasattr(self, "_document_selector_refreshers"):
+3743:             self._document_selector_refreshers[typ] = alive
 ```
 ```text
-3739:         if hasattr(self, "_document_selector_refreshers"):
-3740:             self._document_selector_refreshers[typ] = alive
-3741: 
-3742:     def grr(self):
-3743:         self.clearbody(); self.grr_lines=[]
-3744:         f=ttk.LabelFrame(self.body,text="GRN Receipt",padding=10); f.pack(fill="x")
-3745:         v={k:tk.StringVar() for k in ["no","date","department","supplier","invoice","po","challan","vehicle","bill","ref","remarks"]}; v["date"].set(datetime.now().strftime("%d/%m/%Y")); v["department"].set(DEPARTMENTS[0])
-3746:         selector=ttk.Frame(f); selector.grid(row=0,column=0,columnspan=8,sticky="ew",pady=(0,8))
-3747:         self.document_selector(selector,"Description / Saved GRN", "grr", v["no"], lambda no: self.load_grr_into_form(no,v,tree))
-3748:         fields=[("no","GRN No"),("date","Date"),("department","Department"),("supplier","Supplier"),("invoice","Invoice #"),("po","PO #"),("challan","Challan #"),("vehicle","Vehicle #"),("bill","Bill/Voucher #"),("ref","Reference"),("remarks","Remarks")]
-3749:         for i,(k,n) in enumerate(fields):
-3750:             r=i//4*2+2;c=i%4*2
-3751:             ttk.Label(f,text=n).grid(row=r,column=c,sticky="w",padx=5,pady=2)
-3752:             if k=="department":
-3753:                 ttk.Combobox(f,textvariable=v[k],values=DEPARTMENTS,state="readonly",width=22).grid(row=r+1,column=c,padx=5,pady=2)
-3754:             elif k=="supplier":
-3755:                 party_values=[r[0] for r in self.conn.execute("SELECT name FROM parties ORDER BY name COLLATE NOCASE")]
-3756:                 ttk.Combobox(f,textvariable=v[k],values=party_values,width=22).grid(row=r+1,column=c,padx=5,pady=2)
-3757:             elif k=="date":
-3758:                 self.make_date_field(f,v[k],width=16).grid(row=r+1,column=c,padx=5,pady=2,sticky="w")
-3759:             else:
+3742:         if hasattr(self, "_document_selector_refreshers"):
+3743:             self._document_selector_refreshers[typ] = alive
+3744: 
+3745:     def grr(self):
+3746:         self.clearbody(); self.grr_lines=[]
+3747:         f=ttk.LabelFrame(self.body,text="GRN Receipt",padding=10); f.pack(fill="x")
+3748:         v={k:tk.StringVar() for k in ["no","date","department","supplier","invoice","po","challan","vehicle","bill","ref","remarks"]}; v["date"].set(datetime.now().strftime("%d/%m/%Y")); v["department"].set(DEPARTMENTS[0])
+3749:         selector=ttk.Frame(f); selector.grid(row=0,column=0,columnspan=8,sticky="ew",pady=(0,8))
+3750:         self.document_selector(selector,"Description / Saved GRN", "grr", v["no"], lambda no: self.load_grr_into_form(no,v,tree))
+3751:         fields=[("no","GRN No"),("date","Date"),("department","Department"),("supplier","Supplier"),("invoice","Invoice #"),("po","PO #"),("challan","Challan #"),("vehicle","Vehicle #"),("bill","Bill/Voucher #"),("ref","Reference"),("remarks","Remarks")]
+3752:         for i,(k,n) in enumerate(fields):
+3753:             r=i//4*2+2;c=i%4*2
+3754:             ttk.Label(f,text=n).grid(row=r,column=c,sticky="w",padx=5,pady=2)
+3755:             if k=="department":
+3756:                 ttk.Combobox(f,textvariable=v[k],values=DEPARTMENTS,state="readonly",width=22).grid(row=r+1,column=c,padx=5,pady=2)
+3757:             elif k=="supplier":
+3758:                 party_values=[r[0] for r in self.conn.execute("SELECT name FROM parties ORDER BY name COLLATE NOCASE")]
+3759:                 ttk.Combobox(f,textvariable=v[k],values=party_values,width=22).grid(row=r+1,column=c,padx=5,pady=2)
+3760:             elif k=="date":
+3761:                 self.make_date_field(f,v[k],width=16).grid(row=r+1,column=c,padx=5,pady=2,sticky="w")
+3762:             else:
 ```
 ```text
-3808:         def new_form():
-3809:             self._editing_document_key=None
-3810:             for z in v.values(): z.set("")
-3811:             v["date"].set(datetime.now().strftime("%d/%m/%Y")); v["department"].set(DEPARTMENTS[0]); itype.set("Local")
-3812:             self.grr_lines.clear(); editing["index"]=None; item_edit_btn.configure(text="ITEMS EDIT")
-3813:             for iid in tree.get_children(): tree.delete(iid)
-3814:             self._set_form_editable(form_roots, True, skip=[selector])
-3815: 
-3816:         def save():
-3817:             try:
-3818:                 no=v["no"].get().strip()
-3819:                 if not no:raise ValueError("GRN No is required.")
-3820:                 fy_start,fy_end=fiscal_year_range(v["date"].get())
-3821:                 dup=self.conn.execute("SELECT grr_no,grr_date FROM grr WHERE grr_no=? AND grr_date>=? AND grr_date<=?",(no,fy_start,fy_end)).fetchone()
-3822:                 if dup and getattr(self,"_editing_document_key",None) != no:
-3823:                     raise ValueError(f"GRN No {no} already exists in fiscal year {fiscal_year_key(v["date"].get())}. Duplicate numbers are not allowed from 1 July through 30 June.")
-3824:                 if not self.grr_lines:raise ValueError("Add at least one item.")
-3825:                 self.conn.execute("DELETE FROM transactions WHERE doc_type='GRR' AND doc_no=?",(no,))
-3826:                 total=sum(float(x[8] or 0) for x in self.grr_lines)
-3827:                 self.conn.execute("INSERT OR REPLACE INTO grr(grr_no,grr_date,department,supplier,invoice_no,po_no,challan_no,vehicle_no,bill_no,ref_no,remarks,total_value) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",(no,to_iso_date(v["date"].get()),v["department"].get(),v["supplier"].get(),v["invoice"].get(),v["po"].get(),v["challan"].get(),v["vehicle"].get(),v["bill"].get(),v["ref"].get(),v["remarks"].get(),total))
-3828:                 self.conn.execute("DELETE FROM grr_lines WHERE grr_no=?",(no,))
+3811:         def new_form():
+3812:             self._editing_document_key=None
+3813:             for z in v.values(): z.set("")
+3814:             v["date"].set(datetime.now().strftime("%d/%m/%Y")); v["department"].set(DEPARTMENTS[0]); itype.set("Local")
+3815:             self.grr_lines.clear(); editing["index"]=None; item_edit_btn.configure(text="ITEMS EDIT")
+3816:             for iid in tree.get_children(): tree.delete(iid)
+3817:             self._set_form_editable(form_roots, True, skip=[selector])
+3818: 
+3819:         def save():
+3820:             try:
+3821:                 no=v["no"].get().strip()
+3822:                 if not no:raise ValueError("GRN No is required.")
+3823:                 fy_start,fy_end=fiscal_year_range(v["date"].get())
+3824:                 dup=self.conn.execute("SELECT grr_no,grr_date FROM grr WHERE grr_no=? AND grr_date>=? AND grr_date<=?",(no,fy_start,fy_end)).fetchone()
+3825:                 if dup and getattr(self,"_editing_document_key",None) != no:
+3826:                     raise ValueError(f"GRN No {no} already exists in fiscal year {fiscal_year_key(v["date"].get())}. Duplicate numbers are not allowed from 1 July through 30 June.")
+3827:                 if not self.grr_lines:raise ValueError("Add at least one item.")
+3828:                 self.conn.execute("DELETE FROM transactions WHERE doc_type='GRR' AND doc_no=?",(no,))
+3829:                 total=sum(float(x[8] or 0) for x in self.grr_lines)
+3830:                 self.conn.execute("INSERT OR REPLACE INTO grr(grr_no,grr_date,department,supplier,invoice_no,po_no,challan_no,vehicle_no,bill_no,ref_no,remarks,total_value) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",(no,to_iso_date(v["date"].get()),v["department"].get(),v["supplier"].get(),v["invoice"].get(),v["po"].get(),v["challan"].get(),v["vehicle"].get(),v["bill"].get(),v["ref"].get(),v["remarks"].get(),total))
+3831:                 self.conn.execute("DELETE FROM grr_lines WHERE grr_no=?",(no,))
 ```
 ```text
-3825:                 self.conn.execute("DELETE FROM transactions WHERE doc_type='GRR' AND doc_no=?",(no,))
-3826:                 total=sum(float(x[8] or 0) for x in self.grr_lines)
-3827:                 self.conn.execute("INSERT OR REPLACE INTO grr(grr_no,grr_date,department,supplier,invoice_no,po_no,challan_no,vehicle_no,bill_no,ref_no,remarks,total_value) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",(no,to_iso_date(v["date"].get()),v["department"].get(),v["supplier"].get(),v["invoice"].get(),v["po"].get(),v["challan"].get(),v["vehicle"].get(),v["bill"].get(),v["ref"].get(),v["remarks"].get(),total))
-3828:                 self.conn.execute("DELETE FROM grr_lines WHERE grr_no=?",(no,))
-3829:                 for x in self.grr_lines:
-3830:                     ltype=x[10] if len(x)>10 else "Local"
-3831:                     self.conn.execute("INSERT INTO grr_lines(grr_no,sr_no,code,description,uom,received_qty,rejected_qty,accepted_qty,rate,amount,item_type) VALUES(?,?,?,?,?,?,?,?,?,?,?)",(no,*x[:9],ltype))
-3832:                     self.conn.execute("INSERT INTO transactions(doc_type,doc_no,doc_date,code,qty,party,ref_no,rate,remarks,item_type) VALUES('GRR',?,?,?,?,?,?,?,?,?)",(no,to_iso_date(v["date"].get()),x[1],x[6],v["supplier"].get(),v["ref"].get(),x[7],v["remarks"].get(),ltype))
-3833:                 self.conn.commit()
-3834:                 report_path = self._save_entry_report("GRN Receipt", [f"GRN No: {no}", f"GRN Date: {v['date'].get()}", f"Department: {v['department'].get()}", f"Supplier: {v['supplier'].get()}"], ("Sr #","Code","Description","UOM","Received","Rejected","Accepted","Rate","Amount","Remarks","Type"), self.grr_lines)
-3835:                 backup_database(); self._editing_document_key=None; self.refresh_saved_cache("grr"); self._set_form_editable(form_roots, False, skip=[selector])
-3836:                 messagebox.showinfo("Saved",f"GRN {no} saved. Accepted quantity added to stock." + (f"\n\nReport saved to:\n{report_path}" if report_path else "\n\nWarning: PDF report could not be generated; the saved data is retained."))
-3837:             except Exception as ex:messagebox.showerror("Error",str(ex))
-3838:         form_roots=[f,line,editbar]
-3839:         if not hasattr(self,"_transaction_form_roots"): self._transaction_form_roots={}
-3840:         self._transaction_form_roots["grr"]=form_roots; self._transaction_form_roots["grr_selector"]=selector
-3841:         def delete_current():
-3842:             no=v["no"].get().strip()
-3843:             if not no or not self.conn.execute("SELECT 1 FROM grr WHERE grr_no=?",(no,)).fetchone():
-3844:                 messagebox.showwarning("Delete", "Load/select a saved GRR first."); return
-3845:             if not messagebox.askyesno("Delete GRR", f"Delete GRR {no} and its stock transaction? This cannot be undone."): return
+3828:                 self.conn.execute("DELETE FROM transactions WHERE doc_type='GRR' AND doc_no=?",(no,))
+3829:                 total=sum(float(x[8] or 0) for x in self.grr_lines)
+3830:                 self.conn.execute("INSERT OR REPLACE INTO grr(grr_no,grr_date,department,supplier,invoice_no,po_no,challan_no,vehicle_no,bill_no,ref_no,remarks,total_value) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",(no,to_iso_date(v["date"].get()),v["department"].get(),v["supplier"].get(),v["invoice"].get(),v["po"].get(),v["challan"].get(),v["vehicle"].get(),v["bill"].get(),v["ref"].get(),v["remarks"].get(),total))
+3831:                 self.conn.execute("DELETE FROM grr_lines WHERE grr_no=?",(no,))
+3832:                 for x in self.grr_lines:
+3833:                     ltype=x[10] if len(x)>10 else "Local"
+3834:                     self.conn.execute("INSERT INTO grr_lines(grr_no,sr_no,code,description,uom,received_qty,rejected_qty,accepted_qty,rate,amount,item_type) VALUES(?,?,?,?,?,?,?,?,?,?,?)",(no,*x[:9],ltype))
+3835:                     self.conn.execute("INSERT INTO transactions(doc_type,doc_no,doc_date,code,qty,party,ref_no,rate,remarks,item_type) VALUES('GRR',?,?,?,?,?,?,?,?,?)",(no,to_iso_date(v["date"].get()),x[1],x[6],v["supplier"].get(),v["ref"].get(),x[7],v["remarks"].get(),ltype))
+3836:                 self.conn.commit()
+3837:                 report_path = self._save_entry_report("GRN Receipt", [f"GRN No: {no}", f"GRN Date: {v['date'].get()}", f"Department: {v['department'].get()}", f"Supplier: {v['supplier'].get()}"], ("Sr #","Code","Description","UOM","Received","Rejected","Accepted","Rate","Amount","Remarks","Type"), self.grr_lines)
+3838:                 backup_database(); self._editing_document_key=None; self.refresh_saved_cache("grr"); self._set_form_editable(form_roots, False, skip=[selector])
+3839:                 messagebox.showinfo("Saved",f"GRN {no} saved. Accepted quantity added to stock." + (f"\n\nReport saved to:\n{report_path}" if report_path else "\n\nWarning: PDF report could not be generated; the saved data is retained."))
+3840:             except Exception as ex:messagebox.showerror("Error",str(ex))
+3841:         form_roots=[f,line,editbar]
+3842:         if not hasattr(self,"_transaction_form_roots"): self._transaction_form_roots={}
+3843:         self._transaction_form_roots["grr"]=form_roots; self._transaction_form_roots["grr_selector"]=selector
+3844:         def delete_current():
+3845:             no=v["no"].get().strip()
+3846:             if not no or not self.conn.execute("SELECT 1 FROM grr WHERE grr_no=?",(no,)).fetchone():
+3847:                 messagebox.showwarning("Delete", "Load/select a saved GRR first."); return
+3848:             if not messagebox.askyesno("Delete GRR", f"Delete GRR {no} and its stock transaction? This cannot be undone."): return
 ```
 ```text
-3838:         form_roots=[f,line,editbar]
-3839:         if not hasattr(self,"_transaction_form_roots"): self._transaction_form_roots={}
-3840:         self._transaction_form_roots["grr"]=form_roots; self._transaction_form_roots["grr_selector"]=selector
-3841:         def delete_current():
-3842:             no=v["no"].get().strip()
-3843:             if not no or not self.conn.execute("SELECT 1 FROM grr WHERE grr_no=?",(no,)).fetchone():
-3844:                 messagebox.showwarning("Delete", "Load/select a saved GRR first."); return
-3845:             if not messagebox.askyesno("Delete GRR", f"Delete GRR {no} and its stock transaction? This cannot be undone."): return
-3846:             self.conn.execute("DELETE FROM transactions WHERE doc_type='GRR' AND doc_no=?",(no,)); self.conn.execute("DELETE FROM grr_lines WHERE grr_no=?",(no,)); self.conn.execute("DELETE FROM grr WHERE grr_no=?",(no,)); self.conn.commit(); backup_database()
-3847:             self.grr(); messagebox.showinfo("Deleted",f"GRR {no} deleted.")
-3848:         def cancel_form():
-3849:             self._editing_document_key=None
-3850:             self._set_form_editable(form_roots, False, skip=[selector])
-3851:             for z in v.values(): z.set("")
-3852:             v["date"].set(datetime.now().strftime("%d/%m/%Y")); v["department"].set(DEPARTMENTS[0])
-3853:             itype.set("Local")
-3854:             self.grr_lines.clear()
-3855:             editing["index"]=None; item_edit_btn.configure(text="ITEMS EDIT")
-3856:             for iid in tree.get_children(): tree.delete(iid)
-3857:         def preview_now():
-3858:             if not self.grr_lines:
+3841:         form_roots=[f,line,editbar]
+3842:         if not hasattr(self,"_transaction_form_roots"): self._transaction_form_roots={}
+3843:         self._transaction_form_roots["grr"]=form_roots; self._transaction_form_roots["grr_selector"]=selector
+3844:         def delete_current():
+3845:             no=v["no"].get().strip()
+3846:             if not no or not self.conn.execute("SELECT 1 FROM grr WHERE grr_no=?",(no,)).fetchone():
+3847:                 messagebox.showwarning("Delete", "Load/select a saved GRR first."); return
+3848:             if not messagebox.askyesno("Delete GRR", f"Delete GRR {no} and its stock transaction? This cannot be undone."): return
+3849:             self.conn.execute("DELETE FROM transactions WHERE doc_type='GRR' AND doc_no=?",(no,)); self.conn.execute("DELETE FROM grr_lines WHERE grr_no=?",(no,)); self.conn.execute("DELETE FROM grr WHERE grr_no=?",(no,)); self.conn.commit(); backup_database()
+3850:             self.grr(); messagebox.showinfo("Deleted",f"GRR {no} deleted.")
+3851:         def cancel_form():
+3852:             self._editing_document_key=None
+3853:             self._set_form_editable(form_roots, False, skip=[selector])
+3854:             for z in v.values(): z.set("")
+3855:             v["date"].set(datetime.now().strftime("%d/%m/%Y")); v["department"].set(DEPARTMENTS[0])
+3856:             itype.set("Local")
+3857:             self.grr_lines.clear()
+3858:             editing["index"]=None; item_edit_btn.configure(text="ITEMS EDIT")
+3859:             for iid in tree.get_children(): tree.delete(iid)
+3860:         def preview_now():
+3861:             if not self.grr_lines:
 ```
 ```text
-3867:                     ("Challan #", v['challan'].get()),
-3868:                     ("Vehicle #", v['vehicle'].get()),
-3869:                     ("Bill/Voucher #", v['bill'].get()),
-3870:                     ("Reference", v['ref'].get()),
-3871:                     ("Remarks", v['remarks'].get()),
-3872:                     ("Total Value", fmt_num(total))]
-3873:             self.show_preview_window("GRN Receipt", header,
-3874:                 ("Sr #","Code","Description","UOM","Received","Rejected","Accepted","Rate","Amount","Remarks","Type"),
-3875:                 self.grr_lines, [40,100,260,50,65,65,65,60,80,130,60], on_save=save)
-3876:         def portable_current():
-3877:             total=sum(float(x[8] or 0) for x in self.grr_lines)
-3878:             return ("GRN Receipt",[("GRN No",v["no"].get()),("GRN Date",v["date"].get()),("Department",v["department"].get()),("Supplier",v["supplier"].get())],
-3879:                     ("Sr #","Code","Description","UOM","Received","Rejected","Accepted","Rate","Amount"),self.grr_lines)
-3880:         self._portable_print_context=portable_current
-3881:         def edit_saved_grr():
-3882:             self._editing_document_key=v["no"].get().strip().split(" -> ",1)[0] if v["no"].get().strip() else None
-3883:             self._edit_from_selector("grr", v["no"], lambda no:self.load_grr_into_form(no,v,tree))
-3884:             self._set_form_editable(form_roots, True, skip=[selector])
-3885:         def print_now():
-3886:             if not self.grr_lines:
-3887:                 messagebox.showwarning("Print","Add at least one item line first."); return
+3870:                     ("Challan #", v['challan'].get()),
+3871:                     ("Vehicle #", v['vehicle'].get()),
+3872:                     ("Bill/Voucher #", v['bill'].get()),
+3873:                     ("Reference", v['ref'].get()),
+3874:                     ("Remarks", v['remarks'].get()),
+3875:                     ("Total Value", fmt_num(total))]
+3876:             self.show_preview_window("GRN Receipt", header,
+3877:                 ("Sr #","Code","Description","UOM","Received","Rejected","Accepted","Rate","Amount","Remarks","Type"),
+3878:                 self.grr_lines, [40,100,260,50,65,65,65,60,80,130,60], on_save=save)
+3879:         def portable_current():
+3880:             total=sum(float(x[8] or 0) for x in self.grr_lines)
+3881:             return ("GRN Receipt",[("GRN No",v["no"].get()),("GRN Date",v["date"].get()),("Department",v["department"].get()),("Supplier",v["supplier"].get())],
+3882:                     ("Sr #","Code","Description","UOM","Received","Rejected","Accepted","Rate","Amount"),self.grr_lines)
+3883:         self._portable_print_context=portable_current
+3884:         def edit_saved_grr():
+3885:             self._editing_document_key=v["no"].get().strip().split(" -> ",1)[0] if v["no"].get().strip() else None
+3886:             self._edit_from_selector("grr", v["no"], lambda no:self.load_grr_into_form(no,v,tree))
+3887:             self._set_form_editable(form_roots, True, skip=[selector])
+3888:         def print_now():
+3889:             if not self.grr_lines:
+3890:                 messagebox.showwarning("Print","Add at least one item line first."); return
 ```
 ```text
-3891:                     ("Supplier", v['supplier'].get()),("Invoice #", v['invoice'].get()),
-3892:                     ("PO #", v['po'].get()),("Challan #", v['challan'].get()),
-3893:                     ("Vehicle #", v['vehicle'].get()),("Bill/Voucher #", v['bill'].get()),
-3894:                     ("Reference", v['ref'].get()),("Remarks", v['remarks'].get()),
-3895:                     ("Total Value", fmt_num(total))]
-3896:             self._open_direct_printer("GRN Receipt",header,
-3897:                 ("Sr #","Code","Description","UOM","Received","Rejected","Accepted","Rate","Amount","Remarks","Type"),
-3898:                 self.grr_lines,landscape(A4))
-3899:         self.set_page_actions(save=save, edit=edit_saved_grr, delete=delete_current, cancel=cancel_form, print=print_now, preview=preview_now)
-3900:         self._add_transaction_new_button(new_form)
-3901:         self._set_form_editable(form_roots, False, skip=[selector])
-3902:         try:
-3903:             ttk.Button(self.body.winfo_children()[0],text="Preview",style="Primary.TButton",command=preview_now).pack(side="left",padx=(0,2))
-3904:         except Exception: pass
-3905:         self._active_form_loader = lambda no: self.load_grr_into_form(no,v,tree)
-3906: 
-3907:     def load_grr_into_form(self,no,v,tree):
-3908:         v["no"].set(no)
-3909:         r=self.conn.execute("SELECT grr_date,department,supplier,invoice_no,po_no,challan_no,vehicle_no,bill_no,ref_no,remarks FROM grr WHERE grr_no=?",(no,)).fetchone()
-3910:         if not r:return
-3911:         for k,val in zip(["date","department","supplier","invoice","po","challan","vehicle","bill","ref","remarks"],r):
+3894:                     ("Supplier", v['supplier'].get()),("Invoice #", v['invoice'].get()),
+3895:                     ("PO #", v['po'].get()),("Challan #", v['challan'].get()),
+3896:                     ("Vehicle #", v['vehicle'].get()),("Bill/Voucher #", v['bill'].get()),
+3897:                     ("Reference", v['ref'].get()),("Remarks", v['remarks'].get()),
+3898:                     ("Total Value", fmt_num(total))]
+3899:             self._open_direct_printer("GRN Receipt",header,
+3900:                 ("Sr #","Code","Description","UOM","Received","Rejected","Accepted","Rate","Amount","Remarks","Type"),
+3901:                 self.grr_lines,landscape(A4))
+3902:         self.set_page_actions(save=save, edit=edit_saved_grr, delete=delete_current, cancel=cancel_form, print=print_now, preview=preview_now)
+3903:         self._add_transaction_new_button(new_form)
+3904:         self._set_form_editable(form_roots, False, skip=[selector])
+3905:         try:
+3906:             ttk.Button(self.body.winfo_children()[0],text="Preview",style="Primary.TButton",command=preview_now).pack(side="left",padx=(0,2))
+3907:         except Exception: pass
+3908:         self._active_form_loader = lambda no: self.load_grr_into_form(no,v,tree)
+3909: 
+3910:     def load_grr_into_form(self,no,v,tree):
+3911:         v["no"].set(no)
+3912:         r=self.conn.execute("SELECT grr_date,department,supplier,invoice_no,po_no,challan_no,vehicle_no,bill_no,ref_no,remarks FROM grr WHERE grr_no=?",(no,)).fetchone()
+3913:         if not r:return
+3914:         for k,val in zip(["date","department","supplier","invoice","po","challan","vehicle","bill","ref","remarks"],r):
 ```
 ```text
-3918:         if roots and "grr" in roots:
-3919:             self._set_form_editable(roots["grr"], False, skip=[roots.get("grr_selector")])
-3920: 
-3921:     def issue(self):
-3922:         self.clearbody(); self.issue_lines=[]
-3923:         f=ttk.LabelFrame(self.body,text="Material Issue",padding=10);f.pack(fill="x")
-3924:         v={k:tk.StringVar() for k in ["no","date","dept","items_use_for"]};v["date"].set(datetime.now().strftime("%d/%m/%Y"));v["dept"].set(DEPARTMENTS[0])
-3925:         selector=ttk.Frame(f);selector.grid(row=0,column=0,columnspan=8,sticky="ew",pady=(0,8))
-3926:         self.document_selector(selector,"Description / Saved Material Issue", "issue", v["no"], lambda no:self.load_issue_into_form(no,v,tree))
-3927:         for i,(k,n) in enumerate([("no","Issue No"),("date","Date"),("dept","Department")]):
-3928:             r=i//4*2+2;c=i%4*2;ttk.Label(f,text=n).grid(row=r,column=c,sticky="w",padx=5)
-3929:             if k=="dept": ttk.Combobox(f,textvariable=v[k],values=DEPARTMENTS,state="readonly",width=22).grid(row=r+1,column=c,padx=5,pady=2)
-3930:             elif k=="date": self.make_date_field(f,v[k],width=16).grid(row=r+1,column=c,padx=5,pady=2,sticky="w")
-3931:             else: ttk.Entry(f,textvariable=v[k],width=25).grid(row=r+1,column=c,padx=5,pady=2)
-3932:         usebar=ttk.Frame(self.body);usebar.pack(fill="x",pady=(4,2))
-3933:         ttk.Label(usebar,text="Items Use For",font=("Segoe UI",9,"bold")).pack(side="left",padx=(5,8))
-3934:         ttk.Entry(usebar,textvariable=v["items_use_for"],width=85).pack(side="left",fill="x",expand=True,padx=4)
-3935:         ttk.Label(usebar,text="(Enter any purpose / description)",foreground="#666").pack(side="left",padx=5)
-3936:         line=ttk.Frame(self.body);line.pack(fill="x",pady=8)
-3937:         code=tk.StringVar();desc=tk.StringVar();uom=tk.StringVar();qty=tk.StringVar();bal=tk.StringVar(value="0")
-3938:         itype=tk.StringVar(value="Local")
+3921:         if roots and "grr" in roots:
+3922:             self._set_form_editable(roots["grr"], False, skip=[roots.get("grr_selector")])
+3923: 
+3924:     def issue(self):
+3925:         self.clearbody(); self.issue_lines=[]
+3926:         f=ttk.LabelFrame(self.body,text="Material Issue",padding=10);f.pack(fill="x")
+3927:         v={k:tk.StringVar() for k in ["no","date","dept","items_use_for"]};v["date"].set(datetime.now().strftime("%d/%m/%Y"));v["dept"].set(DEPARTMENTS[0])
+3928:         selector=ttk.Frame(f);selector.grid(row=0,column=0,columnspan=8,sticky="ew",pady=(0,8))
+3929:         self.document_selector(selector,"Description / Saved Material Issue", "issue", v["no"], lambda no:self.load_issue_into_form(no,v,tree))
+3930:         for i,(k,n) in enumerate([("no","Issue No"),("date","Date"),("dept","Department")]):
+3931:             r=i//4*2+2;c=i%4*2;ttk.Label(f,text=n).grid(row=r,column=c,sticky="w",padx=5)
+3932:             if k=="dept": ttk.Combobox(f,textvariable=v[k],values=DEPARTMENTS,state="readonly",width=22).grid(row=r+1,column=c,padx=5,pady=2)
+3933:             elif k=="date": self.make_date_field(f,v[k],width=16).grid(row=r+1,column=c,padx=5,pady=2,sticky="w")
+3934:             else: ttk.Entry(f,textvariable=v[k],width=25).grid(row=r+1,column=c,padx=5,pady=2)
+3935:         usebar=ttk.Frame(self.body);usebar.pack(fill="x",pady=(4,2))
+3936:         ttk.Label(usebar,text="Items Use For",font=("Segoe UI",9,"bold")).pack(side="left",padx=(5,8))
+3937:         ttk.Entry(usebar,textvariable=v["items_use_for"],width=85).pack(side="left",fill="x",expand=True,padx=4)
+3938:         ttk.Label(usebar,text="(Enter any purpose / description)",foreground="#666").pack(side="left",padx=5)
+3939:         line=ttk.Frame(self.body);line.pack(fill="x",pady=8)
+3940:         code=tk.StringVar();desc=tk.StringVar();uom=tk.StringVar();qty=tk.StringVar();bal=tk.StringVar(value="0")
+3941:         itype=tk.StringVar(value="Local")
 ```
 ```text
-4007:                 # Editing an existing issue replaces its old stock transaction and detail lines.
-4008:                 self.conn.execute("DELETE FROM transactions WHERE doc_type='ISSUE' AND doc_no=?",(no,))
-4009:                 self.conn.execute("INSERT OR REPLACE INTO issues(issue_no,issue_date,department,reference,remarks,items_use_for) VALUES(?,?,?,?,?,?)",(no,to_iso_date(v["date"].get()),v["dept"].get(),"","",v["items_use_for"].get()))
-4010:                 self.conn.execute("DELETE FROM issue_lines WHERE issue_no=?",(no,))
-4011:                 for x in self.issue_lines:
-4012:                     ltype=x[7] if len(x)>7 else "Local"
-4013:                     self.conn.execute("INSERT INTO issue_lines(issue_no,sr_no,code,description,uom,issue_qty,a_c_unit,remarks,item_type) VALUES(?,?,?,?,?,?,?,?,?)",(no,x[0],x[1],x[2],x[3],x[4],"","",ltype))
-4014:                     self.conn.execute("INSERT INTO transactions(doc_type,doc_no,doc_date,code,qty,party,ref_no,a_c_unit,remarks,item_type) VALUES('ISSUE',?,?,?,?,?,?,?,?,?)",(no,to_iso_date(v["date"].get()),x[1],x[4],v["dept"].get(),"","","",ltype))
-4015:                 self.conn.commit()
-4016:                 report_path = self._save_entry_report("Material Issue", [f"Issue No: {no}", f"Issue Date: {v['date'].get()}", f"Department: {v['dept'].get()}", f"Items Use For: {v['items_use_for'].get()}"], ("Sr #","Code","Description","UOM","Issue Qty","Balance After","Items Use For","Type"), self.issue_lines)
-4017:                 backup_database(); self._editing_document_key=None; self.refresh_saved_cache("issue"); self._set_form_editable(form_roots, False, skip=[selector])
-4018:                 messagebox.showinfo("Posted",f"Material Issue {no} posted. Quantity deducted from stock." + (f"\n\nReport saved to:\n{report_path}" if report_path else "\n\nWarning: PDF report could not be generated; the saved data is retained."))
-4019:             except Exception as ex:messagebox.showerror("Error",str(ex))
-4020:         def delete_current():
-4021:             no=v["no"].get().strip()
-4022:             if not no or not self.conn.execute("SELECT 1 FROM issues WHERE issue_no=?",(no,)).fetchone():
-4023:                 messagebox.showwarning("Delete", "Load/select a saved Material Issue first."); return
-4024:             if not messagebox.askyesno("Delete Material Issue", f"Delete Material Issue {no} and restore its stock? This cannot be undone."): return
-4025:             self.conn.execute("DELETE FROM transactions WHERE doc_type='ISSUE' AND doc_no=?",(no,)); self.conn.execute("DELETE FROM issue_lines WHERE issue_no=?",(no,)); self.conn.execute("DELETE FROM issues WHERE issue_no=?",(no,)); self.conn.commit(); backup_database()
-4026:             self.issue(); messagebox.showinfo("Deleted",f"Material Issue {no} deleted.")
-4027:         def cancel_form():
+4010:                 # Editing an existing issue replaces its old stock transaction and detail lines.
+4011:                 self.conn.execute("DELETE FROM transactions WHERE doc_type='ISSUE' AND doc_no=?",(no,))
+4012:                 self.conn.execute("INSERT OR REPLACE INTO issues(issue_no,issue_date,department,reference,remarks,items_use_for) VALUES(?,?,?,?,?,?)",(no,to_iso_date(v["date"].get()),v["dept"].get(),"","",v["items_use_for"].get()))
+4013:                 self.conn.execute("DELETE FROM issue_lines WHERE issue_no=?",(no,))
+4014:                 for x in self.issue_lines:
+4015:                     ltype=x[7] if len(x)>7 else "Local"
+4016:                     self.conn.execute("INSERT INTO issue_lines(issue_no,sr_no,code,description,uom,issue_qty,a_c_unit,remarks,item_type) VALUES(?,?,?,?,?,?,?,?,?)",(no,x[0],x[1],x[2],x[3],x[4],"","",ltype))
+4017:                     self.conn.execute("INSERT INTO transactions(doc_type,doc_no,doc_date,code,qty,party,ref_no,a_c_unit,remarks,item_type) VALUES('ISSUE',?,?,?,?,?,?,?,?,?)",(no,to_iso_date(v["date"].get()),x[1],x[4],v["dept"].get(),"","","",ltype))
+4018:                 self.conn.commit()
+4019:                 report_path = self._save_entry_report("Material Issue", [f"Issue No: {no}", f"Issue Date: {v['date'].get()}", f"Department: {v['dept'].get()}", f"Items Use For: {v['items_use_for'].get()}"], ("Sr #","Code","Description","UOM","Issue Qty","Balance After","Items Use For","Type"), self.issue_lines)
+4020:                 backup_database(); self._editing_document_key=None; self.refresh_saved_cache("issue"); self._set_form_editable(form_roots, False, skip=[selector])
+4021:                 messagebox.showinfo("Posted",f"Material Issue {no} posted. Quantity deducted from stock." + (f"\n\nReport saved to:\n{report_path}" if report_path else "\n\nWarning: PDF report could not be generated; the saved data is retained."))
+4022:             except Exception as ex:messagebox.showerror("Error",str(ex))
+4023:         def delete_current():
+4024:             no=v["no"].get().strip()
+4025:             if not no or not self.conn.execute("SELECT 1 FROM issues WHERE issue_no=?",(no,)).fetchone():
+4026:                 messagebox.showwarning("Delete", "Load/select a saved Material Issue first."); return
+4027:             if not messagebox.askyesno("Delete Material Issue", f"Delete Material Issue {no} and restore its stock? This cannot be undone."): return
+4028:             self.conn.execute("DELETE FROM transactions WHERE doc_type='ISSUE' AND doc_no=?",(no,)); self.conn.execute("DELETE FROM issue_lines WHERE issue_no=?",(no,)); self.conn.execute("DELETE FROM issues WHERE issue_no=?",(no,)); self.conn.commit(); backup_database()
+4029:             self.issue(); messagebox.showinfo("Deleted",f"Material Issue {no} deleted.")
+4030:         def cancel_form():
 ```
 ```text
-4035:             for iid in tree.get_children(): tree.delete(iid)
-4036:         def preview_now():
-4037:             if not self.issue_lines:
-4038:                 messagebox.showwarning("Preview","Add at least one item line first."); return
-4039:             header=[f"Issue No: {v['no'].get() or '(not set)'}   Date: {v['date'].get()}   Department: {v['dept'].get()}",
-4040:                     f"Items Use For: {v['items_use_for'].get()}"]
-4041:             self.show_preview_window("Material Issue", header,
-4042:                 ("Sr #","Code","Description","UOM","Issue Qty","Balance After","Items Use For","Type"),
-4043:                 self.issue_lines, [40,110,290,55,70,90,190,60], on_save=post)
-4044:         def portable_current():
-4045:             return ("Material Issue / SIR",[("SIR #",v["no"].get()),("SIR Date",v["date"].get()),("Department",v["dept"].get()),("Items Use For",v["items_use_for"].get())],
-4046:                     ("Sr #","Code","Description","UOM","Issue Qty","Balance After","Items Use For","Type"),self.issue_lines)
-4047:         self._portable_print_context=portable_current
-4048:         form_roots=[f,usebar,line,editbar]
-4049:         if not hasattr(self,"_transaction_form_roots"): self._transaction_form_roots={}
-4050:         self._transaction_form_roots["issue"]=form_roots; self._transaction_form_roots["issue_selector"]=selector
-4051:         def load_saved_issue(no):
-4052:             self.load_issue_into_form(no,v,tree)
-4053:             self._set_form_editable(form_roots, False, skip=[selector])
-4054:         def edit_saved_issue():
-4055:             self._editing_document_key=v["no"].get().strip().split(" -> ",1)[0] if v["no"].get().strip() else None
+4038:             for iid in tree.get_children(): tree.delete(iid)
+4039:         def preview_now():
+4040:             if not self.issue_lines:
+4041:                 messagebox.showwarning("Preview","Add at least one item line first."); return
+4042:             header=[f"Issue No: {v['no'].get() or '(not set)'}   Date: {v['date'].get()}   Department: {v['dept'].get()}",
+4043:                     f"Items Use For: {v['items_use_for'].get()}"]
+4044:             self.show_preview_window("Material Issue", header,
+4045:                 ("Sr #","Code","Description","UOM","Issue Qty","Balance After","Items Use For","Type"),
+4046:                 self.issue_lines, [40,110,290,55,70,90,190,60], on_save=post)
+4047:         def portable_current():
+4048:             return ("Material Issue / SIR",[("SIR #",v["no"].get()),("SIR Date",v["date"].get()),("Department",v["dept"].get()),("Items Use For",v["items_use_for"].get())],
+4049:                     ("Sr #","Code","Description","UOM","Issue Qty","Balance After","Items Use For","Type"),self.issue_lines)
+4050:         self._portable_print_context=portable_current
+4051:         form_roots=[f,usebar,line,editbar]
+4052:         if not hasattr(self,"_transaction_form_roots"): self._transaction_form_roots={}
+4053:         self._transaction_form_roots["issue"]=form_roots; self._transaction_form_roots["issue_selector"]=selector
+4054:         def load_saved_issue(no):
+4055:             self.load_issue_into_form(no,v,tree)
+4056:             self._set_form_editable(form_roots, False, skip=[selector])
+4057:         def edit_saved_issue():
+4058:             self._editing_document_key=v["no"].get().strip().split(" -> ",1)[0] if v["no"].get().strip() else None
 ```
 ```text
-4048:         form_roots=[f,usebar,line,editbar]
-4049:         if not hasattr(self,"_transaction_form_roots"): self._transaction_form_roots={}
-4050:         self._transaction_form_roots["issue"]=form_roots; self._transaction_form_roots["issue_selector"]=selector
-4051:         def load_saved_issue(no):
-4052:             self.load_issue_into_form(no,v,tree)
-4053:             self._set_form_editable(form_roots, False, skip=[selector])
-4054:         def edit_saved_issue():
-4055:             self._editing_document_key=v["no"].get().strip().split(" -> ",1)[0] if v["no"].get().strip() else None
-4056:             self._edit_from_selector("issue", v["no"], load_saved_issue)
-4057:             self._set_form_editable(form_roots, True, skip=[selector])
-4058:         def print_issue_now():
-4059:             if not self.issue_lines:
-4060:                 messagebox.showwarning("Print","Add at least one item line first."); return
-4061:             header=[("SIR #",v["no"].get() or "(not set)"),("SIR Date",v["date"].get()),("Department",v["dept"].get()),("Items Use For",v["items_use_for"].get())]
-4062:             self._open_direct_printer("Material Issue",header,
-4063:                 ("Sr #","Code","Description","UOM","Issue Qty","Balance After","Items Use For","Type"),self.issue_lines,A4)
-4064:         self.set_page_actions(save=post, edit=edit_saved_issue, delete=delete_current, cancel=cancel_form, print=print_issue_now, preview=preview_now)
-4065:         self._add_transaction_new_button(new_form)
-4066:         self._set_form_editable(form_roots, False, skip=[selector])
-4067:         self._active_form_loader = load_saved_issue
-4068: 
+4051:         form_roots=[f,usebar,line,editbar]
+4052:         if not hasattr(self,"_transaction_form_roots"): self._transaction_form_roots={}
+4053:         self._transaction_form_roots["issue"]=form_roots; self._transaction_form_roots["issue_selector"]=selector
+4054:         def load_saved_issue(no):
+4055:             self.load_issue_into_form(no,v,tree)
+4056:             self._set_form_editable(form_roots, False, skip=[selector])
+4057:         def edit_saved_issue():
+4058:             self._editing_document_key=v["no"].get().strip().split(" -> ",1)[0] if v["no"].get().strip() else None
+4059:             self._edit_from_selector("issue", v["no"], load_saved_issue)
+4060:             self._set_form_editable(form_roots, True, skip=[selector])
+4061:         def print_issue_now():
+4062:             if not self.issue_lines:
+4063:                 messagebox.showwarning("Print","Add at least one item line first."); return
+4064:             header=[("SIR #",v["no"].get() or "(not set)"),("SIR Date",v["date"].get()),("Department",v["dept"].get()),("Items Use For",v["items_use_for"].get())]
+4065:             self._open_direct_printer("Material Issue",header,
+4066:                 ("Sr #","Code","Description","UOM","Issue Qty","Balance After","Items Use For","Type"),self.issue_lines,A4)
+4067:         self.set_page_actions(save=post, edit=edit_saved_issue, delete=delete_current, cancel=cancel_form, print=print_issue_now, preview=preview_now)
+4068:         self._add_transaction_new_button(new_form)
+4069:         self._set_form_editable(form_roots, False, skip=[selector])
+4070:         self._active_form_loader = load_saved_issue
+4071: 
 ```
 ```text
-4076:         for i in tree.get_children():tree.delete(i)
-4077:         for r in self.conn.execute("SELECT sr_no,code,description,uom,issue_qty,item_type FROM issue_lines WHERE issue_no=? ORDER BY sr_no",(no,)):
-4078:             vals=tuple(r[:5]);code=vals[1];after=stock(self.conn,code)+float(self.conn.execute("SELECT COALESCE(SUM(issue_qty),0) FROM issue_lines WHERE issue_no=? AND code=?",(no,code)).fetchone()[0] or 0)-sum(float(x[4]) for x in self.issue_lines if x[1]==code)-float(vals[4])
-4079:             row=(*vals,after,v["items_use_for"].get(),r[5] or "Local");self.issue_lines.append(row);tree.insert("", "end",values=row)
-4080:         roots=getattr(self,"_transaction_form_roots",None)
-4081:         if roots and "issue" in roots:
-4082:             self._set_form_editable(roots["issue"], False, skip=[roots.get("issue_selector")])
-4083: 
-4084:     def _ask_report_criteria(self, report_title, button_text="OPEN REPORT", include_zero=False, include_party=False, document_label=None, document_key=None):
-4085:         """Show a real modal criteria popup BEFORE creating the report MDI child.
+4079:         for i in tree.get_children():tree.delete(i)
+4080:         for r in self.conn.execute("SELECT sr_no,code,description,uom,issue_qty,item_type FROM issue_lines WHERE issue_no=? ORDER BY sr_no",(no,)):
+4081:             vals=tuple(r[:5]);code=vals[1];after=stock(self.conn,code)+float(self.conn.execute("SELECT COALESCE(SUM(issue_qty),0) FROM issue_lines WHERE issue_no=? AND code=?",(no,code)).fetchone()[0] or 0)-sum(float(x[4]) for x in self.issue_lines if x[1]==code)-float(vals[4])
+4082:             row=(*vals,after,v["items_use_for"].get(),r[5] or "Local");self.issue_lines.append(row);tree.insert("", "end",values=row)
+4083:         roots=getattr(self,"_transaction_form_roots",None)
+4084:         if roots and "issue" in roots:
+4085:             self._set_form_editable(roots["issue"], False, skip=[roots.get("issue_selector")])
 4086: 
-4087:         The layout intentionally matches Inventory Codes' Selection Criteria
-4088:         popup so all Report sub-sections have one consistent desktop workflow.
-4089:         """
-4090:         result={"cancelled":False,"from_code":"","to_code":"","from_date":"","to_date":"","zero_mode":"include","party":"ALL","from_document":"","to_document":""}
-4091:         win=tk.Toplevel(self)
-4092:         win.title(f"{report_title} - Selection Criteria")
-4093:         win.resizable(False,False)
-4094:         win.transient(self); win.grab_set()
-4095:         head=tk.Frame(win,bg=COLORS["primary_dark"]); head.pack(fill="x")
-4096:         tk.Label(head,text=f"{report_title.upper()} - SELECTION CRITERIA",
+4087:     def _ask_report_criteria(self, report_title, button_text="OPEN REPORT", include_zero=False, include_party=False, document_label=None, document_key=None):
+4088:         """Show a real modal criteria popup BEFORE creating the report MDI child.
+4089: 
+4090:         The layout intentionally matches Inventory Codes' Selection Criteria
+4091:         popup so all Report sub-sections have one consistent desktop workflow.
+4092:         """
+4093:         result={"cancelled":False,"from_code":"","to_code":"","from_date":"","to_date":"","zero_mode":"include","party":"ALL","from_document":"","to_document":""}
+4094:         win=tk.Toplevel(self)
+4095:         win.title(f"{report_title} - Selection Criteria")
+4096:         win.resizable(False,False)
+4097:         win.transient(self); win.grab_set()
+4098:         head=tk.Frame(win,bg=COLORS["primary_dark"]); head.pack(fill="x")
+4099:         tk.Label(head,text=f"{report_title.upper()} - SELECTION CRITERIA",
 ```
 ```text
-4141:             except Exception: pass
-4142:         btns=ttk.Frame(box); btns.grid(row=next_row,column=0,columnspan=2,pady=(22,0))
-4143:         ttk.Button(btns,text=button_text,style="Success.TButton",command=lambda:finish(False)).pack(side="left",padx=6,ipadx=8)
-4144:         ttk.Button(btns,text="CANCEL",style="Muted.TButton",command=lambda:finish(True)).pack(side="left",padx=6)
-4145:         win.protocol("WM_DELETE_WINDOW",lambda:finish(True)); win.bind("<Escape>",lambda e:finish(True)); win.bind("<Return>",lambda e:finish(False))
-4146:         win.update_idletasks(); w=max(500,win.winfo_reqwidth()); h=max(430,win.winfo_reqheight()); sw,sh=win.winfo_screenwidth(),win.winfo_screenheight(); win.geometry(f"{w}x{h}+{(sw-w)//2}+{(sh-h)//2}")
-4147:         e1.focus_set(); self.wait_window(win); return result
-4148: 
-4149:     def _open_report_child(self, method, title, criteria, geometry="1400x820"):
-4150:         self._pending_report_filters=criteria
-4151:         try:
-4152:             return self.open_menu_window(method,title,geometry)
-4153:         finally:
-4154:             self._pending_report_filters=None
-4155: 
-4156:     def open_stock_balance_report_flow(self):
-4157:         f=self._ask_report_criteria("Stock Balance", "OPEN STOCK BALANCE", include_zero=True)
-4158:         if f.get("cancelled"): return None
-4159:         return self._open_report_child(self.stock_balance,"Stock Balance",f)
-4160: 
-4161:     def open_grr_report_flow(self):
+4144:             except Exception: pass
+4145:         btns=ttk.Frame(box); btns.grid(row=next_row,column=0,columnspan=2,pady=(22,0))
+4146:         ttk.Button(btns,text=button_text,style="Success.TButton",command=lambda:finish(False)).pack(side="left",padx=6,ipadx=8)
+4147:         ttk.Button(btns,text="CANCEL",style="Muted.TButton",command=lambda:finish(True)).pack(side="left",padx=6)
+4148:         win.protocol("WM_DELETE_WINDOW",lambda:finish(True)); win.bind("<Escape>",lambda e:finish(True)); win.bind("<Return>",lambda e:finish(False))
+4149:         win.update_idletasks(); w=max(500,win.winfo_reqwidth()); h=max(430,win.winfo_reqheight()); sw,sh=win.winfo_screenwidth(),win.winfo_screenheight(); win.geometry(f"{w}x{h}+{(sw-w)//2}+{(sh-h)//2}")
+4150:         e1.focus_set(); self.wait_window(win); return result
+4151: 
+4152:     def _open_report_child(self, method, title, criteria, geometry="1400x820"):
+4153:         self._pending_report_filters=criteria
+4154:         try:
+4155:             return self.open_menu_window(method,title,geometry)
+4156:         finally:
+4157:             self._pending_report_filters=None
+4158: 
+4159:     def open_stock_balance_report_flow(self):
+4160:         f=self._ask_report_criteria("Stock Balance", "OPEN STOCK BALANCE", include_zero=True)
+4161:         if f.get("cancelled"): return None
+4162:         return self._open_report_child(self.stock_balance,"Stock Balance",f)
+4163: 
+4164:     def open_grr_report_flow(self):
 ```
 ```text
-4154:             self._pending_report_filters=None
-4155: 
-4156:     def open_stock_balance_report_flow(self):
-4157:         f=self._ask_report_criteria("Stock Balance", "OPEN STOCK BALANCE", include_zero=True)
-4158:         if f.get("cancelled"): return None
-4159:         return self._open_report_child(self.stock_balance,"Stock Balance",f)
-4160: 
-4161:     def open_grr_report_flow(self):
-4162:         f=self._ask_report_criteria("GRN Report", "OPEN REPORT", document_label="GRN No", document_key="grr_no")
-4163:         if f.get("cancelled"): return None
-4164:         return self._open_report_child(self.report_grr,"GRN Report",f)
-4165: 
-4166:     def open_demand_report_flow(self):
-4167:         f=self._ask_report_criteria("Demand Report", "OPEN REPORT", document_label="Demand No", document_key="demand_no")
-4168:         if f.get("cancelled"): return None
-4169:         return self._open_report_child(self.report_demand,"Demand Report",f)
-4170: 
-4171:     def open_issue_report_flow(self):
-4172:         f=self._ask_report_criteria("Issue Report", "OPEN REPORT")
-4173:         if f.get("cancelled"): return None
-4174:         return self._open_report_child(self.report_issue,"Issue Report",f)
+4157:             self._pending_report_filters=None
+4158: 
+4159:     def open_stock_balance_report_flow(self):
+4160:         f=self._ask_report_criteria("Stock Balance", "OPEN STOCK BALANCE", include_zero=True)
+4161:         if f.get("cancelled"): return None
+4162:         return self._open_report_child(self.stock_balance,"Stock Balance",f)
+4163: 
+4164:     def open_grr_report_flow(self):
+4165:         f=self._ask_report_criteria("GRN Report", "OPEN REPORT", document_label="GRN No", document_key="grr_no")
+4166:         if f.get("cancelled"): return None
+4167:         return self._open_report_child(self.report_grr,"GRN Report",f)
+4168: 
+4169:     def open_demand_report_flow(self):
+4170:         f=self._ask_report_criteria("Demand Report", "OPEN REPORT", document_label="Demand No", document_key="demand_no")
+4171:         if f.get("cancelled"): return None
+4172:         return self._open_report_child(self.report_demand,"Demand Report",f)
+4173: 
+4174:     def open_issue_report_flow(self):
+4175:         f=self._ask_report_criteria("Issue Report", "OPEN REPORT")
+4176:         if f.get("cancelled"): return None
+4177:         return self._open_report_child(self.report_issue,"Issue Report",f)
 ```
 ```text
-4168:         if f.get("cancelled"): return None
-4169:         return self._open_report_child(self.report_demand,"Demand Report",f)
-4170: 
-4171:     def open_issue_report_flow(self):
-4172:         f=self._ask_report_criteria("Issue Report", "OPEN REPORT")
-4173:         if f.get("cancelled"): return None
-4174:         return self._open_report_child(self.report_issue,"Issue Report",f)
-4175: 
-4176:     def open_party_report_flow(self):
-4177:         f=self._ask_report_criteria("Party Report", "OPEN REPORT", include_party=True)
-4178:         if f.get("cancelled"): return None
-4179:         return self._open_report_child(self.report_party,"Party Report",f)
-4180: 
-4181:     def _ask_stock_balance_filters(self):
-4182:         result={"cancelled":False,"from_code":"","to_code":"","from_date":"","to_date":"","zero_mode":"include"}
-4183:         win=tk.Toplevel(self); win.title("Stock Balance - Selection Criteria"); win.resizable(False,False)
-4184:         head=tk.Frame(win,bg=COLORS["primary_dark"]); head.pack(fill="x")
-4185:         tk.Label(head,text="STOCK BALANCE - SELECTION CRITERIA",font=("Segoe UI",13,"bold"),bg=COLORS["primary_dark"],fg="white",padx=16,pady=12).pack(anchor="w")
-4186:         box=ttk.Frame(win,padding=22); box.pack(fill="both",expand=True)
-4187:         ttk.Label(box,text="Select Item Code and Date range. Leave a field blank to skip that filter.").grid(row=0,column=0,columnspan=2,sticky="w",pady=(0,14))
-4188:         fc=tk.StringVar(); tc=tk.StringVar(); fd=tk.StringVar(); td=tk.StringVar(); zm=tk.StringVar(value="include")
+4171:         if f.get("cancelled"): return None
+4172:         return self._open_report_child(self.report_demand,"Demand Report",f)
+4173: 
+4174:     def open_issue_report_flow(self):
+4175:         f=self._ask_report_criteria("Issue Report", "OPEN REPORT")
+4176:         if f.get("cancelled"): return None
+4177:         return self._open_report_child(self.report_issue,"Issue Report",f)
+4178: 
+4179:     def open_party_report_flow(self):
+4180:         f=self._ask_report_criteria("Party Report", "OPEN REPORT", include_party=True)
+4181:         if f.get("cancelled"): return None
+4182:         return self._open_report_child(self.report_party,"Party Report",f)
+4183: 
+4184:     def _ask_stock_balance_filters(self):
+4185:         result={"cancelled":False,"from_code":"","to_code":"","from_date":"","to_date":"","zero_mode":"include"}
+4186:         win=tk.Toplevel(self); win.title("Stock Balance - Selection Criteria"); win.resizable(False,False)
+4187:         head=tk.Frame(win,bg=COLORS["primary_dark"]); head.pack(fill="x")
+4188:         tk.Label(head,text="STOCK BALANCE - SELECTION CRITERIA",font=("Segoe UI",13,"bold"),bg=COLORS["primary_dark"],fg="white",padx=16,pady=12).pack(anchor="w")
+4189:         box=ttk.Frame(win,padding=22); box.pack(fill="both",expand=True)
+4190:         ttk.Label(box,text="Select Item Code and Date range. Leave a field blank to skip that filter.").grid(row=0,column=0,columnspan=2,sticky="w",pady=(0,14))
+4191:         fc=tk.StringVar(); tc=tk.StringVar(); fd=tk.StringVar(); td=tk.StringVar(); zm=tk.StringVar(value="include")
 ```
 ```text
-4200:         ttk.Button(bf,text="OPEN STOCK BALANCE",style="Success.TButton",command=ok).pack(side="left",padx=5)
-4201:         ttk.Button(bf,text="CANCEL",style="Muted.TButton",command=cancel).pack(side="left",padx=5)
-4202:         win.protocol("WM_DELETE_WINDOW",cancel);win.bind("<Return>",lambda e:ok());win.bind("<Escape>",lambda e:cancel())
-4203:         win.update_idletasks();w=win.winfo_reqwidth();h=win.winfo_reqheight();sw=win.winfo_screenwidth();sh=win.winfo_screenheight();win.geometry(f"{w}x{h}+{(sw-w)//2}+{(sh-h)//2}")
-4204:         e1.focus_set();self.wait_window(win);return result
-4205: 
-4206:     def stock_balance(self):
-4207:         self.clearbody()
-4208:         # Stock Balance is a Report sub-section and does not use the generic
-4209:         # Save/Edit/Delete/Cancel/Print action strip.
-4210:         children=self.body.winfo_children()
-4211:         if children:
-4212:             children[0].destroy()
-4213:         initial=getattr(self,"_pending_report_filters",None) or self._ask_stock_balance_filters()
-4214:         if initial.get("cancelled"):
-4215:             self.dashboard(); return
-4216:         top=ttk.Frame(self.body);top.pack(fill="x")
-4217:         ttk.Label(top,text="FULL STOCK / ALL ITEM BALANCES",font=("Segoe UI",15,"bold")).pack(side="left")
-4218:         ttk.Button(top,text="FILTERS",style="Accent.TButton",command=lambda:reopen_filters()).pack(side="left",padx=8)
-4219:         ttk.Button(top,text="EXPORT / PREVIEW",style="Success.TButton",command=lambda:self.preview_tree("Stock Balance",tr,header_summary())).pack(side="left",padx=4)
-4220:         tr=self.make_tree(self.body,("Code","Description","UOM","Opening","GRN In","Issue Out","Current Balance","Minimum","Status"),[150,430,75,100,100,100,135,90,100])
+4203:         ttk.Button(bf,text="OPEN STOCK BALANCE",style="Success.TButton",command=ok).pack(side="left",padx=5)
+4204:         ttk.Button(bf,text="CANCEL",style="Muted.TButton",command=cancel).pack(side="left",padx=5)
+4205:         win.protocol("WM_DELETE_WINDOW",cancel);win.bind("<Return>",lambda e:ok());win.bind("<Escape>",lambda e:cancel())
+4206:         win.update_idletasks();w=win.winfo_reqwidth();h=win.winfo_reqheight();sw=win.winfo_screenwidth();sh=win.winfo_screenheight();win.geometry(f"{w}x{h}+{(sw-w)//2}+{(sh-h)//2}")
+4207:         e1.focus_set();self.wait_window(win);return result
+4208: 
+4209:     def stock_balance(self):
+4210:         self.clearbody()
+4211:         # Stock Balance is a Report sub-section and does not use the generic
+4212:         # Save/Edit/Delete/Cancel/Print action strip.
+4213:         children=self.body.winfo_children()
+4214:         if children:
+4215:             children[0].destroy()
+4216:         initial=getattr(self,"_pending_report_filters",None) or self._ask_stock_balance_filters()
+4217:         if initial.get("cancelled"):
+4218:             self.dashboard(); return
+4219:         top=ttk.Frame(self.body);top.pack(fill="x")
+4220:         ttk.Label(top,text="FULL STOCK / ALL ITEM BALANCES",font=("Segoe UI",15,"bold")).pack(side="left")
+4221:         ttk.Button(top,text="FILTERS",style="Accent.TButton",command=lambda:reopen_filters()).pack(side="left",padx=8)
+4222:         ttk.Button(top,text="EXPORT / PREVIEW",style="Success.TButton",command=lambda:self.preview_tree("Stock Balance",tr,header_summary())).pack(side="left",padx=4)
+4223:         tr=self.make_tree(self.body,("Code","Description","UOM","Opening","GRN In","Issue Out","Current Balance","Minimum","Status"),[150,430,75,100,100,100,135,90,100])
 ```
 ```text
-4230:             for typ,qty in self.conn.execute(q,params):
-4231:                 if typ=="GRR":gr+=float(qty or 0)
-4232:                 elif typ=="ISSUE":iss+=float(qty or 0)
-4233:             return opening_before,gr,iss,opening_before+gr-iss
-4234:         def header_summary():
-4235:             return [f"Item Code: {from_code.get() or 'FIRST'} to {to_code.get() or 'LAST'}",f"Date: {from_date.get() or 'ALL'} to {to_date.get() or 'TODAY'}",f"Zero Balance: {'Included' if zero_mode.get()=='include' else 'Excluded'}"]
-4236:         def load():
-4237:             for i in tr.get_children():tr.delete(i)
-4238:             sql="SELECT code,description,uom,opening_qty,min_level FROM items WHERE 1=1";params=[]
-4239:             if from_code.get():sql+=" AND code>=?";params.append(from_code.get())
-4240:             if to_code.get():sql+=" AND code<=?";params.append(to_code.get())
-4241:             sql+=" ORDER BY code"
-4242:             for r in self.conn.execute(sql,params):
-4243:                 op,gr,iss,cur=period(r[0],r[3])
-4244:                 if zero_mode.get()=="exclude" and abs(cur)<1e-12:continue
-4245:                 tr.insert("","end",values=(r[0],r[1],r[2],fmt_num(op),fmt_num(gr),fmt_num(iss),fmt_num(cur),fmt_num(r[4]),"REORDER" if cur<=float(r[4] or 0) else "OK"))
-4246:         def reopen_filters():
-4247:             initial2=self._ask_stock_balance_filters()
-4248:             if initial2.get("cancelled"):return
-4249:             for var,key in ((from_code,"from_code"),(to_code,"to_code"),(from_date,"from_date"),(to_date,"to_date"),(zero_mode,"zero_mode")):var.set(initial2[key])
-4250:             load()
+4233:             for typ,qty in self.conn.execute(q,params):
+4234:                 if typ=="GRR":gr+=float(qty or 0)
+4235:                 elif typ=="ISSUE":iss+=float(qty or 0)
+4236:             return opening_before,gr,iss,opening_before+gr-iss
+4237:         def header_summary():
+4238:             return [f"Item Code: {from_code.get() or 'FIRST'} to {to_code.get() or 'LAST'}",f"Date: {from_date.get() or 'ALL'} to {to_date.get() or 'TODAY'}",f"Zero Balance: {'Included' if zero_mode.get()=='include' else 'Excluded'}"]
+4239:         def load():
+4240:             for i in tr.get_children():tr.delete(i)
+4241:             sql="SELECT code,description,uom,opening_qty,min_level FROM items WHERE 1=1";params=[]
+4242:             if from_code.get():sql+=" AND code>=?";params.append(from_code.get())
+4243:             if to_code.get():sql+=" AND code<=?";params.append(to_code.get())
+4244:             sql+=" ORDER BY code"
+4245:             for r in self.conn.execute(sql,params):
+4246:                 op,gr,iss,cur=period(r[0],r[3])
+4247:                 if zero_mode.get()=="exclude" and abs(cur)<1e-12:continue
+4248:                 tr.insert("","end",values=(r[0],r[1],r[2],fmt_num(op),fmt_num(gr),fmt_num(iss),fmt_num(cur),fmt_num(r[4]),"REORDER" if cur<=float(r[4] or 0) else "OK"))
+4249:         def reopen_filters():
+4250:             initial2=self._ask_stock_balance_filters()
+4251:             if initial2.get("cancelled"):return
+4252:             for var,key in ((from_code,"from_code"),(to_code,"to_code"),(from_date,"from_date"),(to_date,"to_date"),(zero_mode,"zero_mode")):var.set(initial2[key])
+4253:             load()
 ```
 ```text
-4288:         """
-4289:         if typ=="demand": self.demand()
-4290:         elif typ=="grr": self.grr()
-4291:         else: self.issue()
-4292:         loader=getattr(self,"_active_form_loader",None)
-4293:         if loader: loader(str(no))
-4294: 
-4295:     def _edit_from_selector(self, typ, var, loader):
-4296:         """Top Edit action: load the saved document directly into the current form.
-4297:         If nothing is selected, use the newest saved document; never open a popup.
-4298:         """
-4299:         text=var.get().strip()
-4300:         if text:
-4301:             no=text.split(" -> ",1)[0].strip()
-4302:         else:
-4303:             table={"demand":"demands","grr":"grr","issue":"issues"}[typ]
-4304:             col={"demand":"demand_no","grr":"grr_no","issue":"issue_no"}[typ]
-4305:             r=self.conn.execute(f"SELECT {col} FROM {table} ORDER BY rowid DESC LIMIT 1").fetchone()
-4306:             if not r:
-4307:                 messagebox.showwarning("Edit", "No saved record is available to edit.")
-4308:                 return
+4291:         """
+4292:         if typ=="demand": self.demand()
+4293:         elif typ=="grr": self.grr()
+4294:         else: self.issue()
+4295:         loader=getattr(self,"_active_form_loader",None)
+4296:         if loader: loader(str(no))
+4297: 
+4298:     def _edit_from_selector(self, typ, var, loader):
+4299:         """Top Edit action: load the saved document directly into the current form.
+4300:         If nothing is selected, use the newest saved document; never open a popup.
+4301:         """
+4302:         text=var.get().strip()
+4303:         if text:
+4304:             no=text.split(" -> ",1)[0].strip()
+4305:         else:
+4306:             table={"demand":"demands","grr":"grr","issue":"issues"}[typ]
+4307:             col={"demand":"demand_no","grr":"grr_no","issue":"issue_no"}[typ]
+4308:             r=self.conn.execute(f"SELECT {col} FROM {table} ORDER BY rowid DESC LIMIT 1").fetchone()
+4309:             if not r:
+4310:                 messagebox.showwarning("Edit", "No saved record is available to edit.")
+4311:                 return
 ```
 ```text
-4305:             r=self.conn.execute(f"SELECT {col} FROM {table} ORDER BY rowid DESC LIMIT 1").fetchone()
-4306:             if not r:
-4307:                 messagebox.showwarning("Edit", "No saved record is available to edit.")
-4308:                 return
-4309:             no=str(r[0])
-4310:             var.set(no)
-4311:         loader(no)
-4312: 
-4313:     def show_saved_records(self,typ):
-4314:         win=tk.Toplevel(self);win.title({"demand":"Saved Purchase Demands","grr":"Saved GRNs / Receipts","issue":"Saved Material Issues"}[typ]);win.geometry("1100x620")
-4315:         if typ=="demand":
-4316:             cols=("Demand No","Date","Department","Required For","Urgency","Status","Total Qty")
-4317:             tr=self.make_tree(win,cols,[150,110,190,190,110,130,100])
-4318:             rows=self.conn.execute("SELECT demand_no,demand_date,department,required_for,urgency,status FROM demands ORDER BY rowid DESC")
-4319:             for r in rows:
-4320:                 total=self.conn.execute("SELECT COALESCE(SUM(demand_qty),0) FROM demand_lines WHERE demand_no=?",(r[0],)).fetchone()[0]
-4321:                 r=list(r); r[1]=to_display_date(r[1])
-4322:                 tr.insert("", "end", values=(*r,fmt_num(total)))
-4323:         elif typ=="grr":
-4324:             cols=("GRN No","Date","Department","Supplier","Invoice","PO","Total Value")
-4325:             tr=self.make_tree(win,cols,[130,110,160,230,130,110,120])
+4308:             r=self.conn.execute(f"SELECT {col} FROM {table} ORDER BY rowid DESC LIMIT 1").fetchone()
+4309:             if not r:
+4310:                 messagebox.showwarning("Edit", "No saved record is available to edit.")
+4311:                 return
+4312:             no=str(r[0])
+4313:             var.set(no)
+4314:         loader(no)
+4315: 
+4316:     def show_saved_records(self,typ):
+4317:         win=tk.Toplevel(self);win.title({"demand":"Saved Purchase Demands","grr":"Saved GRNs / Receipts","issue":"Saved Material Issues"}[typ]);win.geometry("1100x620")
+4318:         if typ=="demand":
+4319:             cols=("Demand No","Date","Department","Required For","Urgency","Status","Total Qty")
+4320:             tr=self.make_tree(win,cols,[150,110,190,190,110,130,100])
+4321:             rows=self.conn.execute("SELECT demand_no,demand_date,department,required_for,urgency,status FROM demands ORDER BY rowid DESC")
+4322:             for r in rows:
+4323:                 total=self.conn.execute("SELECT COALESCE(SUM(demand_qty),0) FROM demand_lines WHERE demand_no=?",(r[0],)).fetchone()[0]
+4324:                 r=list(r); r[1]=to_display_date(r[1])
+4325:                 tr.insert("", "end", values=(*r,fmt_num(total)))
+4326:         elif typ=="grr":
+4327:             cols=("GRN No","Date","Department","Supplier","Invoice","PO","Total Value")
+4328:             tr=self.make_tree(win,cols,[130,110,160,230,130,110,120])
 ```
 ```text
-4336:         def view():
-4337:             a=tr.selection()
-4338:             if not a:return
-4339:             no=tr.item(a[0])["values"][0]
-4340:             win.destroy();self.open_document_editor(typ,no)
-4341:         bar=ttk.Frame(win);bar.pack(fill="x",pady=8)
-4342:         ttk.Button(bar,text="EDIT",command=view).pack(side="left",padx=5)
-4343:         ttk.Button(bar,text="PREVIEW / PRINT",command=lambda:self.doc_print_selected(typ,tr)).pack(side="left",padx=5)
-4344:         ttk.Button(bar,text="REFRESH",command=lambda:(win.destroy(),self.show_saved_records(typ))).pack(side="left",padx=5)
-4345: 
-4346:     def documents(self):
-4347:         self.clearbody()
-4348:         nb=ttk.Notebook(self.body);nb.pack(fill="both",expand=True)
-4349:         specs=[
-4350:             ("Demands","demand",("No","Date","Department","Required For","Urgency","Status"),
-4351:              "SELECT demand_no,demand_date,department,required_for,urgency,status FROM demands ORDER BY rowid DESC"),
-4352:             ("GRNs","grr",("No","Date","Department","Supplier","Invoice","PO","Total Value"),
-4353:              "SELECT grr_no,grr_date,department,supplier,invoice_no,po_no,total_value FROM grr ORDER BY rowid DESC"),
-4354:             ("Material Issues","issue",("No","Date","Department"),
-4355:              "SELECT issue_no,issue_date,department FROM issues ORDER BY rowid DESC")
-4356:         ]
+4339:         def view():
+4340:             a=tr.selection()
+4341:             if not a:return
+4342:             no=tr.item(a[0])["values"][0]
+4343:             win.destroy();self.open_document_editor(typ,no)
+4344:         bar=ttk.Frame(win);bar.pack(fill="x",pady=8)
+4345:         ttk.Button(bar,text="EDIT",command=view).pack(side="left",padx=5)
+4346:         ttk.Button(bar,text="PREVIEW / PRINT",command=lambda:self.doc_print_selected(typ,tr)).pack(side="left",padx=5)
+4347:         ttk.Button(bar,text="REFRESH",command=lambda:(win.destroy(),self.show_saved_records(typ))).pack(side="left",padx=5)
+4348: 
+4349:     def documents(self):
+4350:         self.clearbody()
+4351:         nb=ttk.Notebook(self.body);nb.pack(fill="both",expand=True)
+4352:         specs=[
+4353:             ("Demands","demand",("No","Date","Department","Required For","Urgency","Status"),
+4354:              "SELECT demand_no,demand_date,department,required_for,urgency,status FROM demands ORDER BY rowid DESC"),
+4355:             ("GRNs","grr",("No","Date","Department","Supplier","Invoice","PO","Total Value"),
+4356:              "SELECT grr_no,grr_date,department,supplier,invoice_no,po_no,total_value FROM grr ORDER BY rowid DESC"),
+4357:             ("Material Issues","issue",("No","Date","Department"),
+4358:              "SELECT issue_no,issue_date,department FROM issues ORDER BY rowid DESC")
+4359:         ]
 ```
 ```text
-4352:             ("GRNs","grr",("No","Date","Department","Supplier","Invoice","PO","Total Value"),
-4353:              "SELECT grr_no,grr_date,department,supplier,invoice_no,po_no,total_value FROM grr ORDER BY rowid DESC"),
-4354:             ("Material Issues","issue",("No","Date","Department"),
-4355:              "SELECT issue_no,issue_date,department FROM issues ORDER BY rowid DESC")
-4356:         ]
-4357:         for title,typ,cols,query in specs:
-4358:             fr=ttk.Frame(nb,padding=8);nb.add(fr,text=title)
-4359:             count=self.conn.execute({"demand":"SELECT COUNT(*) FROM demands","grr":"SELECT COUNT(*) FROM grr","issue":"SELECT COUNT(*) FROM issues"}[typ]).fetchone()[0]
-4360:             ttk.Label(fr,text=f"Saved {title}: {count}",font=("Segoe UI",10,"bold")).pack(anchor="w",pady=(0,6))
-4361:             bar=ttk.Frame(fr);bar.pack(fill="x",pady=(0,7))
-4362:             tr=self.make_tree(fr,cols,[150,110,180,190,120,120,120])
-4363:             for r in self.conn.execute(query):
-4364:                 r=list(r); r[1]=to_display_date(r[1]); tr.insert("", "end",values=r)
-4365:             def edit_selected(t=tr,k=typ):
-4366:                 a=t.selection()
-4367:                 if not a:
-4368:                     messagebox.showwarning("Edit", "Select a saved record first.")
-4369:                     return
-4370:                 no=t.item(a[0])["values"][0]
-4371:                 self.open_document_editor(k,no)
-4372:             def delete_selected(t=tr,k=typ):
+4355:             ("GRNs","grr",("No","Date","Department","Supplier","Invoice","PO","Total Value"),
+4356:              "SELECT grr_no,grr_date,department,supplier,invoice_no,po_no,total_value FROM grr ORDER BY rowid DESC"),
+4357:             ("Material Issues","issue",("No","Date","Department"),
+4358:              "SELECT issue_no,issue_date,department FROM issues ORDER BY rowid DESC")
+4359:         ]
+4360:         for title,typ,cols,query in specs:
+4361:             fr=ttk.Frame(nb,padding=8);nb.add(fr,text=title)
+4362:             count=self.conn.execute({"demand":"SELECT COUNT(*) FROM demands","grr":"SELECT COUNT(*) FROM grr","issue":"SELECT COUNT(*) FROM issues"}[typ]).fetchone()[0]
+4363:             ttk.Label(fr,text=f"Saved {title}: {count}",font=("Segoe UI",10,"bold")).pack(anchor="w",pady=(0,6))
+4364:             bar=ttk.Frame(fr);bar.pack(fill="x",pady=(0,7))
+4365:             tr=self.make_tree(fr,cols,[150,110,180,190,120,120,120])
+4366:             for r in self.conn.execute(query):
+4367:                 r=list(r); r[1]=to_display_date(r[1]); tr.insert("", "end",values=r)
+4368:             def edit_selected(t=tr,k=typ):
+4369:                 a=t.selection()
+4370:                 if not a:
+4371:                     messagebox.showwarning("Edit", "Select a saved record first.")
+4372:                     return
+4373:                 no=t.item(a[0])["values"][0]
+4374:                 self.open_document_editor(k,no)
+4375:             def delete_selected(t=tr,k=typ):
 ```
 ```text
-4367:                 if not a:
-4368:                     messagebox.showwarning("Edit", "Select a saved record first.")
-4369:                     return
-4370:                 no=t.item(a[0])["values"][0]
-4371:                 self.open_document_editor(k,no)
-4372:             def delete_selected(t=tr,k=typ):
-4373:                 a=t.selection()
-4374:                 if not a:
-4375:                     messagebox.showwarning("Delete", "Select a saved record first.")
-4376:                     return
-4377:                 no=t.item(a[0])["values"][0]
-4378:                 if k=="demand":
-4379:                     self.conn.execute("DELETE FROM demand_lines WHERE demand_no=?",(no,));self.conn.execute("DELETE FROM demands WHERE demand_no=?",(no,))
-4380:                 elif k=="grr":
-4381:                     self.conn.execute("DELETE FROM transactions WHERE doc_type='GRR' AND doc_no=?",(no,));self.conn.execute("DELETE FROM grr_lines WHERE grr_no=?",(no,));self.conn.execute("DELETE FROM grr WHERE grr_no=?",(no,))
-4382:                 else:
-4383:                     self.conn.execute("DELETE FROM transactions WHERE doc_type='ISSUE' AND doc_no=?",(no,));self.conn.execute("DELETE FROM issue_lines WHERE issue_no=?",(no,));self.conn.execute("DELETE FROM issues WHERE issue_no=?",(no,))
-4384:                 self.conn.commit();backup_database();self.documents()
-4385:             b=ttk.Button(bar,text="EDIT",command=edit_selected);b.pack(side="left",padx=4)
-4386:             ttk.Button(bar,text="DELETE",command=delete_selected).pack(side="left",padx=4)
-4387:             ttk.Button(bar,text="PREVIEW SELECTED",command=lambda t=tr,k=typ:self.doc_preview_selected(k,t)).pack(side="left",padx=4)
+4370:                 if not a:
+4371:                     messagebox.showwarning("Edit", "Select a saved record first.")
+4372:                     return
+4373:                 no=t.item(a[0])["values"][0]
+4374:                 self.open_document_editor(k,no)
+4375:             def delete_selected(t=tr,k=typ):
+4376:                 a=t.selection()
+4377:                 if not a:
+4378:                     messagebox.showwarning("Delete", "Select a saved record first.")
+4379:                     return
+4380:                 no=t.item(a[0])["values"][0]
+4381:                 if k=="demand":
+4382:                     self.conn.execute("DELETE FROM demand_lines WHERE demand_no=?",(no,));self.conn.execute("DELETE FROM demands WHERE demand_no=?",(no,))
+4383:                 elif k=="grr":
+4384:                     self.conn.execute("DELETE FROM transactions WHERE doc_type='GRR' AND doc_no=?",(no,));self.conn.execute("DELETE FROM grr_lines WHERE grr_no=?",(no,));self.conn.execute("DELETE FROM grr WHERE grr_no=?",(no,))
+4385:                 else:
+4386:                     self.conn.execute("DELETE FROM transactions WHERE doc_type='ISSUE' AND doc_no=?",(no,));self.conn.execute("DELETE FROM issue_lines WHERE issue_no=?",(no,));self.conn.execute("DELETE FROM issues WHERE issue_no=?",(no,))
+4387:                 self.conn.commit();backup_database();self.documents()
+4388:             b=ttk.Button(bar,text="EDIT",command=edit_selected);b.pack(side="left",padx=4)
+4389:             ttk.Button(bar,text="DELETE",command=delete_selected).pack(side="left",padx=4)
+4390:             ttk.Button(bar,text="PREVIEW SELECTED",command=lambda t=tr,k=typ:self.doc_preview_selected(k,t)).pack(side="left",padx=4)
 ```
 ```text
-4381:                     self.conn.execute("DELETE FROM transactions WHERE doc_type='GRR' AND doc_no=?",(no,));self.conn.execute("DELETE FROM grr_lines WHERE grr_no=?",(no,));self.conn.execute("DELETE FROM grr WHERE grr_no=?",(no,))
-4382:                 else:
-4383:                     self.conn.execute("DELETE FROM transactions WHERE doc_type='ISSUE' AND doc_no=?",(no,));self.conn.execute("DELETE FROM issue_lines WHERE issue_no=?",(no,));self.conn.execute("DELETE FROM issues WHERE issue_no=?",(no,))
-4384:                 self.conn.commit();backup_database();self.documents()
-4385:             b=ttk.Button(bar,text="EDIT",command=edit_selected);b.pack(side="left",padx=4)
-4386:             ttk.Button(bar,text="DELETE",command=delete_selected).pack(side="left",padx=4)
-4387:             ttk.Button(bar,text="PREVIEW SELECTED",command=lambda t=tr,k=typ:self.doc_preview_selected(k,t)).pack(side="left",padx=4)
-4388:             ttk.Button(bar,text="PREVIEW CURRENT",command=lambda t=tr,tt=title:self.preview_tree(tt + " - Current List",t)).pack(side="left",padx=4)
-4389:             ttk.Button(bar,text="EXPORT PDF",command=lambda t=tr,k=typ:self.doc_print_selected(k,t)).pack(side="left",padx=4)
-4390:             ttk.Button(bar,text="EXPORT WORD",command=lambda t=tr,k=typ:self.doc_export_selected(k,t,"word")).pack(side="left",padx=4)
-4391:             ttk.Button(bar,text="EXPORT EXCEL",command=lambda t=tr,k=typ:self.doc_export_selected(k,t,"excel")).pack(side="left",padx=4)
-4392: 
-4393:     def doc_export_selected(self,typ,tr,fmt):
-4394:         a=tr.selection()
-4395:         if not a:
-4396:             messagebox.showwarning("Export","Select a saved record first."); return
-4397:         no=tr.item(a[0])["values"][0]
-4398:         if fmt=="word": self.export_word(typ,no)
-4399:         else: self.export_excel(typ,no)
-4400: 
-4401:     def doc_preview_selected(self,typ,tr):
+4384:                     self.conn.execute("DELETE FROM transactions WHERE doc_type='GRR' AND doc_no=?",(no,));self.conn.execute("DELETE FROM grr_lines WHERE grr_no=?",(no,));self.conn.execute("DELETE FROM grr WHERE grr_no=?",(no,))
+4385:                 else:
+4386:                     self.conn.execute("DELETE FROM transactions WHERE doc_type='ISSUE' AND doc_no=?",(no,));self.conn.execute("DELETE FROM issue_lines WHERE issue_no=?",(no,));self.conn.execute("DELETE FROM issues WHERE issue_no=?",(no,))
+4387:                 self.conn.commit();backup_database();self.documents()
+4388:             b=ttk.Button(bar,text="EDIT",command=edit_selected);b.pack(side="left",padx=4)
+4389:             ttk.Button(bar,text="DELETE",command=delete_selected).pack(side="left",padx=4)
+4390:             ttk.Button(bar,text="PREVIEW SELECTED",command=lambda t=tr,k=typ:self.doc_preview_selected(k,t)).pack(side="left",padx=4)
+4391:             ttk.Button(bar,text="PREVIEW CURRENT",command=lambda t=tr,tt=title:self.preview_tree(tt + " - Current List",t)).pack(side="left",padx=4)
+4392:             ttk.Button(bar,text="EXPORT PDF",command=lambda t=tr,k=typ:self.doc_print_selected(k,t)).pack(side="left",padx=4)
+4393:             ttk.Button(bar,text="EXPORT WORD",command=lambda t=tr,k=typ:self.doc_export_selected(k,t,"word")).pack(side="left",padx=4)
+4394:             ttk.Button(bar,text="EXPORT EXCEL",command=lambda t=tr,k=typ:self.doc_export_selected(k,t,"excel")).pack(side="left",padx=4)
+4395: 
+4396:     def doc_export_selected(self,typ,tr,fmt):
+4397:         a=tr.selection()
+4398:         if not a:
+4399:             messagebox.showwarning("Export","Select a saved record first."); return
+4400:         no=tr.item(a[0])["values"][0]
+4401:         if fmt=="word": self.export_word(typ,no)
+4402:         else: self.export_excel(typ,no)
+4403: 
+4404:     def doc_preview_selected(self,typ,tr):
 ```
 ```text
-4396:             messagebox.showwarning("Export","Select a saved record first."); return
-4397:         no=tr.item(a[0])["values"][0]
-4398:         if fmt=="word": self.export_word(typ,no)
-4399:         else: self.export_excel(typ,no)
-4400: 
-4401:     def doc_preview_selected(self,typ,tr):
-4402:         a=tr.selection()
-4403:         if not a:
-4404:             messagebox.showwarning("Preview","Select a saved record first."); return
-4405:         no=tr.item(a[0])["values"][0]
-4406:         data=self._get_doc_data(typ,no)
-4407:         if not data:
-4408:             messagebox.showwarning("Preview","Document not found."); return
-4409:         title,header,cols,rows=data
-4410:         header_lines=header
-4411:         self.show_preview_window(title,header_lines,cols,rows)
-4412: 
-4413:     def doc_print_selected(self,typ,tr):
-4414:         a=tr.selection()
-4415:         if not a: return
-4416:         no=tr.item(a[0])["values"][0]
+4399:             messagebox.showwarning("Export","Select a saved record first."); return
+4400:         no=tr.item(a[0])["values"][0]
+4401:         if fmt=="word": self.export_word(typ,no)
+4402:         else: self.export_excel(typ,no)
+4403: 
+4404:     def doc_preview_selected(self,typ,tr):
+4405:         a=tr.selection()
+4406:         if not a:
+4407:             messagebox.showwarning("Preview","Select a saved record first."); return
+4408:         no=tr.item(a[0])["values"][0]
+4409:         data=self._get_doc_data(typ,no)
+4410:         if not data:
+4411:             messagebox.showwarning("Preview","Document not found."); return
+4412:         title,header,cols,rows=data
+4413:         header_lines=header
+4414:         self.show_preview_window(title,header_lines,cols,rows)
+4415: 
+4416:     def doc_print_selected(self,typ,tr):
+4417:         a=tr.selection()
+4418:         if not a: return
+4419:         no=tr.item(a[0])["values"][0]
 ```
 ```text
-4447:         def _print_loaded_document():
-4448:             data=self._get_doc_data(typ,no)
-4449:             if not data:
-4450:                 messagebox.showwarning("Document","Document not found."); return
-4451:             title,header,cols,rows=data
-4452:             self._open_direct_printer(title,header,cols,rows,landscape(A4) if typ=="grr" else A4)
-4453:         ttk.Button(win,text="PREVIEW / PRINT",command=_print_loaded_document).pack(pady=8)
-4454: 
-4455:     def _report_filter_popup(self, title, include_party=False):
-4456:         result={"cancelled":False,"from_code":"","to_code":"","from_date":"","to_date":"","party":"ALL"}
-4457:         win,winbody=self._internal_window(title,"520x420")
-4458:         done=tk.BooleanVar(value=False)
-4459:         box=ttk.Frame(winbody,padding=20);box.pack(fill="both",expand=True)
-4460:         ttk.Label(box,text=title.upper(),font=("Segoe UI",13,"bold")).grid(row=0,column=0,columnspan=2,sticky="w",pady=(0,14))
-4461:         fc=tk.StringVar();tc=tk.StringVar();fd=tk.StringVar();td=tk.StringVar();party=tk.StringVar(value="ALL")
-4462:         ttk.Label(box,text="Item Code From").grid(row=1,column=0,sticky="w",pady=6);e=ttk.Entry(box,textvariable=fc,width=18);e.grid(row=1,column=1,sticky="w",pady=6);attach_code_mask(e,fc)
-4463:         ttk.Label(box,text="Item Code To").grid(row=2,column=0,sticky="w",pady=6);e2=ttk.Entry(box,textvariable=tc,width=18);e2.grid(row=2,column=1,sticky="w",pady=6);attach_code_mask(e2,tc)
-4464:         ttk.Label(box,text="Date From (DD/MM/YYYY)").grid(row=3,column=0,sticky="w",pady=6);self.make_date_field(box,fd,16).grid(row=3,column=1,sticky="w",pady=6)
-4465:         ttk.Label(box,text="Date To (DD/MM/YYYY)").grid(row=4,column=0,sticky="w",pady=6);self.make_date_field(box,td,16).grid(row=4,column=1,sticky="w",pady=6)
-4466:         if include_party:
-4467:             ttk.Label(box,text="Party").grid(row=5,column=0,sticky="w",pady=6);ttk.Combobox(box,textvariable=party,values=["ALL"]+[r[0] for r in self.conn.execute("SELECT name FROM parties ORDER BY name COLLATE NOCASE")],state="readonly",width=35).grid(row=5,column=1,sticky="w",pady=6)
+4450:         def _print_loaded_document():
+4451:             data=self._get_doc_data(typ,no)
+4452:             if not data:
+4453:                 messagebox.showwarning("Document","Document not found."); return
+4454:             title,header,cols,rows=data
+4455:             self._open_direct_printer(title,header,cols,rows,landscape(A4) if typ=="grr" else A4)
+4456:         ttk.Button(win,text="PREVIEW / PRINT",command=_print_loaded_document).pack(pady=8)
+4457: 
+4458:     def _report_filter_popup(self, title, include_party=False):
+4459:         result={"cancelled":False,"from_code":"","to_code":"","from_date":"","to_date":"","party":"ALL"}
+4460:         win,winbody=self._internal_window(title,"520x420")
+4461:         done=tk.BooleanVar(value=False)
+4462:         box=ttk.Frame(winbody,padding=20);box.pack(fill="both",expand=True)
+4463:         ttk.Label(box,text=title.upper(),font=("Segoe UI",13,"bold")).grid(row=0,column=0,columnspan=2,sticky="w",pady=(0,14))
+4464:         fc=tk.StringVar();tc=tk.StringVar();fd=tk.StringVar();td=tk.StringVar();party=tk.StringVar(value="ALL")
+4465:         ttk.Label(box,text="Item Code From").grid(row=1,column=0,sticky="w",pady=6);e=ttk.Entry(box,textvariable=fc,width=18);e.grid(row=1,column=1,sticky="w",pady=6);attach_code_mask(e,fc)
+4466:         ttk.Label(box,text="Item Code To").grid(row=2,column=0,sticky="w",pady=6);e2=ttk.Entry(box,textvariable=tc,width=18);e2.grid(row=2,column=1,sticky="w",pady=6);attach_code_mask(e2,tc)
+4467:         ttk.Label(box,text="Date From (DD/MM/YYYY)").grid(row=3,column=0,sticky="w",pady=6);self.make_date_field(box,fd,16).grid(row=3,column=1,sticky="w",pady=6)
+4468:         ttk.Label(box,text="Date To (DD/MM/YYYY)").grid(row=4,column=0,sticky="w",pady=6);self.make_date_field(box,td,16).grid(row=4,column=1,sticky="w",pady=6)
+4469:         if include_party:
+4470:             ttk.Label(box,text="Party").grid(row=5,column=0,sticky="w",pady=6);ttk.Combobox(box,textvariable=party,values=["ALL"]+[r[0] for r in self.conn.execute("SELECT name FROM parties ORDER BY name COLLATE NOCASE")],state="readonly",width=35).grid(row=5,column=1,sticky="w",pady=6)
 ```
 ```text
-4461:         fc=tk.StringVar();tc=tk.StringVar();fd=tk.StringVar();td=tk.StringVar();party=tk.StringVar(value="ALL")
-4462:         ttk.Label(box,text="Item Code From").grid(row=1,column=0,sticky="w",pady=6);e=ttk.Entry(box,textvariable=fc,width=18);e.grid(row=1,column=1,sticky="w",pady=6);attach_code_mask(e,fc)
-4463:         ttk.Label(box,text="Item Code To").grid(row=2,column=0,sticky="w",pady=6);e2=ttk.Entry(box,textvariable=tc,width=18);e2.grid(row=2,column=1,sticky="w",pady=6);attach_code_mask(e2,tc)
-4464:         ttk.Label(box,text="Date From (DD/MM/YYYY)").grid(row=3,column=0,sticky="w",pady=6);self.make_date_field(box,fd,16).grid(row=3,column=1,sticky="w",pady=6)
-4465:         ttk.Label(box,text="Date To (DD/MM/YYYY)").grid(row=4,column=0,sticky="w",pady=6);self.make_date_field(box,td,16).grid(row=4,column=1,sticky="w",pady=6)
-4466:         if include_party:
-4467:             ttk.Label(box,text="Party").grid(row=5,column=0,sticky="w",pady=6);ttk.Combobox(box,textvariable=party,values=["ALL"]+[r[0] for r in self.conn.execute("SELECT name FROM parties ORDER BY name COLLATE NOCASE")],state="readonly",width=35).grid(row=5,column=1,sticky="w",pady=6)
-4468:         def ok():
-4469:             result.update(from_code=fc.get().strip(),to_code=tc.get().strip(),from_date=fd.get().strip(),to_date=td.get().strip(),party=party.get());done.set(True);win._internal_close()
-4470:         def cancel():result["cancelled"]=True;done.set(True);win._internal_close()
-4471:         bf=ttk.Frame(box);bf.grid(row=6,column=0,columnspan=2,pady=(14,0));ttk.Button(bf,text="OPEN REPORT",style="Success.TButton",command=ok).pack(side="left",padx=5);ttk.Button(bf,text="CANCEL",style="Muted.TButton",command=cancel).pack(side="left",padx=5)
-4472:         win.bind("<Return>",lambda e:ok());win.bind("<Escape>",lambda e:cancel());e.focus_set();self.wait_variable(done);return result
-4473: 
-4474:     def _report_window(self,title,kind,headers,query,params_builder,include_party=False):
-4475:         self.clearbody()
-4476:         # Report sub-sections use their own report toolbar; remove only the
-4477:         # generic Save/Edit/Delete/Cancel/Print action strip created by clearbody.
-4478:         children=self.body.winfo_children()
-4479:         if children:
-4480:             children[0].destroy()
-4481:         f=getattr(self,"_pending_report_filters",None) or self._report_filter_popup(f"{title} - Filters",include_party)
+4464:         fc=tk.StringVar();tc=tk.StringVar();fd=tk.StringVar();td=tk.StringVar();party=tk.StringVar(value="ALL")
+4465:         ttk.Label(box,text="Item Code From").grid(row=1,column=0,sticky="w",pady=6);e=ttk.Entry(box,textvariable=fc,width=18);e.grid(row=1,column=1,sticky="w",pady=6);attach_code_mask(e,fc)
+4466:         ttk.Label(box,text="Item Code To").grid(row=2,column=0,sticky="w",pady=6);e2=ttk.Entry(box,textvariable=tc,width=18);e2.grid(row=2,column=1,sticky="w",pady=6);attach_code_mask(e2,tc)
+4467:         ttk.Label(box,text="Date From (DD/MM/YYYY)").grid(row=3,column=0,sticky="w",pady=6);self.make_date_field(box,fd,16).grid(row=3,column=1,sticky="w",pady=6)
+4468:         ttk.Label(box,text="Date To (DD/MM/YYYY)").grid(row=4,column=0,sticky="w",pady=6);self.make_date_field(box,td,16).grid(row=4,column=1,sticky="w",pady=6)
+4469:         if include_party:
+4470:             ttk.Label(box,text="Party").grid(row=5,column=0,sticky="w",pady=6);ttk.Combobox(box,textvariable=party,values=["ALL"]+[r[0] for r in self.conn.execute("SELECT name FROM parties ORDER BY name COLLATE NOCASE")],state="readonly",width=35).grid(row=5,column=1,sticky="w",pady=6)
+4471:         def ok():
+4472:             result.update(from_code=fc.get().strip(),to_code=tc.get().strip(),from_date=fd.get().strip(),to_date=td.get().strip(),party=party.get());done.set(True);win._internal_close()
+4473:         def cancel():result["cancelled"]=True;done.set(True);win._internal_close()
+4474:         bf=ttk.Frame(box);bf.grid(row=6,column=0,columnspan=2,pady=(14,0));ttk.Button(bf,text="OPEN REPORT",style="Success.TButton",command=ok).pack(side="left",padx=5);ttk.Button(bf,text="CANCEL",style="Muted.TButton",command=cancel).pack(side="left",padx=5)
+4475:         win.bind("<Return>",lambda e:ok());win.bind("<Escape>",lambda e:cancel());e.focus_set();self.wait_variable(done);return result
+4476: 
+4477:     def _report_window(self,title,kind,headers,query,params_builder,include_party=False):
+4478:         self.clearbody()
+4479:         # Report sub-sections use their own report toolbar; remove only the
+4480:         # generic Save/Edit/Delete/Cancel/Print action strip created by clearbody.
+4481:         children=self.body.winfo_children()
+4482:         if children:
+4483:             children[0].destroy()
+4484:         f=getattr(self,"_pending_report_filters",None) or self._report_filter_popup(f"{title} - Filters",include_party)
 ```
 ```text
-4482:         if f.get("cancelled"):
-4483:             self.dashboard();return
-4484:         bar=ttk.Frame(self.body);bar.pack(fill="x",pady=(0,8))
-4485:         ttk.Label(bar,text=title,font=("Segoe UI",15,"bold")).pack(side="left")
-4486:         tr=self.make_tree(self.body,headers,[max(90,min(320,10*len(str(h))+35)) for h in headers])
-4487:         def load():
-4488:             for i in tr.get_children():tr.delete(i)
-4489:             params,where=params_builder(f)
-4490:             sql=query+(" WHERE "+" AND ".join(where) if where else "")
-4491:             for r in self.conn.execute(sql,params):
-4492:                 vals=list(r)
-4493:                 if vals and isinstance(vals[0],str):vals[0]=to_display_date(vals[0])
-4494:                 tr.insert("","end",values=vals)
-4495:         def hdr():return [f"Item Code: {f['from_code'] or 'FIRST'} to {f['to_code'] or 'LAST'}",f"Date: {f['from_date'] or 'ALL'} to {f['to_date'] or 'TODAY'}"]
-4496:         ttk.Button(bar,text="REFRESH",style="Muted.TButton",command=load).pack(side="left",padx=6)
-4497:         ttk.Button(bar,text="PDF",style="Primary.TButton",command=lambda:self.export_preview_pdf(title,hdr(),headers,[tuple(tr.item(i,"values")) for i in tr.get_children()])).pack(side="left",padx=3)
-4498:         ttk.Button(bar,text="EXCEL",style="Success.TButton",command=lambda:self.export_preview_excel(title,hdr(),headers,[tuple(tr.item(i,"values")) for i in tr.get_children()])).pack(side="left",padx=3)
-4499:         ttk.Button(bar,text="WORD",style="Warning.TButton",command=lambda:self.export_preview_word(title,hdr(),headers,[tuple(tr.item(i,"values")) for i in tr.get_children()])).pack(side="left",padx=3)
-4500:         ttk.Button(bar,text="PREVIEW",style="Muted.TButton",command=lambda:self.preview_tree(title,tr,hdr())).pack(side="left",padx=3)
-4501:         def open_find_report():
-4502:             state_find={"index":-1}
+4485:         if f.get("cancelled"):
+4486:             self.dashboard();return
+4487:         bar=ttk.Frame(self.body);bar.pack(fill="x",pady=(0,8))
+4488:         ttk.Label(bar,text=title,font=("Segoe UI",15,"bold")).pack(side="left")
+4489:         tr=self.make_tree(self.body,headers,[max(90,min(320,10*len(str(h))+35)) for h in headers])
+4490:         def load():
+4491:             for i in tr.get_children():tr.delete(i)
+4492:             params,where=params_builder(f)
+4493:             sql=query+(" WHERE "+" AND ".join(where) if where else "")
+4494:             for r in self.conn.execute(sql,params):
+4495:                 vals=list(r)
+4496:                 if vals and isinstance(vals[0],str):vals[0]=to_display_date(vals[0])
+4497:                 tr.insert("","end",values=vals)
+4498:         def hdr():return [f"Item Code: {f['from_code'] or 'FIRST'} to {f['to_code'] or 'LAST'}",f"Date: {f['from_date'] or 'ALL'} to {f['to_date'] or 'TODAY'}"]
+4499:         ttk.Button(bar,text="REFRESH",style="Muted.TButton",command=load).pack(side="left",padx=6)
+4500:         ttk.Button(bar,text="PDF",style="Primary.TButton",command=lambda:self.export_preview_pdf(title,hdr(),headers,[tuple(tr.item(i,"values")) for i in tr.get_children()])).pack(side="left",padx=3)
+4501:         ttk.Button(bar,text="EXCEL",style="Success.TButton",command=lambda:self.export_preview_excel(title,hdr(),headers,[tuple(tr.item(i,"values")) for i in tr.get_children()])).pack(side="left",padx=3)
+4502:         ttk.Button(bar,text="WORD",style="Warning.TButton",command=lambda:self.export_preview_word(title,hdr(),headers,[tuple(tr.item(i,"values")) for i in tr.get_children()])).pack(side="left",padx=3)
+4503:         ttk.Button(bar,text="PREVIEW",style="Muted.TButton",command=lambda:self.preview_tree(title,tr,hdr())).pack(side="left",padx=3)
+4504:         def open_find_report():
+4505:             state_find={"index":-1}
 ```
 ```text
-4508:                 order=children[start:]+children[:start]
-4509:                 for iid in order:
-4510:                     vals=tr.item(iid,"values")
-4511:                     if any(text in str(v).lower() for v in vals):
-4512:                         state_find["index"]=children.index(iid)
-4513:                         tr.selection_set(iid); tr.focus(iid); tr.see(iid); return True
-4514:                 return False
-4515:             self._open_exact_find_text_popup(search_fn)
-4516:         self._item_master_find_callback=open_find_report
-4517:         load()
-4518:         self.set_page_actions(preview=lambda:self.preview_tree(title,tr,hdr()),print=lambda:self.print_preview_window(title,hdr(),headers,[tuple(tr.item(i,"values")) for i in tr.get_children()]))
-4519: 
-4520:     def report_grr(self):
-4521:         q="""SELECT g.grr_date,g.grr_no,g.department,g.supplier,g.invoice_no,l.code,l.description,l.uom,l.received_qty,l.rejected_qty,l.accepted_qty,l.rate,l.amount,l.item_type,g.remarks FROM grr g JOIN grr_lines l ON l.grr_no=g.grr_no"""
-4522:         def pb(f):
-4523:             w=[];p=[]
-4524:             if f.get('from_document'):w.append('g.grr_no>=?');p.append(f['from_document'])
-4525:             if f.get('to_document'):w.append('g.grr_no<=?');p.append(f['to_document'])
-4526:             if f['from_code']:w.append('l.code>=?');p.append(f['from_code'])
-4527:             if f['to_code']:w.append('l.code<=?');p.append(f['to_code'])
-4528:             if f['from_date']:w.append('g.grr_date>=?');p.append(to_iso_date(f['from_date']))
+4511:                 order=children[start:]+children[:start]
+4512:                 for iid in order:
+4513:                     vals=tr.item(iid,"values")
+4514:                     if any(text in str(v).lower() for v in vals):
+4515:                         state_find["index"]=children.index(iid)
+4516:                         tr.selection_set(iid); tr.focus(iid); tr.see(iid); return True
+4517:                 return False
+4518:             self._open_exact_find_text_popup(search_fn)
+4519:         self._item_master_find_callback=open_find_report
+4520:         load()
+4521:         self.set_page_actions(preview=lambda:self.preview_tree(title,tr,hdr()),print=lambda:self.print_preview_window(title,hdr(),headers,[tuple(tr.item(i,"values")) for i in tr.get_children()]))
+4522: 
+4523:     def report_grr(self):
+4524:         q="""SELECT g.grr_date,g.grr_no,g.department,g.supplier,g.invoice_no,l.code,l.description,l.uom,l.received_qty,l.rejected_qty,l.accepted_qty,l.rate,l.amount,l.item_type,g.remarks FROM grr g JOIN grr_lines l ON l.grr_no=g.grr_no"""
+4525:         def pb(f):
+4526:             w=[];p=[]
+4527:             if f.get('from_document'):w.append('g.grr_no>=?');p.append(f['from_document'])
+4528:             if f.get('to_document'):w.append('g.grr_no<=?');p.append(f['to_document'])
+4529:             if f['from_code']:w.append('l.code>=?');p.append(f['from_code'])
+4530:             if f['to_code']:w.append('l.code<=?');p.append(f['to_code'])
+4531:             if f['from_date']:w.append('g.grr_date>=?');p.append(to_iso_date(f['from_date']))
 ```
 ```text
-4523:             w=[];p=[]
-4524:             if f.get('from_document'):w.append('g.grr_no>=?');p.append(f['from_document'])
-4525:             if f.get('to_document'):w.append('g.grr_no<=?');p.append(f['to_document'])
-4526:             if f['from_code']:w.append('l.code>=?');p.append(f['from_code'])
-4527:             if f['to_code']:w.append('l.code<=?');p.append(f['to_code'])
-4528:             if f['from_date']:w.append('g.grr_date>=?');p.append(to_iso_date(f['from_date']))
-4529:             if f['to_date']:w.append('g.grr_date<=?');p.append(to_iso_date(f['to_date']))
-4530:             return p,w
-4531:         self._report_window("GRN DETAIL REPORT","grr",("Date","GRN No","Department","Party","Invoice","Item Code","Description","UOM","Received","Rejected","Accepted","Rate","Amount","Type","Remarks"),q,pb)
-4532: 
-4533:     def report_demand(self):
-4534:         q="""SELECT d.demand_date,d.demand_no,d.department,d.required_for,d.remarks,d.status,l.code,l.description,l.uom,l.demand_qty,l.available_qty,l.to_purchase,l.item_type FROM demands d JOIN demand_lines l ON l.demand_no=d.demand_no"""
-4535:         def pb(f):
-4536:             w=[];p=[]
-4537:             if f.get('from_document'):w.append('d.demand_no>=?');p.append(f['from_document'])
-4538:             if f.get('to_document'):w.append('d.demand_no<=?');p.append(f['to_document'])
-4539:             if f['from_code']:w.append('l.code>=?');p.append(f['from_code'])
-4540:             if f['to_code']:w.append('l.code<=?');p.append(f['to_code'])
-4541:             if f['from_date']:w.append('d.demand_date>=?');p.append(to_iso_date(f['from_date']))
-4542:             if f['to_date']:w.append('d.demand_date<=?');p.append(to_iso_date(f['to_date']))
-4543:             return p,w
+4526:             w=[];p=[]
+4527:             if f.get('from_document'):w.append('g.grr_no>=?');p.append(f['from_document'])
+4528:             if f.get('to_document'):w.append('g.grr_no<=?');p.append(f['to_document'])
+4529:             if f['from_code']:w.append('l.code>=?');p.append(f['from_code'])
+4530:             if f['to_code']:w.append('l.code<=?');p.append(f['to_code'])
+4531:             if f['from_date']:w.append('g.grr_date>=?');p.append(to_iso_date(f['from_date']))
+4532:             if f['to_date']:w.append('g.grr_date<=?');p.append(to_iso_date(f['to_date']))
+4533:             return p,w
+4534:         self._report_window("GRN DETAIL REPORT","grr",("Date","GRN No","Department","Party","Invoice","Item Code","Description","UOM","Received","Rejected","Accepted","Rate","Amount","Type","Remarks"),q,pb)
+4535: 
+4536:     def report_demand(self):
+4537:         q="""SELECT d.demand_date,d.demand_no,d.department,d.required_for,d.remarks,d.status,l.code,l.description,l.uom,l.demand_qty,l.available_qty,l.to_purchase,l.item_type FROM demands d JOIN demand_lines l ON l.demand_no=d.demand_no"""
+4538:         def pb(f):
+4539:             w=[];p=[]
+4540:             if f.get('from_document'):w.append('d.demand_no>=?');p.append(f['from_document'])
+4541:             if f.get('to_document'):w.append('d.demand_no<=?');p.append(f['to_document'])
+4542:             if f['from_code']:w.append('l.code>=?');p.append(f['from_code'])
+4543:             if f['to_code']:w.append('l.code<=?');p.append(f['to_code'])
+4544:             if f['from_date']:w.append('d.demand_date>=?');p.append(to_iso_date(f['from_date']))
+4545:             if f['to_date']:w.append('d.demand_date<=?');p.append(to_iso_date(f['to_date']))
+4546:             return p,w
 ```
 ```text
-4536:             w=[];p=[]
-4537:             if f.get('from_document'):w.append('d.demand_no>=?');p.append(f['from_document'])
-4538:             if f.get('to_document'):w.append('d.demand_no<=?');p.append(f['to_document'])
-4539:             if f['from_code']:w.append('l.code>=?');p.append(f['from_code'])
-4540:             if f['to_code']:w.append('l.code<=?');p.append(f['to_code'])
-4541:             if f['from_date']:w.append('d.demand_date>=?');p.append(to_iso_date(f['from_date']))
-4542:             if f['to_date']:w.append('d.demand_date<=?');p.append(to_iso_date(f['to_date']))
-4543:             return p,w
-4544:         self._report_window("DEMAND DETAIL REPORT","demand",("Date","Demand No","Department","Required For","Remarks","Status","Item Code","Description","UOM","Demand Qty","Available","To Purchase","Type"),q,pb)
-4545: 
-4546:     def report_issue(self):
-4547:         q="""SELECT i.issue_date,i.issue_no,i.department,i.items_use_for,l.code,l.description,l.uom,l.issue_qty,l.item_type FROM issues i JOIN issue_lines l ON l.issue_no=i.issue_no"""
-4548:         def pb(f):
-4549:             w=[];p=[]
-4550:             if f['from_code']:w.append('l.code>=?');p.append(f['from_code'])
-4551:             if f['to_code']:w.append('l.code<=?');p.append(f['to_code'])
-4552:             if f['from_date']:w.append('i.issue_date>=?');p.append(to_iso_date(f['from_date']))
-4553:             if f['to_date']:w.append('i.issue_date<=?');p.append(to_iso_date(f['to_date']))
-4554:             return p,w
-4555:         self._report_window("MATERIAL ISSUE DETAIL REPORT","issue",("Date","Issue No","Department","Items Use For","Item Code","Description","UOM","Issue Qty","Type"),q,pb)
-4556: 
+4539:             w=[];p=[]
+4540:             if f.get('from_document'):w.append('d.demand_no>=?');p.append(f['from_document'])
+4541:             if f.get('to_document'):w.append('d.demand_no<=?');p.append(f['to_document'])
+4542:             if f['from_code']:w.append('l.code>=?');p.append(f['from_code'])
+4543:             if f['to_code']:w.append('l.code<=?');p.append(f['to_code'])
+4544:             if f['from_date']:w.append('d.demand_date>=?');p.append(to_iso_date(f['from_date']))
+4545:             if f['to_date']:w.append('d.demand_date<=?');p.append(to_iso_date(f['to_date']))
+4546:             return p,w
+4547:         self._report_window("DEMAND DETAIL REPORT","demand",("Date","Demand No","Department","Required For","Remarks","Status","Item Code","Description","UOM","Demand Qty","Available","To Purchase","Type"),q,pb)
+4548: 
+4549:     def report_issue(self):
+4550:         q="""SELECT i.issue_date,i.issue_no,i.department,i.items_use_for,l.code,l.description,l.uom,l.issue_qty,l.item_type FROM issues i JOIN issue_lines l ON l.issue_no=i.issue_no"""
+4551:         def pb(f):
+4552:             w=[];p=[]
+4553:             if f['from_code']:w.append('l.code>=?');p.append(f['from_code'])
+4554:             if f['to_code']:w.append('l.code<=?');p.append(f['to_code'])
+4555:             if f['from_date']:w.append('i.issue_date>=?');p.append(to_iso_date(f['from_date']))
+4556:             if f['to_date']:w.append('i.issue_date<=?');p.append(to_iso_date(f['to_date']))
+4557:             return p,w
+4558:         self._report_window("MATERIAL ISSUE DETAIL REPORT","issue",("Date","Issue No","Department","Items Use For","Item Code","Description","UOM","Issue Qty","Type"),q,pb)
+4559: 
 ```
 ```text
-4549:             w=[];p=[]
-4550:             if f['from_code']:w.append('l.code>=?');p.append(f['from_code'])
-4551:             if f['to_code']:w.append('l.code<=?');p.append(f['to_code'])
-4552:             if f['from_date']:w.append('i.issue_date>=?');p.append(to_iso_date(f['from_date']))
-4553:             if f['to_date']:w.append('i.issue_date<=?');p.append(to_iso_date(f['to_date']))
-4554:             return p,w
-4555:         self._report_window("MATERIAL ISSUE DETAIL REPORT","issue",("Date","Issue No","Department","Items Use For","Item Code","Description","UOM","Issue Qty","Type"),q,pb)
-4556: 
-4557:     def report_party(self):
-4558:         q="""SELECT g.grr_date,g.grr_no,g.supplier,g.department,g.invoice_no,l.code,l.description,l.accepted_qty,l.rate,l.amount FROM grr g JOIN grr_lines l ON l.grr_no=g.grr_no"""
-4559:         def pb(f):
-4560:             w=[];p=[]
-4561:             if f['from_code']:w.append('l.code>=?');p.append(f['from_code'])
-4562:             if f['to_code']:w.append('l.code<=?');p.append(f['to_code'])
-4563:             if f['from_date']:w.append('g.grr_date>=?');p.append(to_iso_date(f['from_date']))
-4564:             if f['to_date']:w.append('g.grr_date<=?');p.append(to_iso_date(f['to_date']))
-4565:             if f['party'] and f['party']!='ALL':w.append('g.supplier=?');p.append(f['party'])
-4566:             return p,w
-4567:         self._report_window("PARTY DETAIL REPORT","party",("Date","GRN No","Party","Department","Invoice","Item Code","Description","Qty","Rate","Amount"),q,pb,True)
-4568: 
-4569:     def reports(self):
+4552:             w=[];p=[]
+4553:             if f['from_code']:w.append('l.code>=?');p.append(f['from_code'])
+4554:             if f['to_code']:w.append('l.code<=?');p.append(f['to_code'])
+4555:             if f['from_date']:w.append('i.issue_date>=?');p.append(to_iso_date(f['from_date']))
+4556:             if f['to_date']:w.append('i.issue_date<=?');p.append(to_iso_date(f['to_date']))
+4557:             return p,w
+4558:         self._report_window("MATERIAL ISSUE DETAIL REPORT","issue",("Date","Issue No","Department","Items Use For","Item Code","Description","UOM","Issue Qty","Type"),q,pb)
+4559: 
+4560:     def report_party(self):
+4561:         q="""SELECT g.grr_date,g.grr_no,g.supplier,g.department,g.invoice_no,l.code,l.description,l.accepted_qty,l.rate,l.amount FROM grr g JOIN grr_lines l ON l.grr_no=g.grr_no"""
+4562:         def pb(f):
+4563:             w=[];p=[]
+4564:             if f['from_code']:w.append('l.code>=?');p.append(f['from_code'])
+4565:             if f['to_code']:w.append('l.code<=?');p.append(f['to_code'])
+4566:             if f['from_date']:w.append('g.grr_date>=?');p.append(to_iso_date(f['from_date']))
+4567:             if f['to_date']:w.append('g.grr_date<=?');p.append(to_iso_date(f['to_date']))
+4568:             if f['party'] and f['party']!='ALL':w.append('g.supplier=?');p.append(f['party'])
+4569:             return p,w
+4570:         self._report_window("PARTY DETAIL REPORT","party",("Date","GRN No","Party","Department","Invoice","Item Code","Description","Qty","Rate","Amount"),q,pb,True)
+4571: 
+4572:     def reports(self):
 ```
 ```text
-4567:         self._report_window("PARTY DETAIL REPORT","party",("Date","GRN No","Party","Department","Invoice","Item Code","Description","Qty","Rate","Amount"),q,pb,True)
-4568: 
-4569:     def reports(self):
-4570:         self.clearbody()
-4571:         nb=ttk.Notebook(self.body); nb.pack(fill="both",expand=True)
-4572: 
-4573:         # ================= GRN Details =================
-4574:         grr_fr=ttk.Frame(nb,padding=4); nb.add(grr_fr,text="GRN Details")
-4575:         ttk.Button(grr_fr,text="PRINT FULL GRN DETAILS",command=lambda:self.print_report("grr")).pack(anchor="w",pady=(0,4))
-4576:         grr_nb=ttk.Notebook(grr_fr); grr_nb.pack(fill="both",expand=True)
-4577:         grr_cols=("Date","GRN No","Department","Party","Invoice","Code","Description","UOM","Received","Rejected","Accepted","Rate","Amount","Type","Remarks")
-4578:         grr_widths=[85,100,120,190,100,120,290,55,75,75,75,65,85,60,190]
-4579:         grr_sql="SELECT g.grr_date,g.grr_no,g.department,g.supplier,g.invoice_no,l.code,l.description,l.uom,l.received_qty,l.rejected_qty,l.accepted_qty,l.rate,l.amount,l.item_type,g.remarks FROM grr g JOIN grr_lines l ON l.grr_no=g.grr_no"
-4580: 
-4581:         fr=ttk.Frame(grr_nb,padding=6); grr_nb.add(fr,text="Item Wise")
-4582:         def load_grr_item(codev=None):
-4583:             for i in tr.get_children(): tr.delete(i)
-4584:             q=codev.get().strip() if codev else ""
-4585:             sql=grr_sql+(" WHERE l.code=?" if q else "")+" ORDER BY g.grr_date DESC,g.grr_no DESC,l.sr_no"
-4586:             for r in self.conn.execute(sql,(q,) if q else ()):
-4587:                 r=list(r); r[0]=to_display_date(r[0]); tr.insert("", "end", values=r)
+4570:         self._report_window("PARTY DETAIL REPORT","party",("Date","GRN No","Party","Department","Invoice","Item Code","Description","Qty","Rate","Amount"),q,pb,True)
+4571: 
+4572:     def reports(self):
+4573:         self.clearbody()
+4574:         nb=ttk.Notebook(self.body); nb.pack(fill="both",expand=True)
+4575: 
+4576:         # ================= GRN Details =================
+4577:         grr_fr=ttk.Frame(nb,padding=4); nb.add(grr_fr,text="GRN Details")
+4578:         ttk.Button(grr_fr,text="PRINT FULL GRN DETAILS",command=lambda:self.print_report("grr")).pack(anchor="w",pady=(0,4))
+4579:         grr_nb=ttk.Notebook(grr_fr); grr_nb.pack(fill="both",expand=True)
+4580:         grr_cols=("Date","GRN No","Department","Party","Invoice","Code","Description","UOM","Received","Rejected","Accepted","Rate","Amount","Type","Remarks")
+4581:         grr_widths=[85,100,120,190,100,120,290,55,75,75,75,65,85,60,190]
+4582:         grr_sql="SELECT g.grr_date,g.grr_no,g.department,g.supplier,g.invoice_no,l.code,l.description,l.uom,l.received_qty,l.rejected_qty,l.accepted_qty,l.rate,l.amount,l.item_type,g.remarks FROM grr g JOIN grr_lines l ON l.grr_no=g.grr_no"
+4583: 
+4584:         fr=ttk.Frame(grr_nb,padding=6); grr_nb.add(fr,text="Item Wise")
+4585:         def load_grr_item(codev=None):
+4586:             for i in tr.get_children(): tr.delete(i)
+4587:             q=codev.get().strip() if codev else ""
+4588:             sql=grr_sql+(" WHERE l.code=?" if q else "")+" ORDER BY g.grr_date DESC,g.grr_no DESC,l.sr_no"
+4589:             for r in self.conn.execute(sql,(q,) if q else ()):
+4590:                 r=list(r); r[0]=to_display_date(r[0]); tr.insert("", "end", values=r)
 ```
 ```text
-4593:         fr=ttk.Frame(grr_nb,padding=6); grr_nb.add(fr,text="Date Wise")
-4594:         tr=self.make_tree(fr,grr_cols,grr_widths)
-4595:         def load_grr_date(fdv=None,tdv=None,tr=tr):
-4596:             for i in tr.get_children(): tr.delete(i)
-4597:             fd=to_iso_date(fdv.get().strip()) if fdv else ""; td=to_iso_date(tdv.get().strip()) if tdv else ""
-4598:             conds=[];params=[]
-4599:             if fd: conds.append("g.grr_date>=?");params.append(fd)
-4600:             if td: conds.append("g.grr_date<=?");params.append(td)
-4601:             sql=grr_sql+((" WHERE "+" AND ".join(conds)) if conds else "")+" ORDER BY g.grr_date DESC,g.grr_no DESC,l.sr_no"
-4602:             for r in self.conn.execute(sql,params):
-4603:                 r=list(r); r[0]=to_display_date(r[0]); tr.insert("", "end", values=r)
-4604:         fdv,tdv=self._date_filter_bar(fr, lambda:load_grr_date(fdv,tdv))
-4605:         ttk.Button(fr,text="PREVIEW CURRENT",command=lambda:self.preview_tree("GRN Details - Date Wise",tr)).pack(anchor="w",pady=4)
-4606:         load_grr_date(fdv,tdv)
-4607: 
-4608:         fr=ttk.Frame(grr_nb,padding=6); grr_nb.add(fr,text="Party Wise")
-4609:         top=ttk.Frame(fr); top.pack(fill="x",pady=(0,6))
-4610:         party=tk.StringVar(value="ALL")
-4611:         parties=["ALL"]+[r[0] for r in self.conn.execute("SELECT name FROM parties ORDER BY name COLLATE NOCASE")]
-4612:         ttk.Label(top,text="Party").pack(side="left",padx=4)
-4613:         cb=ttk.Combobox(top,textvariable=party,values=parties,state="readonly",width=35);cb.pack(side="left",padx=4)
+4596:         fr=ttk.Frame(grr_nb,padding=6); grr_nb.add(fr,text="Date Wise")
+4597:         tr=self.make_tree(fr,grr_cols,grr_widths)
+4598:         def load_grr_date(fdv=None,tdv=None,tr=tr):
+4599:             for i in tr.get_children(): tr.delete(i)
+4600:             fd=to_iso_date(fdv.get().strip()) if fdv else ""; td=to_iso_date(tdv.get().strip()) if tdv else ""
+4601:             conds=[];params=[]
+4602:             if fd: conds.append("g.grr_date>=?");params.append(fd)
+4603:             if td: conds.append("g.grr_date<=?");params.append(td)
+4604:             sql=grr_sql+((" WHERE "+" AND ".join(conds)) if conds else "")+" ORDER BY g.grr_date DESC,g.grr_no DESC,l.sr_no"
+4605:             for r in self.conn.execute(sql,params):
+4606:                 r=list(r); r[0]=to_display_date(r[0]); tr.insert("", "end", values=r)
+4607:         fdv,tdv=self._date_filter_bar(fr, lambda:load_grr_date(fdv,tdv))
+4608:         ttk.Button(fr,text="PREVIEW CURRENT",command=lambda:self.preview_tree("GRN Details - Date Wise",tr)).pack(anchor="w",pady=4)
+4609:         load_grr_date(fdv,tdv)
+4610: 
+4611:         fr=ttk.Frame(grr_nb,padding=6); grr_nb.add(fr,text="Party Wise")
+4612:         top=ttk.Frame(fr); top.pack(fill="x",pady=(0,6))
+4613:         party=tk.StringVar(value="ALL")
+4614:         parties=["ALL"]+[r[0] for r in self.conn.execute("SELECT name FROM parties ORDER BY name COLLATE NOCASE")]
+4615:         ttk.Label(top,text="Party").pack(side="left",padx=4)
+4616:         cb=ttk.Combobox(top,textvariable=party,values=parties,state="readonly",width=35);cb.pack(side="left",padx=4)
 ```
 ```text
-4609:         top=ttk.Frame(fr); top.pack(fill="x",pady=(0,6))
-4610:         party=tk.StringVar(value="ALL")
-4611:         parties=["ALL"]+[r[0] for r in self.conn.execute("SELECT name FROM parties ORDER BY name COLLATE NOCASE")]
-4612:         ttk.Label(top,text="Party").pack(side="left",padx=4)
-4613:         cb=ttk.Combobox(top,textvariable=party,values=parties,state="readonly",width=35);cb.pack(side="left",padx=4)
-4614:         tr=self.make_tree(fr,("Date","GRN No","Party","Department","Invoice","Code","Description","Qty","Rate","Amount"),[95,110,220,140,110,145,300,80,80,100])
-4615:         def load_party(*_):
-4616:             for i in tr.get_children(): tr.delete(i)
-4617:             psql="SELECT g.grr_date,g.grr_no,g.supplier,g.department,g.invoice_no,l.code,l.description,l.accepted_qty,l.rate,l.amount FROM grr g JOIN grr_lines l ON l.grr_no=g.grr_no"
-4618:             if party.get()=="ALL":
-4619:                 rows=self.conn.execute(psql+" ORDER BY g.supplier COLLATE NOCASE,g.grr_date DESC,g.grr_no DESC")
-4620:             else:
-4621:                 rows=self.conn.execute(psql+" WHERE g.supplier=? ORDER BY g.grr_date DESC,g.grr_no DESC",(party.get(),))
-4622:             for r in rows:
-4623:                 r=list(r); r[0]=to_display_date(r[0]); tr.insert("", "end", values=r)
-4624:         cb.bind("<<ComboboxSelected>>",load_party); load_party()
-4625:         ttk.Button(fr,text="PREVIEW CURRENT",command=lambda:self.preview_tree("GRN Details - Party Wise",tr)).pack(anchor="w",pady=4)
-4626: 
-4627:         # ================= Demand Details =================
-4628:         dem_fr=ttk.Frame(nb,padding=4); nb.add(dem_fr,text="Demand Details")
-4629:         ttk.Button(dem_fr,text="PRINT FULL DEMAND DETAILS",command=lambda:self.print_report("demand")).pack(anchor="w",pady=(0,4))
+4612:         top=ttk.Frame(fr); top.pack(fill="x",pady=(0,6))
+4613:         party=tk.StringVar(value="ALL")
+4614:         parties=["ALL"]+[r[0] for r in self.conn.execute("SELECT name FROM parties ORDER BY name COLLATE NOCASE")]
+4615:         ttk.Label(top,text="Party").pack(side="left",padx=4)
+4616:         cb=ttk.Combobox(top,textvariable=party,values=parties,state="readonly",width=35);cb.pack(side="left",padx=4)
+4617:         tr=self.make_tree(fr,("Date","GRN No","Party","Department","Invoice","Code","Description","Qty","Rate","Amount"),[95,110,220,140,110,145,300,80,80,100])
+4618:         def load_party(*_):
+4619:             for i in tr.get_children(): tr.delete(i)
+4620:             psql="SELECT g.grr_date,g.grr_no,g.supplier,g.department,g.invoice_no,l.code,l.description,l.accepted_qty,l.rate,l.amount FROM grr g JOIN grr_lines l ON l.grr_no=g.grr_no"
+4621:             if party.get()=="ALL":
+4622:                 rows=self.conn.execute(psql+" ORDER BY g.supplier COLLATE NOCASE,g.grr_date DESC,g.grr_no DESC")
+4623:             else:
+4624:                 rows=self.conn.execute(psql+" WHERE g.supplier=? ORDER BY g.grr_date DESC,g.grr_no DESC",(party.get(),))
+4625:             for r in rows:
+4626:                 r=list(r); r[0]=to_display_date(r[0]); tr.insert("", "end", values=r)
+4627:         cb.bind("<<ComboboxSelected>>",load_party); load_party()
+4628:         ttk.Button(fr,text="PREVIEW CURRENT",command=lambda:self.preview_tree("GRN Details - Party Wise",tr)).pack(anchor="w",pady=4)
+4629: 
+4630:         # ================= Demand Details =================
+4631:         dem_fr=ttk.Frame(nb,padding=4); nb.add(dem_fr,text="Demand Details")
+4632:         ttk.Button(dem_fr,text="PRINT FULL DEMAND DETAILS",command=lambda:self.print_report("demand")).pack(anchor="w",pady=(0,4))
 ```
 ```text
-4625:         ttk.Button(fr,text="PREVIEW CURRENT",command=lambda:self.preview_tree("GRN Details - Party Wise",tr)).pack(anchor="w",pady=4)
-4626: 
-4627:         # ================= Demand Details =================
-4628:         dem_fr=ttk.Frame(nb,padding=4); nb.add(dem_fr,text="Demand Details")
-4629:         ttk.Button(dem_fr,text="PRINT FULL DEMAND DETAILS",command=lambda:self.print_report("demand")).pack(anchor="w",pady=(0,4))
-4630:         dem_nb=ttk.Notebook(dem_fr); dem_nb.pack(fill="both",expand=True)
-4631:         dem_cols=("Date","Demand No","Department","Required For","Remarks","Status","Code","Description","UOM","Demand Qty","Available","To Purchase")
-4632:         dem_widths=[85,105,120,160,190,110,120,290,55,80,80,90]
-4633:         dem_sql="SELECT d.demand_date,d.demand_no,d.department,d.required_for,d.remarks,d.status,l.code,l.description,l.uom,l.demand_qty,l.available_qty,l.to_purchase FROM demands d JOIN demand_lines l ON l.demand_no=d.demand_no"
-4634: 
-4635:         fr=ttk.Frame(dem_nb,padding=6); dem_nb.add(fr,text="Item Wise")
-4636:         def load_dem_item(codev=None):
-4637:             for i in tr.get_children(): tr.delete(i)
-4638:             q=codev.get().strip() if codev else ""
-4639:             sql=dem_sql+(" WHERE l.code=?" if q else "")+" ORDER BY d.demand_date DESC,d.demand_no DESC,l.sr_no"
-4640:             for r in self.conn.execute(sql,(q,) if q else ()):
-4641:                 r=list(r); r[0]=to_display_date(r[0]); tr.insert("", "end", values=r)
-4642:         codev=self._item_filter_bar(fr, lambda:load_dem_item(codev))
-4643:         tr=self.make_tree(fr,dem_cols,dem_widths)
-4644:         ttk.Button(fr,text="PREVIEW CURRENT",command=lambda:self.preview_tree("Demand Details - Item Wise",tr)).pack(anchor="w",pady=4)
-4645:         load_dem_item(codev)
+4628:         ttk.Button(fr,text="PREVIEW CURRENT",command=lambda:self.preview_tree("GRN Details - Party Wise",tr)).pack(anchor="w",pady=4)
+4629: 
+4630:         # ================= Demand Details =================
+4631:         dem_fr=ttk.Frame(nb,padding=4); nb.add(dem_fr,text="Demand Details")
+4632:         ttk.Button(dem_fr,text="PRINT FULL DEMAND DETAILS",command=lambda:self.print_report("demand")).pack(anchor="w",pady=(0,4))
+4633:         dem_nb=ttk.Notebook(dem_fr); dem_nb.pack(fill="both",expand=True)
+4634:         dem_cols=("Date","Demand No","Department","Required For","Remarks","Status","Code","Description","UOM","Demand Qty","Available","To Purchase")
+4635:         dem_widths=[85,105,120,160,190,110,120,290,55,80,80,90]
+4636:         dem_sql="SELECT d.demand_date,d.demand_no,d.department,d.required_for,d.remarks,d.status,l.code,l.description,l.uom,l.demand_qty,l.available_qty,l.to_purchase FROM demands d JOIN demand_lines l ON l.demand_no=d.demand_no"
+4637: 
+4638:         fr=ttk.Frame(dem_nb,padding=6); dem_nb.add(fr,text="Item Wise")
+4639:         def load_dem_item(codev=None):
+4640:             for i in tr.get_children(): tr.delete(i)
+4641:             q=codev.get().strip() if codev else ""
+4642:             sql=dem_sql+(" WHERE l.code=?" if q else "")+" ORDER BY d.demand_date DESC,d.demand_no DESC,l.sr_no"
+4643:             for r in self.conn.execute(sql,(q,) if q else ()):
+4644:                 r=list(r); r[0]=to_display_date(r[0]); tr.insert("", "end", values=r)
+4645:         codev=self._item_filter_bar(fr, lambda:load_dem_item(codev))
+4646:         tr=self.make_tree(fr,dem_cols,dem_widths)
+4647:         ttk.Button(fr,text="PREVIEW CURRENT",command=lambda:self.preview_tree("Demand Details - Item Wise",tr)).pack(anchor="w",pady=4)
+4648:         load_dem_item(codev)
 ```
 ```text
-4647:         fr=ttk.Frame(dem_nb,padding=6); dem_nb.add(fr,text="Date Wise")
-4648:         tr=self.make_tree(fr,dem_cols,dem_widths)
-4649:         def load_dem_date(fdv=None,tdv=None,tr=tr):
-4650:             for i in tr.get_children(): tr.delete(i)
-4651:             fd=to_iso_date(fdv.get().strip()) if fdv else ""; td=to_iso_date(tdv.get().strip()) if tdv else ""
-4652:             conds=[];params=[]
-4653:             if fd: conds.append("d.demand_date>=?");params.append(fd)
-4654:             if td: conds.append("d.demand_date<=?");params.append(td)
-4655:             sql=dem_sql+((" WHERE "+" AND ".join(conds)) if conds else "")+" ORDER BY d.demand_date DESC,d.demand_no DESC,l.sr_no"
-4656:             for r in self.conn.execute(sql,params):
-4657:                 r=list(r); r[0]=to_display_date(r[0]); tr.insert("", "end", values=r)
-4658:         fdv,tdv=self._date_filter_bar(fr, lambda:load_dem_date(fdv,tdv))
-4659:         ttk.Button(fr,text="PREVIEW CURRENT",command=lambda:self.preview_tree("Demand Details - Date Wise",tr)).pack(anchor="w",pady=4)
-4660:         load_dem_date(fdv,tdv)
-4661: 
-4662:         # ================= Material Issue Details =================
-4663:         iss_fr=ttk.Frame(nb,padding=4); nb.add(iss_fr,text="Material Issue Details")
-4664:         ttk.Button(iss_fr,text="PRINT FULL MATERIAL ISSUE DETAILS",command=lambda:self.print_report("issue")).pack(anchor="w",pady=(0,4))
-4665:         iss_nb=ttk.Notebook(iss_fr); iss_nb.pack(fill="both",expand=True)
-4666:         iss_cols=("Date","Issue No","Department","Items Use For","Code","Description","UOM","Issue Qty","Type","Balance After")
-4667:         iss_widths=[85,105,140,220,120,290,55,80,60,100]
+4650:         fr=ttk.Frame(dem_nb,padding=6); dem_nb.add(fr,text="Date Wise")
+4651:         tr=self.make_tree(fr,dem_cols,dem_widths)
+4652:         def load_dem_date(fdv=None,tdv=None,tr=tr):
+4653:             for i in tr.get_children(): tr.delete(i)
+4654:             fd=to_iso_date(fdv.get().strip()) if fdv else ""; td=to_iso_date(tdv.get().strip()) if tdv else ""
+4655:             conds=[];params=[]
+4656:             if fd: conds.append("d.demand_date>=?");params.append(fd)
+4657:             if td: conds.append("d.demand_date<=?");params.append(td)
+4658:             sql=dem_sql+((" WHERE "+" AND ".join(conds)) if conds else "")+" ORDER BY d.demand_date DESC,d.demand_no DESC,l.sr_no"
+4659:             for r in self.conn.execute(sql,params):
+4660:                 r=list(r); r[0]=to_display_date(r[0]); tr.insert("", "end", values=r)
+4661:         fdv,tdv=self._date_filter_bar(fr, lambda:load_dem_date(fdv,tdv))
+4662:         ttk.Button(fr,text="PREVIEW CURRENT",command=lambda:self.preview_tree("Demand Details - Date Wise",tr)).pack(anchor="w",pady=4)
+4663:         load_dem_date(fdv,tdv)
+4664: 
+4665:         # ================= Material Issue Details =================
+4666:         iss_fr=ttk.Frame(nb,padding=4); nb.add(iss_fr,text="Material Issue Details")
+4667:         ttk.Button(iss_fr,text="PRINT FULL MATERIAL ISSUE DETAILS",command=lambda:self.print_report("issue")).pack(anchor="w",pady=(0,4))
+4668:         iss_nb=ttk.Notebook(iss_fr); iss_nb.pack(fill="both",expand=True)
+4669:         iss_cols=("Date","Issue No","Department","Items Use For","Code","Description","UOM","Issue Qty","Type","Balance After")
+4670:         iss_widths=[85,105,140,220,120,290,55,80,60,100]
 ```
 ```text
-4660:         load_dem_date(fdv,tdv)
-4661: 
-4662:         # ================= Material Issue Details =================
-4663:         iss_fr=ttk.Frame(nb,padding=4); nb.add(iss_fr,text="Material Issue Details")
-4664:         ttk.Button(iss_fr,text="PRINT FULL MATERIAL ISSUE DETAILS",command=lambda:self.print_report("issue")).pack(anchor="w",pady=(0,4))
-4665:         iss_nb=ttk.Notebook(iss_fr); iss_nb.pack(fill="both",expand=True)
-4666:         iss_cols=("Date","Issue No","Department","Items Use For","Code","Description","UOM","Issue Qty","Type","Balance After")
-4667:         iss_widths=[85,105,140,220,120,290,55,80,60,100]
-4668:         iss_sql="SELECT i.issue_date,i.issue_no,i.department,i.items_use_for,l.code,l.description,l.uom,l.issue_qty,l.item_type FROM issues i JOIN issue_lines l ON l.issue_no=i.issue_no"
-4669: 
-4670:         fr=ttk.Frame(iss_nb,padding=6); iss_nb.add(fr,text="Item Wise")
-4671:         def load_iss_item(codev=None):
-4672:             for i in tr.get_children(): tr.delete(i)
-4673:             q=codev.get().strip() if codev else ""
-4674:             sql=iss_sql+(" WHERE l.code=?" if q else "")+" ORDER BY i.issue_date DESC,i.issue_no DESC,l.sr_no"
-4675:             for r in self.conn.execute(sql,(q,) if q else ()):
-4676:                 r=list(r); r[0]=to_display_date(r[0]); r.append(fmt_num(stock(self.conn,r[4]))); tr.insert("", "end", values=r)
-4677:         codev=self._item_filter_bar(fr, lambda:load_iss_item(codev))
-4678:         tr=self.make_tree(fr,iss_cols,iss_widths)
-4679:         ttk.Button(fr,text="PREVIEW CURRENT",command=lambda:self.preview_tree("Material Issue Details - Item Wise",tr)).pack(anchor="w",pady=4)
-4680:         load_iss_item(codev)
+4663:         load_dem_date(fdv,tdv)
+4664: 
+4665:         # ================= Material Issue Details =================
+4666:         iss_fr=ttk.Frame(nb,padding=4); nb.add(iss_fr,text="Material Issue Details")
+4667:         ttk.Button(iss_fr,text="PRINT FULL MATERIAL ISSUE DETAILS",command=lambda:self.print_report("issue")).pack(anchor="w",pady=(0,4))
+4668:         iss_nb=ttk.Notebook(iss_fr); iss_nb.pack(fill="both",expand=True)
+4669:         iss_cols=("Date","Issue No","Department","Items Use For","Code","Description","UOM","Issue Qty","Type","Balance After")
+4670:         iss_widths=[85,105,140,220,120,290,55,80,60,100]
+4671:         iss_sql="SELECT i.issue_date,i.issue_no,i.department,i.items_use_for,l.code,l.description,l.uom,l.issue_qty,l.item_type FROM issues i JOIN issue_lines l ON l.issue_no=i.issue_no"
+4672: 
+4673:         fr=ttk.Frame(iss_nb,padding=6); iss_nb.add(fr,text="Item Wise")
+4674:         def load_iss_item(codev=None):
+4675:             for i in tr.get_children(): tr.delete(i)
+4676:             q=codev.get().strip() if codev else ""
+4677:             sql=iss_sql+(" WHERE l.code=?" if q else "")+" ORDER BY i.issue_date DESC,i.issue_no DESC,l.sr_no"
+4678:             for r in self.conn.execute(sql,(q,) if q else ()):
+4679:                 r=list(r); r[0]=to_display_date(r[0]); r.append(fmt_num(stock(self.conn,r[4]))); tr.insert("", "end", values=r)
+4680:         codev=self._item_filter_bar(fr, lambda:load_iss_item(codev))
+4681:         tr=self.make_tree(fr,iss_cols,iss_widths)
+4682:         ttk.Button(fr,text="PREVIEW CURRENT",command=lambda:self.preview_tree("Material Issue Details - Item Wise",tr)).pack(anchor="w",pady=4)
+4683:         load_iss_item(codev)
 ```
 ```text
-4682:         fr=ttk.Frame(iss_nb,padding=6); iss_nb.add(fr,text="Date Wise")
-4683:         tr=self.make_tree(fr,iss_cols,iss_widths)
-4684:         def load_iss_date(fdv=None,tdv=None,tr=tr):
-4685:             for i in tr.get_children(): tr.delete(i)
-4686:             fd=to_iso_date(fdv.get().strip()) if fdv else ""; td=to_iso_date(tdv.get().strip()) if tdv else ""
-4687:             conds=[];params=[]
-4688:             if fd: conds.append("i.issue_date>=?");params.append(fd)
-4689:             if td: conds.append("i.issue_date<=?");params.append(td)
-4690:             sql=iss_sql+((" WHERE "+" AND ".join(conds)) if conds else "")+" ORDER BY i.issue_date DESC,i.issue_no DESC,l.sr_no"
-4691:             for r in self.conn.execute(sql,params):
-4692:                 r=list(r); r[0]=to_display_date(r[0]); r.append(fmt_num(stock(self.conn,r[4]))); tr.insert("", "end", values=r)
-4693:         fdv,tdv=self._date_filter_bar(fr, lambda:load_iss_date(fdv,tdv))
-4694:         ttk.Button(fr,text="PREVIEW CURRENT",command=lambda:self.preview_tree("Material Issue Details - Date Wise",tr)).pack(anchor="w",pady=4)
-4695:         load_iss_date(fdv,tdv)
-4696: 
-4697:         self.set_page_actions(print=lambda:self.print_report(("grr","demand","issue")[nb.index(nb.select())]))
-4698: 
-4699:     def print_item_master(self):
-4700:         rows=self.conn.execute("SELECT code,description,uom,opening_qty FROM items ORDER BY code")
-4701:         self._open_direct_printer("ITEM MASTER",[],["Code","Description","UOM","Opening"],rows,landscape(A4),[1,3.6,0.8,1])
-4702: 
+4685:         fr=ttk.Frame(iss_nb,padding=6); iss_nb.add(fr,text="Date Wise")
+4686:         tr=self.make_tree(fr,iss_cols,iss_widths)
+4687:         def load_iss_date(fdv=None,tdv=None,tr=tr):
+4688:             for i in tr.get_children(): tr.delete(i)
+4689:             fd=to_iso_date(fdv.get().strip()) if fdv else ""; td=to_iso_date(tdv.get().strip()) if tdv else ""
+4690:             conds=[];params=[]
+4691:             if fd: conds.append("i.issue_date>=?");params.append(fd)
+4692:             if td: conds.append("i.issue_date<=?");params.append(td)
+4693:             sql=iss_sql+((" WHERE "+" AND ".join(conds)) if conds else "")+" ORDER BY i.issue_date DESC,i.issue_no DESC,l.sr_no"
+4694:             for r in self.conn.execute(sql,params):
+4695:                 r=list(r); r[0]=to_display_date(r[0]); r.append(fmt_num(stock(self.conn,r[4]))); tr.insert("", "end", values=r)
+4696:         fdv,tdv=self._date_filter_bar(fr, lambda:load_iss_date(fdv,tdv))
+4697:         ttk.Button(fr,text="PREVIEW CURRENT",command=lambda:self.preview_tree("Material Issue Details - Date Wise",tr)).pack(anchor="w",pady=4)
+4698:         load_iss_date(fdv,tdv)
+4699: 
+4700:         self.set_page_actions(print=lambda:self.print_report(("grr","demand","issue")[nb.index(nb.select())]))
+4701: 
+4702:     def print_item_master(self):
+4703:         rows=self.conn.execute("SELECT code,description,uom,opening_qty FROM items ORDER BY code")
+4704:         self._open_direct_printer("ITEM MASTER",[],["Code","Description","UOM","Opening"],rows,landscape(A4),[1,3.6,0.8,1])
+4705: 
 ```
 ```text
-4699:     def print_item_master(self):
-4700:         rows=self.conn.execute("SELECT code,description,uom,opening_qty FROM items ORDER BY code")
-4701:         self._open_direct_printer("ITEM MASTER",[],["Code","Description","UOM","Opening"],rows,landscape(A4),[1,3.6,0.8,1])
-4702: 
-4703:     def print_party_master(self):
-4704:         rows=self.conn.execute("SELECT name,contact,address,remarks FROM parties ORDER BY name COLLATE NOCASE")
-4705:         self._open_direct_printer("PARTY MASTER",[],["Party Name","Contact","Address","Remarks"],rows,landscape(A4),[1.5,1,2,1.5])
-4706: 
-4707:     def print_report(self,kind):
-4708:         titles={"grr":"GRN DETAILS REPORT","demand":"DEMAND DETAILS REPORT","issue":"MATERIAL ISSUE DETAILS REPORT","party":"PARTY WISE PURCHASE REPORT"}
-4709:         if kind=="grr":
-4710:             headers=["Date","GRN","Items","Department","Party","Invoice","Code","Description","UOM","Received","Rejected","Accepted","Rate","Amount","Remarks"]
-4711:             rows=[(to_display_date(r[0]),r[1],self.conn.execute("SELECT COUNT(*) FROM grr_lines WHERE grr_no=?",(r[1],)).fetchone()[0],*r[2:]) for r in self.conn.execute("SELECT g.grr_date,g.grr_no,g.department,g.supplier,g.invoice_no,l.code,l.description,l.uom,l.received_qty,l.rejected_qty,l.accepted_qty,l.rate,l.amount,g.remarks FROM grr g JOIN grr_lines l ON l.grr_no=g.grr_no ORDER BY g.grr_date DESC,g.grr_no DESC,l.sr_no")]
-4712:         elif kind=="demand":
-4713:             headers=["Date","Demand","Items","Department","Required For","Remarks","Status","Code","Description","UOM","Qty","Available","To Purchase"]
-4714:             rows=[(to_display_date(r[0]),r[1],self.conn.execute("SELECT COUNT(*) FROM demand_lines WHERE demand_no=?",(r[1],)).fetchone()[0],*r[2:]) for r in self.conn.execute("SELECT d.demand_date,d.demand_no,d.department,d.required_for,d.remarks,d.status,l.code,l.description,l.uom,l.demand_qty,l.available_qty,l.to_purchase FROM demands d JOIN demand_lines l ON l.demand_no=d.demand_no ORDER BY d.demand_date DESC,d.demand_no DESC,l.sr_no")]
-4715:         elif kind=="issue":
-4716:             headers=["Date","Issue","Department","Items Use For","Code","Description","UOM","Issue Qty","Balance"]
-4717:             rows=[(to_display_date(r[0]),*r[1:],fmt_num(stock(self.conn,r[4]))) for r in self.conn.execute("SELECT i.issue_date,i.issue_no,i.department,i.items_use_for,l.code,l.description,l.uom,l.issue_qty FROM issues i JOIN issue_lines l ON l.issue_no=i.issue_no ORDER BY i.issue_date DESC,i.issue_no DESC,l.sr_no")]
-4718:         else:
-4719:             headers=["Date","GRN","Party","Department","Invoice","Code","Description","Qty","Rate","Amount"]
+4702:     def print_item_master(self):
+4703:         rows=self.conn.execute("SELECT code,description,uom,opening_qty FROM items ORDER BY code")
+4704:         self._open_direct_printer("ITEM MASTER",[],["Code","Description","UOM","Opening"],rows,landscape(A4),[1,3.6,0.8,1])
+4705: 
+4706:     def print_party_master(self):
+4707:         rows=self.conn.execute("SELECT name,contact,address,remarks FROM parties ORDER BY name COLLATE NOCASE")
+4708:         self._open_direct_printer("PARTY MASTER",[],["Party Name","Contact","Address","Remarks"],rows,landscape(A4),[1.5,1,2,1.5])
+4709: 
+4710:     def print_report(self,kind):
+4711:         titles={"grr":"GRN DETAILS REPORT","demand":"DEMAND DETAILS REPORT","issue":"MATERIAL ISSUE DETAILS REPORT","party":"PARTY WISE PURCHASE REPORT"}
+4712:         if kind=="grr":
+4713:             headers=["Date","GRN","Items","Department","Party","Invoice","Code","Description","UOM","Received","Rejected","Accepted","Rate","Amount","Remarks"]
+4714:             rows=[(to_display_date(r[0]),r[1],self.conn.execute("SELECT COUNT(*) FROM grr_lines WHERE grr_no=?",(r[1],)).fetchone()[0],*r[2:]) for r in self.conn.execute("SELECT g.grr_date,g.grr_no,g.department,g.supplier,g.invoice_no,l.code,l.description,l.uom,l.received_qty,l.rejected_qty,l.accepted_qty,l.rate,l.amount,g.remarks FROM grr g JOIN grr_lines l ON l.grr_no=g.grr_no ORDER BY g.grr_date DESC,g.grr_no DESC,l.sr_no")]
+4715:         elif kind=="demand":
+4716:             headers=["Date","Demand","Items","Department","Required For","Remarks","Status","Code","Description","UOM","Qty","Available","To Purchase"]
+4717:             rows=[(to_display_date(r[0]),r[1],self.conn.execute("SELECT COUNT(*) FROM demand_lines WHERE demand_no=?",(r[1],)).fetchone()[0],*r[2:]) for r in self.conn.execute("SELECT d.demand_date,d.demand_no,d.department,d.required_for,d.remarks,d.status,l.code,l.description,l.uom,l.demand_qty,l.available_qty,l.to_purchase FROM demands d JOIN demand_lines l ON l.demand_no=d.demand_no ORDER BY d.demand_date DESC,d.demand_no DESC,l.sr_no")]
+4718:         elif kind=="issue":
+4719:             headers=["Date","Issue","Department","Items Use For","Code","Description","UOM","Issue Qty","Balance"]
+4720:             rows=[(to_display_date(r[0]),*r[1:],fmt_num(stock(self.conn,r[4]))) for r in self.conn.execute("SELECT i.issue_date,i.issue_no,i.department,i.items_use_for,l.code,l.description,l.uom,l.issue_qty FROM issues i JOIN issue_lines l ON l.issue_no=i.issue_no ORDER BY i.issue_date DESC,i.issue_no DESC,l.sr_no")]
+4721:         else:
+4722:             headers=["Date","GRN","Party","Department","Invoice","Code","Description","Qty","Rate","Amount"]
 ```
 ```text
-4720:             rows=[(to_display_date(r[0]),*r[1:]) for r in self.conn.execute("SELECT g.grr_date,g.grr_no,g.supplier,g.department,g.invoice_no,l.code,l.description,l.accepted_qty,l.rate,l.amount FROM grr g JOIN grr_lines l ON l.grr_no=g.grr_no ORDER BY g.supplier COLLATE NOCASE,g.grr_date DESC,g.grr_no DESC")]
-4721:         self._open_direct_printer(titles[kind],[],headers,rows,landscape(A4))
-4722: 
-4723:     def print_stock(self):
-4724:         rows=[]
-4725:         for r in self.conn.execute("SELECT code,description,uom,opening_qty,min_level FROM items ORDER BY code"):
-4726:             code=r[0];gr=float(self.conn.execute("SELECT COALESCE(SUM(qty),0) FROM transactions WHERE doc_type='GRR' AND code=?",(code,)).fetchone()[0]);iss=float(self.conn.execute("SELECT COALESCE(SUM(qty),0) FROM transactions WHERE doc_type='ISSUE' AND code=?",(code,)).fetchone()[0]);cur=float(r[3] or 0)+gr-iss
-4727:             rows.append([code,r[1],r[2],fmt_num(r[3]),fmt_num(gr),fmt_num(iss),fmt_num(cur),fmt_num(r[4]),"REORDER" if cur<=r[4] else "OK"])
-4728:         self._open_direct_printer("FULL STOCK / ALL ITEM BALANCE REPORT",[],["Code","Description","UOM","Opening","GRN In","Issue Out","Balance","Minimum","Status"],rows,landscape(A4))
-4729: 
-4730:     def print_ledger(self):
-4731:         rows=[]
-4732:         for code in [r[0] for r in self.conn.execute("SELECT code FROM items ORDER BY code")]:
-4733:             running=float(self.conn.execute("SELECT opening_qty FROM items WHERE code=?",(code,)).fetchone()[0] or 0)
-4734:             for x in self.conn.execute("SELECT doc_date,doc_type,doc_no,qty,party,ref_no,a_c_unit,rate FROM transactions WHERE code=? ORDER BY id",(code,)):
-4735:                 running += x[3] if x[1]=="GRR" else -x[3]
-4736:                 rows.append([to_display_date(x[0]),*x[1:8],fmt_num(running)])
-4737:         self._open_direct_printer("STOCK LEDGER",[],["Date","Type","Document","Code","Qty","Party/Dept","Reference","A/C Unit","Rate","Balance"],rows,landscape(A4))
-4738: 
-4739:     def _get_doc_data(self, typ, no):
-4740:         """Header + line items for one saved document, used by the on-screen
+4723:             rows=[(to_display_date(r[0]),*r[1:]) for r in self.conn.execute("SELECT g.grr_date,g.grr_no,g.supplier,g.department,g.invoice_no,l.code,l.description,l.accepted_qty,l.rate,l.amount FROM grr g JOIN grr_lines l ON l.grr_no=g.grr_no ORDER BY g.supplier COLLATE NOCASE,g.grr_date DESC,g.grr_no DESC")]
+4724:         self._open_direct_printer(titles[kind],[],headers,rows,landscape(A4))
+4725: 
+4726:     def print_stock(self):
+4727:         rows=[]
+4728:         for r in self.conn.execute("SELECT code,description,uom,opening_qty,min_level FROM items ORDER BY code"):
+4729:             code=r[0];gr=float(self.conn.execute("SELECT COALESCE(SUM(qty),0) FROM transactions WHERE doc_type='GRR' AND code=?",(code,)).fetchone()[0]);iss=float(self.conn.execute("SELECT COALESCE(SUM(qty),0) FROM transactions WHERE doc_type='ISSUE' AND code=?",(code,)).fetchone()[0]);cur=float(r[3] or 0)+gr-iss
+4730:             rows.append([code,r[1],r[2],fmt_num(r[3]),fmt_num(gr),fmt_num(iss),fmt_num(cur),fmt_num(r[4]),"REORDER" if cur<=r[4] else "OK"])
+4731:         self._open_direct_printer("FULL STOCK / ALL ITEM BALANCE REPORT",[],["Code","Description","UOM","Opening","GRN In","Issue Out","Balance","Minimum","Status"],rows,landscape(A4))
+4732: 
+4733:     def print_ledger(self):
+4734:         rows=[]
+4735:         for code in [r[0] for r in self.conn.execute("SELECT code FROM items ORDER BY code")]:
+4736:             running=float(self.conn.execute("SELECT opening_qty FROM items WHERE code=?",(code,)).fetchone()[0] or 0)
+4737:             for x in self.conn.execute("SELECT doc_date,doc_type,doc_no,qty,party,ref_no,a_c_unit,rate FROM transactions WHERE code=? ORDER BY id",(code,)):
+4738:                 running += x[3] if x[1]=="GRR" else -x[3]
+4739:                 rows.append([to_display_date(x[0]),*x[1:8],fmt_num(running)])
+4740:         self._open_direct_printer("STOCK LEDGER",[],["Date","Type","Document","Code","Qty","Party/Dept","Reference","A/C Unit","Rate","Balance"],rows,landscape(A4))
+4741: 
+4742:     def _get_doc_data(self, typ, no):
+4743:         """Header + line items for one saved document, used by the on-screen
 ```
 ```text
-4806:             sig=doc.add_table(rows=2,cols=3)
-4807:             labels=["Prepared By","Store Keeper","Store Incharge"]
-4808:             for i,label in enumerate(labels):
-4809:                 sig.cell(0,i).text="____________________"
-4810:                 sig.cell(1,i).text=label
-4811:                 for para in sig.cell(1,i).paragraphs:
-4812:                     for run in para.runs: run.bold=True
-4813:         safe_no="".join(ch for ch in no if ch.isalnum() or ch in "-_") or "document"
-4814:         path=os.path.join(REPORTS_DIR,f"{typ}_{safe_no}.docx")
-4815:         doc.save(path)
-4816:         self.open_file(path)
-4817: 
-4818:     def export_excel(self, typ, no):
-4819:         if not no or not no.strip():
-4820:             return messagebox.showwarning("Excel Export","Select a document first.")
-4821:         if not XLSX_AVAILABLE:
-4822:             return messagebox.showwarning("Excel Export","Excel export needs the openpyxl package.\nRun BUILD_AND_INSTALL.bat again, or: pip install openpyxl")
-4823:         data=self._get_doc_data(typ,no)
-4824:         if not data:
-4825:             return messagebox.showwarning("Excel Export","Document not found.")
-4826:         title,header,cols,rows=data
+4809:             sig=doc.add_table(rows=2,cols=3)
+4810:             labels=["Prepared By","Store Keeper","Store Incharge"]
+4811:             for i,label in enumerate(labels):
+4812:                 sig.cell(0,i).text="____________________"
+4813:                 sig.cell(1,i).text=label
+4814:                 for para in sig.cell(1,i).paragraphs:
+4815:                     for run in para.runs: run.bold=True
+4816:         safe_no="".join(ch for ch in no if ch.isalnum() or ch in "-_") or "document"
+4817:         path=os.path.join(REPORTS_DIR,f"{typ}_{safe_no}.docx")
+4818:         doc.save(path)
+4819:         self.open_file(path)
+4820: 
+4821:     def export_excel(self, typ, no):
+4822:         if not no or not no.strip():
+4823:             return messagebox.showwarning("Excel Export","Select a document first.")
+4824:         if not XLSX_AVAILABLE:
+4825:             return messagebox.showwarning("Excel Export","Excel export needs the openpyxl package.\nRun BUILD_AND_INSTALL.bat again, or: pip install openpyxl")
+4826:         data=self._get_doc_data(typ,no)
+4827:         if not data:
+4828:             return messagebox.showwarning("Excel Export","Document not found.")
+4829:         title,header,cols,rows=data
 ```
 ```text
-4848:             for col in range(1,4):
-4849:                 ws.cell(row=sig_row,column=col).alignment=Alignment(horizontal="center")
-4850:                 ws.cell(row=sig_row+1,column=col).alignment=Alignment(horizontal="center")
-4851:                 ws.cell(row=sig_row+1,column=col).font=Font(bold=True)
-4852:         for col_cells in ws.columns:
-4853:             length=max((len(str(c.value)) for c in col_cells if c.value is not None), default=10)
-4854:             ws.column_dimensions[col_cells[0].column_letter].width=min(max(length+2,10),50)
-4855:         safe_no="".join(ch for ch in no if ch.isalnum() or ch in "-_") or "document"
-4856:         path=os.path.join(REPORTS_DIR,f"{typ}_{safe_no}.xlsx")
-4857:         wb.save(path)
-4858:         self.open_file(path)
-4859: 
-4860:     def preview_pdf(self,typ,no):
-4861:         if not no.strip():return messagebox.showwarning("Document","Enter/select a document number first.")
-4862:         if not REPORTLAB:return messagebox.showwarning("PDF","Install reportlab to enable Preview/Print.")
-4863:         data=self._get_doc_data(typ,no)
-4864:         if not data:return messagebox.showwarning("Document","Document not found.")
-4865:         title,header,cols,rows=data
-4866:         path=os.path.join(BASE,f"{typ}_{''.join(ch for ch in no if ch.isalnum() or ch in '-_') or 'document'}.pdf")
-4867:         page_size = landscape(A4) if typ == "grr" else A4
-4868:         self._pdf_table_report(path,title,cols,rows,page_size,7,header_lines=header)
+4851:             for col in range(1,4):
+4852:                 ws.cell(row=sig_row,column=col).alignment=Alignment(horizontal="center")
+4853:                 ws.cell(row=sig_row+1,column=col).alignment=Alignment(horizontal="center")
+4854:                 ws.cell(row=sig_row+1,column=col).font=Font(bold=True)
+4855:         for col_cells in ws.columns:
+4856:             length=max((len(str(c.value)) for c in col_cells if c.value is not None), default=10)
+4857:             ws.column_dimensions[col_cells[0].column_letter].width=min(max(length+2,10),50)
+4858:         safe_no="".join(ch for ch in no if ch.isalnum() or ch in "-_") or "document"
+4859:         path=os.path.join(REPORTS_DIR,f"{typ}_{safe_no}.xlsx")
+4860:         wb.save(path)
+4861:         self.open_file(path)
+4862: 
+4863:     def preview_pdf(self,typ,no):
+4864:         if not no.strip():return messagebox.showwarning("Document","Enter/select a document number first.")
+4865:         if not REPORTLAB:return messagebox.showwarning("PDF","Install reportlab to enable Preview/Print.")
+4866:         data=self._get_doc_data(typ,no)
+4867:         if not data:return messagebox.showwarning("Document","Document not found.")
+4868:         title,header,cols,rows=data
+4869:         path=os.path.join(BASE,f"{typ}_{''.join(ch for ch in no if ch.isalnum() or ch in '-_') or 'document'}.pdf")
+4870:         page_size = landscape(A4) if typ == "grr" else A4
+4871:         self._pdf_table_report(path,title,cols,rows,page_size,7,header_lines=header)
 ```
 ```text
-4863:         data=self._get_doc_data(typ,no)
-4864:         if not data:return messagebox.showwarning("Document","Document not found.")
-4865:         title,header,cols,rows=data
-4866:         path=os.path.join(BASE,f"{typ}_{''.join(ch for ch in no if ch.isalnum() or ch in '-_') or 'document'}.pdf")
-4867:         page_size = landscape(A4) if typ == "grr" else A4
-4868:         self._pdf_table_report(path,title,cols,rows,page_size,7,header_lines=header)
-4869: 
-4870:     def _open_direct_printer(self, title, header_lines, columns, rows, page_size=landscape(A4), col_widths=None):
-4871:         """Open the print dialog with a real visual preview of the exact report.
+4866:         data=self._get_doc_data(typ,no)
+4867:         if not data:return messagebox.showwarning("Document","Document not found.")
+4868:         title,header,cols,rows=data
+4869:         path=os.path.join(BASE,f"{typ}_{''.join(ch for ch in no if ch.isalnum() or ch in '-_') or 'document'}.pdf")
+4870:         page_size = landscape(A4) if typ == "grr" else A4
+4871:         self._pdf_table_report(path,title,cols,rows,page_size,7,header_lines=header)
 4872: 
-4873:         The report is rendered to a temporary PDF only in memory/on disk for the
-4874:         duration of printing.  It is deleted after the print dialog closes, so
-4875:         the Print button does not leave a PDF report behind.  Printing uses the
-4876:         rendered report page itself rather than rebuilding rows as plain text;
-4877:         this keeps the printed page identical to the application's report.
-4878:         """
-4879:         # Printing is always prepared as an A4 landscape page. This only affects
-4880:         # the print path; the rest of the application's UI/report logic is unchanged.
-4881:         page_size = landscape(A4)
-4882:         if not REPORTLAB or not FITZ_AVAILABLE or not PIL_AVAILABLE:
-4883:             messagebox.showwarning(
+4873:     def _open_direct_printer(self, title, header_lines, columns, rows, page_size=landscape(A4), col_widths=None):
+4874:         """Open the print dialog with a real visual preview of the exact report.
+4875: 
+4876:         The report is rendered to a temporary PDF only in memory/on disk for the
+4877:         duration of printing.  It is deleted after the print dialog closes, so
+4878:         the Print button does not leave a PDF report behind.  Printing uses the
+4879:         rendered report page itself rather than rebuilding rows as plain text;
+4880:         this keeps the printed page identical to the application's report.
+4881:         """
+4882:         # Printing is always prepared as an A4 landscape page. This only affects
+4883:         # the print path; the rest of the application's UI/report logic is unchanged.
+4884:         page_size = landscape(A4)
+4885:         if not REPORTLAB or not FITZ_AVAILABLE or not PIL_AVAILABLE:
+4886:             messagebox.showwarning(
 ```
 ```text
-4885:                 "The print preview/printing components are not available.\n\n"
-4886:                 "Please run BUILD_AND_INSTALL.bat again to install the required printer components."
-4887:             )
-4888:             return
-4889:         if not rows and not columns:
-4890:             messagebox.showwarning("Print", "There is no data to print.")
+4888:                 "The print preview/printing components are not available.\n\n"
+4889:                 "Please run BUILD_AND_INSTALL.bat again to install the required printer components."
+4890:             )
 4891:             return
-4892:         try:
-4893:             os.makedirs(REPORTS_DIR, exist_ok=True)
-4894:             key=os.path.join(REPORTS_DIR, f".print_preview_{secrets.token_hex(12)}.pdf")
-4895:             self._pdf_table_report(key,title,columns,rows,page_size,
-4896:                                    7,col_widths=col_widths,header_lines=header_lines,auto_print=False)
-4897:             self._print_jobs[os.path.abspath(key)]=(title, header_lines or [], tuple(columns), [tuple(r) for r in rows], page_size)
-4898:             self._select_windows_printer_for_pdf(key)
-4899:         except Exception as e:
-4900:             messagebox.showerror("Print", f"Could not prepare the print preview.\n\n{e}")
-4901: 
-4902:     def _select_windows_printer_for_pdf(self, path):
-4903:         """Print dialog with an actual page preview, printer selection and direct GDI output.
+4892:         if not rows and not columns:
+4893:             messagebox.showwarning("Print", "There is no data to print.")
+4894:             return
+4895:         try:
+4896:             os.makedirs(REPORTS_DIR, exist_ok=True)
+4897:             key=os.path.join(REPORTS_DIR, f".print_preview_{secrets.token_hex(12)}.pdf")
+4898:             self._pdf_table_report(key,title,columns,rows,page_size,
+4899:                                    7,col_widths=col_widths,header_lines=header_lines,auto_print=False)
+4900:             self._print_jobs[os.path.abspath(key)]=(title, header_lines or [], tuple(columns), [tuple(r) for r in rows], page_size)
+4901:             self._select_windows_printer_for_pdf(key)
+4902:         except Exception as e:
+4903:             messagebox.showerror("Print", f"Could not prepare the print preview.\n\n{e}")
 4904: 
-4905:         The preview is rendered from the exact PDF produced by the application,
+4905:     def _select_windows_printer_for_pdf(self, path):
+4906:         """Print dialog with an actual page preview, printer selection and direct GDI output.
+4907: 
+4908:         The preview is rendered from the exact PDF produced by the application,
 ```
 ```text
-4935:         job=getattr(self, "_print_jobs", {}).get(path)
-4936:         if job:
-4937:             title, header_lines, columns, rows, source_page_size = job
-4938:         else:
-4939:             title=os.path.splitext(os.path.basename(path))[0]
-4940:             header_lines=[]; columns=(); rows=[]; source_page_size=landscape(A4)
-4941: 
-4942:         try:
-4943:             doc=fitz.open(path)
-4944:             total_pages=max(1,doc.page_count)
-4945:         except Exception as e:
-4946:             messagebox.showerror("Print Preview", f"Could not read the report for preview.\n\n{e}")
-4947:             return
-4948: 
-4949:         win=tk.Toplevel(self)
-4950:         win.title("Printing from Win32 application - Print")
-4951:         win.geometry("900x620")
-4952:         win.minsize(850,580)
-4953:         win.transient(self)
-4954:         win.configure(bg="#f0f0f0")
-4955: 
+4938:         job=getattr(self, "_print_jobs", {}).get(path)
+4939:         if job:
+4940:             title, header_lines, columns, rows, source_page_size = job
+4941:         else:
+4942:             title=os.path.splitext(os.path.basename(path))[0]
+4943:             header_lines=[]; columns=(); rows=[]; source_page_size=landscape(A4)
+4944: 
+4945:         try:
+4946:             doc=fitz.open(path)
+4947:             total_pages=max(1,doc.page_count)
+4948:         except Exception as e:
+4949:             messagebox.showerror("Print Preview", f"Could not read the report for preview.\n\n{e}")
+4950:             return
+4951: 
+4952:         win=tk.Toplevel(self)
+4953:         win.title("Printing from Win32 application - Print")
+4954:         win.geometry("900x620")
+4955:         win.minsize(850,580)
+4956:         win.transient(self)
+4957:         win.configure(bg="#f0f0f0")
+4958: 
 ```
 ```text
-4961:             pass
-4962: 
-4963:         outer=tk.Frame(win,bg="#f0f0f0")
-4964:         outer.pack(fill="both",expand=True)
-4965:         outer.columnconfigure(1,weight=1)
-4966:         outer.rowconfigure(0,weight=1)
-4967: 
-4968:         # Left side mirrors the familiar system printer dialog: printers and
-4969:         # print options. Right side contains the actual report page preview.
-4970:         left=tk.Frame(outer,bg="#f0f0f0",width=230)
-4971:         left.grid(row=0,column=0,sticky="nsw",padx=(12,6),pady=12)
-4972:         left.grid_propagate(False)
-4973:         ttk.Label(left,text="Printer",style="NativePrintBold.TLabel").pack(anchor="w",pady=(0,4))
-4974:         printer_list=tk.Listbox(left,height=7,exportselection=False,relief="solid",bd=1,font=("Segoe UI",9))
-4975:         printer_list.pack(fill="x")
-4976:         for pr in printers: printer_list.insert("end",pr)
-4977:         try: printer_list.selection_set(printers.index(default_printer))
-4978:         except Exception: printer_list.selection_set(0)
-4979: 
-4980:         ttk.Label(left,text="Copies",style="NativePrint.TLabel").pack(anchor="w",pady=(14,3))
-4981:         copies=tk.IntVar(value=1)
+4964:             pass
+4965: 
+4966:         outer=tk.Frame(win,bg="#f0f0f0")
+4967:         outer.pack(fill="both",expand=True)
+4968:         outer.columnconfigure(1,weight=1)
+4969:         outer.rowconfigure(0,weight=1)
+4970: 
+4971:         # Left side mirrors the familiar system printer dialog: printers and
+4972:         # print options. Right side contains the actual report page preview.
+4973:         left=tk.Frame(outer,bg="#f0f0f0",width=230)
+4974:         left.grid(row=0,column=0,sticky="nsw",padx=(12,6),pady=12)
+4975:         left.grid_propagate(False)
+4976:         ttk.Label(left,text="Printer",style="NativePrintBold.TLabel").pack(anchor="w",pady=(0,4))
+4977:         printer_list=tk.Listbox(left,height=7,exportselection=False,relief="solid",bd=1,font=("Segoe UI",9))
+4978:         printer_list.pack(fill="x")
+4979:         for pr in printers: printer_list.insert("end",pr)
+4980:         try: printer_list.selection_set(printers.index(default_printer))
+4981:         except Exception: printer_list.selection_set(0)
+4982: 
+4983:         ttk.Label(left,text="Copies",style="NativePrint.TLabel").pack(anchor="w",pady=(14,3))
+4984:         copies=tk.IntVar(value=1)
 ```
 ```text
-5054:         ttk.Label(nav,text="  Document Preview",style="NativePrintBold.TLabel").pack(side="left",padx=8)
-5055: 
-5056:         bottom=tk.Frame(win,bg="#f0f0f0")
-5057:         # `outer` already uses pack() in `win`; using grid() for another direct
-5058:         # child of the same toplevel raises TclError. Keep the action bar in the
-5059:         # same geometry-manager family so Print/Cancel are always visible.
-5060:         bottom.pack(fill="x",padx=12,pady=(0,12))
-5061:         bottom.columnconfigure(0,weight=1)
-5062:         ttk.Label(bottom,text="Preview is the exact report that will be sent to the selected printer.",style="NativePrint.TLabel").grid(row=0,column=0,sticky="w")
-5063:         ttk.Button(bottom,text="Cancel",width=12).grid(row=0,column=1,padx=(8,0))
-5064:         print_btn=ttk.Button(bottom,text="Print",width=12)
-5065:         print_btn.grid(row=0,column=2,padx=(8,0))
-5066: 
-5067:         paper_ids={"Letter":1,"Legal":5,"Executive":7,"A3":8,"A4":9,"A5":11,"Statement":6,"Tabloid":3}
-5068: 
-5069:         def parse_page_selection(total):
-5070:             if pages_mode.get()=="All pages": return list(range(total))
-5071:             raw=page_range.get().strip()
-5072:             if not raw: raise ValueError("Enter a page range, for example 1-3 or 1,3,5.")
-5073:             selected=[]
-5074:             for part in raw.split(","):
+5057:         ttk.Label(nav,text="  Document Preview",style="NativePrintBold.TLabel").pack(side="left",padx=8)
+5058: 
+5059:         bottom=tk.Frame(win,bg="#f0f0f0")
+5060:         # `outer` already uses pack() in `win`; using grid() for another direct
+5061:         # child of the same toplevel raises TclError. Keep the action bar in the
+5062:         # same geometry-manager family so Print/Cancel are always visible.
+5063:         bottom.pack(fill="x",padx=12,pady=(0,12))
+5064:         bottom.columnconfigure(0,weight=1)
+5065:         ttk.Label(bottom,text="Preview is the exact report that will be sent to the selected printer.",style="NativePrint.TLabel").grid(row=0,column=0,sticky="w")
+5066:         ttk.Button(bottom,text="Cancel",width=12).grid(row=0,column=1,padx=(8,0))
+5067:         print_btn=ttk.Button(bottom,text="Print",width=12)
+5068:         print_btn.grid(row=0,column=2,padx=(8,0))
+5069: 
+5070:         paper_ids={"Letter":1,"Legal":5,"Executive":7,"A3":8,"A4":9,"A5":11,"Statement":6,"Tabloid":3}
+5071: 
+5072:         def parse_page_selection(total):
+5073:             if pages_mode.get()=="All pages": return list(range(total))
+5074:             raw=page_range.get().strip()
+5075:             if not raw: raise ValueError("Enter a page range, for example 1-3 or 1,3,5.")
+5076:             selected=[]
+5077:             for part in raw.split(","):
 ```
 ```text
-5071:             raw=page_range.get().strip()
-5072:             if not raw: raise ValueError("Enter a page range, for example 1-3 or 1,3,5.")
-5073:             selected=[]
-5074:             for part in raw.split(","):
-5075:                 part=part.strip()
-5076:                 if "-" in part:
-5077:                     a,b=part.split("-",1); a=int(a); b=int(b)
-5078:                     if a<1 or b<a: raise ValueError("Invalid page range.")
-5079:                     if b>total: raise ValueError(f"Page {b} is outside the report.")
-5080:                     selected.extend(range(a-1,b))
-5081:                 else:
-5082:                     n=int(part)
-5083:                     if n<1 or n>total: raise ValueError(f"Page {n} is outside the report.")
-5084:                     selected.append(n-1)
-5085:             return list(dict.fromkeys(selected))
-5086: 
-5087:         def selected_printer():
-5088:             sel=printer_list.curselection()
-5089:             return printer_list.get(sel[0]) if sel else printers[0]
-5090: 
-5091:         def print_rendered_pages():
+5074:             raw=page_range.get().strip()
+5075:             if not raw: raise ValueError("Enter a page range, for example 1-3 or 1,3,5.")
+5076:             selected=[]
+5077:             for part in raw.split(","):
+5078:                 part=part.strip()
+5079:                 if "-" in part:
+5080:                     a,b=part.split("-",1); a=int(a); b=int(b)
+5081:                     if a<1 or b<a: raise ValueError("Invalid page range.")
+5082:                     if b>total: raise ValueError(f"Page {b} is outside the report.")
+5083:                     selected.extend(range(a-1,b))
+5084:                 else:
+5085:                     n=int(part)
+5086:                     if n<1 or n>total: raise ValueError(f"Page {n} is outside the report.")
+5087:                     selected.append(n-1)
+5088:             return list(dict.fromkeys(selected))
+5089: 
+5090:         def selected_printer():
+5091:             sel=printer_list.curselection()
+5092:             return printer_list.get(sel[0]) if sel else printers[0]
+5093: 
+5094:         def print_rendered_pages():
 ```
 ```text
-5184:                 finally:
-5185:                     if hprinter is not None:
-5186:                         try: win32print.ClosePrinter(hprinter)
-5187:                         except Exception: pass
-5188:                     if hdc:
-5189:                         try: ctypes.windll.gdi32.DeleteDC(hdc)
+5187:                 finally:
+5188:                     if hprinter is not None:
+5189:                         try: win32print.ClosePrinter(hprinter)
 5190:                         except Exception: pass
-5191: 
-5192:                 # Print the exact rendered PDF page through the printer DC.
-5193:                 printable_w=max(1,int(dc.GetDeviceCaps(win32con.HORZRES)))
-5194:                 printable_h=max(1,int(dc.GetDeviceCaps(win32con.VERTRES)))
-5195:                 off_x=max(0,int(dc.GetDeviceCaps(win32con.PHYSICALOFFSETX)))
-5196:                 off_y=max(0,int(dc.GetDeviceCaps(win32con.PHYSICALOFFSETY)))
-5197: 
-5198:                 for copy_no in range(count):
-5199:                     dc.StartDoc(str(title)[:80])
-5200:                     doc_ok=False
-5201:                     try:
-5202:                         for batch_start in range(0,len(chosen),cols_n*rows_n):
-5203:                             batch=chosen[batch_start:batch_start+cols_n*rows_n]
-5204:                             dc.StartPage()
+5191:                     if hdc:
+5192:                         try: ctypes.windll.gdi32.DeleteDC(hdc)
+5193:                         except Exception: pass
+5194: 
+5195:                 # Print the exact rendered PDF page through the printer DC.
+5196:                 printable_w=max(1,int(dc.GetDeviceCaps(win32con.HORZRES)))
+5197:                 printable_h=max(1,int(dc.GetDeviceCaps(win32con.VERTRES)))
+5198:                 off_x=max(0,int(dc.GetDeviceCaps(win32con.PHYSICALOFFSETX)))
+5199:                 off_y=max(0,int(dc.GetDeviceCaps(win32con.PHYSICALOFFSETY)))
+5200: 
+5201:                 for copy_no in range(count):
+5202:                     dc.StartDoc(str(title)[:80])
+5203:                     doc_ok=False
+5204:                     try:
+5205:                         for batch_start in range(0,len(chosen),cols_n*rows_n):
+5206:                             batch=chosen[batch_start:batch_start+cols_n*rows_n]
+5207:                             dc.StartPage()
 ```
 ```text
-5203:                             batch=chosen[batch_start:batch_start+cols_n*rows_n]
-5204:                             dc.StartPage()
-5205:                             page_ok=False
-5206:                             try:
-5207:                                 cell_w=printable_w/float(cols_n)
-5208:                                 cell_h=printable_h/float(rows_n)
-5209:                                 for j,page_index in enumerate(batch):
-5210:                                     page=doc.load_page(page_index)
-5211:                                     pdf_w=max(1.0,float(page.rect.width))
-5212:                                     pdf_h=max(1.0,float(page.rect.height))
-5213:                                     fit=min((cell_w*0.96)/pdf_w,(cell_h*0.96)/pdf_h)
-5214:                                     fit=max(0.25,min(fit,8.0))
-5215:                                     pix=page.get_pixmap(matrix=fitz.Matrix(fit,fit),alpha=False)
-5216:                                     img=Image.frombytes("RGB",[pix.width,pix.height],pix.samples)
-5217:                                     target_w=max(1,int(cell_w*0.96))
-5218:                                     target_h=max(1,int(cell_h*0.96))
-5219:                                     ratio=min(target_w/img.width,target_h/img.height)
-5220:                                     nw=max(1,int(img.width*ratio)); nh=max(1,int(img.height*ratio))
-5221:                                     if (nw,nh)!=(img.width,img.height):
-5222:                                         img=img.resize((nw,nh),Image.LANCZOS)
-5223:                                     dib=ImageWin.Dib(img)
+5206:                             batch=chosen[batch_start:batch_start+cols_n*rows_n]
+5207:                             dc.StartPage()
+5208:                             page_ok=False
+5209:                             try:
+5210:                                 cell_w=printable_w/float(cols_n)
+5211:                                 cell_h=printable_h/float(rows_n)
+5212:                                 for j,page_index in enumerate(batch):
+5213:                                     page=doc.load_page(page_index)
+5214:                                     pdf_w=max(1.0,float(page.rect.width))
+5215:                                     pdf_h=max(1.0,float(page.rect.height))
+5216:                                     fit=min((cell_w*0.96)/pdf_w,(cell_h*0.96)/pdf_h)
+5217:                                     fit=max(0.25,min(fit,8.0))
+5218:                                     pix=page.get_pixmap(matrix=fitz.Matrix(fit,fit),alpha=False)
+5219:                                     img=Image.frombytes("RGB",[pix.width,pix.height],pix.samples)
+5220:                                     target_w=max(1,int(cell_w*0.96))
+5221:                                     target_h=max(1,int(cell_h*0.96))
+5222:                                     ratio=min(target_w/img.width,target_h/img.height)
+5223:                                     nw=max(1,int(img.width*ratio)); nh=max(1,int(img.height*ratio))
+5224:                                     if (nw,nh)!=(img.width,img.height):
+5225:                                         img=img.resize((nw,nh),Image.LANCZOS)
+5226:                                     dib=ImageWin.Dib(img)
 ```
 ```text
-5243: 
-5244:                 status.set("Print job sent successfully")
-5245:                 win.update_idletasks()
-5246:                 win.after(500,close)
-5247:             except Exception as e:
-5248:                 status.set("Print failed: "+str(e))
-5249:                 messagebox.showerror("Print", f"The selected printer could not accept the print job.\n\n{e}", parent=win)
-5250: 
-5251:         def close():
-5252:             try: doc.close()
-5253:             except Exception: pass
-5254:             try: win.destroy()
-5255:             except Exception: pass
-5256:             # Only the temporary PDF created by the Print button is removed.
-5257:             # Existing report PDFs passed through the legacy print path are preserved.
-5258:             try:
-5259:                 if path in getattr(self,"_print_jobs",{}): self._print_jobs.pop(path,None)
-5260:                 if is_temporary_preview and os.path.isfile(path): os.remove(path)
-5261:             except Exception: pass
-5262: 
-5263:         pages_mode.trace_add("write",lambda *_:page_entry.configure(state="normal" if pages_mode.get()=="Custom" else "disabled"))
+5246: 
+5247:                 status.set("Print job sent successfully")
+5248:                 win.update_idletasks()
+5249:                 win.after(500,close)
+5250:             except Exception as e:
+5251:                 status.set("Print failed: "+str(e))
+5252:                 messagebox.showerror("Print", f"The selected printer could not accept the print job.\n\n{e}", parent=win)
+5253: 
+5254:         def close():
+5255:             try: doc.close()
+5256:             except Exception: pass
+5257:             try: win.destroy()
+5258:             except Exception: pass
+5259:             # Only the temporary PDF created by the Print button is removed.
+5260:             # Existing report PDFs passed through the legacy print path are preserved.
+5261:             try:
+5262:                 if path in getattr(self,"_print_jobs",{}): self._print_jobs.pop(path,None)
+5263:                 if is_temporary_preview and os.path.isfile(path): os.remove(path)
+5264:             except Exception: pass
+5265: 
+5266:         pages_mode.trace_add("write",lambda *_:page_entry.configure(state="normal" if pages_mode.get()=="Custom" else "disabled"))
 ```
 ```text
-5259:                 if path in getattr(self,"_print_jobs",{}): self._print_jobs.pop(path,None)
-5260:                 if is_temporary_preview and os.path.isfile(path): os.remove(path)
-5261:             except Exception: pass
-5262: 
-5263:         pages_mode.trace_add("write",lambda *_:page_entry.configure(state="normal" if pages_mode.get()=="Custom" else "disabled"))
-5264:         bottom.winfo_children()[1].configure(command=close)
-5265:         print_btn.configure(command=print_rendered_pages)
-5266:         win.protocol("WM_DELETE_WINDOW",close)
-5267:         win.bind("<Escape>",lambda e:close())
-5268:         win.grab_set()
-5269:         # Keep the requested printer defaults visibly selected; no manual
-5270:         # adjustment is required before pressing Print.
-5271:         win.after(50,lambda:(layout_combo.current(1), paper_combo.current(0)))
-5272:         win.after(120,lambda:render_preview(0))
-5273:         win.focus_force()
-5274: 
-5275:     def print_pdf(self,path):
-5276:         """Open a printer-selection window for a generated PDF."""
-5277:         path=os.path.abspath(path)
-5278:         if not os.path.exists(path):
-5279:             messagebox.showwarning("Print", "The report file could not be found.")
+5262:                 if path in getattr(self,"_print_jobs",{}): self._print_jobs.pop(path,None)
+5263:                 if is_temporary_preview and os.path.isfile(path): os.remove(path)
+5264:             except Exception: pass
+5265: 
+5266:         pages_mode.trace_add("write",lambda *_:page_entry.configure(state="normal" if pages_mode.get()=="Custom" else "disabled"))
+5267:         bottom.winfo_children()[1].configure(command=close)
+5268:         print_btn.configure(command=print_rendered_pages)
+5269:         win.protocol("WM_DELETE_WINDOW",close)
+5270:         win.bind("<Escape>",lambda e:close())
+5271:         win.grab_set()
+5272:         # Keep the requested printer defaults visibly selected; no manual
+5273:         # adjustment is required before pressing Print.
+5274:         win.after(50,lambda:(layout_combo.current(1), paper_combo.current(0)))
+5275:         win.after(120,lambda:render_preview(0))
+5276:         win.focus_force()
+5277: 
+5278:     def print_pdf(self,path):
+5279:         """Open a printer-selection window for a generated PDF."""
+5280:         path=os.path.abspath(path)
+5281:         if not os.path.exists(path):
+5282:             messagebox.showwarning("Print", "The report file could not be found.")
 ```
 ```text
-5275:     def print_pdf(self,path):
-5276:         """Open a printer-selection window for a generated PDF."""
-5277:         path=os.path.abspath(path)
-5278:         if not os.path.exists(path):
-5279:             messagebox.showwarning("Print", "The report file could not be found.")
-5280:             return
-5281: 
-5282:         if sys.platform.startswith("win"):
-5283:             self._select_windows_printer_for_pdf(path)
-5284:             return
-5285: 
-5286:         try:
-5287:             subprocess.run(["lp", path], check=True)
-5288:         except Exception as e:
-5289:             messagebox.showwarning(
-5290:                 "Print",
-5291:                 "The operating system could not start printing.\n\n"
-5292:                 f"The report has been saved here:\n{path}\n\nDetails: {e}"
-5293:             )
-5294: 
-5295:     def open_file(self,path):
+5278:     def print_pdf(self,path):
+5279:         """Open a printer-selection window for a generated PDF."""
+5280:         path=os.path.abspath(path)
+5281:         if not os.path.exists(path):
+5282:             messagebox.showwarning("Print", "The report file could not be found.")
+5283:             return
+5284: 
+5285:         if sys.platform.startswith("win"):
+5286:             self._select_windows_printer_for_pdf(path)
+5287:             return
+5288: 
+5289:         try:
+5290:             subprocess.run(["lp", path], check=True)
+5291:         except Exception as e:
+5292:             messagebox.showwarning(
+5293:                 "Print",
+5294:                 "The operating system could not start printing.\n\n"
+5295:                 f"The report has been saved here:\n{path}\n\nDetails: {e}"
+5296:             )
+5297: 
+5298:     def open_file(self,path):
 ```
 ```text
-5290:                 "Print",
-5291:                 "The operating system could not start printing.\n\n"
-5292:                 f"The report has been saved here:\n{path}\n\nDetails: {e}"
-5293:             )
-5294: 
-5295:     def open_file(self,path):
-5296:         try:
-5297:             if sys.platform.startswith("win"): os.startfile(path)
-5298:             elif sys.platform=="darwin": subprocess.Popen(["open",path])
-5299:             else: subprocess.Popen(["xdg-open",path])
-5300:         except Exception: webbrowser.open("file://"+os.path.abspath(path))
-5301: 
-5302:     def print_demand(self,no):
-5303:         data=self._get_doc_data("demand",no)
-5304:         if not data:return messagebox.showwarning("Document","Purchase Demand not found.")
-5305:         if not REPORTLAB:return messagebox.showwarning("PDF","Install reportlab to print PDF reports.")
-5306:         title,header,cols,rows=data; path=os.path.join(BASE,f"Purchase_Demand_{no}.pdf")
-5307:         self._pdf_table_report(path,title,cols,rows,A4,7,header_lines=header)
-5308: 
-5309:     def print_grr(self,no):
-5310:         data=self._get_doc_data("grr",no)
+5293:                 "Print",
+5294:                 "The operating system could not start printing.\n\n"
+5295:                 f"The report has been saved here:\n{path}\n\nDetails: {e}"
+5296:             )
+5297: 
+5298:     def open_file(self,path):
+5299:         try:
+5300:             if sys.platform.startswith("win"): os.startfile(path)
+5301:             elif sys.platform=="darwin": subprocess.Popen(["open",path])
+5302:             else: subprocess.Popen(["xdg-open",path])
+5303:         except Exception: webbrowser.open("file://"+os.path.abspath(path))
+5304: 
+5305:     def print_demand(self,no):
+5306:         data=self._get_doc_data("demand",no)
+5307:         if not data:return messagebox.showwarning("Document","Purchase Demand not found.")
+5308:         if not REPORTLAB:return messagebox.showwarning("PDF","Install reportlab to print PDF reports.")
+5309:         title,header,cols,rows=data; path=os.path.join(BASE,f"Purchase_Demand_{no}.pdf")
+5310:         self._pdf_table_report(path,title,cols,rows,A4,7,header_lines=header)
+5311: 
+5312:     def print_grr(self,no):
+5313:         data=self._get_doc_data("grr",no)
 ```
 ```text
-5304:         if not data:return messagebox.showwarning("Document","Purchase Demand not found.")
-5305:         if not REPORTLAB:return messagebox.showwarning("PDF","Install reportlab to print PDF reports.")
-5306:         title,header,cols,rows=data; path=os.path.join(BASE,f"Purchase_Demand_{no}.pdf")
-5307:         self._pdf_table_report(path,title,cols,rows,A4,7,header_lines=header)
-5308: 
-5309:     def print_grr(self,no):
-5310:         data=self._get_doc_data("grr",no)
-5311:         if not data:return messagebox.showwarning("Document","GRN not found.")
-5312:         if not REPORTLAB:return messagebox.showwarning("PDF","Install reportlab to print PDF reports.")
-5313:         title,header,cols,rows=data; path=os.path.join(BASE,f"GRN_{no}.pdf")
-5314:         # GRN has a wide item table. Generate the PDF itself in landscape so
-5315:         # the printer dialog and printer driver receive a landscape document
-5316:         # instead of a portrait page with rotated/cropped content.
-5317:         self._pdf_table_report(path,title,cols,rows,landscape(A4),7,header_lines=header)
-5318: 
-5319:     def print_issue(self,no):
-5320:         data=self._get_doc_data("issue",no)
-5321:         if not data:return messagebox.showwarning("Document","Material Issue not found.")
-5322:         if not REPORTLAB:return messagebox.showwarning("PDF","Install reportlab to print PDF reports.")
-5323:         title,header,cols,rows=data; path=os.path.join(BASE,f"Material_Issue_{no}.pdf")
-5324:         self._pdf_table_report(path,title,cols,rows,A4,7,header_lines=header)
+5307:         if not data:return messagebox.showwarning("Document","Purchase Demand not found.")
+5308:         if not REPORTLAB:return messagebox.showwarning("PDF","Install reportlab to print PDF reports.")
+5309:         title,header,cols,rows=data; path=os.path.join(BASE,f"Purchase_Demand_{no}.pdf")
+5310:         self._pdf_table_report(path,title,cols,rows,A4,7,header_lines=header)
+5311: 
+5312:     def print_grr(self,no):
+5313:         data=self._get_doc_data("grr",no)
+5314:         if not data:return messagebox.showwarning("Document","GRN not found.")
+5315:         if not REPORTLAB:return messagebox.showwarning("PDF","Install reportlab to print PDF reports.")
+5316:         title,header,cols,rows=data; path=os.path.join(BASE,f"GRN_{no}.pdf")
+5317:         # GRN has a wide item table. Generate the PDF itself in landscape so
+5318:         # the printer dialog and printer driver receive a landscape document
+5319:         # instead of a portrait page with rotated/cropped content.
+5320:         self._pdf_table_report(path,title,cols,rows,landscape(A4),7,header_lines=header)
+5321: 
+5322:     def print_issue(self,no):
+5323:         data=self._get_doc_data("issue",no)
+5324:         if not data:return messagebox.showwarning("Document","Material Issue not found.")
+5325:         if not REPORTLAB:return messagebox.showwarning("PDF","Install reportlab to print PDF reports.")
+5326:         title,header,cols,rows=data; path=os.path.join(BASE,f"Material_Issue_{no}.pdf")
+5327:         self._pdf_table_report(path,title,cols,rows,A4,7,header_lines=header)
 ```
 
 ## updater.py
 
-- Lines: 124
-- Functions: _app_dir(18-21), _version_tuple(24-31), _load_config(34-39), _download(42-49), _sha256(52-57), _install_after_exit(60-67), _start_update_download(70-92), check_for_update(95-123)
+- Lines: 153
+- Functions: _app_dir(18-21), _version_tuple(24-31), _load_config(34-39), _download(42-49), _sha256(52-57), _install_after_exit(60-67), _start_update_download(70-92), _show_update_check_popup(95-113), check_for_update(116-152)
 
 ### Relevant source locations
 
@@ -4392,7 +4392,7 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 0068: 
 0069: 
 0070: def _start_update_download(download_url):
-0071:     """Start update download with IDM when installed, otherwise browser."""
+0071:     """Start the fixed-location update installer with IDM when available."""
 0072:     if not download_url:
 0073:         return False
 0074:     candidates = [
