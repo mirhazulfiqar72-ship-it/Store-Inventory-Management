@@ -18,6 +18,13 @@ from typing import Any, Dict
 INSTALL_ROOT = Path(r"C:\StoreInventoryManagement")
 DATA_DIR = INSTALL_ROOT / "Data"
 SNAPSHOT_PATH = DATA_DIR / "local_data_snapshot.json"
+
+# Secondary recovery copy lives outside the installation folder. This copy
+# survives deletion/reinstallation of C:\StoreInventoryManagement; Firebase
+# remains the primary online copy.
+LOCALAPPDATA = Path(os.environ.get("LOCALAPPDATA") or (Path.home() / "AppData" / "Local"))
+RECOVERY_DIR = LOCALAPPDATA / "StoreInventoryManagement" / "Recovery"
+RECOVERY_SNAPSHOT_PATH = RECOVERY_DIR / "local_data_snapshot.json"
 TABLES = (
     "items", "mto_items", "parties", "demands", "demand_lines", "grr", "grr_lines",
     "issues", "issue_lines", "transactions", "users",
@@ -42,25 +49,51 @@ def snapshot(conn: sqlite3.Connection) -> Dict[str, Any]:
 def _row_count(s: Dict[str, Any]) -> int:
     return sum(len(v.get("rows", []) or []) for v in s.get("tables", {}).values())
 
+def _has_more_business_data(saved: Dict[str, Any], current: Dict[str, Any]) -> bool:
+    # Compare each table so seeded Inventory Codes cannot block recovery of
+    # saved Demand/GRN/Issue/Party records after a reinstall.
+    for table in TABLES:
+        saved_n = len(saved.get("tables", {}).get(table, {}).get("rows", []) or [])
+        current_n = len(current.get("tables", {}).get(table, {}).get("rows", []) or [])
+        if saved_n > current_n:
+            return True
+    return False
+
+def _atomic_write(path: Path, value: Dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd, tmp = tempfile.mkstemp(prefix="local_snapshot_", suffix=".tmp", dir=str(path.parent))
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
+            json.dump(value, f, ensure_ascii=False, separators=(",", ":"))
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, path)
+    finally:
+        try:
+            if os.path.exists(tmp):
+                os.remove(tmp)
+        except OSError:
+            pass
+
 def save(conn: sqlite3.Connection) -> bool:
     global LAST_ERROR
     LAST_ERROR = ""
     try:
-        DATA_DIR.mkdir(parents=True, exist_ok=True)
         value = snapshot(conn)
-        fd, tmp = tempfile.mkstemp(prefix="local_snapshot_", suffix=".tmp", dir=str(DATA_DIR))
+        c_ok = False
         try:
-            with os.fdopen(fd, "w", encoding="utf-8") as f:
-                json.dump(value, f, ensure_ascii=False, separators=(",", ":"))
-                f.flush()
-                os.fsync(f.fileno())
-            os.replace(tmp, SNAPSHOT_PATH)
-        finally:
-            try:
-                if os.path.exists(tmp):
-                    os.remove(tmp)
-            except OSError:
-                pass
+            DATA_DIR.mkdir(parents=True, exist_ok=True)
+            _atomic_write(SNAPSHOT_PATH, value)
+            c_ok = True
+        except Exception:
+            pass
+        try:
+            _atomic_write(RECOVERY_SNAPSHOT_PATH, value)
+            recovery_ok = True
+        except Exception:
+            recovery_ok = False
+        if not (c_ok or recovery_ok):
+            raise IOError("Could not save the local recovery snapshot.")
         return True
     except Exception:
         LAST_ERROR = traceback.format_exc()
@@ -84,7 +117,7 @@ def restore_if_newer(conn: sqlite3.Connection) -> bool:
     if not saved or _row_count(saved) <= 0:
         return False
     current = snapshot(conn)
-    if _row_count(current) >= _row_count(saved):
+    if not _has_more_business_data(saved, current):
         return False
     try:
         conn.execute("BEGIN")
