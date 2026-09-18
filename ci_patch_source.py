@@ -147,7 +147,7 @@ def _show_update_check_popup(parent):
 
 
 def check_for_update(parent, manual=False):
-    checking = _show_update_check_popup(parent)
+    checking = _show_update_check_popup(parent) if manual else None
     try:
         config_path = Path(__file__).resolve().parent / "update_config.json"
         cfg = json.loads(config_path.read_text(encoding="utf-8-sig")) if config_path.exists() else {}
@@ -165,7 +165,8 @@ def check_for_update(parent, manual=False):
             messagebox.showwarning("Check Update", "Update information is unavailable.", parent=parent)
             return False
         if _version_tuple(latest) <= _version_tuple(APP_VERSION):
-            messagebox.showinfo("Check Update", f"You are using the current version ({APP_VERSION}).", parent=parent)
+            if manual:
+                messagebox.showinfo("Check Update", f"You are using the current version ({APP_VERSION}).", parent=parent)
             return False
         if not messagebox.askyesno("Update Available", f"A new version ({latest}) is available.\n\nDo you want to download it now?", parent=parent):
             return False
@@ -274,7 +275,7 @@ def _checking_popup(parent):
         return None
 
 def check_for_update(parent, manual=False):
-    checking = _checking_popup(parent)
+    checking = _checking_popup(parent) if manual else None
     try:
         cfg = _config()
         manifest_url = str(cfg.get("manifest_url", "")).strip()
@@ -291,7 +292,8 @@ def check_for_update(parent, manual=False):
             messagebox.showwarning("Check Update", "Update information is unavailable.", parent=parent)
             return False
         if _version_tuple(latest) <= _version_tuple(APP_VERSION):
-            messagebox.showinfo("Check Update", f"You are using the current version ({APP_VERSION}).", parent=parent)
+            if manual:
+                messagebox.showinfo("Check Update", f"You are using the current version ({APP_VERSION}).", parent=parent)
             return False
         if not messagebox.askyesno("Update Available", f"A new version ({latest}) is available.\\n\\nDo you want to download it now?", parent=parent):
             return False
@@ -324,6 +326,7 @@ _home_replacement = """        self.body=ttk.Frame(self,padding=12);self.body.pa
         self.dashboard()
         if not getattr(self, "_update_checked_this_session", False):
             self._update_checked_this_session = True
+            # Startup check is silent: show a popup only when a newer version exists.
             self.after(900, lambda: updater.check_for_update(self, manual=False))
 """
 if _home_block not in app:
