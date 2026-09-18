@@ -451,7 +451,7 @@ if "_dashboard_kpi_vars" not in app:
         app=app.replace(dash_action,dash_action+"        self._refresh_dashboard_kpis()" + chr(10),1)
 
 write("store_inventory.py", app)
-print("CI patch complete: durable local snapshot + SQLite persistence + safe Firebase merge + permanent Reports exports + no automatic backup deletion.")for import_line, pattern in [
+print("CI patch complete: durable local snapshot + SQLite persistence + safe Firebase merge + permanent Reports exports + no automatic backup deletion.")\n\nfor import_line, pattern in [
     ("import os\\n", r"^import\\s+os\\s*$"),
     ("import subprocess\\n", r"^import\\s+subprocess\\s*$"),
     ("import webbrowser\\n", r"^import\\s+webbrowser\\s*$"),
