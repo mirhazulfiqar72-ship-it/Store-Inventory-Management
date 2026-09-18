@@ -233,14 +233,17 @@ def _config():
     path = Path(__file__).resolve().parent / CONFIG_NAME
     if not path.exists():
         return {}
-    return json.loads(path.read_text(encoding="utf-8-sig"))
+    try:
+        return json.loads(path.read_text(encoding="utf-8-sig"))
+    except Exception:
+        return {}
 
 def _start_update_download(download_url):
     if not download_url:
         return False
     for raw in (
-        os.path.expandvars(r"%PROGRAMFILES%\\Internet Download Manager\\IDMan.exe"),
-        os.path.expandvars(r"%PROGRAMFILES(x86)%\\Internet Download Manager\\IDMan.exe"),
+        os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
+        os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
     ):
         if os.path.isfile(raw):
             try:
@@ -279,12 +282,12 @@ def _checking_popup(parent):
 
 def check_for_update(parent, manual=False):
     global _CHECK_IN_PROGRESS, _AUTO_CHECK_DONE
-    if not manual:
-        if _AUTO_CHECK_DONE or _CHECK_IN_PROGRESS:
-            return False
-        _AUTO_CHECK_DONE = True
     if _CHECK_IN_PROGRESS:
         return False
+    if not manual and _AUTO_CHECK_DONE:
+        return False
+    if not manual:
+        _AUTO_CHECK_DONE = True
     _CHECK_IN_PROGRESS = True
     checking = _checking_popup(parent) if manual else None
     try:
@@ -300,24 +303,34 @@ def check_for_update(parent, manual=False):
         latest = str(data.get("version", "")).strip()
         download_url = str(data.get("url", "")).strip()
         if not latest or not download_url:
-            messagebox.showwarning("Check Update", "Update information is unavailable.", parent=parent)
+            if manual:
+                messagebox.showwarning("Check Update", "Update information is unavailable.", parent=parent)
             return False
+        # Automatic checks are completely silent when the installed version
+        # is current. Only a newer released manifest can trigger a popup.
         if _version_tuple(latest) <= _version_tuple(APP_VERSION):
             if manual:
                 messagebox.showinfo("Check Update", f"You are using the current version ({APP_VERSION}).", parent=parent)
             return False
-        if not messagebox.askyesno("Update Available", f"A new version ({latest}) is available.\\n\\nDo you want to download it now?", parent=parent):
+        answer = messagebox.askyesno(
+            "Update Available",
+            f"A new version ({latest}) is available.\n\nDo you want to download it now?",
+            parent=parent,
+        )
+        if not answer:
             return False
+        # The single Update Available dialog closes automatically as soon as
+        # IDM/browser accepts the download. No second success popup.
         if _start_update_download(download_url):
-            # Close the Update Available dialog immediately after handing the
-            # download to IDM/browser. No second confirmation popup.
             return True
         messagebox.showerror("Update Download", "Could not start the update download.", parent=parent)
         return False
     except Exception as exc:
-        messagebox.showwarning("Check Update", f"Could not check for updates.\\n\\n{exc}", parent=parent)
+        if manual:
+            messagebox.showwarning("Check Update", f"Could not check for updates.\n\n{exc}", parent=parent)
         return False
     finally:
+        _CHECK_IN_PROGRESS = False
         try:
             if checking and checking.winfo_exists():
                 checking.destroy()
