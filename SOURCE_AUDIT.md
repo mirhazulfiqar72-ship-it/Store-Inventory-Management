@@ -4443,123 +4443,54 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 
 ## updater.py
 
-- Lines: 202
+- Lines: 158
 - AST parse error: unexpected character after line continuation character (<unknown>, line 1)
 
 ### Relevant source locations
 
 ```text
-0033:         parts.append(0)
-0034:     return tuple(parts[:4])
-0035: 
-0036: 
-0037: def _load_config():
-0038:     path = os.path.join(_app_dir(), CONFIG_NAME)
-0039:     if not os.path.exists(path):
-0040:         return {}
-0041:     with open(path, "r", encoding="utf-8") as f:
-0042:         return json.load(f)
-0043: 
-0044: 
-0045: def _download(url, destination):
-0046:     req = urllib.request.Request(url, headers={"User-Agent": "StoreInventoryManagement-Updater"})
-0047:     with urllib.request.urlopen(req, timeout=30) as response, open(destination, "wb") as out:
-0048:         while True:
-0049:             chunk = response.read(1024 * 1024)
-0050:             if not chunk:
-0051:                 break
-0052:             out.write(chunk)
-0053: 
-```
-```text
-0049:             chunk = response.read(1024 * 1024)
-0050:             if not chunk:
-0051:                 break
-0052:             out.write(chunk)
-0053: 
+0034:     if not download_url:
+0035:         return False
+0036:     for raw in (
+0037:         os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
+0038:         os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
+0039:     ):
+0040:         if os.path.isfile(raw):
+0041:             try:
+0042:                 subprocess.Popen([raw, "/d", download_url, "/n"], close_fds=True)
+0043:                 return True
+0044:             except Exception:
+0045:                 pass
+0046:     try:
+0047:         return bool(webbrowser.open(download_url, new=2))
+0048:     except Exception:
+0049:         try:
+0050:             os.startfile(download_url)
+0051:             return True
+0052:         except Exception:
+0053:             return False
 0054: 
-0055: def _sha256(path):
-0056:     h = hashlib.sha256()
-0057:     with open(path, "rb") as f:
-0058:         for chunk in iter(lambda: f.read(1024 * 1024), b""):
-0059:             h.update(chunk)
-0060:     return h.hexdigest().lower()
-0061: 
-0062: 
-0063: def _install_after_exit(new_exe, current_exe):
-0064:     app_dir = os.path.dirname(current_exe)
-0065:     script = os.path.join(app_dir, ".store_inventory_update.cmd")
-0066:     pid = os.getpid()
-0067:     script_text = f'''@echo off\nsetlocal\nset "NEW={new_exe}"\nset "OLD={current_exe}"\nset "PID={pid}"\n:wait\ntasklist /FI "PID eq %PID%" 2>nul | findstr /I "%PID%" >nul\nif not errorlevel 1 (\n  timeout /t 1 /nobreak >nul\n  goto wait\n)\ntimeout /t 1 /nobreak >nul\nmove /Y "%NEW%" "%OLD%" >nul 2>&1\nif not exist "%OLD%" goto fail\nstart "" "%OLD%"\ndel "%~f0"\nexit /b 0\n:fail\nstart "" "%OLD%"\ndel "%~f0"\nexit /b 1\n'''
-0068:     with open(script, "w", encoding="utf-8") as f:
-0069:         f.write(script_text)
 ```
 ```text
-0062: 
-0063: def _install_after_exit(new_exe, current_exe):
-0064:     app_dir = os.path.dirname(current_exe)
-0065:     script = os.path.join(app_dir, ".store_inventory_update.cmd")
-0066:     pid = os.getpid()
-0067:     script_text = f'''@echo off\nsetlocal\nset "NEW={new_exe}"\nset "OLD={current_exe}"\nset "PID={pid}"\n:wait\ntasklist /FI "PID eq %PID%" 2>nul | findstr /I "%PID%" >nul\nif not errorlevel 1 (\n  timeout /t 1 /nobreak >nul\n  goto wait\n)\ntimeout /t 1 /nobreak >nul\nmove /Y "%NEW%" "%OLD%" >nul 2>&1\nif not exist "%OLD%" goto fail\nstart "" "%OLD%"\ndel "%~f0"\nexit /b 0\n:fail\nstart "" "%OLD%"\ndel "%~f0"\nexit /b 1\n'''
-0068:     with open(script, "w", encoding="utf-8") as f:
-0069:         f.write(script_text)
-0070:     subprocess.Popen(["cmd.exe", "/c", script], creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
-0071: 
-0072: 
-0073: def _start_update_download(download_url):
-0074:     """Start the fixed-location update installer with IDM when available."""
-0075:     if not download_url:
-0076:         return False
-0077:     candidates = [
-0078:         os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
-0079:         os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
-0080:     ]
-0081:     for idm in candidates:
-0082:         if idm and os.path.isfile(idm):
-```
-```text
-0076:         return False
-0077:     candidates = [
-0078:         os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
-0079:         os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
-0080:     ]
-0081:     for idm in candidates:
-0082:         if idm and os.path.isfile(idm):
-0083:             try:
-0084:                 subprocess.Popen([idm, "/d", download_url, "/n"], close_fds=True)
-0085:                 return True
-0086:             except Exception:
-0087:                 pass
-0088:     try:
-0089:         return bool(webbrowser.open(download_url, new=2))
-0090:     except Exception:
-0091:         try:
-0092:             os.startfile(download_url)
-0093:             return True
-0094:         except Exception:
-0095:             return False
-0096: 
-```
-```text
-0122:         return False
-0123:     candidates = [
-0124:         os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
-0125:         os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
-0126:     ]
-0127:     for idm in candidates:
-0128:         if idm and os.path.isfile(idm):
-0129:             try:
-0130:                 subprocess.Popen([idm, "/d", download_url, "/n"], close_fds=True)
-0131:                 return True
-0132:             except Exception:
-0133:                 pass
-0134:     try:
-0135:         return bool(webbrowser.open(download_url, new=2))
-0136:     except Exception:
-0137:         try:
-0138:             os.startfile(download_url)
-0139:             return True
-0140:         except Exception:
-0141:             return False
-0142: 
+0078:         return False
+0079:     candidates = [
+0080:         os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
+0081:         os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
+0082:     ]
+0083:     for idm in candidates:
+0084:         if idm and os.path.isfile(idm):
+0085:             try:
+0086:                 subprocess.Popen([idm, "/d", download_url, "/n"], close_fds=True)
+0087:                 return True
+0088:             except Exception:
+0089:                 pass
+0090:     try:
+0091:         return bool(webbrowser.open(download_url, new=2))
+0092:     except Exception:
+0093:         try:
+0094:             os.startfile(download_url)
+0095:             return True
+0096:         except Exception:
+0097:             return False
+0098: 
 ```
