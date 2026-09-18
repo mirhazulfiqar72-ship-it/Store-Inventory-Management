@@ -330,37 +330,27 @@ if 'label="Check Update"' not in app:
 # newly saved Purchase Demands/GRNs/Issues/Items appear immediately without
 # rebuilding or changing the existing dashboard layout.
 if "_dashboard_kpi_vars" not in app:
-    cards_marker='        cards_row=tk.Frame(self.body,bg=COLORS["bg"]);cards_row.pack(fill="x",pady=(0,10))
-'
+    cards_marker = "        cards_row=tk.Frame(self.body,bg=COLORS[\"bg\"]);cards_row.pack(fill=\"x\",pady=(0,10))" + chr(10)
     if cards_marker not in app:
         raise RuntimeError("Could not locate Dashboard KPI card row.")
-    loop_marker='        for title,val,color,short in cards:\n'
+    loop_marker = "        for title,val,color,short in cards:" + chr(10)
     if loop_marker not in app:
         raise RuntimeError("Could not locate Dashboard KPI card loop.")
-    app=app.replace(loop_marker,'        for idx,(title,val,color,short) in enumerate(cards):\n',1)
+    app=app.replace(loop_marker,"        for idx,(title,val,color,short) in enumerate(cards):" + chr(10),1)
     app=app.replace(
         cards_marker,
-        '        self._dashboard_kpi_vars=[tk.StringVar(value=str(x[1])) for x in cards]\n'
-        '        self._dashboard_kpi_job=None\n'+cards_marker,
+        "        self._dashboard_kpi_vars=[tk.StringVar(value=str(x[1])) for x in cards]" + chr(10)
+        "        self._dashboard_kpi_job=None" + chr(10) + cards_marker,
         1
     )
-    value_marker='            tk.Label(bottom,text=str(val),bg="white",fg=COLORS["primary_dark"],
-                     font=("Segoe UI",21,"bold")).pack(side="left")
-'
-    value_repl='            tk.Label(bottom,textvariable=self._dashboard_kpi_vars[idx],bg="white",fg=COLORS["primary_dark"],
-                     font=("Segoe UI",21,"bold")).pack(side="left")
-'
+    value_marker = "            tk.Label(bottom,text=str(val),bg=\"white\",fg=COLORS[\"primary_dark\"]," + chr(10) + "                     font=(\"Segoe UI\",21,\"bold\")).pack(side=\"left\")" + chr(10)
+    value_repl = "            tk.Label(bottom,textvariable=self._dashboard_kpi_vars[idx],bg=\"white\",fg=COLORS[\"primary_dark\"]," + chr(10) + "                     font=(\"Segoe UI\",21,\"bold\")).pack(side=\"left\")" + chr(10)
     if value_marker in app:
         app=app.replace(value_marker,value_repl,1)
     else:
-        # Some source revisions use a one-line Label constructor.
-        value_re=r'            tk\.Label\(bottom,text=str\(val\),bg="white",fg=COLORS\["primary_dark"\],.*?font=\("Segoe UI",21,"bold"\)\)\.pack\(side="left"\)\n'
-        app,n=re.subn(value_re,value_repl,app,count=1)
-        if n != 1:
-            raise RuntimeError("Could not locate Dashboard KPI value label.")
-    method_marker='    def dashboard_details(self,code):
-'
-    refresh_method='''    def _refresh_dashboard_kpis(self):
+        raise RuntimeError("Could not locate Dashboard KPI value label.")
+    method_marker = "    def dashboard_details(self,code):" + chr(10)
+    refresh_method = '''    def _refresh_dashboard_kpis(self):
         try:
             if not hasattr(self,"_dashboard_kpi_vars") or not self.body.winfo_exists():
                 return
@@ -380,16 +370,9 @@ if "_dashboard_kpi_vars" not in app:
     if method_marker not in app:
         raise RuntimeError("Could not locate dashboard_details() for KPI refresh.")
     app=app.replace(method_marker,refresh_method+method_marker,1)
-    # Start the timer immediately after the dashboard's existing action setup.
-    dash_action='        self.set_page_actions(preview=lambda:self.preview_tree("Dashboard Details",tr,[f"Item Code: {code.get() or 'ALL'}"]))
-'
+    dash_action = "        self.set_page_actions(preview=lambda:self.preview_tree(\"Dashboard Details\",tr,[f\"Item Code: {code.get() or 'ALL'}\"]))" + chr(10)
     if dash_action in app:
-        app=app.replace(dash_action,dash_action+'        self._refresh_dashboard_kpis()
-',1)
-    else:
-        # Fallback: insert before dashboard_details; method will still refresh
-        # on the next explicit Dashboard navigation.
-        pass
+        app=app.replace(dash_action,dash_action+"        self._refresh_dashboard_kpis()" + chr(10),1)
 
 write("store_inventory.py", app)
 print("CI patch complete: durable local snapshot + SQLite persistence + safe Firebase merge + permanent Reports exports + no automatic backup deletion.")
