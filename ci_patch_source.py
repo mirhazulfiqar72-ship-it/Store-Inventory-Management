@@ -232,6 +232,62 @@ if export_match:
 else:
     raise RuntimeError("Could not locate export_preview_pdf() in store_inventory.py")
 
+# Every saved business entry also gets a durable PDF copy in Reports. This is
+# deliberately best-effort: a report failure must never roll back an already
+# committed database transaction.
+if "def _save_entry_report(self, title, header_lines, columns, rows):" not in app:
+    marker_report = "    def build_menu_bar(self):\\n"
+    report_method = '''    def _save_entry_report(self, title, header_lines, columns, rows):
+        try:
+            os.makedirs(REPORTS_DIR, exist_ok=True)
+            safe = "".join(ch for ch in str(title) if ch.isalnum() or ch in "-_ ").strip().replace(" ", "_") or "Entry"
+            stamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+            path = os.path.join(REPORTS_DIR, f"{safe}_{stamp}.pdf")
+            page_size = landscape(A4) if len(columns) > 8 else A4
+            if REPORTLAB:
+                self._pdf_table_report(path, title, columns, rows, page_size, 7, header_lines=header_lines, auto_print=False)
+            else:
+                self._fallback_pdf_export(path, title, header_lines, columns, rows)
+            if not os.path.isfile(path) or os.path.getsize(path) <= 0:
+                raise IOError("PDF was not created in C:\\\\StoreInventoryManagement\\\\Reports.")
+            with open(path, "rb") as f:
+                if f.read(5) != b"%PDF-":
+                    raise IOError("Generated report is not a valid PDF.")
+            self._last_entry_report_path = path
+            return path
+        except Exception as exc:
+            self._last_entry_report_path = None
+            return None
+
+'''
+    if marker_report not in app:
+        raise RuntimeError("Could not find build_menu_bar() for report method insertion.")
+    app = app.replace(marker_report, report_method + marker_report, 1)
+
+# Add automatic report creation immediately after each successful database commit.
+# Existing UI, preview, print and report windows remain unchanged.
+old='''                self.conn.commit(); backup_database(); self._editing_document_key=None; self.refresh_saved_cache("demand"); self._set_form_editable(form_roots, False, skip=[selector]); messagebox.showinfo("Saved",f"Demand {no} saved successfully.")'''
+new='''                self.conn.commit()
+                report_path = self._save_entry_report("Purchase Demand", [f"Demand No: {no}", f"Demand Date: {v["date"].get()}", f"Department: {v["dept"].get()}"], ("Sr #","Code","Description","UOM","Demand","Available","To Purchase","Required For","Remarks","Type"), self.demand_lines)
+                backup_database(); self._editing_document_key=None; self.refresh_saved_cache("demand"); self._set_form_editable(form_roots, False, skip=[selector])
+                messagebox.showinfo("Saved",f"Demand {no} saved successfully." + (f"\\n\\nReport saved to:\\n{report_path}" if report_path else "\\n\\nWarning: PDF report could not be generated; the saved data is retained."))'''
+if old in app: app=app.replace(old,new,1)
+else: raise RuntimeError("Demand save pattern not found.")
+old='''                self.conn.commit();backup_database();self._editing_document_key=None;self.refresh_saved_cache("grr");self._set_form_editable(form_roots, False, skip=[selector]);messagebox.showinfo("Saved",f"GRN {no} saved. Accepted quantity added to stock.")'''
+new='''                self.conn.commit()
+                report_path = self._save_entry_report("GRN Receipt", [f"GRN No: {no}", f"GRN Date: {v["date"].get()}", f"Department: {v["department"].get()}", f"Supplier: {v["supplier"].get()}"], ("Sr #","Code","Description","UOM","Received","Rejected","Accepted","Rate","Amount","Remarks","Type"), self.grr_lines)
+                backup_database(); self._editing_document_key=None; self.refresh_saved_cache("grr"); self._set_form_editable(form_roots, False, skip=[selector])
+                messagebox.showinfo("Saved",f"GRN {no} saved. Accepted quantity added to stock." + (f"\\n\\nReport saved to:\\n{report_path}" if report_path else "\\n\\nWarning: PDF report could not be generated; the saved data is retained."))'''
+if old in app: app=app.replace(old,new,1)
+else: raise RuntimeError("GRN save pattern not found.")
+old='''                self.conn.commit();backup_database();self._editing_document_key=None;self.refresh_saved_cache("issue");self._set_form_editable(form_roots, False, skip=[selector]);messagebox.showinfo("Posted",f"Material Issue {no} posted. Quantity deducted from stock.")'''
+new='''                self.conn.commit()
+                report_path = self._save_entry_report("Material Issue", [f"Issue No: {no}", f"Issue Date: {v["date"].get()}", f"Department: {v["dept"].get()}", f"Items Use For: {v["items_use_for"].get()}"], ("Sr #","Code","Description","UOM","Issue Qty","Balance After","Items Use For","Type"), self.issue_lines)
+                backup_database(); self._editing_document_key=None; self.refresh_saved_cache("issue"); self._set_form_editable(form_roots, False, skip=[selector])
+                messagebox.showinfo("Posted",f"Material Issue {no} posted. Quantity deducted from stock." + (f"\\n\\nReport saved to:\\n{report_path}" if report_path else "\\n\\nWarning: PDF report could not be generated; the saved data is retained."))'''
+if old in app: app=app.replace(old,new,1)
+else: raise RuntimeError("Issue save pattern not found.")
+
 if "def _manual_check_update(self):" not in app:
     marker = "    def build_menu_bar(self):\n"
     methods = '''    def _manual_check_update(self):
