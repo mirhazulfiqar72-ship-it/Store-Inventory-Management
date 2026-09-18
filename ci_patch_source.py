@@ -175,6 +175,120 @@ else:
         updater = updater[:m2.start()] + new_function + updater[m2.end():]
     else:
         updater += "\n" + new_function
+# Replace the updater module with a clean, dependency-explicit implementation.
+# This avoids carrying forward malformed literal "\\n" import headers from older
+# updater patches. It only controls the Help/automatic update-check flow.
+updater = '''import json
+import os
+import subprocess
+import webbrowser
+from pathlib import Path
+import tkinter as tk
+from tkinter import ttk, messagebox
+import requests
+
+APP_VERSION = "0.0.0"
+CONFIG_NAME = "update_config.json"
+
+def _version_tuple(value):
+    parts = []
+    for part in str(value or "").strip().lstrip("vV").split("."):
+        m = ""
+        for ch in part:
+            if ch.isdigit():
+                m += ch
+            else:
+                break
+        parts.append(int(m or 0))
+    while len(parts) < 4:
+        parts.append(0)
+    return tuple(parts[:4])
+
+def _config():
+    path = Path(__file__).resolve().parent / CONFIG_NAME
+    if not path.exists():
+        return {}
+    return json.loads(path.read_text(encoding="utf-8-sig"))
+
+def _start_update_download(download_url):
+    if not download_url:
+        return False
+    for raw in (
+        os.path.expandvars(r"%PROGRAMFILES%\\Internet Download Manager\\IDMan.exe"),
+        os.path.expandvars(r"%PROGRAMFILES(x86)%\\Internet Download Manager\\IDMan.exe"),
+    ):
+        if os.path.isfile(raw):
+            try:
+                subprocess.Popen([raw, "/d", download_url, "/n"], close_fds=True)
+                return True
+            except Exception:
+                pass
+    try:
+        return bool(webbrowser.open(download_url, new=2))
+    except Exception:
+        try:
+            os.startfile(download_url)
+            return True
+        except Exception:
+            return False
+
+def _checking_popup(parent):
+    try:
+        win = tk.Toplevel(parent)
+        win.title("Check Update")
+        win.transient(parent)
+        win.resizable(False, False)
+        box = ttk.Frame(win, padding=18)
+        box.pack(fill="both", expand=True)
+        ttk.Label(box, text="Checking for updates...", font=("Segoe UI", 10, "bold")).pack(pady=(0, 10))
+        bar = ttk.Progressbar(box, mode="indeterminate", length=280)
+        bar.pack()
+        bar.start(12)
+        win.update_idletasks()
+        x = parent.winfo_rootx() + max(0, (parent.winfo_width() - win.winfo_width()) // 2)
+        y = parent.winfo_rooty() + max(0, (parent.winfo_height() - win.winfo_height()) // 2)
+        win.geometry(f"+{x}+{y}")
+        return win
+    except Exception:
+        return None
+
+def check_for_update(parent, manual=False):
+    checking = _checking_popup(parent)
+    try:
+        cfg = _config()
+        manifest_url = str(cfg.get("manifest_url", "")).strip()
+        if not manifest_url:
+            if manual:
+                messagebox.showwarning("Check Update", "Update checking is not configured.", parent=parent)
+            return False
+        response = requests.get(manifest_url, timeout=12)
+        response.raise_for_status()
+        data = response.json()
+        latest = str(data.get("version", "")).strip()
+        download_url = str(data.get("url", "")).strip()
+        if not latest or not download_url:
+            messagebox.showwarning("Check Update", "Update information is unavailable.", parent=parent)
+            return False
+        if _version_tuple(latest) <= _version_tuple(APP_VERSION):
+            messagebox.showinfo("Check Update", f"You are using the current version ({APP_VERSION}).", parent=parent)
+            return False
+        if not messagebox.askyesno("Update Available", f"A new version ({latest}) is available.\\n\\nDo you want to download it now?", parent=parent):
+            return False
+        if _start_update_download(download_url):
+            messagebox.showinfo("Download Started", "The update Setup download has been started.\\n\\nRun the downloaded Setup to update Store Inventory Management in C:\\StoreInventoryManagement only.", parent=parent)
+            return True
+        messagebox.showerror("Update Download", "Could not start the update download.", parent=parent)
+        return False
+    except Exception as exc:
+        messagebox.showwarning("Check Update", f"Could not check for updates.\\n\\n{exc}", parent=parent)
+        return False
+    finally:
+        try:
+            if checking and checking.winfo_exists():
+                checking.destroy()
+        except Exception:
+            pass
+'''
 write("updater.py", updater)
 
 # Main UI: preserve the existing interface and add only the requested Help items.
