@@ -62,9 +62,20 @@ write("update_config.json", json.dumps({"manifest_url": manifest_url}, indent=2)
 # Updater repair: do NOT internally download/install and do NOT verify a
 # downloaded file. The requested update flow is to launch IDM or the browser.
 updater = read("updater.py")
+# Older updater patches accidentally wrote the two-character sequence "\\n" into
+# the import header. Normalize only the header before APP_VERSION so message
+# strings and the rest of the updater are left untouched.
+head, sep, tail = updater.partition("APP_VERSION")
+head = head.replace("\\n", "\n")
+updater = head + sep + tail
 updater = re.sub(r'^import storage_lock\s*\n', '', updater, count=1, flags=re.M)
 updater = "import storage_lock\n" + updater
-for line in ["import os\n", "import subprocess\n", "import webbrowser\n", "from pathlib import Path\n", "import tkinter as tk\n", "from tkinter import ttk, messagebox\n", "import json\n", "import requests\n"]:
+required_imports = [
+    "import os\n", "import subprocess\n", "import webbrowser\n",
+    "from pathlib import Path\n", "import tkinter as tk\n",
+    "from tkinter import ttk, messagebox\n", "import json\n", "import requests\n",
+]
+for line in reversed(required_imports):
     if line.strip() not in updater:
         updater = line + updater
 
