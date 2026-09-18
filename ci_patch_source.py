@@ -218,47 +218,26 @@ _AUTO_CHECK_DONE = False
 def _version_tuple(value):
     parts = []
     for part in str(value or "").strip().lstrip("vV").split("."):
-        m = ""
+        n = ""
         for ch in part:
             if ch.isdigit():
-                m += ch
+                n += ch
             else:
                 break
-        parts.append(int(m or 0))
+        parts.append(int(n or 0))
     while len(parts) < 4:
         parts.append(0)
     return tuple(parts[:4])
 
 def _config():
     path = Path(__file__).resolve().parent / CONFIG_NAME
-    if not path.exists():
-        return {}
     try:
-        return json.loads(path.read_text(encoding="utf-8-sig"))
+        if path.exists():
+            data = json.loads(path.read_text(encoding="utf-8-sig"))
+            return data if isinstance(data, dict) else {}
     except Exception:
-        return {}
-
-def _start_update_download(download_url):
-    if not download_url:
-        return False
-    for raw in (
-        os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
-        os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
-    ):
-        if os.path.isfile(raw):
-            try:
-                subprocess.Popen([raw, "/d", download_url, "/n"], close_fds=True)
-                return True
-            except Exception:
-                pass
-    try:
-        return bool(webbrowser.open(download_url, new=2))
-    except Exception:
-        try:
-            os.startfile(download_url)
-            return True
-        except Exception:
-            return False
+        pass
+    return {}
 
 def _checking_popup(parent):
     try:
@@ -279,6 +258,29 @@ def _checking_popup(parent):
         return win
     except Exception:
         return None
+
+def _start_update_download(download_url):
+    if not download_url:
+        return False
+    idm_paths = (
+        os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
+        os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
+    )
+    for path in idm_paths:
+        if os.path.isfile(path):
+            try:
+                subprocess.Popen([path, "/d", download_url, "/n"], close_fds=True)
+                return True
+            except Exception:
+                pass
+    try:
+        return bool(webbrowser.open(download_url, new=2))
+    except Exception:
+        try:
+            os.startfile(download_url)
+            return True
+        except Exception:
+            return False
 
 def check_for_update(parent, manual=False):
     global _CHECK_IN_PROGRESS, _AUTO_CHECK_DONE
@@ -306,12 +308,15 @@ def check_for_update(parent, manual=False):
             if manual:
                 messagebox.showwarning("Check Update", "Update information is unavailable.", parent=parent)
             return False
-        # Automatic checks are completely silent when the installed version
-        # is current. Only a newer released manifest can trigger a popup.
+
+        # Automatic checking is silent while the released GitHub manifest is
+        # not newer than the installed version. Only a newer release opens
+        # the single Update Available dialog.
         if _version_tuple(latest) <= _version_tuple(APP_VERSION):
             if manual:
                 messagebox.showinfo("Check Update", f"You are using the current version ({APP_VERSION}).", parent=parent)
             return False
+
         answer = messagebox.askyesno(
             "Update Available",
             f"A new version ({latest}) is available.\n\nDo you want to download it now?",
@@ -319,23 +324,26 @@ def check_for_update(parent, manual=False):
         )
         if not answer:
             return False
-        # The single Update Available dialog closes automatically as soon as
-        # IDM/browser accepts the download. No second success popup.
+
+        # Starting the download is the end of this flow. The only update
+        # dialog is the askyesno above; it closes as soon as download starts.
         if _start_update_download(download_url):
             return True
         messagebox.showerror("Update Download", "Could not start the update download.", parent=parent)
         return False
     except Exception as exc:
+        # Automatic checks must never create an error popup. Manual checks
+        # may report the problem because the user explicitly requested them.
         if manual:
             messagebox.showwarning("Check Update", f"Could not check for updates.\n\n{exc}", parent=parent)
         return False
     finally:
-        _CHECK_IN_PROGRESS = False
         try:
             if checking and checking.winfo_exists():
                 checking.destroy()
         except Exception:
             pass
+        _CHECK_IN_PROGRESS = False
 '''
 write("updater.py", updater)
 
