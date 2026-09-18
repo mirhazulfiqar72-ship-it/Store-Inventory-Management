@@ -100,54 +100,15 @@ for line in reversed(required_imports):
         header = line + header
 updater = header + sep + rest
 
-new_function = r'''def _start_update_download(download_url):
-    """Start the fixed-location update installer with IDM when available."""
-    if not download_url:
+new_function = r'''def check_for_update(parent, manual=False):
+    global _CHECK_IN_PROGRESS, _AUTO_CHECK_DONE
+    if _CHECK_IN_PROGRESS:
         return False
-    candidates = [
-        os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
-        os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
-    ]
-    for idm in candidates:
-        if idm and os.path.isfile(idm):
-            try:
-                subprocess.Popen([idm, "/d", download_url, "/n"], close_fds=True)
-                return True
-            except Exception:
-                pass
-    try:
-        return bool(webbrowser.open(download_url, new=2))
-    except Exception:
-        try:
-            os.startfile(download_url)
-            return True
-        except Exception:
-            return False
-
-
-def _show_update_check_popup(parent):
-    try:
-        win = tk.Toplevel(parent)
-        win.title("Check Update")
-        win.transient(parent)
-        win.resizable(False, False)
-        box = ttk.Frame(win, padding=18)
-        box.pack(fill="both", expand=True)
-        ttk.Label(box, text="Checking for updates...", font=("Segoe UI", 10, "bold")).pack(pady=(0,10))
-        bar = ttk.Progressbar(box, mode="indeterminate", length=280)
-        bar.pack()
-        bar.start(12)
-        win.update_idletasks()
-        x = parent.winfo_rootx() + max(0, (parent.winfo_width()-win.winfo_width())//2)
-        y = parent.winfo_rooty() + max(0, (parent.winfo_height()-win.winfo_height())//2)
-        win.geometry(f"+{x}+{y}")
-        return win
-    except Exception:
-        return None
-
-
-def check_for_update(parent, manual=False):
-    checking = _show_update_check_popup(parent) if manual else None
+    if not manual and _AUTO_CHECK_DONE:
+        return False
+    if not manual:
+        _AUTO_CHECK_DONE = True
+    _CHECK_IN_PROGRESS = True
     try:
         config_path = Path(__file__).resolve().parent / "update_config.json"
         cfg = json.loads(config_path.read_text(encoding="utf-8-sig")) if config_path.exists() else {}
@@ -162,30 +123,26 @@ def check_for_update(parent, manual=False):
         latest = str(data.get("version", "")).strip()
         download_url = str(data.get("url", "")).strip()
         if not latest or not download_url:
-            messagebox.showwarning("Check Update", "Update information is unavailable.", parent=parent)
+            if manual:
+                messagebox.showwarning("Check Update", "Update information is unavailable.", parent=parent)
             return False
         if _version_tuple(latest) <= _version_tuple(APP_VERSION):
             if manual:
                 messagebox.showinfo("Check Update", f"You are using the current version ({APP_VERSION}).", parent=parent)
             return False
-        if not messagebox.askyesno("Update Available", f"A new version ({latest}) is available.\n\nDo you want to download it now?", parent=parent):
+        if not messagebox.askyesno(
+            "Update Available",
+            f"A new version ({latest}) is available.\n\nDo you want to download it now?",
+            parent=parent,
+        ):
             return False
-        if _start_update_download(download_url):
-            messagebox.showinfo("Download Started", "The update Setup download has been started.\n\nRun the downloaded Setup to update Store Inventory Management in C:\\StoreInventoryManagement only.", parent=parent)
-            return True
-        messagebox.showerror("Update Download", "Could not start the update download.", parent=parent)
-        return False
-    except Exception as e:
-        messagebox.showwarning("Check Update", f"Could not check for updates.\n\n{e}", parent=parent)
+        return _start_update_download(download_url)
+    except Exception as exc:
+        if manual:
+            messagebox.showwarning("Check Update", f"Could not check for updates.\n\n{exc}", parent=parent)
         return False
     finally:
-        try:
-            if checking and checking.winfo_exists():
-                checking.destroy()
-        except Exception:
-            pass
         _CHECK_IN_PROGRESS = False
-
 '''
 pattern = r'(?ms)^def check_for_update\(.*?(?=^def |\Z)'
 m = re.search(pattern, updater)
@@ -801,54 +758,15 @@ if not re.search(r"^import\\s+requests\\s*$", updater, flags=re.M):
     updater = "import requests\\n" + updater
 
 
-new_function = r'''def _start_update_download(download_url):
-    """Start the fixed-location update installer with IDM when available."""
-    if not download_url:
+new_function = r'''def check_for_update(parent, manual=False):
+    global _CHECK_IN_PROGRESS, _AUTO_CHECK_DONE
+    if _CHECK_IN_PROGRESS:
         return False
-    candidates = [
-        os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
-        os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
-    ]
-    for idm in candidates:
-        if idm and os.path.isfile(idm):
-            try:
-                subprocess.Popen([idm, "/d", download_url, "/n"], close_fds=True)
-                return True
-            except Exception:
-                pass
-    try:
-        return bool(webbrowser.open(download_url, new=2))
-    except Exception:
-        try:
-            os.startfile(download_url)
-            return True
-        except Exception:
-            return False
-
-
-def _show_update_check_popup(parent):
-    try:
-        win = tk.Toplevel(parent)
-        win.title("Check Update")
-        win.transient(parent)
-        win.resizable(False, False)
-        box = ttk.Frame(win, padding=18)
-        box.pack(fill="both", expand=True)
-        ttk.Label(box, text="Checking for updates...", font=("Segoe UI", 10, "bold")).pack(pady=(0,10))
-        bar = ttk.Progressbar(box, mode="indeterminate", length=280)
-        bar.pack()
-        bar.start(12)
-        win.update_idletasks()
-        x = parent.winfo_rootx() + max(0, (parent.winfo_width()-win.winfo_width())//2)
-        y = parent.winfo_rooty() + max(0, (parent.winfo_height()-win.winfo_height())//2)
-        win.geometry(f"+{x}+{y}")
-        return win
-    except Exception:
-        return None
-
-
-def check_for_update(parent, manual=False):
-    checking = _show_update_check_popup(parent)
+    if not manual and _AUTO_CHECK_DONE:
+        return False
+    if not manual:
+        _AUTO_CHECK_DONE = True
+    _CHECK_IN_PROGRESS = True
     try:
         config_path = Path(__file__).resolve().parent / "update_config.json"
         cfg = json.loads(config_path.read_text(encoding="utf-8-sig")) if config_path.exists() else {}
@@ -863,28 +781,26 @@ def check_for_update(parent, manual=False):
         latest = str(data.get("version", "")).strip()
         download_url = str(data.get("url", "")).strip()
         if not latest or not download_url:
-            messagebox.showwarning("Check Update", "Update information is unavailable.", parent=parent)
+            if manual:
+                messagebox.showwarning("Check Update", "Update information is unavailable.", parent=parent)
             return False
         if _version_tuple(latest) <= _version_tuple(APP_VERSION):
-            messagebox.showinfo("Check Update", f"You are using the current version ({APP_VERSION}).", parent=parent)
+            if manual:
+                messagebox.showinfo("Check Update", f"You are using the current version ({APP_VERSION}).", parent=parent)
             return False
-        if not messagebox.askyesno("Update Available", f"A new version ({latest}) is available.\n\nDo you want to download it now?", parent=parent):
+        if not messagebox.askyesno(
+            "Update Available",
+            f"A new version ({latest}) is available.\n\nDo you want to download it now?",
+            parent=parent,
+        ):
             return False
-        if _start_update_download(download_url):
-            messagebox.showinfo("Download Started", "The update Setup download has been started.\n\nRun the downloaded Setup to update Store Inventory Management in C:\\StoreInventoryManagement only.", parent=parent)
-            return True
-        messagebox.showerror("Update Download", "Could not start the update download.", parent=parent)
-        return False
-    except Exception as e:
-        messagebox.showwarning("Check Update", f"Could not check for updates.\n\n{e}", parent=parent)
+        return _start_update_download(download_url)
+    except Exception as exc:
+        if manual:
+            messagebox.showwarning("Check Update", f"Could not check for updates.\n\n{exc}", parent=parent)
         return False
     finally:
-        try:
-            if checking and checking.winfo_exists():
-                checking.destroy()
-        except Exception:
-            pass
-
+        _CHECK_IN_PROGRESS = False
 '''
 pattern = r'(?ms)^def check_for_update\(.*?(?=^def |\Z)'
 m = re.search(pattern, updater)
