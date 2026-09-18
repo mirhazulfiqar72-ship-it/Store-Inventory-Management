@@ -326,5 +326,66 @@ if 'label="Check Update"' not in app:
         raise RuntimeError("Could not find Help menu in store_inventory.py.")
     app = app.replace(needle, replacement, 1)
 
+# Dashboard live counters: update KPI values in place every 1.2 seconds so
+# newly saved Purchase Demands/GRNs/Issues/Items appear immediately without
+# rebuilding or changing the existing dashboard layout.
+if "_dashboard_kpi_vars" not in app:
+    cards_marker='        cards_row=tk.Frame(self.body,bg=COLORS["bg"]);cards_row.pack(fill="x",pady=(0,10))
+'
+    if cards_marker not in app:
+        raise RuntimeError("Could not locate Dashboard KPI card row.")
+    app=app.replace(
+        cards_marker,
+        '        self._dashboard_kpi_vars=[tk.StringVar(value=str(x[1])) for x in cards]\n'
+        '        self._dashboard_kpi_job=None\n'+cards_marker,
+        1
+    )
+    value_marker='            tk.Label(bottom,text=str(val),bg="white",fg=COLORS["primary_dark"],
+                     font=("Segoe UI",21,"bold")).pack(side="left")
+'
+    value_repl='            tk.Label(bottom,textvariable=self._dashboard_kpi_vars[idx],bg="white",fg=COLORS["primary_dark"],
+                     font=("Segoe UI",21,"bold")).pack(side="left")
+'
+    if value_marker in app:
+        app=app.replace(value_marker,value_repl,1)
+    else:
+        # Some source revisions use a one-line Label constructor.
+        value_re=r'            tk\.Label\(bottom,text=str\(val\),bg="white",fg=COLORS\["primary_dark"\],.*?font=\("Segoe UI",21,"bold"\)\)\.pack\(side="left"\)\n'
+        app,n=re.subn(value_re,value_repl,app,count=1)
+        if n != 1:
+            raise RuntimeError("Could not locate Dashboard KPI value label.")
+    method_marker='    def dashboard_details(self,code):
+'
+    refresh_method='''    def _refresh_dashboard_kpis(self):
+        try:
+            if not hasattr(self,"_dashboard_kpi_vars") or not self.body.winfo_exists():
+                return
+            values=(
+                self.conn.execute("SELECT COUNT(*) FROM items").fetchone()[0],
+                self.conn.execute("SELECT COUNT(*) FROM demands").fetchone()[0],
+                self.conn.execute("SELECT COUNT(*) FROM grr").fetchone()[0],
+                self.conn.execute("SELECT COUNT(*) FROM issues").fetchone()[0],
+            )
+            for var,val in zip(self._dashboard_kpi_vars,values):
+                var.set(str(val))
+            self._dashboard_kpi_job=self.after(1200,self._refresh_dashboard_kpis)
+        except Exception:
+            self._dashboard_kpi_job=None
+
+'''
+    if method_marker not in app:
+        raise RuntimeError("Could not locate dashboard_details() for KPI refresh.")
+    app=app.replace(method_marker,refresh_method+method_marker,1)
+    # Start the timer immediately after the dashboard's existing action setup.
+    dash_action='        self.set_page_actions(preview=lambda:self.preview_tree("Dashboard Details",tr,[f"Item Code: {code.get() or 'ALL'}"]))
+'
+    if dash_action in app:
+        app=app.replace(dash_action,dash_action+'        self._refresh_dashboard_kpis()
+',1)
+    else:
+        # Fallback: insert before dashboard_details; method will still refresh
+        # on the next explicit Dashboard navigation.
+        pass
+
 write("store_inventory.py", app)
 print("CI patch complete: durable local snapshot + SQLite persistence + safe Firebase merge + permanent Reports exports + no automatic backup deletion.")
