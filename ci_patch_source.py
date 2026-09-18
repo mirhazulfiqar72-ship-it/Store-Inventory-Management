@@ -489,6 +489,38 @@ backup_function = '''def backup_database(manual=False):
             z.write(dated, "store_inventory.db")
         if not os.path.isfile(zpath) or os.path.getsize(zpath) <= 0:
             return None
+        # Also store a cloud copy of the same complete database snapshot.
+        # This uses the Firebase Realtime Database URL only; no API key is needed.
+        # A cloud-backup failure never invalidates an already-created local backup.
+        try:
+            import requests
+            url_file = Path(__file__).resolve().parent / "firebase_database_url.txt"
+            base_url = ""
+            if url_file.exists():
+                for line in url_file.read_text(encoding="utf-8-sig").splitlines():
+                    line = line.strip()
+                    if line and not line.startswith("#"):
+                        base_url = line.rstrip("/")
+                        break
+            if base_url:
+                cloud_stamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+                cloud_url = f"{base_url}/store_inventory/backups/{cloud_stamp}.json"
+                with open(dated, "rb") as bf:
+                    import base64
+                    encoded = base64.b64encode(bf.read()).decode("ascii")
+                response = requests.put(
+                    cloud_url,
+                    json={
+                        "created_at": cloud_stamp,
+                        "type": "sqlite_backup",
+                        "filename": os.path.basename(zpath),
+                        "database_base64": encoded,
+                    },
+                    timeout=30,
+                )
+                response.raise_for_status()
+        except Exception:
+            pass
         return zpath
     except Exception:
         return None
