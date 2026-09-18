@@ -4328,100 +4328,100 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 
 ## updater.py
 
-- Lines: 153
-- Functions: _app_dir(18-21), _version_tuple(24-31), _load_config(34-39), _download(42-49), _sha256(52-57), _install_after_exit(60-67), _start_update_download(70-92), _show_update_check_popup(95-113), check_for_update(116-152)
+- Lines: 156
+- Functions: _app_dir(21-24), _version_tuple(27-34), _load_config(37-42), _download(45-52), _sha256(55-60), _install_after_exit(63-70), _start_update_download(73-95), _show_update_check_popup(98-116), check_for_update(119-155)
 
 ### Relevant source locations
 
 ```text
-0030:         parts.append(0)
-0031:     return tuple(parts[:4])
-0032: 
-0033: 
-0034: def _load_config():
-0035:     path = os.path.join(_app_dir(), CONFIG_NAME)
-0036:     if not os.path.exists(path):
-0037:         return {}
-0038:     with open(path, "r", encoding="utf-8") as f:
-0039:         return json.load(f)
-0040: 
-0041: 
-0042: def _download(url, destination):
-0043:     req = urllib.request.Request(url, headers={"User-Agent": "StoreInventoryManagement-Updater"})
-0044:     with urllib.request.urlopen(req, timeout=30) as response, open(destination, "wb") as out:
-0045:         while True:
-0046:             chunk = response.read(1024 * 1024)
-0047:             if not chunk:
-0048:                 break
-0049:             out.write(chunk)
-0050: 
+0033:         parts.append(0)
+0034:     return tuple(parts[:4])
+0035: 
+0036: 
+0037: def _load_config():
+0038:     path = os.path.join(_app_dir(), CONFIG_NAME)
+0039:     if not os.path.exists(path):
+0040:         return {}
+0041:     with open(path, "r", encoding="utf-8") as f:
+0042:         return json.load(f)
+0043: 
+0044: 
+0045: def _download(url, destination):
+0046:     req = urllib.request.Request(url, headers={"User-Agent": "StoreInventoryManagement-Updater"})
+0047:     with urllib.request.urlopen(req, timeout=30) as response, open(destination, "wb") as out:
+0048:         while True:
+0049:             chunk = response.read(1024 * 1024)
+0050:             if not chunk:
+0051:                 break
+0052:             out.write(chunk)
+0053: 
 ```
 ```text
-0046:             chunk = response.read(1024 * 1024)
-0047:             if not chunk:
-0048:                 break
-0049:             out.write(chunk)
-0050: 
-0051: 
-0052: def _sha256(path):
-0053:     h = hashlib.sha256()
-0054:     with open(path, "rb") as f:
-0055:         for chunk in iter(lambda: f.read(1024 * 1024), b""):
-0056:             h.update(chunk)
-0057:     return h.hexdigest().lower()
-0058: 
-0059: 
-0060: def _install_after_exit(new_exe, current_exe):
-0061:     app_dir = os.path.dirname(current_exe)
-0062:     script = os.path.join(app_dir, ".store_inventory_update.cmd")
-0063:     pid = os.getpid()
-0064:     script_text = f'''@echo off\nsetlocal\nset "NEW={new_exe}"\nset "OLD={current_exe}"\nset "PID={pid}"\n:wait\ntasklist /FI "PID eq %PID%" 2>nul | findstr /I "%PID%" >nul\nif not errorlevel 1 (\n  timeout /t 1 /nobreak >nul\n  goto wait\n)\ntimeout /t 1 /nobreak >nul\nmove /Y "%NEW%" "%OLD%" >nul 2>&1\nif not exist "%OLD%" goto fail\nstart "" "%OLD%"\ndel "%~f0"\nexit /b 0\n:fail\nstart "" "%OLD%"\ndel "%~f0"\nexit /b 1\n'''
-0065:     with open(script, "w", encoding="utf-8") as f:
-0066:         f.write(script_text)
+0049:             chunk = response.read(1024 * 1024)
+0050:             if not chunk:
+0051:                 break
+0052:             out.write(chunk)
+0053: 
+0054: 
+0055: def _sha256(path):
+0056:     h = hashlib.sha256()
+0057:     with open(path, "rb") as f:
+0058:         for chunk in iter(lambda: f.read(1024 * 1024), b""):
+0059:             h.update(chunk)
+0060:     return h.hexdigest().lower()
+0061: 
+0062: 
+0063: def _install_after_exit(new_exe, current_exe):
+0064:     app_dir = os.path.dirname(current_exe)
+0065:     script = os.path.join(app_dir, ".store_inventory_update.cmd")
+0066:     pid = os.getpid()
+0067:     script_text = f'''@echo off\nsetlocal\nset "NEW={new_exe}"\nset "OLD={current_exe}"\nset "PID={pid}"\n:wait\ntasklist /FI "PID eq %PID%" 2>nul | findstr /I "%PID%" >nul\nif not errorlevel 1 (\n  timeout /t 1 /nobreak >nul\n  goto wait\n)\ntimeout /t 1 /nobreak >nul\nmove /Y "%NEW%" "%OLD%" >nul 2>&1\nif not exist "%OLD%" goto fail\nstart "" "%OLD%"\ndel "%~f0"\nexit /b 0\n:fail\nstart "" "%OLD%"\ndel "%~f0"\nexit /b 1\n'''
+0068:     with open(script, "w", encoding="utf-8") as f:
+0069:         f.write(script_text)
 ```
 ```text
-0059: 
-0060: def _install_after_exit(new_exe, current_exe):
-0061:     app_dir = os.path.dirname(current_exe)
-0062:     script = os.path.join(app_dir, ".store_inventory_update.cmd")
-0063:     pid = os.getpid()
-0064:     script_text = f'''@echo off\nsetlocal\nset "NEW={new_exe}"\nset "OLD={current_exe}"\nset "PID={pid}"\n:wait\ntasklist /FI "PID eq %PID%" 2>nul | findstr /I "%PID%" >nul\nif not errorlevel 1 (\n  timeout /t 1 /nobreak >nul\n  goto wait\n)\ntimeout /t 1 /nobreak >nul\nmove /Y "%NEW%" "%OLD%" >nul 2>&1\nif not exist "%OLD%" goto fail\nstart "" "%OLD%"\ndel "%~f0"\nexit /b 0\n:fail\nstart "" "%OLD%"\ndel "%~f0"\nexit /b 1\n'''
-0065:     with open(script, "w", encoding="utf-8") as f:
-0066:         f.write(script_text)
-0067:     subprocess.Popen(["cmd.exe", "/c", script], creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
-0068: 
-0069: 
-0070: def _start_update_download(download_url):
-0071:     """Start the fixed-location update installer with IDM when available."""
-0072:     if not download_url:
-0073:         return False
-0074:     candidates = [
-0075:         os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
-0076:         os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
-0077:     ]
-0078:     for idm in candidates:
-0079:         if idm and os.path.isfile(idm):
+0062: 
+0063: def _install_after_exit(new_exe, current_exe):
+0064:     app_dir = os.path.dirname(current_exe)
+0065:     script = os.path.join(app_dir, ".store_inventory_update.cmd")
+0066:     pid = os.getpid()
+0067:     script_text = f'''@echo off\nsetlocal\nset "NEW={new_exe}"\nset "OLD={current_exe}"\nset "PID={pid}"\n:wait\ntasklist /FI "PID eq %PID%" 2>nul | findstr /I "%PID%" >nul\nif not errorlevel 1 (\n  timeout /t 1 /nobreak >nul\n  goto wait\n)\ntimeout /t 1 /nobreak >nul\nmove /Y "%NEW%" "%OLD%" >nul 2>&1\nif not exist "%OLD%" goto fail\nstart "" "%OLD%"\ndel "%~f0"\nexit /b 0\n:fail\nstart "" "%OLD%"\ndel "%~f0"\nexit /b 1\n'''
+0068:     with open(script, "w", encoding="utf-8") as f:
+0069:         f.write(script_text)
+0070:     subprocess.Popen(["cmd.exe", "/c", script], creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+0071: 
+0072: 
+0073: def _start_update_download(download_url):
+0074:     """Start the fixed-location update installer with IDM when available."""
+0075:     if not download_url:
+0076:         return False
+0077:     candidates = [
+0078:         os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
+0079:         os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
+0080:     ]
+0081:     for idm in candidates:
+0082:         if idm and os.path.isfile(idm):
 ```
 ```text
-0073:         return False
-0074:     candidates = [
-0075:         os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
-0076:         os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
-0077:     ]
-0078:     for idm in candidates:
-0079:         if idm and os.path.isfile(idm):
-0080:             try:
-0081:                 subprocess.Popen([idm, "/d", download_url, "/n"], close_fds=True)
-0082:                 return True
-0083:             except Exception:
-0084:                 pass
-0085:     try:
-0086:         return bool(webbrowser.open(download_url, new=2))
-0087:     except Exception:
-0088:         try:
-0089:             os.startfile(download_url)
-0090:             return True
-0091:         except Exception:
-0092:             return False
-0093: 
+0076:         return False
+0077:     candidates = [
+0078:         os.path.expandvars(r"%PROGRAMFILES%\Internet Download Manager\IDMan.exe"),
+0079:         os.path.expandvars(r"%PROGRAMFILES(x86)%\Internet Download Manager\IDMan.exe"),
+0080:     ]
+0081:     for idm in candidates:
+0082:         if idm and os.path.isfile(idm):
+0083:             try:
+0084:                 subprocess.Popen([idm, "/d", download_url, "/n"], close_fds=True)
+0085:                 return True
+0086:             except Exception:
+0087:                 pass
+0088:     try:
+0089:         return bool(webbrowser.open(download_url, new=2))
+0090:     except Exception:
+0091:         try:
+0092:             os.startfile(download_url)
+0093:             return True
+0094:         except Exception:
+0095:             return False
+0096: 
 ```
