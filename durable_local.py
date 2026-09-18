@@ -102,10 +102,21 @@ def save(conn: sqlite3.Connection) -> bool:
 def load() -> Dict[str, Any] | None:
     global LAST_ERROR
     try:
-        if not SNAPSHOT_PATH.exists():
+        candidates = []
+        # The C: snapshot is convenient for normal operation, while the
+        # AppData recovery copy survives deletion/reinstallation of the
+        # installation folder.
+        for path in (SNAPSHOT_PATH, RECOVERY_SNAPSHOT_PATH):
+            try:
+                if path.exists():
+                    value = json.loads(path.read_text(encoding="utf-8"))
+                    if isinstance(value, dict):
+                        candidates.append(value)
+            except Exception:
+                pass
+        if not candidates:
             return None
-        value = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
-        return value if isinstance(value, dict) else None
+        return max(candidates, key=_row_count)
     except Exception:
         LAST_ERROR = traceback.format_exc()
         return None
