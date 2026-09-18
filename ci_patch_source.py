@@ -64,7 +64,7 @@ write("update_config.json", json.dumps({"manifest_url": manifest_url}, indent=2)
 updater = read("updater.py")
 updater = re.sub(r'^import storage_lock\s*\n', '', updater, count=1, flags=re.M)
 updater = "import storage_lock\n" + updater
-for line in ["import os\n", "import subprocess\n", "import webbrowser\n", "from pathlib import Path\n"]:
+for line in ["import os\n", "import subprocess\n", "import webbrowser\n", "from pathlib import Path\n", "import tkinter as tk\n", "from tkinter import ttk, messagebox\n", "import json\n", "import requests\n"]:
     if line.strip() not in updater:
         updater = line + updater
 
