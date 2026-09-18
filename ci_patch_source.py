@@ -237,6 +237,72 @@ app, backup_patch_count = re.subn(
 if backup_patch_count not in (0, 1):
     raise RuntimeError("Unexpected backup patch match count.")
 
+# Repair manual backup creation for the permanent C: database.
+# The old routine checked/copied the pre-patch database location, which could
+# report "database exists" even though the live DB is under C:\\StoreInventoryManagement\\Data.
+backup_re = re.compile(r'(?ms)^def backup_database\(manual=False\):\\n.*?(?=^def restore_database\()', re.M)
+backup_match = backup_re.search(app)
+if not backup_match:
+    raise RuntimeError("Could not locate backup_database() in store_inventory.py.")
+backup_function = '''def backup_database(manual=False):
+    """Create a consistent full SQLite backup in C:\\StoreInventoryManagement\\Backups."""
+    try:
+        os.makedirs(BACKUP_DIR, exist_ok=True)
+        db_candidates = [
+            os.path.abspath(DB),
+            os.path.join(r"C:\\StoreInventoryManagement", "Data", "store_inventory.db"),
+            os.path.join(r"C:\\StoreInventoryManagement", "store_inventory.db"),
+        ]
+        db_path = next((p for p in db_candidates if os.path.isfile(p)), None)
+        if not db_path:
+            # The live connection may have been created through the storage
+            # layer even when the original legacy path is absent.
+            try:
+                raw = sqlite3.connect(os.path.join(r"C:\\StoreInventoryManagement", "Data", "store_inventory.db"))
+                raw.close()
+                db_path = db_candidates[1] if os.path.isfile(db_candidates[1]) else None
+            except Exception:
+                db_path = None
+        if not db_path:
+            return None
+
+        stamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+        tag = "manual" if manual else "auto"
+        latest = os.path.join(BACKUP_DIR, "inventory_backup_latest.db")
+        dated = os.path.join(BACKUP_DIR, f"inventory_backup_{tag}_{stamp}.db")
+        zpath = os.path.join(BACKUP_DIR, f"inventory_backup_{tag}_{stamp}.zip")
+
+        src = sqlite3.connect(db_path, timeout=30)
+        try:
+            try:
+                src.execute("PRAGMA wal_checkpoint(FULL)")
+            except Exception:
+                pass
+            for path in (latest, dated):
+                if os.path.exists(path):
+                    try:
+                        os.remove(path)
+                    except OSError:
+                        pass
+                dst = sqlite3.connect(path, timeout=30)
+                try:
+                    with dst:
+                        src.backup(dst)
+                finally:
+                    dst.close()
+        finally:
+            src.close()
+
+        if not os.path.isfile(dated) or os.path.getsize(dated) <= 0:
+            return None
+        with zipfile.ZipFile(zpath, "w", zipfile.ZIP_DEFLATED) as z:
+            z.write(dated, "store_inventory.db")
+        if not os.path.isfile(zpath) or os.path.getsize(zpath) <= 0:
+            return None
+        return zpath
+    except Exception:
+        return None
+
 # Make Preview -> Export PDF fail loudly and leave the verified file in the
 # permanent Reports folder. Print buttons remain print-only.
 export_re = re.compile(r'(?ms)^    def export_preview_pdf\(self, title, header_lines, columns, rows\):\n.*?(?=^    def export_preview_word\(self, title, header_lines, columns, rows\):)')
