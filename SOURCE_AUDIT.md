@@ -209,8 +209,8 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 
 ## firebase_sync.py
 
-- Lines: 464
-- Functions: _safe_json_value(24-27), _table_columns(28-29), snapshot_db(30-38), _row_key(39-43), _index_snapshot(44-48), merge_local_changes(49-70), _snapshot_has_records(71-73), __init__(75-91), _read_url(92-102), status_text(103-108), _request(109-118), _get_meta(119-125), _get_snapshot(126-132), _load_json(133-141), _atomic_save_json(142-156), _save_state(157-161), _save_pending(162-166), _clear_pending(167-172), _get_lock_etag(173-182), _try_acquire_lock(183-204), _release_lock(205-214), initialize(215-271), replace_local(272-289), _write_remote(290-311), push_changes(312-331), maybe_pull(332-395), __init__(398-400), execute(401-403), executemany(404-406), executescript(407-409), __getattr__(410-411), __init__(414-419), _before_write(420-423), _before_sql(424-430), execute(431-433), executemany(434-436), executescript(437-439), cursor(440-441), commit(442-453), rollback(455-458), close(459-460), backup(461-462), __getattr__(463-464)
+- Lines: 466
+- Functions: _safe_json_value(24-27), _table_columns(28-29), snapshot_db(30-38), _row_key(39-43), _index_snapshot(44-48), merge_local_changes(49-70), _snapshot_has_records(71-73), __init__(75-91), _read_url(92-102), status_text(103-108), _request(109-118), _get_meta(119-125), _get_snapshot(126-132), _load_json(133-141), _atomic_save_json(142-156), _save_state(157-161), _save_pending(162-166), _clear_pending(167-172), _get_lock_etag(173-182), _try_acquire_lock(183-204), _release_lock(205-214), initialize(215-271), replace_local(272-289), _write_remote(290-311), push_changes(312-331), maybe_pull(332-397), __init__(400-402), execute(403-405), executemany(406-408), executescript(409-411), __getattr__(412-413), __init__(416-421), _before_write(422-425), _before_sql(426-432), execute(433-435), executemany(436-438), executescript(439-441), cursor(442-443), commit(444-455), rollback(457-460), close(461-462), backup(463-464), __getattr__(465-466)
 
 ### Relevant source locations
 
@@ -571,11 +571,11 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 0332:     def maybe_pull(self, conn: sqlite3.Connection) -> bool:
 0333:         """Pull Firebase changes even when the remote metadata/version endpoint
 0334:         is unavailable or cached. This is the live cross-PC synchronization path."""
-0335:         if not self.enabled or self.pending_base is not None:
+0335:         if not self.enabled:
 0336:             return False
 ```
 ```text
-0335:         if not self.enabled or self.pending_base is not None:
+0335:         if not self.enabled:
 0336:             return False
 0337:         now = time.monotonic()
 0338:         if now - self.last_check < self.check_interval:
@@ -630,7 +630,7 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 0370:             # Three-way merge remote changes with any local changes made since
 0371:             # the last synchronized state. Never replace a newer local record
 0372:             # merely because another PC changed Firebase.
-0373:             baseline = state_snapshot if isinstance(state_snapshot, dict) else {"schema": 1, "tables": {}}
+0373:             baseline = self.pending_base or (state_snapshot if isinstance(state_snapshot, dict) else {"schema": 1, "tables": {}})
 0374:             local = snapshot_db(conn)
 0375:             merged = merge_local_changes(snapshot, baseline, local)
 0376: 
@@ -655,124 +655,124 @@ Generated from `D:\a\Store-Inventory-Management\Store-Inventory-Management\sourc
 0389:                 self._save_state(snapshot)
 0390: 
 0391:             self.pending_error = None
-0392:             return True
-0393:         except Exception as exc:
-0394:             self.pending_error = str(exc)
-0395:             return False
-0396: class _OnlineCursor:
-0397:     """Cursor proxy that keeps Firebase sync active for conn.cursor().execute()."""
-0398:     def __init__(self, owner, cursor):
-0399:         self._owner = owner
-0400:         self._cursor = cursor
-0401:     def execute(self, sql, params=()):
+0392:             self.pending_base = None
+0393:             self._clear_pending()
+0394:             return True
+0395:         except Exception as exc:
+0396:             self.pending_error = str(exc)
+0397:             return False
+0398: class _OnlineCursor:
+0399:     """Cursor proxy that keeps Firebase sync active for conn.cursor().execute()."""
+0400:     def __init__(self, owner, cursor):
+0401:         self._owner = owner
 ```
 ```text
-0394:             self.pending_error = str(exc)
-0395:             return False
-0396: class _OnlineCursor:
-0397:     """Cursor proxy that keeps Firebase sync active for conn.cursor().execute()."""
-0398:     def __init__(self, owner, cursor):
-0399:         self._owner = owner
-0400:         self._cursor = cursor
-0401:     def execute(self, sql, params=()):
-0402:         self._owner._before_sql(sql)
-0403:         return self._cursor.execute(sql, params)
-0404:     def executemany(self, sql, seq_of_params):
-0405:         self._owner._before_write()
-0406:         return self._cursor.executemany(sql, seq_of_params)
-0407:     def executescript(self, script):
-0408:         self._owner._before_write()
-0409:         return self._cursor.executescript(script)
-0410:     def __getattr__(self, name):
-0411:         return getattr(self._cursor, name)
-0412: 
-0413: class OnlineConnection:
-0414:     def __init__(self, db_path: str, sync: FirebaseSync):
+0395:         except Exception as exc:
+0396:             self.pending_error = str(exc)
+0397:             return False
+0398: class _OnlineCursor:
+0399:     """Cursor proxy that keeps Firebase sync active for conn.cursor().execute()."""
+0400:     def __init__(self, owner, cursor):
+0401:         self._owner = owner
+0402:         self._cursor = cursor
+0403:     def execute(self, sql, params=()):
+0404:         self._owner._before_sql(sql)
+0405:         return self._cursor.execute(sql, params)
+0406:     def executemany(self, sql, seq_of_params):
+0407:         self._owner._before_write()
+0408:         return self._cursor.executemany(sql, seq_of_params)
+0409:     def executescript(self, script):
+0410:         self._owner._before_write()
+0411:         return self._cursor.executescript(script)
+0412:     def __getattr__(self, name):
+0413:         return getattr(self._cursor, name)
+0414: 
+0415: class OnlineConnection:
 ```
 ```text
-0407:     def executescript(self, script):
-0408:         self._owner._before_write()
-0409:         return self._cursor.executescript(script)
-0410:     def __getattr__(self, name):
-0411:         return getattr(self._cursor, name)
-0412: 
-0413: class OnlineConnection:
-0414:     def __init__(self, db_path: str, sync: FirebaseSync):
-0415:         self._conn = sqlite3.connect(db_path, timeout=20)
-0416:         self._conn.execute("PRAGMA busy_timeout=20000")
-0417:         self.sync = sync
-0418:         self._dirty = False
-0419:         self._baseline: Optional[Dict[str, Any]] = None
-0420:     def _before_write(self):
-0421:         if not self._dirty:
-0422:             self._baseline = self.sync.pending_base or snapshot_db(self._conn)
-0423:             self._dirty = True
-0424:     def _before_sql(self, sql):
-0425:         s = str(sql).lstrip().upper()
-0426:         is_read = s.startswith("SELECT") or s.startswith("PRAGMA") or s.startswith("WITH") or s.startswith("EXPLAIN")
-0427:         if is_read and not self._dirty and self._baseline is None:
+0408:         return self._cursor.executemany(sql, seq_of_params)
+0409:     def executescript(self, script):
+0410:         self._owner._before_write()
+0411:         return self._cursor.executescript(script)
+0412:     def __getattr__(self, name):
+0413:         return getattr(self._cursor, name)
+0414: 
+0415: class OnlineConnection:
+0416:     def __init__(self, db_path: str, sync: FirebaseSync):
+0417:         self._conn = sqlite3.connect(db_path, timeout=20)
+0418:         self._conn.execute("PRAGMA busy_timeout=20000")
+0419:         self.sync = sync
+0420:         self._dirty = False
+0421:         self._baseline: Optional[Dict[str, Any]] = None
+0422:     def _before_write(self):
+0423:         if not self._dirty:
+0424:             self._baseline = self.sync.pending_base or snapshot_db(self._conn)
+0425:             self._dirty = True
+0426:     def _before_sql(self, sql):
+0427:         s = str(sql).lstrip().upper()
+0428:         is_read = s.startswith("SELECT") or s.startswith("PRAGMA") or s.startswith("WITH") or s.startswith("EXPLAIN")
 ```
 ```text
-0423:             self._dirty = True
-0424:     def _before_sql(self, sql):
-0425:         s = str(sql).lstrip().upper()
-0426:         is_read = s.startswith("SELECT") or s.startswith("PRAGMA") or s.startswith("WITH") or s.startswith("EXPLAIN")
-0427:         if is_read and not self._dirty and self._baseline is None:
-0428:             self.sync.maybe_pull(self._conn)
-0429:         elif not is_read:
-0430:             self._before_write()
-0431:     def execute(self, sql: str, params: Iterable[Any] = ()):
-0432:         self._before_sql(sql)
-0433:         return self._conn.execute(sql, params)
-0434:     def executemany(self, sql: str, seq_of_params):
-0435:         self._before_write()
-0436:         return self._conn.executemany(sql, seq_of_params)
-0437:     def executescript(self, script):
-0438:         self._before_write()
-0439:         return self._conn.executescript(script)
-0440:     def cursor(self, *args, **kwargs):
-0441:         return _OnlineCursor(self, self._conn.cursor(*args, **kwargs))
-0442:     def commit(self):
-0443:         self._conn.commit()
+0425:             self._dirty = True
+0426:     def _before_sql(self, sql):
+0427:         s = str(sql).lstrip().upper()
+0428:         is_read = s.startswith("SELECT") or s.startswith("PRAGMA") or s.startswith("WITH") or s.startswith("EXPLAIN")
+0429:         if is_read and not self._dirty and self._baseline is None:
+0430:             self.sync.maybe_pull(self._conn)
+0431:         elif not is_read:
+0432:             self._before_write()
+0433:     def execute(self, sql: str, params: Iterable[Any] = ()):
+0434:         self._before_sql(sql)
+0435:         return self._conn.execute(sql, params)
+0436:     def executemany(self, sql: str, seq_of_params):
+0437:         self._before_write()
+0438:         return self._conn.executemany(sql, seq_of_params)
+0439:     def executescript(self, script):
+0440:         self._before_write()
+0441:         return self._conn.executescript(script)
+0442:     def cursor(self, *args, **kwargs):
+0443:         return _OnlineCursor(self, self._conn.cursor(*args, **kwargs))
+0444:     def commit(self):
+0445:         self._conn.commit()
 ```
 ```text
-0438:         self._before_write()
-0439:         return self._conn.executescript(script)
-0440:     def cursor(self, *args, **kwargs):
-0441:         return _OnlineCursor(self, self._conn.cursor(*args, **kwargs))
-0442:     def commit(self):
-0443:         self._conn.commit()
-0444:         # Keep the recovery module available inside the generated sync module.
-0445:         import durable_local
-0446:         # Make local persistence independent of Firebase availability.
-0447:         durable_local.save(self._conn)
-0448:         if self._dirty:
-0449:             self.sync.push_changes(self._conn, self._baseline or snapshot_db(self._conn))
-0450:             # push_changes may merge remote rows back into SQLite.
-0451:             durable_local.save(self._conn)
-0452:         self._dirty = False
-0453:         self._baseline = None if self.sync.pending_base is None else self.sync.pending_base
-0454: 
-0455:     def rollback(self):
-0456:         self._conn.rollback()
-0457:         self._dirty = False
-0458:         self._baseline = None
+0440:         self._before_write()
+0441:         return self._conn.executescript(script)
+0442:     def cursor(self, *args, **kwargs):
+0443:         return _OnlineCursor(self, self._conn.cursor(*args, **kwargs))
+0444:     def commit(self):
+0445:         self._conn.commit()
+0446:         # Keep the recovery module available inside the generated sync module.
+0447:         import durable_local
+0448:         # Make local persistence independent of Firebase availability.
+0449:         durable_local.save(self._conn)
+0450:         if self._dirty:
+0451:             self.sync.push_changes(self._conn, self._baseline or snapshot_db(self._conn))
+0452:             # push_changes may merge remote rows back into SQLite.
+0453:             durable_local.save(self._conn)
+0454:         self._dirty = False
+0455:         self._baseline = None if self.sync.pending_base is None else self.sync.pending_base
+0456: 
+0457:     def rollback(self):
+0458:         self._conn.rollback()
+0459:         self._dirty = False
+0460:         self._baseline = None
 ```
 ```text
-0451:             durable_local.save(self._conn)
-0452:         self._dirty = False
-0453:         self._baseline = None if self.sync.pending_base is None else self.sync.pending_base
-0454: 
-0455:     def rollback(self):
-0456:         self._conn.rollback()
-0457:         self._dirty = False
-0458:         self._baseline = None
-0459:     def close(self):
-0460:         self._conn.close()
-0461:     def backup(self, target):
-0462:         return self._conn.backup(target)
-0463:     def __getattr__(self, name):
-0464:         return getattr(self._conn, name)
+0453:             durable_local.save(self._conn)
+0454:         self._dirty = False
+0455:         self._baseline = None if self.sync.pending_base is None else self.sync.pending_base
+0456: 
+0457:     def rollback(self):
+0458:         self._conn.rollback()
+0459:         self._dirty = False
+0460:         self._baseline = None
+0461:     def close(self):
+0462:         self._conn.close()
+0463:     def backup(self, target):
+0464:         return self._conn.backup(target)
+0465:     def __getattr__(self, name):
+0466:         return getattr(self._conn, name)
 ```
 
 ## storage_lock.py
