@@ -332,7 +332,7 @@ class FirebaseSync:
     def maybe_pull(self, conn: sqlite3.Connection) -> bool:
         """Pull Firebase changes even when the remote metadata/version endpoint
         is unavailable or cached. This is the live cross-PC synchronization path."""
-        if not self.enabled or self.pending_base is not None:
+        if not self.enabled:
             return False
         now = time.monotonic()
         if now - self.last_check < self.check_interval:
@@ -370,7 +370,7 @@ class FirebaseSync:
             # Three-way merge remote changes with any local changes made since
             # the last synchronized state. Never replace a newer local record
             # merely because another PC changed Firebase.
-            baseline = state_snapshot if isinstance(state_snapshot, dict) else {"schema": 1, "tables": {}}
+            baseline = self.pending_base or (state_snapshot if isinstance(state_snapshot, dict) else {"schema": 1, "tables": {}})
             local = snapshot_db(conn)
             merged = merge_local_changes(snapshot, baseline, local)
 
@@ -389,6 +389,8 @@ class FirebaseSync:
                 self._save_state(snapshot)
 
             self.pending_error = None
+            self.pending_base = None
+            self._clear_pending()
             return True
         except Exception as exc:
             self.pending_error = str(exc)
@@ -452,7 +454,7 @@ class OnlineConnection:
             self.sync.push_changes(self._conn, baseline or {"schema": 1, "tables": {}})
             durable_local.save(self._conn)
         self._dirty = False
-        self._baseline = None if self.sync.pending_base is None else self.sync.pending_base
+        self._baseline = None
     def rollback(self):
         self._conn.rollback()
         self._dirty = False
