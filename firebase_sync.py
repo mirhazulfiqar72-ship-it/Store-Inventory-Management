@@ -393,6 +393,23 @@ class FirebaseSync:
         except Exception as exc:
             self.pending_error = str(exc)
             return False
+class _OnlineCursor:
+    """Cursor proxy that keeps Firebase sync active for conn.cursor().execute()."""
+    def __init__(self, owner, cursor):
+        self._owner = owner
+        self._cursor = cursor
+    def execute(self, sql, params=()):
+        self._owner._before_sql(sql)
+        return self._cursor.execute(sql, params)
+    def executemany(self, sql, seq_of_params):
+        self._owner._before_write()
+        return self._cursor.executemany(sql, seq_of_params)
+    def executescript(self, script):
+        self._owner._before_write()
+        return self._cursor.executescript(script)
+    def __getattr__(self, name):
+        return getattr(self._cursor, name)
+
 class OnlineConnection:
     def __init__(self, db_path: str, sync: FirebaseSync):
         self._conn = sqlite3.connect(db_path, timeout=20)
@@ -400,39 +417,40 @@ class OnlineConnection:
         self.sync = sync
         self._dirty = False
         self._baseline: Optional[Dict[str, Any]] = None
-    def execute(self, sql: str, params: Iterable[Any] = ()):
-        s = sql.lstrip().upper()
-        is_read = s.startswith("SELECT") or s.startswith("PRAGMA") or s.startswith("WITH") or s.startswith("EXPLAIN")
-        if is_read and not self._dirty and self._baseline is None:
-            self.sync.maybe_pull(self._conn)
-        elif not is_read and not self._dirty:
-            self._baseline = self.sync.pending_base or snapshot_db(self._conn)
-            self._dirty = True
-        return self._conn.execute(sql, params)
-    def executemany(self, sql: str, seq_of_params):
+    def _before_write(self):
         if not self._dirty:
             self._baseline = self.sync.pending_base or snapshot_db(self._conn)
             self._dirty = True
+    def _before_sql(self, sql):
+        s = str(sql).lstrip().upper()
+        is_read = s.startswith("SELECT") or s.startswith("PRAGMA") or s.startswith("WITH") or s.startswith("EXPLAIN")
+        if is_read and not self._dirty and self._baseline is None:
+            self.sync.maybe_pull(self._conn)
+        elif not is_read:
+            self._before_write()
+    def execute(self, sql: str, params: Iterable[Any] = ()):
+        self._before_sql(sql)
+        return self._conn.execute(sql, params)
+    def executemany(self, sql: str, seq_of_params):
+        self._before_write()
         return self._conn.executemany(sql, seq_of_params)
+    def executescript(self, script):
+        self._before_write()
+        return self._conn.executescript(script)
+    def cursor(self, *args, **kwargs):
+        return _OnlineCursor(self, self._conn.cursor(*args, **kwargs))
     def commit(self):
         self._conn.commit()
-        # Keep an out-of-installation recovery copy on EVERY successful commit.
-        # This survives deletion/reinstallation of C:\StoreInventoryManagement,
-        # including entries that were created after the last application restart.
-        try:
-            import durable_local
+        import durable_local
+        durable_local.save(self._conn)
+        local = snapshot_db(self._conn)
+        baseline = self._baseline
+        if baseline is None:
+            state = self.sync._load_json(self.sync.state_path)
+            baseline = state if isinstance(state, dict) else None
+        if baseline is None or local != baseline:
+            self.sync.push_changes(self._conn, baseline or {"schema": 1, "tables": {}})
             durable_local.save(self._conn)
-        except Exception:
-            pass
-        if self._dirty:
-            self.sync.push_changes(self._conn, self._baseline or snapshot_db(self._conn))
-        # Save once more after a successful cloud merge so the recovery copy
-        # contains the same complete dataset as the synchronized local DB.
-        try:
-            import durable_local
-            durable_local.save(self._conn)
-        except Exception:
-            pass
         self._dirty = False
         self._baseline = None if self.sync.pending_base is None else self.sync.pending_base
     def rollback(self):
