@@ -608,6 +608,23 @@ if "_dashboard_kpi_vars" not in app:
     if dash_action in app:
         app=app.replace(dash_action,dash_action+"        self._refresh_dashboard_kpis()" + chr(10),1)
 
+# Cache-bust GitHub raw manifest so old installed builds always see the current release.
+if 'import time\n' not in updater:
+    updater = updater.replace('import requests\n', 'import requests\nimport time\n', 1)
+updater = updater.replace(
+'''        response = requests.get(manifest_url, timeout=12)
+        response.raise_for_status()
+''',
+'''        cache_bust = int(time.time() * 1000)
+        separator = "&" if "?" in manifest_url else "?"
+        fresh_manifest_url = f"{manifest_url}{separator}_cb={cache_bust}"
+        response = requests.get(
+            fresh_manifest_url,
+            headers={"Cache-Control": "no-cache, no-store, max-age=0", "Pragma": "no-cache", "Accept": "application/json"},
+            timeout=12,
+        )
+        response.raise_for_status()
+''', 1)
 write("store_inventory.py", app)
 print("CI patch complete: durable local snapshot + SQLite persistence + safe Firebase merge + permanent Reports exports + no automatic backup deletion.")
 
