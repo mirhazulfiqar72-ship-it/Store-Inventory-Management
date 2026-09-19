@@ -181,16 +181,32 @@ class FirebaseSync:
             value = None
         return value, r.headers.get("ETag", "null_etag")
     def _try_acquire_lock(self, token: str) -> bool:
+        # The old lock could survive a crashed client forever. Use a short
+        # lease so one dead PC can never permanently block online sync.
         value, etag = self._get_lock_etag()
-        if value not in (None, ""):
-            return False
+        if isinstance(value, dict):
+            owner = str(value.get("token") or "")
+            created = float(value.get("created_at") or 0)
+            if owner and (time.time() - created) < 30:
+                return False
+        elif value not in (None, ""):
+            # Legacy string locks from older builds are treated as stale.
+            # The ETag still prevents two clients from replacing each other
+            # at the same instant.
+            pass
         url = f"{self.base_url}/store_inventory/_lock.json"
-        r = self.session.put(url, json=token, headers={"if-match": etag, "content-type": "application/json"}, timeout=self.timeout)
+        payload = {"token": token, "created_at": time.time()}
+        r = self.session.put(
+            url, json=payload,
+            headers={"if-match": etag, "content-type": "application/json"},
+            timeout=self.timeout,
+        )
         return r.status_code in (200, 201)
     def _release_lock(self, token: str) -> None:
         try:
             value, etag = self._get_lock_etag()
-            if value != token:
+            owner = value.get("token") if isinstance(value, dict) else value
+            if owner != token:
                 return
             url = f"{self.base_url}/store_inventory/_lock.json"
             self.session.put(url, data="null", headers={"if-match": etag, "content-type": "application/json"}, timeout=self.timeout)
@@ -343,13 +359,27 @@ class FirebaseSync:
                 self.pending_error = None
                 return False
 
-            self.replace_local(conn, snapshot)
-            try:
-                version, _ = self._get_meta()
-            except Exception:
-                version = None
-            self.last_remote_version = version
-            self._save_state(snapshot)
+            # Three-way merge remote changes with any local changes made since
+            # the last synchronized state. Never replace a newer local record
+            # merely because another PC changed Firebase.
+            baseline = state_snapshot if isinstance(state_snapshot, dict) else {"schema": 1, "tables": {}}
+            local = snapshot_db(conn)
+            merged = merge_local_changes(snapshot, baseline, local)
+
+            if merged != snapshot:
+                new_version = self._write_remote(merged)
+                self.replace_local(conn, merged)
+                self.last_remote_version = new_version
+                self._save_state(merged)
+            else:
+                self.replace_local(conn, snapshot)
+                try:
+                    version, _ = self._get_meta()
+                except Exception:
+                    version = None
+                self.last_remote_version = version
+                self._save_state(snapshot)
+
             self.pending_error = None
             return True
         except Exception as exc:
