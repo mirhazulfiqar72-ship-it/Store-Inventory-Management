@@ -61,7 +61,7 @@ jobs:
       - name: Set release version
         shell: pwsh
         run: |
-          $version = "1.0.80"
+          $version = "1.0.81"
           $path = "source\updater.py"
           $text = Get-Content $path -Raw
           $text = [regex]::Replace($text, 'APP_VERSION\s*=\s*["''][^"'']*["'']', "APP_VERSION = `"$version`"")
@@ -122,7 +122,7 @@ jobs:
       - name: Create Windows installer
         shell: pwsh
         run: |
-          $version = "1.0.80"
+          $version = "1.0.81"
           $exe = (Resolve-Path "source\dist\StoreInventoryManagement.exe").Path
           $setup = Join-Path $PWD "StoreInventoryManagement_Setup.iss"
           @"
@@ -172,24 +172,24 @@ jobs:
         shell: pwsh
         run: |
           $exeHash = (Get-FileHash "source\dist\StoreInventoryManagement.exe" -Algorithm SHA256).Hash.ToLower()
-          $setupPath = "installer\StoreInventoryManagement_Setup_v1.0.80.exe"
+          $setupPath = "installer\StoreInventoryManagement_Setup_v1.0.81.exe"
           $setupHash = (Get-FileHash $setupPath -Algorithm SHA256).Hash.ToLower()
           "EXE_SHA256=$exeHash" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
           "SETUP_SHA256=$setupHash" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
       - name: Create GitHub Release and upload installer
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.0.80
-          name: Store Inventory Management v1.0.80
+          tag_name: v1.0.81
+          name: Store Inventory Management v1.0.81
           generate_release_notes: true
           files: |
             source/dist/StoreInventoryManagement.exe
-            installer/StoreInventoryManagement_Setup_v1.0.80.exe
+            installer/StoreInventoryManagement_Setup_v1.0.81.exe
       - name: Update version manifest
         shell: pwsh
         run: |
-          $version = "1.0.80"
-          $url = "https://github.com/${{ github.repository }}/releases/download/v1.0.80/StoreInventoryManagement_Setup_v1.0.80.exe"
+          $version = "1.0.81"
+          $url = "https://github.com/${{ github.repository }}/releases/download/v1.0.81/StoreInventoryManagement_Setup_v1.0.81.exe"
           $manifest = @{ version = $version; url = $url; sha256 = $env:SETUP_SHA256 } | ConvertTo-Json
           Set-Content -Path "version.json" -Value $manifest -Encoding UTF8
       - name: Commit version manifest
@@ -198,5 +198,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add version.json
-          git commit -m "Update version manifest to v1.0.80" || Write-Host "No manifest changes to commit"
+          git commit -m "Update version manifest to v1.0.81" || Write-Host "No manifest changes to commit"
           git push
