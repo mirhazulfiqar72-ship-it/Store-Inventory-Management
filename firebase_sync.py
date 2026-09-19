@@ -306,6 +306,8 @@ class FirebaseSync:
             self._save_pending(local, baseline or {"schema": 1, "tables": {}})
             return False
     def maybe_pull(self, conn: sqlite3.Connection) -> bool:
+        """Pull Firebase changes even when the remote metadata/version endpoint
+        is unavailable or cached. This is the live cross-PC synchronization path."""
         if not self.enabled or self.pending_base is not None:
             return False
         now = time.monotonic()
@@ -313,13 +315,39 @@ class FirebaseSync:
             return False
         self.last_check = now
         try:
-            version, _ = self._get_meta()
-            if not version or version == self.last_remote_version:
-                return False
+            # Do not depend on _meta/version for live synchronization. Read the
+            # actual shared dataset so a new entry saved by another laptop is
+            # detected even if metadata is missing, delayed, or filtered.
             snapshot = self._get_snapshot()
             if snapshot is None:
                 return False
+
+            # Compare the actual remote dataset with the last synchronized
+            # snapshot. This is intentionally simple and reliable for the
+            # application's dataset size.
+            current_signature = json.dumps(
+                snapshot,
+                ensure_ascii=False,
+                sort_keys=True,
+                separators=(",", ":"),
+            )
+            state_snapshot = self._load_json(self.state_path)
+            state_signature = json.dumps(
+                state_snapshot,
+                ensure_ascii=False,
+                sort_keys=True,
+                separators=(",", ":"),
+            ) if isinstance(state_snapshot, dict) else ""
+
+            if current_signature == state_signature:
+                self.pending_error = None
+                return False
+
             self.replace_local(conn, snapshot)
+            try:
+                version, _ = self._get_meta()
+            except Exception:
+                version = None
             self.last_remote_version = version
             self._save_state(snapshot)
             self.pending_error = None
