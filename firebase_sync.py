@@ -226,12 +226,24 @@ class FirebaseSync:
             remote = self._get_snapshot()
             version, _ = self._get_meta()
             if remote and remote.get("tables"):
-                # Never discard a non-empty local database just because the
-                # cloud has an older/partial snapshot. Merge local rows into
-                # remote on startup, then publish the merged result.
-                empty = {"schema": 1, "tables": {}}
-                baseline = self.pending_base or empty
-                if _snapshot_has_records(local) or self.pending_base is not None:
+                # FIRST-RUN / FRESH INSTALL RULE:
+                # A newly installed copy can contain seeded Inventory Codes,
+                # but those seed rows are NOT a user's unsynchronized changes.
+                # When there is no prior Firebase sync state and no pending
+                # journal, Firebase is the source of truth and must be loaded
+                # into the fresh PC. This is what makes a second PC on another
+                # Internet network automatically receive the existing cloud data.
+                has_sync_state = isinstance(state, dict) and _snapshot_has_records(state)
+                has_pending = self.pending_base is not None
+                if not has_sync_state and not has_pending:
+                    self.replace_local(conn, remote)
+                    self.last_remote_version = version
+                    self._save_state(remote)
+                else:
+                    # Established installations use a three-way merge so local
+                    # offline/new records are preserved while remote records
+                    # from other PCs are also retained.
+                    baseline = self.pending_base or state or {"schema": 1, "tables": {}}
                     merged = merge_local_changes(remote, baseline, local)
                     if merged != remote:
                         new_version = self._write_remote(merged)
@@ -242,10 +254,6 @@ class FirebaseSync:
                         self.replace_local(conn, remote)
                         self.last_remote_version = version
                         self._save_state(remote)
-                else:
-                    self.replace_local(conn, remote)
-                    self.last_remote_version = version
-                    self._save_state(remote)
                 self.pending_base = None
                 self.pending_error = None
                 self._clear_pending()
