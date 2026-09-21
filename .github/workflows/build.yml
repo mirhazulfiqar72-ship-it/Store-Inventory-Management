@@ -61,7 +61,7 @@ jobs:
       - name: Set release version
         shell: pwsh
         run: |
-          $version = "1.0.82"
+          $version = "1.0.83"
           $path = "source\updater.py"
           $text = Get-Content $path -Raw
           $text = [regex]::Replace($text, 'APP_VERSION\s*=\s*["''][^"'']*["'']', "APP_VERSION = `"$version`"")
@@ -94,9 +94,45 @@ jobs:
               d.line((x1,y1+9,x2,y1+9),fill=(255,224,157,255),width=3)
               d.line(((x1+x2)//2,y1,(x1+x2)//2,y1+9),fill=(255,224,157,255),width=3)
           im.save("inventory_professional.ico",sizes=[(256,256),(128,128),(64,64),(48,48),(32,32),(16,16)])
+
+          # Shortcut-only icon #4: dark professional tile + white gear + orange box.
+          import math
+          K=4
+          N=256*K
+          ic=Image.new("RGBA",(N,N),(0,0,0,0))
+          g=ImageDraw.Draw(ic)
+          m=10*K
+          g.rounded_rectangle((m,m,N-m,N-m),radius=34*K,fill=(22,38,51,255),outline=(87,105,120,255),width=2*K)
+
+          # white gear
+          cx,cy=94*K,102*K
+          teeth=10
+          pts=[]
+          for i in range(teeth*4):
+              ang=-math.pi/2 + i*math.pi/(teeth*2)
+              phase=i%4
+              rr=(54 if phase in (0,1) else 43)*K
+              pts.append((cx+math.cos(ang)*rr,cy+math.sin(ang)*rr))
+          g.polygon(pts,fill=(246,248,250,255))
+          g.ellipse((cx-23*K,cy-23*K,cx+23*K,cy+23*K),fill=(22,38,51,255))
+
+          # orange isometric box in front/right
+          top=[(103*K,102*K),(151*K,79*K),(202*K,103*K),(154*K,127*K)]
+          front=[(103*K,102*K),(154*K,127*K),(154*K,187*K),(103*K,160*K)]
+          side=[(154*K,127*K),(202*K,103*K),(202*K,162*K),(154*K,187*K)]
+          g.polygon(top,fill=(255,184,79,255))
+          g.polygon(front,fill=(235,145,35,255))
+          g.polygon(side,fill=(205,111,16,255))
+          # tape / seams
+          g.polygon([(145*K,82*K),(157*K,87*K),(157*K,113*K),(145*K,107*K)],fill=(188,99,22,255))
+          g.line([(154*K,127*K),(154*K,187*K)],fill=(165,85,15,255),width=2*K)
+
+          ic=ic.resize((256,256),Image.Resampling.LANCZOS)
+          ic.save("shortcut_icon_4.ico",sizes=[(256,256),(128,128),(64,64),(48,48),(32,32),(16,16)])
           '@ | Set-Content create_inventory_icon.py -Encoding UTF8
           python create_inventory_icon.py
           if (-not (Test-Path "inventory_professional.ico")) { throw "Inventory icon was not created." }
+          if (-not (Test-Path "shortcut_icon_4.ico")) { throw "Shortcut icon #4 was not created." }
       - name: Validate Firebase write access
         shell: cmd
         working-directory: source
@@ -145,7 +181,7 @@ jobs:
       - name: Create Windows installer
         shell: pwsh
         run: |
-          $version = "1.0.82"
+          $version = "1.0.83"
           $exe = (Resolve-Path "source\dist\StoreInventoryManagement.exe").Path
           $setup = Join-Path $PWD "StoreInventoryManagement_Setup.iss"
           @"
@@ -197,24 +233,24 @@ jobs:
         shell: pwsh
         run: |
           $exeHash = (Get-FileHash "source\dist\StoreInventoryManagement.exe" -Algorithm SHA256).Hash.ToLower()
-          $setupPath = "installer\StoreInventoryManagement_Setup_v1.0.82.exe"
+          $setupPath = "installer\StoreInventoryManagement_Setup_v1.0.83.exe"
           $setupHash = (Get-FileHash $setupPath -Algorithm SHA256).Hash.ToLower()
           "EXE_SHA256=$exeHash" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
           "SETUP_SHA256=$setupHash" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
       - name: Create GitHub Release and upload installer
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.0.82
-          name: Store Inventory Management v1.0.82
+          tag_name: v1.0.83
+          name: Store Inventory Management v1.0.83
           generate_release_notes: true
           files: |
             source/dist/StoreInventoryManagement.exe
-            installer/StoreInventoryManagement_Setup_v1.0.82.exe
+            installer/StoreInventoryManagement_Setup_v1.0.83.exe
       - name: Update version manifest
         shell: pwsh
         run: |
-          $version = "1.0.82"
-          $url = "https://github.com/${{ github.repository }}/releases/download/v1.0.82/StoreInventoryManagement_Setup_v1.0.82.exe"
+          $version = "1.0.83"
+          $url = "https://github.com/${{ github.repository }}/releases/download/v1.0.83/StoreInventoryManagement_Setup_v1.0.83.exe"
           $manifest = @{ version = $version; url = $url; sha256 = $env:SETUP_SHA256 } | ConvertTo-Json
           Set-Content -Path "version.json" -Value $manifest -Encoding UTF8
       - name: Commit version manifest
@@ -223,5 +259,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add version.json
-          git commit -m "Update version manifest to v1.0.82" || Write-Host "No manifest changes to commit"
+          git commit -m "Update version manifest to v1.0.83" || Write-Host "No manifest changes to commit"
+          git pull --rebase origin main
           git push
