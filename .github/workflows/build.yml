@@ -61,7 +61,7 @@ jobs:
       - name: Set release version
         shell: pwsh
         run: |
-          $version = "1.0.81"
+          $version = "1.0.82"
           $path = "source\updater.py"
           $text = Get-Content $path -Raw
           $text = [regex]::Replace($text, 'APP_VERSION\s*=\s*["''][^"'']*["'']', "APP_VERSION = `"$version`"")
@@ -74,6 +74,29 @@ jobs:
           if errorlevel 1 exit /b 1
           pip install pyinstaller reportlab python-docx openpyxl requests pywin32 pymupdf pillow
           if errorlevel 1 exit /b 1
+      - name: Create professional inventory icon
+        shell: pwsh
+        working-directory: source
+        run: |
+          @'
+          from PIL import Image, ImageDraw
+          S=256
+          im=Image.new("RGBA",(S,S),(20,52,86,255))
+          d=ImageDraw.Draw(im)
+          # clean warehouse roof/building
+          d.polygon([(30,105),(128,38),(226,105)],fill=(244,247,250,255))
+          d.rounded_rectangle((42,98,214,220),radius=10,fill=(244,247,250,255))
+          d.rectangle((67,128,189,220),fill=(37,99,145,255))
+          # stacked inventory cartons
+          for box in [(78,143,124,178),(132,143,178,178),(105,184,151,217)]:
+              d.rounded_rectangle(box,radius=4,fill=(245,178,66,255))
+              x1,y1,x2,y2=box
+              d.line((x1,y1+9,x2,y1+9),fill=(255,224,157,255),width=3)
+              d.line(((x1+x2)//2,y1,(x1+x2)//2,y1+9),fill=(255,224,157,255),width=3)
+          im.save("inventory_professional.ico",sizes=[(256,256),(128,128),(64,64),(48,48),(32,32),(16,16)])
+          '@ | Set-Content create_inventory_icon.py -Encoding UTF8
+          python create_inventory_icon.py
+          if (-not (Test-Path "inventory_professional.ico")) { throw "Inventory icon was not created." }
       - name: Validate Firebase write access
         shell: cmd
         working-directory: source
@@ -116,13 +139,13 @@ jobs:
         shell: cmd
         working-directory: source
         run: |
-          python -m PyInstaller --clean --noconfirm --onefile --noupx --noconsole --name "StoreInventoryManagement" --collect-all reportlab --collect-all PIL --collect-all fitz --hidden-import updater --hidden-import firebase_sync --hidden-import storage_lock --hidden-import durable_local --hidden-import reportlab.pdfgen.canvas --hidden-import reportlab.lib.utils --hidden-import reportlab.pdfbase._fontdata --add-data "inventory_seed.csv;." --add-data "company_logo.png;." --add-data "firebase_database_url.txt;." --add-data "update_config.json;." --add-data "FIREBASE_RULES_URL_ONLY.json;." store_inventory.py
+          python -m PyInstaller --clean --noconfirm --onefile --noupx --noconsole --name "StoreInventoryManagement" --icon "inventory_professional.ico" --collect-all reportlab --collect-all PIL --collect-all fitz --hidden-import updater --hidden-import firebase_sync --hidden-import storage_lock --hidden-import durable_local --hidden-import reportlab.pdfgen.canvas --hidden-import reportlab.lib.utils --hidden-import reportlab.pdfbase._fontdata --add-data "inventory_seed.csv;." --add-data "company_logo.png;." --add-data "firebase_database_url.txt;." --add-data "update_config.json;." --add-data "FIREBASE_RULES_URL_ONLY.json;." store_inventory.py
           if errorlevel 1 exit /b 1
           if not exist "dist\StoreInventoryManagement.exe" exit /b 1
       - name: Create Windows installer
         shell: pwsh
         run: |
-          $version = "1.0.81"
+          $version = "1.0.82"
           $exe = (Resolve-Path "source\dist\StoreInventoryManagement.exe").Path
           $setup = Join-Path $PWD "StoreInventoryManagement_Setup.iss"
           @"
@@ -149,6 +172,7 @@ jobs:
           CloseApplications=force
           RestartApplications=no
           WizardStyle=modern
+          SetupIconFile=source\\inventory_professional.ico
           SetupLogging=yes
           [Files]
           Source: "$exe"; DestDir: "{app}"; Flags: ignoreversion
@@ -173,24 +197,24 @@ jobs:
         shell: pwsh
         run: |
           $exeHash = (Get-FileHash "source\dist\StoreInventoryManagement.exe" -Algorithm SHA256).Hash.ToLower()
-          $setupPath = "installer\StoreInventoryManagement_Setup_v1.0.81.exe"
+          $setupPath = "installer\StoreInventoryManagement_Setup_v1.0.82.exe"
           $setupHash = (Get-FileHash $setupPath -Algorithm SHA256).Hash.ToLower()
           "EXE_SHA256=$exeHash" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
           "SETUP_SHA256=$setupHash" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
       - name: Create GitHub Release and upload installer
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.0.81
-          name: Store Inventory Management v1.0.81
+          tag_name: v1.0.82
+          name: Store Inventory Management v1.0.82
           generate_release_notes: true
           files: |
             source/dist/StoreInventoryManagement.exe
-            installer/StoreInventoryManagement_Setup_v1.0.81.exe
+            installer/StoreInventoryManagement_Setup_v1.0.82.exe
       - name: Update version manifest
         shell: pwsh
         run: |
-          $version = "1.0.81"
-          $url = "https://github.com/${{ github.repository }}/releases/download/v1.0.81/StoreInventoryManagement_Setup_v1.0.81.exe"
+          $version = "1.0.82"
+          $url = "https://github.com/${{ github.repository }}/releases/download/v1.0.82/StoreInventoryManagement_Setup_v1.0.82.exe"
           $manifest = @{ version = $version; url = $url; sha256 = $env:SETUP_SHA256 } | ConvertTo-Json
           Set-Content -Path "version.json" -Value $manifest -Encoding UTF8
       - name: Commit version manifest
@@ -199,5 +223,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add version.json
-          git commit -m "Update version manifest to v1.0.81" || Write-Host "No manifest changes to commit"
+          git commit -m "Update version manifest to v1.0.82" || Write-Host "No manifest changes to commit"
           git push
