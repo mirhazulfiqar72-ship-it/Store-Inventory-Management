@@ -644,6 +644,31 @@ if _task_assign_marker in app and "old_task=state.get(\"task\")" not in app:
 elif "old_task=state.get(\"task\")" not in app:
     raise RuntimeError("Could not locate MDI task assignment for duplicate-tab fix.")
 
+# v1.0.84: root fix for repeated in-app minimize/maximize tabs.
+# Always remove the current task button before restore/maximize/minimize changes state.
+# This guarantees one visible task tab per in-app child window.
+if "_single_mdi_task_cleanup_v1084" not in app:
+    def _inject_task_cleanup(func_name):
+        nonlocal_placeholder = None
+        marker = f"        def {func_name}():\n"
+        if marker not in app:
+            raise RuntimeError(f"Could not locate internal-window {func_name}() for single-tab fix.")
+        cleanup = '''        def __FUNC__():
+            # _single_mdi_task_cleanup_v1084
+            try:
+                task=state.get("task")
+                if task is not None and task.winfo_exists():
+                    task.destroy()
+            except Exception:
+                pass
+            state["task"]=None
+'''.replace("__FUNC__", func_name)
+        return app.replace(marker, cleanup, 1)
+
+    app = _inject_task_cleanup("restore")
+    app = _inject_task_cleanup("maximize")
+    app = _inject_task_cleanup("minimize")
+
 # 2) Add requested author credit to the footer of every ReportLab print/PDF page.
 _footer_marker = '        c.drawString(24,13,REPORT_FOOTER)\n        c.drawRightString(W-24,13,f"Page {page_no}")\n'
 if _footer_marker in app and 'c.drawCentredString(W/2,13,"Made by Zulfiqar Ali")' not in app:
