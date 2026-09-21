@@ -625,6 +625,38 @@ updater = updater.replace(
         )
         response.raise_for_status()
 ''', 1)
+
+# Requested v1.0.82 UI/print-only fixes.
+# 1) Keep exactly one taskbar tab per in-app window across repeated minimize/maximize cycles.
+# The legacy minimize handler creates a new task frame each time; remove the previous
+# frame immediately before creating its replacement. Window contents/state are untouched.
+_task_item_marker = '            item=tk.Frame(self._mdi_taskbar,bg="#e7e7e7",bd=1,relief="raised",padx=3,pady=1)\n'
+if _task_item_marker in app and "old_task=state.get(\"task\")" not in app:
+    _task_item_replacement = '''            old_task=state.get("task")
+            try:
+                if old_task is not None and old_task.winfo_exists():
+                    old_task.destroy()
+            except Exception:
+                pass
+            state["task"]=None
+''' + _task_item_marker
+    app = app.replace(_task_item_marker, _task_item_replacement, 1)
+elif "old_task=state.get(\"task\")" not in app:
+    raise RuntimeError("Could not locate MDI task-tab creation for duplicate-tab fix.")
+
+# 2) Add requested author credit to the footer of every ReportLab print/PDF page.
+_footer_marker = '        c.drawString(24,13,REPORT_FOOTER)\n        c.drawRightString(W-24,13,f"Page {page_no}")\n'
+if _footer_marker in app and 'c.drawCentredString(W/2,13,"Made by Zulfiqar Ali")' not in app:
+    app = app.replace(
+        _footer_marker,
+        '        c.drawString(24,13,REPORT_FOOTER)\n'
+        '        c.drawCentredString(W/2,13,"Made by Zulfiqar Ali")\n'
+        '        c.drawRightString(W-24,13,f"Page {page_no}")\n',
+        1,
+    )
+elif 'c.drawCentredString(W/2,13,"Made by Zulfiqar Ali")' not in app:
+    raise RuntimeError("Could not locate report footer for author-credit patch.")
+
 write("store_inventory.py", app)
 print("CI patch complete: durable local snapshot + SQLite persistence + safe Firebase merge + permanent Reports exports + no automatic backup deletion.")
 
