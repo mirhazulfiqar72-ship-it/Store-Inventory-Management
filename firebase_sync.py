@@ -80,7 +80,7 @@ class FirebaseSync:
         self.enabled = bool(self.base_url and requests)
         self.last_remote_version: Optional[str] = None
         self.last_check = 0.0
-        self.check_interval = 1.5
+        self.check_interval = 3.0
         self.pending_base: Optional[Dict[str, Any]] = None
         self.pending_error: Optional[str] = None
         self.session = requests.Session() if requests else None
@@ -416,6 +416,15 @@ class OnlineConnection:
     def __init__(self, db_path: str, sync: FirebaseSync):
         self._conn = sqlite3.connect(db_path, timeout=20)
         self._conn.execute("PRAGMA busy_timeout=20000")
+        # Safe local-cache performance tuning. Firebase remains the online source;
+        # these pragmas only reduce UI stalls on local reads/writes.
+        try:
+            self._conn.execute("PRAGMA journal_mode=WAL")
+            self._conn.execute("PRAGMA synchronous=NORMAL")
+            self._conn.execute("PRAGMA temp_store=MEMORY")
+            self._conn.execute("PRAGMA cache_size=-12000")
+        except Exception:
+            pass
         self.sync = sync
         self._dirty = False
         self._baseline: Optional[Dict[str, Any]] = None
