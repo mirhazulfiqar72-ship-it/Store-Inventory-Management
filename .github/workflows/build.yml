@@ -61,7 +61,7 @@ jobs:
       - name: Set release version
         shell: pwsh
         run: |
-          $version = "1.0.84"
+          $version = "1.0.85"
           $path = "source\updater.py"
           $text = Get-Content $path -Raw
           $text = [regex]::Replace($text, 'APP_VERSION\s*=\s*["''][^"'']*["'']', "APP_VERSION = `"$version`"")
@@ -129,8 +129,8 @@ jobs:
 
           # Match selected icon #4 more closely with the INVENTORY / MANAGEMENT label.
           try:
-              f1=ImageFont.truetype("arialbd.ttf",22)
-              f2=ImageFont.truetype("arial.ttf",10)
+              f1=ImageFont.truetype("arialbd.ttf",88)
+              f2=ImageFont.truetype("arial.ttf",40)
           except Exception:
               f1=ImageFont.load_default()
               f2=ImageFont.load_default()
@@ -142,13 +142,13 @@ jobs:
           centered("MANAGEMENT",232,f2)
 
           ic=ic.resize((256,256),Image.Resampling.LANCZOS)
-          ic.save("shortcut_icon_4_v1084.ico",sizes=[(256,256),(128,128),(64,64),(48,48),(32,32),(16,16)])
+          ic.save("shortcut_icon_4_v1085.ico",sizes=[(256,256),(128,128),(64,64),(48,48),(32,32),(16,16)])
           # Force the EXE resource icon to the same selected #4 icon.
           ic.save("inventory_professional.ico",sizes=[(256,256),(128,128),(64,64),(48,48),(32,32),(16,16)])
           '@ | Set-Content create_inventory_icon.py -Encoding UTF8
           python create_inventory_icon.py
           if (-not (Test-Path "inventory_professional.ico")) { throw "Inventory icon was not created." }
-          if (-not (Test-Path "shortcut_icon_4_v1084.ico")) { throw "Shortcut icon #4 was not created." }
+          if (-not (Test-Path "shortcut_icon_4_v1085.ico")) { throw "Shortcut icon #4 was not created." }
       - name: Validate Firebase write access
         shell: cmd
         working-directory: source
@@ -191,13 +191,13 @@ jobs:
         shell: cmd
         working-directory: source
         run: |
-          python -m PyInstaller --clean --noconfirm --onefile --noupx --noconsole --name "StoreInventoryManagement" --icon "shortcut_icon_4_v1084.ico" --collect-all reportlab --collect-all PIL --collect-all fitz --hidden-import updater --hidden-import firebase_sync --hidden-import storage_lock --hidden-import durable_local --hidden-import reportlab.pdfgen.canvas --hidden-import reportlab.lib.utils --hidden-import reportlab.pdfbase._fontdata --add-data "inventory_seed.csv;." --add-data "company_logo.png;." --add-data "firebase_database_url.txt;." --add-data "update_config.json;." --add-data "FIREBASE_RULES_URL_ONLY.json;." store_inventory.py
+          python -m PyInstaller --clean --noconfirm --onefile --noupx --noconsole --name "StoreInventoryManagement" --icon "shortcut_icon_4_v1085.ico" --collect-all reportlab --collect-all PIL --collect-all fitz --hidden-import updater --hidden-import firebase_sync --hidden-import storage_lock --hidden-import durable_local --hidden-import reportlab.pdfgen.canvas --hidden-import reportlab.lib.utils --hidden-import reportlab.pdfbase._fontdata --add-data "inventory_seed.csv;." --add-data "company_logo.png;." --add-data "firebase_database_url.txt;." --add-data "update_config.json;." --add-data "FIREBASE_RULES_URL_ONLY.json;." store_inventory.py
           if errorlevel 1 exit /b 1
           if not exist "dist\StoreInventoryManagement.exe" exit /b 1
       - name: Create Windows installer
         shell: pwsh
         run: |
-          $version = "1.0.84"
+          $version = "1.0.85"
           $exe = (Resolve-Path "source\dist\StoreInventoryManagement.exe").Path
           $setup = Join-Path $PWD "StoreInventoryManagement_Setup.iss"
           @"
@@ -224,22 +224,34 @@ jobs:
           CloseApplications=force
           RestartApplications=no
           WizardStyle=modern
-          SetupIconFile=source\\shortcut_icon_4_v1084.ico
+          SetupIconFile=source\\shortcut_icon_4_v1085.ico
           SetupLogging=yes
           [Files]
           Source: "$exe"; DestDir: "{app}"; Flags: ignoreversion
           Source: "source\update_config.json"; DestDir: "{app}"; Flags: ignoreversion
           Source: "source\firebase_database_url.txt"; DestDir: "{app}"; Flags: ignoreversion
           Source: "source\FIREBASE_RULES_URL_ONLY.json"; DestDir: "{app}"; Flags: ignoreversion
+          Source: "source\shortcut_icon_4_v1085.ico"; DestDir: "{app}"; Flags: ignoreversion
           [Dirs]
           Name: "{app}"; Permissions: users-modify
           Name: "{app}\Data"; Permissions: users-modify
           Name: "{app}\Backups"; Permissions: users-modify
           Name: "{app}\Reports"; Permissions: users-modify
+          [InstallDelete]
+          Type: files; Name: "{autodesktop}\Store Inventory Management.lnk"
+          Type: files; Name: "{group}\Store Inventory Management.lnk"
           [Icons]
-          Name: "{autodesktop}\Store Inventory Management"; Filename: "{app}\{#MyAppExeName}"; WorkingDir: "{app}"
-          Name: "{group}\Store Inventory Management"; Filename: "{app}\{#MyAppExeName}"; WorkingDir: "{app}"
+          Name: "{autodesktop}\Store Inventory Management"; Filename: "{app}\{#MyAppExeName}"; WorkingDir: "{app}"; IconFilename: "{app}\shortcut_icon_4_v1085.ico"; IconIndex: 0
+          Name: "{group}\Store Inventory Management"; Filename: "{app}\{#MyAppExeName}"; WorkingDir: "{app}"; IconFilename: "{app}\shortcut_icon_4_v1085.ico"; IconIndex: 0
           Name: "{group}\Uninstall Store Inventory Management"; Filename: "{uninstallexe}"
+          [Code]
+          procedure CurStepChanged(CurStep: TSetupStep);
+          var
+            ResultCode: Integer;
+          begin
+            if CurStep = ssPostInstall then
+              Exec(ExpandConstant('{sys}\ie4uinit.exe'), '-show', '', SW_HIDE, ewWaitUntilTerminated, ResultCode);
+          end;
           "@ | Set-Content -Path $setup -Encoding UTF8
           choco install innosetup --yes --no-progress
           & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" $setup
@@ -249,24 +261,24 @@ jobs:
         shell: pwsh
         run: |
           $exeHash = (Get-FileHash "source\dist\StoreInventoryManagement.exe" -Algorithm SHA256).Hash.ToLower()
-          $setupPath = "installer\StoreInventoryManagement_Setup_v1.0.84.exe"
+          $setupPath = "installer\StoreInventoryManagement_Setup_v1.0.85.exe"
           $setupHash = (Get-FileHash $setupPath -Algorithm SHA256).Hash.ToLower()
           "EXE_SHA256=$exeHash" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
           "SETUP_SHA256=$setupHash" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
       - name: Create GitHub Release and upload installer
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.0.84
-          name: Store Inventory Management v1.0.84
+          tag_name: v1.0.85
+          name: Store Inventory Management v1.0.85
           generate_release_notes: true
           files: |
             source/dist/StoreInventoryManagement.exe
-            installer/StoreInventoryManagement_Setup_v1.0.84.exe
+            installer/StoreInventoryManagement_Setup_v1.0.85.exe
       - name: Update version manifest
         shell: pwsh
         run: |
-          $version = "1.0.84"
-          $url = "https://github.com/${{ github.repository }}/releases/download/v1.0.84/StoreInventoryManagement_Setup_v1.0.84.exe"
+          $version = "1.0.85"
+          $url = "https://github.com/${{ github.repository }}/releases/download/v1.0.85/StoreInventoryManagement_Setup_v1.0.85.exe"
           $manifest = @{ version = $version; url = $url; sha256 = $env:SETUP_SHA256 } | ConvertTo-Json
           Set-Content -Path "version.json" -Value $manifest -Encoding UTF8
       - name: Commit version manifest
@@ -275,6 +287,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add version.json
-          git commit -m "Update version manifest to v1.0.84" || Write-Host "No manifest changes to commit"
+          git commit -m "Update version manifest to v1.0.85" || Write-Host "No manifest changes to commit"
           git pull --rebase origin main
           git push
