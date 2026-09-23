@@ -811,50 +811,85 @@ for import_line, pattern in [
 if not re.search(r"^import\\s+requests\\s*$", updater, flags=re.M):
     updater = "import requests\\n" + updater
 
+if not re.search(r"^import\\s+threading\\s*$", updater, flags=re.M):
+    updater = "import threading\\n" + updater
 
-new_function = r'''def check_for_update(parent, manual=False):
+
+new_function = r'''def _fetch_update_info():
+    config_path = Path(__file__).resolve().parent / "update_config.json"
+    cfg = json.loads(config_path.read_text(encoding="utf-8-sig")) if config_path.exists() else {}
+    manifest_url = str(cfg.get("manifest_url", "")).strip()
+    if not manifest_url:
+        raise RuntimeError("Update checking is not configured.")
+    response = requests.get(
+        manifest_url,
+        headers={"Cache-Control": "no-cache, no-store, max-age=0", "Pragma": "no-cache"},
+        timeout=3,
+    )
+    response.raise_for_status()
+    data = response.json()
+    latest = str(data.get("version", "")).strip()
+    download_url = str(data.get("url", "")).strip()
+    if not latest or not download_url:
+        raise RuntimeError("Update information is unavailable.")
+    return latest, download_url
+
+def check_for_update(parent, manual=False):
     global _CHECK_IN_PROGRESS, _AUTO_CHECK_DONE
     if _CHECK_IN_PROGRESS:
         return False
-    if not manual and _AUTO_CHECK_DONE:
-        return False
-    if not manual:
-        _AUTO_CHECK_DONE = True
-    _CHECK_IN_PROGRESS = True
-    try:
-        config_path = Path(__file__).resolve().parent / "update_config.json"
-        cfg = json.loads(config_path.read_text(encoding="utf-8-sig")) if config_path.exists() else {}
-        manifest_url = str(cfg.get("manifest_url", "")).strip()
-        if not manifest_url:
-            if manual:
-                messagebox.showwarning("Check Update", "Update checking is not configured.", parent=parent)
-            return False
-        response = requests.get(manifest_url, timeout=12)
-        response.raise_for_status()
-        data = response.json()
-        latest = str(data.get("version", "")).strip()
-        download_url = str(data.get("url", "")).strip()
-        if not latest or not download_url:
-            if manual:
-                messagebox.showwarning("Check Update", "Update information is unavailable.", parent=parent)
-            return False
-        if _version_tuple(latest) <= _version_tuple(APP_VERSION):
-            if manual:
+    if manual:
+        _CHECK_IN_PROGRESS = True
+        try:
+            latest, download_url = _fetch_update_info()
+            if _version_tuple(latest) <= _version_tuple(APP_VERSION):
                 messagebox.showinfo("Check Update", f"You are using the current version ({APP_VERSION}).", parent=parent)
-            return False
-        if not messagebox.askyesno(
-            "Update Available",
-            f"A new version ({latest}) is available.\n\nDo you want to download it now?",
-            parent=parent,
-        ):
-            return False
-        return _start_update_download(download_url)
-    except Exception as exc:
-        if manual:
+                return False
+            if not messagebox.askyesno(
+                "Update Available",
+                f"A new version ({latest}) is available.\n\nDo you want to download it now?",
+                parent=parent,
+            ):
+                return False
+            return _start_update_download(download_url)
+        except Exception as exc:
             messagebox.showwarning("Check Update", f"Could not check for updates.\n\n{exc}", parent=parent)
+            return False
+        finally:
+            _CHECK_IN_PROGRESS = False
+
+    if _AUTO_CHECK_DONE:
         return False
-    finally:
-        _CHECK_IN_PROGRESS = False
+    _AUTO_CHECK_DONE = True
+    _CHECK_IN_PROGRESS = True
+
+    def worker():
+        global _CHECK_IN_PROGRESS
+        try:
+            latest, download_url = _fetch_update_info()
+            if _version_tuple(latest) <= _version_tuple(APP_VERSION):
+                _CHECK_IN_PROGRESS = False
+                return
+            def prompt_on_ui():
+                global _CHECK_IN_PROGRESS
+                try:
+                    if messagebox.askyesno(
+                        "Update Available",
+                        f"A new version ({latest}) is available.\n\nDo you want to download it now?",
+                        parent=parent,
+                    ):
+                        _start_update_download(download_url)
+                finally:
+                    _CHECK_IN_PROGRESS = False
+            try:
+                parent.after(0, prompt_on_ui)
+            except Exception:
+                _CHECK_IN_PROGRESS = False
+        except Exception:
+            _CHECK_IN_PROGRESS = False
+
+    threading.Thread(target=worker, name="UpdateCheck", daemon=True).start()
+    return True
 '''
 pattern = r'(?ms)^def check_for_update\(.*?(?=^def |\Z)'
 m = re.search(pattern, updater)
@@ -1152,6 +1187,42 @@ if "_dashboard_kpi_vars" not in app:
     dash_action = "        self.set_page_actions(preview=lambda:self.preview_tree(\"Dashboard Details\",tr,[f\"Item Code: {code.get() or 'ALL'}\"]))" + chr(10)
     if dash_action in app:
         app=app.replace(dash_action,dash_action+"        self._refresh_dashboard_kpis()" + chr(10),1)
+
+
+# v1.0.87 performance-only patch: local-cache-first startup and non-blocking network refresh.
+# Existing UI, data model, reports, permissions and screen layout remain unchanged.
+_connect_sync_re = re.compile(
+    r'(?ms)^    sync = FirebaseSync\(FIREBASE_URL_FILE, INSTALL_DIR\)\n.*?^    return OnlineConnection\(DB, sync\)\n'
+)
+_connect_sync_match = _connect_sync_re.search(app)
+if not _connect_sync_match:
+    raise RuntimeError("Could not locate connect() Firebase startup block for performance patch.")
+_fast_connect = '''    sync = FirebaseSync(FIREBASE_URL_FILE, INSTALL_DIR)
+    if sync.enabled:
+        try:
+            # Established installations open immediately from the durable local cache.
+            # Firebase refresh runs in the background and is applied on a later read.
+            state_ready = os.path.isfile(sync.state_path) and os.path.getsize(sync.state_path) > 2
+            if state_ready:
+                sync.kick_background_pull(force=True)
+            else:
+                # First install still receives cloud data before use, with the short
+                # Firebase timeout configured in firebase_sync.py.
+                sync.initialize(raw)
+                _init_schema(raw)
+        except Exception as exc:
+            sync.pending_error = str(exc)
+    try:
+        # Do not rewrite a full JSON recovery snapshot on every launch.
+        # Commits still update the durable snapshot exactly as before.
+        snap_path = getattr(durable_local, "SNAPSHOT_PATH", None)
+        if not snap_path or not os.path.exists(os.fspath(snap_path)):
+            durable_local.save(raw)
+    except Exception:
+        pass
+    return OnlineConnection(DB, sync)
+'''
+app = app[:_connect_sync_match.start()] + _fast_connect + app[_connect_sync_match.end():]
 
 write("store_inventory.py", app)
 print("CI patch complete: durable local snapshot + SQLite persistence + safe Firebase merge + permanent Reports exports + no automatic backup deletion.")
