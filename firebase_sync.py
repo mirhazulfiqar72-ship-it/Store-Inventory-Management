@@ -11,6 +11,7 @@ import sqlite3
 import tempfile
 import time
 import uuid
+import threading
 from copy import deepcopy
 from typing import Any, Dict, Iterable, Optional, Tuple
 try:
@@ -72,7 +73,7 @@ def _snapshot_has_records(snapshot: Dict[str, Any]) -> bool:
     tables = snapshot.get("tables", {})
     return any(tables.get(x, {}).get("rows") for x in TABLES)
 class FirebaseSync:
-    def __init__(self, url_file: str, install_dir: str, timeout: int = 15):
+    def __init__(self, url_file: str, install_dir: str, timeout: float = 2.5):
         self.url_file = url_file
         self.install_dir = install_dir
         self.timeout = timeout
@@ -80,7 +81,7 @@ class FirebaseSync:
         self.enabled = bool(self.base_url and requests)
         self.last_remote_version: Optional[str] = None
         self.last_check = 0.0
-        self.check_interval = 3.0
+        self.check_interval = 10.0
         self.pending_base: Optional[Dict[str, Any]] = None
         self.pending_error: Optional[str] = None
         self.session = requests.Session() if requests else None
@@ -89,6 +90,9 @@ class FirebaseSync:
         os.makedirs(data_dir, exist_ok=True)
         self.state_path = os.path.join(data_dir, "firebase_sync_state.json")
         self.pending_path = os.path.join(data_dir, "firebase_pending_sync.json")
+        self.remote_cache_path = os.path.join(data_dir, "firebase_remote_cache.json")
+        self._pull_thread = None
+        self._pull_lock = threading.Lock()
     def _read_url(self) -> str:
         try:
             with open(self.url_file, "r", encoding="utf-8-sig") as f:
@@ -224,7 +228,8 @@ class FirebaseSync:
             self.pending_base = pending.get("baseline") if isinstance(pending.get("baseline"), dict) else state
         try:
             remote = self._get_snapshot()
-            version, _ = self._get_meta()
+            # Avoid a second startup HTTP request; metadata is optional here.
+            version = None
             if remote and remote.get("tables"):
                 # FIRST-RUN / FRESH INSTALL RULE:
                 # A newly installed copy can contain seeded Inventory Codes,
@@ -329,6 +334,71 @@ class FirebaseSync:
             self.pending_error = str(exc)
             self._save_pending(local, baseline or {"schema": 1, "tables": {}})
             return False
+    def _background_pull_worker(self) -> None:
+        try:
+            if not self.enabled or requests is None:
+                return
+            url = f"{self.base_url}/store_inventory/data.json"
+            r = requests.get(url, timeout=self.timeout)
+            if not r.ok:
+                raise RuntimeError(f"Firebase HTTP {r.status_code}: {r.text[:300]}")
+            data = r.json()
+            if isinstance(data, dict):
+                self._atomic_save_json(self.remote_cache_path, data)
+            self.pending_error = None
+        except Exception as exc:
+            self.pending_error = str(exc)
+        finally:
+            with self._pull_lock:
+                self._pull_thread = None
+
+    def kick_background_pull(self, force: bool = False) -> bool:
+        """Start a remote refresh without blocking Tk/UI reads."""
+        if not self.enabled:
+            return False
+        now = time.monotonic()
+        with self._pull_lock:
+            if not force and now - self.last_check < self.check_interval:
+                return False
+            if self._pull_thread is not None and self._pull_thread.is_alive():
+                return False
+            self.last_check = now
+            self._pull_thread = threading.Thread(
+                target=self._background_pull_worker,
+                name="FirebasePull",
+                daemon=True,
+            )
+            self._pull_thread.start()
+        return True
+
+    def apply_cached_pull(self, conn: sqlite3.Connection) -> bool:
+        """Apply a completed background pull only when local data has no unsynced edits."""
+        cached = self._load_json(self.remote_cache_path)
+        if not isinstance(cached, dict):
+            return False
+        state = self._load_json(self.state_path)
+        local = snapshot_db(conn)
+        try:
+            if isinstance(state, dict) and local == state:
+                if cached != state:
+                    self.replace_local(conn, cached)
+                    self._save_state(cached)
+                try:
+                    os.remove(self.remote_cache_path)
+                except OSError:
+                    pass
+                self.pending_error = None
+                return True
+            # Preserve local/offline edits. A normal push will merge them with Firebase.
+            try:
+                os.remove(self.remote_cache_path)
+            except OSError:
+                pass
+            return False
+        except Exception as exc:
+            self.pending_error = str(exc)
+            return False
+
     def maybe_pull(self, conn: sqlite3.Connection) -> bool:
         """Pull Firebase changes even when the remote metadata/version endpoint
         is unavailable or cached. This is the live cross-PC synchronization path."""
@@ -436,7 +506,9 @@ class OnlineConnection:
         s = str(sql).lstrip().upper()
         is_read = s.startswith("SELECT") or s.startswith("PRAGMA") or s.startswith("WITH") or s.startswith("EXPLAIN")
         if is_read and not self._dirty and self._baseline is None:
-            self.sync.maybe_pull(self._conn)
+            # Never perform network I/O on the Tk/UI thread.
+            self.sync.apply_cached_pull(self._conn)
+            self.sync.kick_background_pull()
         elif not is_read:
             self._before_write()
     def execute(self, sql: str, params: Iterable[Any] = ()):
