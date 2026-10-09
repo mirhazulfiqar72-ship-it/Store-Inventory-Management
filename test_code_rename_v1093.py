@@ -89,6 +89,19 @@ class RenameTests(unittest.TestCase):
             self.assertEqual(self.conn.execute(
                 f"SELECT code FROM {table} WHERE item_type='MTO'").fetchone()[0],"01-01-0024")
 
+    def test_shared_descriptions_do_not_rename_existing_item(self):
+        # Real inventory includes different codes sharing the same description.
+        self.conn.execute(
+            "INSERT INTO items(code,description,uom,opening_qty,category,min_level,item_type,mto_opening_qty) "
+            "VALUES(?,?,?,?,?,?,?,?)",
+            ("01-01-0008","Ball Bearing 6201","Number",5,"",0,"Local",0))
+        self.conn.commit()
+        incoming=[self.item("01-01-0017","Ball Bearing 6201")]
+        self.assertIn(importer.preview(self.conn,incoming)[0][1],("Unchanged","Update"))
+        self.assertEqual(importer.apply(self.conn,incoming,self.tmp.name)["renamed"],0)
+        self.assertEqual(self.conn.execute(
+            "SELECT COUNT(*) FROM items WHERE description='Ball Bearing 6201'").fetchone()[0],2)
+
     def test_other_codes_remain_unchanged(self):
         extra=[self.item("01-01-0300"),importer.Item("01-05-0100","New item","Number",2,"Sheet!3")]
         result=importer.apply(self.conn,extra,self.tmp.name)
