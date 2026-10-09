@@ -33,6 +33,8 @@ jobs:
           Copy-Item -LiteralPath "durable_local.py" -Destination "source\durable_local.py" -Force
           Copy-Item -LiteralPath "inventory_reset_v1088.py" -Destination "source\inventory_reset_v1088.py" -Force
           Copy-Item -LiteralPath "inventory_codes_102.csv" -Destination "source\inventory_codes_102.csv" -Force
+          Copy-Item -LiteralPath "inventory_import_v1089.py" -Destination "source\inventory_import_v1089.py" -Force
+          Copy-Item -LiteralPath "inventory_import_ui_v1089.py" -Destination "source\inventory_import_ui_v1089.py" -Force
           if (-not (Test-Path "source\store_inventory.py")) { throw "store_inventory.py was not found inside the source ZIP." }
           if (-not (Test-Path "source\updater.py")) { throw "updater.py was not found inside the source ZIP." }
           if (-not (Test-Path "source\firebase_sync.py")) { throw "firebase_sync.py was not found inside the source ZIP." }
@@ -44,6 +46,8 @@ jobs:
           python ci_patch_source.py
           if errorlevel 1 exit /b 1
           python ci_patch_addon_v1088.py
+          if errorlevel 1 exit /b 1
+          python ci_patch_import_v1089.py
           if errorlevel 1 exit /b 1
       - name: Repair generated updater header
         shell: pwsh
@@ -65,7 +69,7 @@ jobs:
       - name: Set release version
         shell: pwsh
         run: |
-          $version = "1.0.88"
+          $version = "1.0.89"
           $path = "source\updater.py"
           $text = Get-Content $path -Raw
           $text = [regex]::Replace($text, 'APP_VERSION\s*=\s*["''][^"'']*["'']', "APP_VERSION = `"$version`"")
@@ -76,7 +80,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           if errorlevel 1 exit /b 1
-          pip install pyinstaller reportlab python-docx openpyxl requests pywin32 pymupdf pillow
+          pip install pyinstaller reportlab python-docx openpyxl xlrd requests pywin32 pymupdf pillow
           if errorlevel 1 exit /b 1
       - name: Create professional inventory icon
         shell: pwsh
@@ -171,7 +175,7 @@ jobs:
         run: |
           python -c "import sys; print('Python:', sys.version); assert sys.version_info[:2] == (3, 12), sys.version"
           if errorlevel 1 exit /b 1
-          python -m py_compile store_inventory.py firebase_sync.py updater.py storage_lock.py durable_local.py inventory_reset_v1088.py
+          python -m py_compile store_inventory.py firebase_sync.py updater.py storage_lock.py durable_local.py inventory_reset_v1088.py inventory_import_v1089.py inventory_import_ui_v1089.py
           if errorlevel 1 exit /b 1
           python -c "import firebase_sync; print('firebase_sync import: OK')"
           if errorlevel 1 exit /b 1
@@ -197,17 +201,25 @@ jobs:
           if errorlevel 1 exit /b 1
           python -c "from pathlib import Path; a=Path('store_inventory.py').read_text(encoding='utf-8-sig'); u=Path('updater.py').read_text(encoding='utf-8-sig'); assert 'state_ready = os.path.isfile(sync.state_path)' in a; assert 'threading.Thread(target=worker' in u; print('Fast startup/login path: OK')"
           if errorlevel 1 exit /b 1
+      - name: Test Inventory Codes Excel/PDF Import
+        shell: cmd
+        run: |
+          set PYTHONPATH=source
+          python -m unittest -v test_inventory_import_v1089.py
+          if errorlevel 1 exit /b 1
+          python -c "from pathlib import Path; s=Path('source/store_inventory.py').read_text(encoding='utf-8-sig'); assert s.count('Import Excel / PDF')==1, 'Missing/duplicate Import button'; assert 'label=\"Check Update\"' in s; print('Import button and Help Updater found: OK')"
+          if errorlevel 1 exit /b 1
       - name: Build EXE
         shell: cmd
         working-directory: source
         run: |
-          python -m PyInstaller --clean --noconfirm --onedir --noupx --noconsole --name "StoreInventoryManagement" --icon "shortcut_icon_4_v1085.ico" --collect-all reportlab --collect-all PIL --collect-all fitz --hidden-import updater --hidden-import firebase_sync --hidden-import storage_lock --hidden-import durable_local --hidden-import reportlab.pdfgen.canvas --hidden-import reportlab.lib.utils --hidden-import reportlab.pdfbase._fontdata --add-data "inventory_seed.csv;." --add-data "inventory_codes_102.csv;." --add-data "company_logo.png;." --add-data "firebase_database_url.txt;." --add-data "update_config.json;." --add-data "FIREBASE_RULES_URL_ONLY.json;." store_inventory.py
+          python -m PyInstaller --clean --noconfirm --onedir --noupx --noconsole --name "StoreInventoryManagement" --icon "shortcut_icon_4_v1085.ico" --collect-all reportlab --collect-all PIL --collect-all fitz --hidden-import updater --hidden-import firebase_sync --hidden-import storage_lock --hidden-import durable_local --hidden-import inventory_import_v1089 --hidden-import inventory_import_ui_v1089 --hidden-import reportlab.pdfgen.canvas --hidden-import reportlab.lib.utils --hidden-import reportlab.pdfbase._fontdata --add-data "inventory_seed.csv;." --add-data "inventory_codes_102.csv;." --add-data "company_logo.png;." --add-data "firebase_database_url.txt;." --add-data "update_config.json;." --add-data "FIREBASE_RULES_URL_ONLY.json;." store_inventory.py
           if errorlevel 1 exit /b 1
           if not exist "dist\StoreInventoryManagement\StoreInventoryManagement.exe" exit /b 1
       - name: Create Windows installer
         shell: pwsh
         run: |
-          $version = "1.0.88"
+          $version = "1.0.89"
           $exeDir = (Resolve-Path "source\dist\StoreInventoryManagement").Path
           $exe = Join-Path $exeDir "StoreInventoryManagement.exe"
           $setup = Join-Path $PWD "StoreInventoryManagement_Setup.iss"
@@ -272,23 +284,23 @@ jobs:
         shell: pwsh
         run: |
           $exeHash = (Get-FileHash "source\dist\StoreInventoryManagement\StoreInventoryManagement.exe" -Algorithm SHA256).Hash.ToLower()
-          $setupPath = "installer\StoreInventoryManagement_Setup_v1.0.88.exe"
+          $setupPath = "installer\StoreInventoryManagement_Setup_v1.0.89.exe"
           $setupHash = (Get-FileHash $setupPath -Algorithm SHA256).Hash.ToLower()
           "EXE_SHA256=$exeHash" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
           "SETUP_SHA256=$setupHash" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
       - name: Create GitHub Release and upload installer
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.0.88
-          name: Store Inventory Management v1.0.88
+          tag_name: v1.0.89
+          name: Store Inventory Management v1.0.89
           generate_release_notes: true
           files: |
-            installer/StoreInventoryManagement_Setup_v1.0.88.exe
+            installer/StoreInventoryManagement_Setup_v1.0.89.exe
       - name: Update version manifest
         shell: pwsh
         run: |
-          $version = "1.0.88"
-          $url = "https://github.com/${{ github.repository }}/releases/download/v1.0.88/StoreInventoryManagement_Setup_v1.0.88.exe"
+          $version = "1.0.89"
+          $url = "https://github.com/${{ github.repository }}/releases/download/v1.0.89/StoreInventoryManagement_Setup_v1.0.89.exe"
           $manifest = @{ version = $version; url = $url; sha256 = $env:SETUP_SHA256 } | ConvertTo-Json
           Set-Content -Path "version.json" -Value $manifest -Encoding UTF8
       - name: Commit version manifest
@@ -297,6 +309,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add version.json
-          git commit -m "Update version manifest to v1.0.88" || Write-Host "No manifest changes to commit"
+          git commit -m "Update version manifest to v1.0.89" || Write-Host "No manifest changes to commit"
           git pull --rebase origin main
           git push
