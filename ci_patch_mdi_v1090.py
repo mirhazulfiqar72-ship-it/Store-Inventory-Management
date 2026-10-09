@@ -84,12 +84,9 @@ replace_once('        outer=tk.Frame(host,bg="white",bd=1,relief="raised")\n',
              '        outer._mdi_title=str(title)\n'
              '        outer._mdi_minimized=False\n')
 replace_once('''        def restore():
-            if state["min"]:
 ''', '''        def restore():
             if state["min"]:
                 self._ensure_mdi_host()
-                task=state.pop("task",None)
-                if task is not None and task.winfo_exists(): task.destroy()
                 outer._mdi_minimized=False
 ''')
 replace_once('''            outer.place_forget(); state["min"]=True
