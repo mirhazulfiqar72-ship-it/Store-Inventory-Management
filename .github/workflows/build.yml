@@ -49,6 +49,8 @@ jobs:
           if errorlevel 1 exit /b 1
           python ci_patch_import_v1089.py
           if errorlevel 1 exit /b 1
+          python ci_patch_mdi_v1090.py
+          if errorlevel 1 exit /b 1
       - name: Repair generated updater header
         shell: pwsh
         run: |
@@ -69,7 +71,7 @@ jobs:
       - name: Set release version
         shell: pwsh
         run: |
-          $version = "1.0.89"
+          $version = "1.0.90"
           $path = "source\updater.py"
           $text = Get-Content $path -Raw
           $text = [regex]::Replace($text, 'APP_VERSION\s*=\s*["''][^"'']*["'']', "APP_VERSION = `"$version`"")
@@ -176,6 +178,7 @@ jobs:
           python -c "import sys; print('Python:', sys.version); assert sys.version_info[:2] == (3, 12), sys.version"
           if errorlevel 1 exit /b 1
           python -m py_compile store_inventory.py firebase_sync.py updater.py storage_lock.py durable_local.py inventory_reset_v1088.py inventory_import_v1089.py inventory_import_ui_v1089.py
+          python -c "from pathlib import Path; t=Path('store_inventory.py').read_text(encoding='utf-8-sig'); assert 'def _mdi_show_next_after_minimize(self):' in t and 'self._mdi_show_next_after_minimize()' in t; print('MDI minimize patch: OK')"
           if errorlevel 1 exit /b 1
           python -c "import firebase_sync; print('firebase_sync import: OK')"
           if errorlevel 1 exit /b 1
@@ -219,7 +222,7 @@ jobs:
       - name: Create Windows installer
         shell: pwsh
         run: |
-          $version = "1.0.89"
+          $version = "1.0.90"
           $exeDir = (Resolve-Path "source\dist\StoreInventoryManagement").Path
           $exe = Join-Path $exeDir "StoreInventoryManagement.exe"
           $setup = Join-Path $PWD "StoreInventoryManagement_Setup.iss"
@@ -284,23 +287,23 @@ jobs:
         shell: pwsh
         run: |
           $exeHash = (Get-FileHash "source\dist\StoreInventoryManagement\StoreInventoryManagement.exe" -Algorithm SHA256).Hash.ToLower()
-          $setupPath = "installer\StoreInventoryManagement_Setup_v1.0.89.exe"
+          $setupPath = "installer\StoreInventoryManagement_Setup_v1.0.90.exe"
           $setupHash = (Get-FileHash $setupPath -Algorithm SHA256).Hash.ToLower()
           "EXE_SHA256=$exeHash" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
           "SETUP_SHA256=$setupHash" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
       - name: Create GitHub Release and upload installer
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.0.89
-          name: Store Inventory Management v1.0.89
+          tag_name: v1.0.90
+          name: Store Inventory Management v1.0.90
           generate_release_notes: true
           files: |
-            installer/StoreInventoryManagement_Setup_v1.0.89.exe
+            installer/StoreInventoryManagement_Setup_v1.0.90.exe
       - name: Update version manifest
         shell: pwsh
         run: |
-          $version = "1.0.89"
-          $url = "https://github.com/${{ github.repository }}/releases/download/v1.0.89/StoreInventoryManagement_Setup_v1.0.89.exe"
+          $version = "1.0.90"
+          $url = "https://github.com/${{ github.repository }}/releases/download/v1.0.90/StoreInventoryManagement_Setup_v1.0.90.exe"
           $manifest = @{ version = $version; url = $url; sha256 = $env:SETUP_SHA256 } | ConvertTo-Json
           Set-Content -Path "version.json" -Value $manifest -Encoding UTF8
       - name: Commit version manifest
@@ -309,6 +312,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add version.json
-          git commit -m "Update version manifest to v1.0.89" || Write-Host "No manifest changes to commit"
+          git commit -m "Update version manifest to v1.0.90" || Write-Host "No manifest changes to commit"
           git pull --rebase origin main
           git push
