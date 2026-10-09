@@ -92,6 +92,10 @@ def preview(conn, imports):
                     conflict = f"Old code {prior} not found"
             if source and str(source[4] or "").upper() == "MTO":
                 conflict = "MTO source is protected"
+        elif current is not None and normalized_description(current[1]) == desired:
+            # Existing code is the identity; do not infer a rename just because
+            # another historical code happens to share the description.
+            source = None
         elif len(matches) > 1:
             conflict = "Description matches multiple existing codes"
         elif len(matches) == 1:
