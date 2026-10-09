@@ -1,0 +1,103 @@
+Item Code,Description,UOM,Opening Balance
+01-01-0001,Ball Bearing 608,Number,9
+01-01-0002,Ball Bearing 7304,Number,2
+01-01-0151,Thrust Bearing 30205,Number,1
+01-01-0003,Ball Bearing 6002,Number,10
+01-01-0004,Ball Bearing 6005,Number,6
+01-01-0005,Ball Bearing 6006,Number,1
+01-01-0006,Ball Bearing 6009,Number,2
+01-01-0007,Ball Bearing 6011,Number,2
+01-01-0008,Ball Bearing 6201,Number,6
+01-01-0009,Ball Bearing 6205,Number,1
+01-01-0010,Ball Bearing 6207,Number,2
+01-01-0011,Ball Bearing 6208,Number,1
+01-01-0012,Ball Bearing 6209,Number,2
+01-01-0013,Ball Bearing 6301,Number,10
+01-01-0014,Ball Bearing 6305,Number,1
+01-01-0015,Ball Bearing 6306,Number,1
+01-01-0016,Ball Bearing 6307,Number,4
+01-01-0017,Ball Bearing 6201,Number,8
+01-01-0018,Ball Bearing 6308,Number,1
+01-01-0019,Ball Bearing 6311,Number,1
+01-01-0020,Ball Bearing 6313,Number,1
+01-01-0021,Ball Bearing 4212,Number,1
+01-01-0022,Ball Bearing 51111,Number,5
+01-01-0023,Ball Bearing 51112,Number,0
+01-01-0024,Ball Bearing 51113,Number,4
+01-01-0101,Ball Bearing UC-204,Number,1
+01-01-0102,Ball Bearing UC-205,Number,1
+01-01-0103,Ball Bearing UC-206,Number,4
+01-01-0104,Ball Bearing UC-208,Number,1
+01-01-0105,Ball Bearing UC-209,Number,2
+01-03-0001,Rubber Oil Seal 25 x 35 x 7 x 3,Number,11
+01-03-0002,Rubber Oil Seal 55 x 68 x 10,Number,22
+01-03-0003,Rubber Oil Seal 40 x 65 x 10,Number,5
+01-03-0004,Rubber Oil Seal 60 x 85 x 08,Number,2
+01-03-0005,Rubber Oil Seal 60 x 75 x 08,Number,3
+01-03-0006,Rubber Oil Seal 45 x 72 x 8,Number,8
+01-03-0007,Rubber Oil Seal 35 x 58 x 10,Number,9
+01-03-0008,Rubber Oil Seal 62 x 120 x 12,Number,4
+01-03-0009,Rubber Oil Seal 80 x 105 x 10,Number,2
+01-03-0010,Rubber Oil Seal 70 x 90 x 12,Number,5
+01-03-0011,Rubber Oil Seal 58 x 80 x 10,Number,6
+01-03-0012,Rubber Oil Seal 40 x 80 x 10,Number,5
+01-03-0013,Rubber Oil Seal 60 x 95 x 12,Number,5
+01-03-0014,Rubber Oil Seal 60 x 85 x 12,Number,6
+01-03-0015,Rubber Oil Seal 45 x 60 x 12,Number,8
+01-03-0016,Rubber Oil Seal 70 x 90 x 12,Number,5
+01-03-0017,Rubber Oil Seal 58 x 90 x 12,Number,4
+01-03-0018,Rubber Oil Seal 70 x 90 x 12,Number,5
+01-03-0019,Rubber Oil Seal 60 x 95 x 12,Number,4
+01-03-0020,Rubber Oil Seal 60 x 90 x 12,Number,8
+01-03-0021,Rubber Oil Seal 55 x 72 x 10,Number,8
+01-03-0022,Rubber Oil Seal 35 x 90 x 10,Number,4
+01-03-0023,Rubber Oil Seal 20 x 37 x 7,Number,1
+01-03-0024,Rubber Oil Seal 30 x 62 x 10,Number,8
+01-03-0025,Rubber Oil Seal 30 x 42 x 08,Number,8
+01-03-0026,Rubber Oil Seal 50 x 65 x 8,Number,4
+01-03-0027,Rubber Oil Seal 55 x 70 x 09,Number,4
+01-03-0028,Rubber Oil Seal 55 x 65 x 10,Number,8
+01-03-0029,Rubber Oil Seal 30 x 47 x 70,Number,6
+01-03-0030,Rubber Oil Seal 40 x 52 x 07,Number,10
+01-03-0031,Rubber Oil Seal 28 x 40 x 08,Number,15
+01-03-0032,Rubber Oil Seal 55 x 72 x 08,Number,1
+01-03-0033,Rubber Oil Seal 45 x 72 x 10,Number,1
+01-03-0034,Rubber Oil Seal 40 x 52 x 7,Number,1
+01-03-0035,Rubber Oil Seal 12 x 22 x 7,Number,2
+01-03-0036,Rubber Oil Seal 30 x 52 x 8,Number,2
+01-07-001,Mechanical Seal 18mm,Number,2
+01-07-002,Mechanical Seal 12mm,Number,3
+01-07-003,Mechanical Seal 19mm,Number,4
+01-07-004,Mechanical Seal 21mm,Number,2
+01-07-005,Mechanical Seal 20mm,Number,5
+01-07-006,Mechanical Seal 22mm,Number,4
+01-07-007,Mechanical Seal 25mm,Number,3
+01-07-008,Mechanical Seal 28mm,Number,3
+01-07-009,Mechanical Seal 35mm,Number,4
+01-07-010,Mechanical Seal 55mm,Number,4
+01-15-0043,Half Chain Lock 60#,Number,1
+01-15-0061,Simplex Chain Lock 50#,Number,37
+01-15-0062,Simplex Chain Lock 60#,Number,18
+01-15-0063,Simplex Chain Lock 80#,Number,4
+01-15-0041,Half Chain Lock 50#,Number,44
+01-15-0042,Half Chain Lock 80#,Number,5
+01-15-0081,Duplex Chain Lock 50#,Number,3
+01-15-0044,M.S Half Chain Lock 80#,Number,5
+01-15-0082,Duplex Half Chain Lock 50#,Number,3
+01-10-0201,M.S Shaft Lock 17mm,Number,9
+01-10-0202,M.S Shaft Lock 11mm,Number,4
+01-10-0203,M.S Shaft Lock 14mm,Number,45
+01-10-0204,M.S Shaft Lock 13mm,Number,48
+01-10-0205,S.S Shaft Lock 13mm,Number,24
+01-10-0206,S.S Shaft Lock 28mm,Number,1
+01-10-0207,S.S Shaft Lock 16mm,Number,4
+01-03-0401,Belt Pulley 2.1,Number,1
+01-03-0402,"Belt Pulley 4""",Number,5
+01-15-0200,Pinion Gear 19 Teeth,Number,3
+01-15-0201,Pinion Gear 23 Teeth,Number,2
+01-15-0202,Pinion Gear 26 Teeth,Number,2
+01-15-0203,"Pinion Gear 4""",Number,4
+01-03-0251,Rubber Bush Coupling,Number,10
+01-02-0150,Argan Gloves,Number,1
+01-03-0403,Rubber Gain,Number,3
+01-02-0151,Black Welding Glass,Number,5
