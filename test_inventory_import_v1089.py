@@ -4,6 +4,8 @@ import os
 import sqlite3
 import tempfile
 import unittest
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent / 'source'))
 import inventory_import_v1089 as engine
 
 class InventoryImportTests(unittest.TestCase):
