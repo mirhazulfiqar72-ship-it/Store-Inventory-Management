@@ -17,7 +17,9 @@ def replace_once(old, new):
     global mdi
     count = mdi.count(old)
     if count != 1:
-        raise RuntimeError(f'MDI patch anchor unexpectedly occurs {count} times: {old!r}')
+        where = mdi.find('        def restore')
+        context = mdi[max(0,where-80):where+500] if where >= 0 else mdi[0:900]
+        raise RuntimeError(f'MDI patch anchor unexpectedly occurs {count} times: {old!r}\\nActual MDI excerpt: {context!r}')
     mdi = mdi.replace(old, new, 1)
 
 
