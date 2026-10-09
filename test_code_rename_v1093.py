@@ -4,6 +4,9 @@ import os
 import sqlite3
 import tempfile
 import unittest
+import sys
+# Always exercise the PATCHED source used by the Windows EXE, never root originals.
+sys.path.insert(0, str(Path(__file__).resolve().parent / "source"))
 import inventory_import_v1089 as importer
 from inventory_code_rename_v1093 import REFERENCE_TABLES, relink_transactions
 
