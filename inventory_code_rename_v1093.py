@@ -119,7 +119,7 @@ def preview(conn, imports):
               and (item.opening is None or abs(float(current[3] or 0) - item.opening) < 1e-10)):
             result.append((item, "Unchanged", current[0]))
         else:
-            if matches:
+            if matches and normalized_description(current[1]) != desired:
                 result.append((item, "Conflict", f"Description belongs to {matches[0][0]}"))
             else:
                 result.append((item, "Update", current[0]))
