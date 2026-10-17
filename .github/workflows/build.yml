@@ -222,7 +222,7 @@ jobs:
           if errorlevel 1 exit /b 1
           python -c "from pathlib import Path; u=Path('firebase_database_url.txt').read_text(encoding='utf-8-sig').strip(); assert u.startswith('https://store-inventory-a46b0-default-rtdb.firebaseio.com'), u; print('Firebase URL: OK')"
           if errorlevel 1 exit /b 1
-          python -c "from pathlib import Path; t=Path('firebase_sync.py').read_text(encoding='utf-8-sig'); assert 'mto_items' in t and 'firebase_pending_sync.json' in t and 'firebase_sync_state.json' in t and 'durable_local.save' in t; print('Durable Firebase/local journal: OK')"
+          python -c "from pathlib import Path; t=Path('firebase_sync.py').read_text(encoding='utf-8-sig'); assert 'mto_items' in t and 'firebase_pending_sync_v2.json' in t and 'firebase_sync_state_v2.json' in t and 'durable_local.save' in t; print('Durable Firebase/local journal: OK')"
           if errorlevel 1 exit /b 1
           python -c "from pathlib import Path; t=Path('store_inventory.py').read_text(encoding='utf-8-sig'); assert 'label=\"Check Update\"' in t and 'label=\"Current Version\"' in t; assert 'durable_local.restore_if_newer(raw)' in t and 'durable_local.save(raw)' in t; print('Help and startup recovery controls: OK')"
           if errorlevel 1 exit /b 1
