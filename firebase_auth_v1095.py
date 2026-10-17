@@ -196,7 +196,10 @@ class AuthenticatedFirebaseSession(requests.Session):
     """Adds auth token only to URLs under the configured Firebase RTDB URL."""
     def __init__(self, auth: FirebaseEmailAuth, database_url: str):
         super().__init__()
-        self.auth = auth
+        # requests.Session.auth is a reserved Requests HTTPAuth hook.
+        # Storing a FirebaseEmailAuth instance in that attribute makes Requests
+        # attempt to CALL it while preparing every request, crashing the EXE.
+        self.firebase_auth = auth
         parsed = urlsplit(str(database_url or "").rstrip("/"))
         if parsed.scheme != "https" or not parsed.hostname:
             raise FirebaseAuthenticationError("Firebase Realtime Database URL must be HTTPS")
@@ -211,12 +214,12 @@ class AuthenticatedFirebaseSession(requests.Session):
                 params = {}
             else:
                 params = dict(params)
-            params["auth"] = self.auth.id_token()
+            params["auth"] = self.firebase_auth.id_token()
             kwargs["params"] = params
             response = super().request(method, url, **kwargs)
             if response.status_code == 401:
-                self.auth.expire()
-                params["auth"] = self.auth.id_token()
+                self.firebase_auth.expire()
+                params["auth"] = self.firebase_auth.id_token()
                 response = super().request(method, url, **kwargs)
             return response
         return super().request(method, url, **kwargs)
