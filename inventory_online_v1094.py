@@ -180,6 +180,24 @@ def ensure_clean_online(conn, sync, csv_path, backup_dir):
             cloud = prepared
 
         merge_pending = _ready_to_sync(conn, sync, cloud, backup_dir)
+    except Exception as error:
+        # A previously migrated PC must still work from its own v2 cache when
+        # the Internet/Firebase is temporarily unavailable. NEVER fall back
+        # to the old legacy namespace or its larger recovery snapshot.
+        state = sync._load_json(sync.state_path)
+        if isinstance(state, dict) and state.get("clean_inventory_namespace") == MARKER:
+            pending = sync._load_json(sync.pending_path)
+            base = pending.get("baseline") if isinstance(pending, dict) else None
+            if not (isinstance(base, dict) and
+                    base.get("clean_inventory_namespace") == MARKER):
+                if snapshot_db(conn) != {
+                    "schema": 1, "tables": state["tables"],
+                    "clean_inventory_namespace": MARKER}:
+                    _backup_sqlite(conn, backup_dir)
+                    sync.replace_local(conn, state)
+            sync.pending_error = str(error)
+            return False
+        raise
     finally:
         if locked:
             sync._release_lock(token)
