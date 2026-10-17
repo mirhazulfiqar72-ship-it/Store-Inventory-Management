@@ -197,6 +197,25 @@ class CleanCloudTests(unittest.TestCase):
         self.assertEqual(self.conn.execute("SELECT count(*) FROM items").fetchone()[0],2480)
         self.assertIsNone(self.store.get("store_inventory_v2/data"))
 
+    def test_v2_network_outage_does_not_restore_legacy(self):
+        self.run_clean()
+        def offline_lock(_):
+            raise OSError("Network unavailable")
+        self.sync._try_acquire_lock = offline_lock
+        self.assertFalse(self.run_clean())
+        self.assertEqual(self.conn.execute("SELECT count(*) FROM items").fetchone()[0],102)
+        self.assertIn("Network unavailable", self.sync.pending_error)
+
+    def test_v2_recovery_refuses_older_larger_snapshot(self):
+        import durable_local
+        state_dir = Path(self.temp.name)
+        (state_dir / "firebase_sync_state_v2.json").write_text(
+            '{"clean_inventory_namespace": "isolated-inventory-102-v1.0.94"}',
+            encoding="utf-8")
+        with patch.object(durable_local, "DATA_DIR", state_dir):
+            self.assertFalse(durable_local.restore_if_newer(self.conn))
+        self.assertEqual(self.conn.execute("SELECT count(*) FROM items").fetchone()[0],2480)
+
     def test_v2_offline_reuses_current_clean_cache(self):
         self.run_clean()
         self.sync.enabled = False
