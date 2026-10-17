@@ -36,8 +36,18 @@ def _secure_windows_token_storage():
 
 
 class FirebaseEmailAuth:
-    def __init__(self, install_dir, session=None, clock=None):
-        self.data_dir = Path(install_dir) / "Data"
+    def __init__(self, install_dir, session=None, clock=None, user_data_dir=None):
+        # User-scoped data survives software updates and is not part of the
+        # installer's managed files. DPAPI also binds credentials to this
+        # Windows account, so another local user cannot reuse the session.
+        self.legacy_data_dir = Path(install_dir) / "Data"
+        if user_data_dir is not None:
+            self.data_dir = Path(user_data_dir)
+        else:
+            local_appdata = os.environ.get("LOCALAPPDATA")
+            if not local_appdata:
+                local_appdata = str(Path.home() / "AppData" / "Local")
+            self.data_dir = Path(local_appdata) / "StoreInventoryManagement" / "Auth"
         self.config_file = self.data_dir / _CONFIG_NAME
         # Token is scoped to the current Windows account (DPAPI).
         self.token_file = self.data_dir / _TOKEN_NAME
@@ -50,15 +60,28 @@ class FirebaseEmailAuth:
         self._id_token = ""
         self._refresh_token = ""
         self._expiry = 0.0
+        self.session_remembered = False
         self._load_config()
 
     def _load_config(self):
-        try:
-            data = json.loads(self.config_file.read_text(encoding="utf-8"))
-            self.api_key = str(data.get("web_api_key") or "").strip()
-            self.email = str(data.get("email") or "").strip()
-        except (OSError, ValueError, TypeError):
-            pass
+        # Read the new per-user settings first. If upgrading from v1.0.96,
+        # migrate the previous settings without asking for the API key/email.
+        for path in (self.config_file, self.legacy_data_dir / _CONFIG_NAME):
+            try:
+                data = json.loads(path.read_text(encoding="utf-8"))
+                key = str(data.get("web_api_key") or "").strip()
+                email = str(data.get("email") or "").strip()
+                if not key or not email:
+                    continue
+                self.api_key, self.email = key, email
+                if path != self.config_file:
+                    try:
+                        self._save_config()
+                    except OSError:
+                        pass
+                return
+            except (OSError, ValueError, TypeError):
+                continue
 
     def _save_config(self):
         self.data_dir.mkdir(parents=True, exist_ok=True)
@@ -68,9 +91,11 @@ class FirebaseEmailAuth:
         os.replace(temp, self.config_file)
 
     def _save_protected_refresh_token(self):
+        """Persist only an encrypted refresh token, not a password or ID token."""
         crypto = _secure_windows_token_storage()
+        self.session_remembered = False
         if not crypto or not self._refresh_token:
-            return
+            return False
         try:
             raw = json.dumps({"refresh_token": self._refresh_token,
                               "email": self.email, "uid": self.uid}).encode("utf-8")
@@ -78,27 +103,49 @@ class FirebaseEmailAuth:
                                                 None, None, None, 0)
             self.data_dir.mkdir(parents=True, exist_ok=True)
             temp = self.token_file.with_suffix(".tmp")
-            temp.write_bytes(encrypted)
-            os.replace(temp, self.token_file)
+            try:
+                temp.write_bytes(encrypted)
+                os.replace(temp, self.token_file)
+            finally:
+                if temp.is_file():
+                    temp.unlink()
+            self.session_remembered = True
+            return True
+        except (OSError, ValueError, TypeError):
+            # Never downgrade to a plaintext token or saved password.
+            return False
         except Exception:
-            # Sign-in still works; next session may prompt again.
-            pass
+            # A pywin32/DPAPI error means the user needs to sign in again,
+            # not that insecure credential storage should be used.
+            return False
 
     def _load_protected_refresh_token(self):
         crypto = _secure_windows_token_storage()
-        if not crypto or not self.token_file.is_file():
+        if not crypto:
             return False
-        try:
-            _, raw = crypto.CryptUnprotectData(self.token_file.read_bytes(),
-                                               None, None, None, 0)
-            saved = json.loads(raw.decode("utf-8"))
-            if str(saved.get("email") or "").casefold() != self.email.casefold():
-                return False
-            self._refresh_token = str(saved["refresh_token"])
-            self.uid = str(saved.get("uid") or "")
-            return bool(self._refresh_token)
-        except Exception:
-            return False
+        for path in (self.token_file, self.legacy_data_dir / _TOKEN_NAME):
+            if not path.is_file():
+                continue
+            try:
+                _, raw = crypto.CryptUnprotectData(path.read_bytes(),
+                                                   None, None, None, 0)
+                saved = json.loads(raw.decode("utf-8"))
+                if str(saved.get("email") or "").casefold() != self.email.casefold():
+                    continue
+                refresh = str(saved.get("refresh_token") or "")
+                if not refresh:
+                    continue
+                self._refresh_token = refresh
+                self.uid = str(saved.get("uid") or "")
+                self.session_remembered = True
+                if path != self.token_file:
+                    # An already authenticated v1.0.96 Windows account is
+                    # migrated to per-user AppData without another password.
+                    self._save_protected_refresh_token()
+                return True
+            except Exception:
+                continue
+        return False
 
     @staticmethod
     def _body(response):
@@ -304,6 +351,12 @@ def request_login(parent, install_dir):
             return
         finally:
             password_value.set("")
+        if not auth.session_remembered:
+            messagebox.showwarning(
+                "Firebase login",
+                "You are signed in, but Windows could not securely save this session. "
+                "You may need to sign in next time. Check AppData access or Windows DPAPI.",
+                parent=window)
         result["ok"] = True
         window.destroy()
 
