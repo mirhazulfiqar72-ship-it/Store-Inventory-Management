@@ -171,6 +171,23 @@ jobs:
           python create_inventory_icon.py
           if (-not (Test-Path "inventory_professional.ico")) { throw "Inventory icon was not created." }
           if (-not (Test-Path "shortcut_icon_4_v1085.ico")) { throw "Shortcut icon #4 was not created." }
+      - name: Audit current Firebase inventory counts (read only)
+        shell: cmd
+        run: |
+          python audit_inventory_online_v1094.py
+          if errorlevel 1 exit /b 1
+      - name: Test Inventory Codes Excel/PDF Import
+        shell: cmd
+        run: |
+          set PYTHONPATH=source
+          python -m unittest -v test_inventory_import_v1089.py
+          if errorlevel 1 exit /b 1
+          python -m unittest -v test_code_rename_v1093.py
+          if errorlevel 1 exit /b 1
+          python -m unittest -v test_inventory_online_v1094.py
+          if errorlevel 1 exit /b 1
+          python -c "from pathlib import Path; s=Path('source/store_inventory.py').read_text(encoding='utf-8-sig'); assert s.count('Import Excel / PDF')==1, 'Missing/duplicate Import button'; assert 'label=\"Check Update\"' in s; print('Import button and Help Updater found: OK')"
+          if errorlevel 1 exit /b 1
       - name: Validate Firebase write access
         shell: cmd
         working-directory: source
@@ -215,23 +232,6 @@ jobs:
           python -c "from pathlib import Path; t=Path('firebase_sync.py').read_text(encoding='utf-8-sig'); assert 'self.check_interval = 10.0' in t and 'kick_background_pull' in t and 'apply_cached_pull' in t; assert 'PRAGMA journal_mode=WAL' in t; print('Non-blocking Firebase performance tuning: OK')"
           if errorlevel 1 exit /b 1
           python -c "from pathlib import Path; a=Path('store_inventory.py').read_text(encoding='utf-8-sig'); u=Path('updater.py').read_text(encoding='utf-8-sig'); assert 'state_ready = os.path.isfile(sync.state_path)' in a; assert 'threading.Thread(target=worker' in u; print('Fast startup/login path: OK')"
-          if errorlevel 1 exit /b 1
-      - name: Audit current Firebase inventory counts (read only)
-        shell: cmd
-        run: |
-          python audit_inventory_online_v1094.py
-          if errorlevel 1 exit /b 1
-      - name: Test Inventory Codes Excel/PDF Import
-        shell: cmd
-        run: |
-          set PYTHONPATH=source
-          python -m unittest -v test_inventory_import_v1089.py
-          if errorlevel 1 exit /b 1
-          python -m unittest -v test_code_rename_v1093.py
-          if errorlevel 1 exit /b 1
-          python -m unittest -v test_inventory_online_v1094.py
-          if errorlevel 1 exit /b 1
-          python -c "from pathlib import Path; s=Path('source/store_inventory.py').read_text(encoding='utf-8-sig'); assert s.count('Import Excel / PDF')==1, 'Missing/duplicate Import button'; assert 'label=\"Check Update\"' in s; print('Import button and Help Updater found: OK')"
           if errorlevel 1 exit /b 1
       - name: Build EXE
         shell: cmd
