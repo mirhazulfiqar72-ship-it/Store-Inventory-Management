@@ -100,18 +100,20 @@ def _ready_to_sync(conn, sync, cloud, backup_dir):
                   and saved_baseline.get("clean_inventory_namespace") == MARKER
                   and isinstance(pending.get("snapshot"), dict))
     if v2_pending:
-        # An offline save made by this version can be merged normally.
-        sync.initialize(conn)
-        return
+        # Offline v2 edits can be merged after the namespace lock is released.
+        return True
 
     # A v1 snapshot, or any unexplained local difference, is never merged
     # into the clean v2 dataset. Back it up before discarding it.
     local = snapshot_db(conn)
-    if not isinstance(state, dict) or state.get("clean_inventory_namespace") != MARKER or local != {
-        "schema": 1, "tables": cloud["tables"]
-    }:
-        if local != {"schema": 1, "tables": cloud["tables"]}:
-            _backup_sqlite(conn, backup_dir)
+    expected = {"schema": 1, "tables": cloud["tables"],
+                "clean_inventory_namespace": MARKER}
+    state_ready = (isinstance(state, dict)
+                   and state.get("clean_inventory_namespace") == MARKER)
+    if local != expected and (not state_ready or local != {
+            "schema": 1, "tables": state.get("tables", {}),
+            "clean_inventory_namespace": MARKER}):
+        _backup_sqlite(conn, backup_dir)
     sync.replace_local(conn, cloud)
     sync._save_state(cloud)
     sync._clear_pending()
@@ -123,6 +125,7 @@ def _ready_to_sync(conn, sync, cloud, backup_dir):
         pass
     import durable_local
     durable_local.save(conn)
+    return False
 
 
 def ensure_clean_online(conn, sync, csv_path, backup_dir):
@@ -176,9 +179,13 @@ def ensure_clean_online(conn, sync, csv_path, backup_dir):
                           json="v1.0.94-bootstrap-" + str(time.time_ns()))
             cloud = prepared
 
-        _ready_to_sync(conn, sync, cloud, backup_dir)
-        return True
+        merge_pending = _ready_to_sync(conn, sync, cloud, backup_dir)
     finally:
         if locked:
             sync._release_lock(token)
         sync.timeout = original_timeout
+
+    # This can write to Firebase, so it MUST be outside the held lock.
+    if merge_pending:
+        sync.initialize(conn)
+    return True
