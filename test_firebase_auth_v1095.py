@@ -85,7 +85,7 @@ class AuthTests(unittest.TestCase):
                         params={"print":"pretty"})
         self.assertEqual(requests_seen[0][2]["params"]["auth"],"short-lived-id-token")
         self.assertIn("X-Firebase-ETag", requests_seen[0][2]["headers"])
-        self.assertNotIn("auth",requests_seen[1][2].get("params",{}))
+        self.assertNotIn("auth",requests_seen[1][2].get("params") or {})
         self.assertEqual(requests_seen[2][2]["params"]["print"],"pretty")
         self.assertIn("auth",requests_seen[2][2]["params"])
 
