@@ -44,7 +44,7 @@ class AuthTests(unittest.TestCase):
         self.http = FakeAuthHTTP()
         self.clock = [1000.]
         self.auth = login.FirebaseEmailAuth(
-            self.tmp.name, session=self.http, clock=lambda: self.clock[0])
+            self.tmp.name, session=self.http, clock=lambda: self.clock[0], user_data_dir=self.tmp.name)
         no_dpapi = patch.object(login, "_secure_windows_token_storage", return_value=None)
         no_dpapi.start()
         self.addCleanup(no_dpapi.stop)
@@ -106,7 +106,7 @@ class AuthTests(unittest.TestCase):
         class Reject(FakeAuthHTTP):
             def post(self, url, **kwargs):
                 return Response({"error":{"message":"INVALID_LOGIN_CREDENTIALS"}},400)
-        auth=login.FirebaseEmailAuth(self.tmp.name, session=Reject())
+        auth=login.FirebaseEmailAuth(self.tmp.name, session=Reject(), user_data_dir=self.tmp.name)
         with self.assertRaisesRegex(login.FirebaseAuthenticationError,"Invalid Firebase"):
             auth.sign_in("web-key","x@y.com","wrong")
         self.assertFalse(auth.token_file.exists())
