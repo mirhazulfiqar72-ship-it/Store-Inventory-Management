@@ -239,6 +239,14 @@ def request_login(parent, install_dir):
         _MANAGER = auth
         return True
 
+    # Existing clean v2 installations remain usable offline. The cached
+    # DPAPI-protected refresh token proves this Windows user previously
+    # signed in; online requests retry refresh when connectivity returns.
+    v2_state = auth.data_dir / "firebase_sync_state_v2.json"
+    if v2_state.is_file() and auth._load_protected_refresh_token():
+        _MANAGER = auth
+        return True
+
     import tkinter as tk
     from tkinter import ttk, messagebox
 
